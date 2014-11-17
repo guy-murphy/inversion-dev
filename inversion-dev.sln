@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion", "Inversion\Inversion.csproj", "{A2DBF0B8-B672-4237-8A0B-864BB0474054}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Process", "Inversion.Process\Inversion.Process.csproj", "{37F59768-76EA-4D09-8976-BBC3540DB5AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Spring", "Inversion.Spring\Inversion.Spring.csproj", "{E50603E3-E170-4F0B-9E25-0DF068A77096}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2DBF0B8-B672-4237-8A0B-864BB0474054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2DBF0B8-B672-4237-8A0B-864BB0474054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2DBF0B8-B672-4237-8A0B-864BB0474054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2DBF0B8-B672-4237-8A0B-864BB0474054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37F59768-76EA-4D09-8976-BBC3540DB5AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37F59768-76EA-4D09-8976-BBC3540DB5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37F59768-76EA-4D09-8976-BBC3540DB5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37F59768-76EA-4D09-8976-BBC3540DB5AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E50603E3-E170-4F0B-9E25-0DF068A77096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E50603E3-E170-4F0B-9E25-0DF068A77096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E50603E3-E170-4F0B-9E25-0DF068A77096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E50603E3-E170-4F0B-9E25-0DF068A77096}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
