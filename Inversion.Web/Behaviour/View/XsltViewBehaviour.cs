@@ -127,21 +127,20 @@ namespace Inversion.Web.Behaviour.View {
 		/// </summary>
 		/// <remarks>
 		/// The locations checked are produced by the following series of yields:-
-		/// 
-		/// ```java
-		/// // area/concern/action
-		///	yield return Path.Combine(area, concern, action);
-		///	yield return Path.Combine(area, concern, "default.xslt");
-		///	// area/action
-		///	yield return Path.Combine(area, action);
-		///	yield return Path.Combine(area, "default.xslt");
-		///	// concern/action
-		///	yield return Path.Combine(concern, action);
-		///	yield return Path.Combine(concern, "default.xslt");
-		///	// action
-		///	yield return action;
-		///	yield return "default.xslt"; 
-		/// ```
+		/// <code>
+		///		//area/concern/action
+		///		yield return Path.Combine(area, concern, action);
+		///		yield return Path.Combine(area, concern, "default.xslt");
+		///		// area/action
+		///		yield return Path.Combine(area, action);
+		///		yield return Path.Combine(area, "default.xslt");
+		///		// concern/action
+		///		yield return Path.Combine(concern, action);
+		///		yield return Path.Combine(concern, "default.xslt");
+		///		// action
+		///		yield return action;
+		///		yield return "default.xslt"; 
+		/// </code>
 		/// </remarks>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
