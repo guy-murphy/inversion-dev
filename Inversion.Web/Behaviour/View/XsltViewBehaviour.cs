@@ -128,6 +128,7 @@ namespace Inversion.Web.Behaviour.View {
 		/// <remarks>
 		/// The locations checked are produced by the following series of yields:-
 		/// <code>
+		/// ```csharp
 		///		//area/concern/action
 		///		yield return Path.Combine(area, concern, action);
 		///		yield return Path.Combine(area, concern, "default.xslt");
@@ -140,6 +141,7 @@ namespace Inversion.Web.Behaviour.View {
 		///		// action
 		///		yield return action;
 		///		yield return "default.xslt"; 
+		/// ```
 		/// </code>
 		/// </remarks>
 		/// <param name="ev">The event that gave rise to this action.</param>

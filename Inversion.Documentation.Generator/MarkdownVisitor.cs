@@ -89,13 +89,13 @@ namespace Inversion.Documentation.Generator {
 
 		public override void VisitCode(Code code) {
 			_builder.AppendLine();
+			_builder.AppendLine();
 			// Indent code with 4 spaces according to Markdown syntax.
 			foreach (var line in code.Content.Split(new[] { Environment.NewLine }, StringSplitOptions.None)) {
 				_builder.Append("    ");
 				_builder.AppendLine(line);
 			}
 			base.VisitCode(code);
-
 		}
 
 		public override void VisitText(Text text) {

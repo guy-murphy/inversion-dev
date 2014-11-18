@@ -10,6 +10,7 @@ Care should be taken to ensure behaviours are well behaved. To this end the foll
 
 ##### Example
 
+
     context.Register(behaviours);
     context.Fire("set-up");
     context.Fire("process-request");	
