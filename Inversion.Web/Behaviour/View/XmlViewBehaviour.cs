@@ -10,13 +10,28 @@ namespace Inversion.Web.Behaviour.View {
 
 		private readonly string _contentType;
 
+		/// <summary>
+		/// Instantiates a new xml view behaviour to provide production of xml views.
+		/// </summary>
+		/// <remarks>Defaults the content-type to "text/xml"</remarks>
+		/// <param name="message">The message the behaviour has set as responding to.</param>
 		public XmlViewBehaviour(string message) : this(message, "text/xml") { }
 
+		/// <summary>
+		/// Instantiates a new xml view behaviour to provide production of xml views.
+		/// </summary>
+		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
 		public XmlViewBehaviour(string message, string contentType)
 			: base(message) {
 			_contentType = contentType;
 		}
 
+		/// <summary>
+		/// Writes the model of the last view-step as xml to the content of a new view-step.
+		/// </summary>
+		/// <param name="ev">The event that gave rise to this action.</param>
+		/// <param name="context">The context within which this action is being performed.</param>
 		public override void Action(IEvent ev, WebContext context) {
 			if (context.ViewSteps.HasSteps) {
 				if (context.ViewSteps.Last.HasModel) {

@@ -4,6 +4,10 @@ using System.Text.RegularExpressions;
 using Inversion.Collections;
 
 namespace Inversion.Web {
+
+	/// <summary>
+	/// Represent the structure of a url.
+	/// </summary>
 	public class UrlInfo : ICloneable {
 
 		private const string DefaultRegexSpec = @"
@@ -24,6 +28,9 @@ namespace Inversion.Web {
 (?<query>[^\#\r\n]*)?
 ";
 
+		/// <summary>
+		/// The default regex that is used to deconstruct urls.
+		/// </summary>
 		public static readonly Regex DefaultRegex = new Regex(
 			DefaultRegexSpec,
 			RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace |
@@ -159,21 +166,48 @@ namespace Inversion.Web {
 			}
 		}
 
+		/// <summary>
+		/// Instantiates a new url-info object from the uri object provided.
+		/// </summary>
+		/// <param name="uri">The uri object to contrsut the url-info from.</param>
 		public UrlInfo(Uri uri) : this(uri, null) { }
+		/// <summary>
+		/// Instantiates a new url-info object from the url string representation provided.
+		/// </summary>
+		/// <param name="url">The url to construct the url-info from.</param>
 		public UrlInfo(string url) : this(url, null) { }
+		/// <summary>
+		/// Instantiates a new url-info object from the uri provided
+		/// using the regex provided to deconstruct it.
+		/// </summary>
+		/// <param name="uri">The uri object to contrsut the url-info from.</param>
+		/// <param name="regex">The regex to use in deconstructing the uri.</param>
 		public UrlInfo(Uri uri, Regex regex) : this(uri.ToString(), regex) { }
-
+		/// <summary>
+		/// Instantiates a new url-info object from the url string representation provided,
+		/// using the regex provided to deconstruct it.
+		/// </summary>
+		/// <param name="url">The url to construct the url-info from.</param>
+		/// <param name="regex">The regex to use in deconstructing the uri.</param>
 		public UrlInfo(string url, Regex regex) {
 			_url = url;
 			_regex = regex;
 		}
 
+		/// <summary>
+		/// Instantiates a url-info object as a copy
+		/// of the url-info object provided.
+		/// </summary>
+		/// <param name="info">The url-info obect to create a copy from.</param>
 		public UrlInfo(UrlInfo info) {
 			_url = info.Url;
 			_regex = info.Regex;
 			_query = new DataDictionary<string>();
 		}
 
+		/// <summary>
+		/// Processes the url with a deconstruction regex.
+		/// </summary>
 		public void ProcessUrl() {
 			_match = this.Regex.Match(_url);
 			if (!String.IsNullOrWhiteSpace(this.QueryString)) {
@@ -185,6 +219,11 @@ namespace Inversion.Web {
 			return new UrlInfo(this);
 		}
 
+		/// <summary>
+		/// Instantiates a new url-info object that is a copy
+		/// of the current instance.
+		/// </summary>
+		/// <returns></returns>
 		public UrlInfo Clone() {
 			return new UrlInfo(this);
 		}

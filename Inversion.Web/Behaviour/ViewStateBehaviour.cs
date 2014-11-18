@@ -25,8 +25,23 @@ namespace Inversion.Web.Behaviour {
 	/// </remarks>
 	public class ViewStateBehaviour : WebBehaviour {
 
-		public ViewStateBehaviour(string name) : base(name) { }
+		/// <summary>
+		/// Instantiates a new view state behaviour configured with the message provided.
+		/// </summary>
+		/// <param name="message">The message the behaviour has set as responding to.</param>
+		public ViewStateBehaviour(string message) : base(message) { }
 
+		/// <summary>
+		/// Takes the control state of the provided context and from it produces
+		/// a view state model that is used as the basis of the view-step render
+		/// pipeline.
+		/// </summary>
+		/// <remarks>
+		/// This is what you'd override if you wanted to govern your own model presented
+		/// to your view layer.
+		/// </remarks>
+		/// <param name="ev">The event that gave rise to this action.</param>
+		/// <param name="context">The context within which this action is being performed.</param>
 		public override void Action(IEvent ev, WebContext context) {
 			DataDictionary<IData> model = new DataDictionary<IData>();
 

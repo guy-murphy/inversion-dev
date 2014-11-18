@@ -6,6 +6,12 @@ using System.Linq;
 using Inversion.Process;
 
 namespace Inversion.Web.Behaviour {
+
+	/// <summary>
+	/// An abstract provision of a web behaviour that includes features
+	/// for configuring parameter conditions that must be met for the
+	/// behaviours action to execute.
+	/// </summary>
 	public abstract class WebActionBehaviour : WebBehaviour {
 
 		// These fields were originally readonly and were injected via the constructor.
@@ -23,6 +29,10 @@ namespace Inversion.Web.Behaviour {
 		private ImmutableDictionary<string, string> _matchingAllParams;
 		private ImmutableDictionary<string, string> _nonMatchingAllParams;
 
+		/// <summary>
+		/// Gives access to an enumeration of control-state keys that should
+		/// be present in order for this behaviours action to execute.
+		/// </summary>
 		public IEnumerable<string> IncludedAllControlStates {
 			get { return _includedAllControlStates ?? (_includedAllControlStates = ImmutableList.Create<string>()); }
 			set {
@@ -33,6 +43,10 @@ namespace Inversion.Web.Behaviour {
 			}
 		}
 
+		/// <summary>
+		/// Gives access to an enumeration of control-state keys that should not
+		/// be present in order for this behaviours action to execute.
+		/// </summary>
 		public IEnumerable<string> NonIncludedControlStates {
 			get { return _nonIncludedControlStates ?? (_nonIncludedControlStates = ImmutableList.Create<string>()); }
 			set {
@@ -43,6 +57,10 @@ namespace Inversion.Web.Behaviour {
 			}
 		}
 
+		/// <summary>
+		/// Gives access to an enumeration of context paramter keys that
+		/// should be present on the context for this behaviours action to execute.
+		/// </summary>
 		public IEnumerable<string> IncludedAllParameters {
 			get { return _includedAllParameters ?? (_includedAllParameters = ImmutableList.Create<string>()); }
 			set {
@@ -53,6 +71,10 @@ namespace Inversion.Web.Behaviour {
 			}
 		}
 
+		/// <summary>
+		/// Gives access to an enumeration of context paramter keys that
+		/// should not be present on the context for this behaviours action to execute.
+		/// </summary>
 		public IEnumerable<string> NonIncludedParameters {
 			get { return _nonIncludedParameters ?? (_nonIncludedParameters = ImmutableList.Create<string>()); }
 			set {
@@ -63,6 +85,10 @@ namespace Inversion.Web.Behaviour {
 			}
 		}
 
+		/// <summary>
+		/// Gives access to an enumeration of context key-value pairs that should
+		/// be present on the context for this behaviours action to execute.
+		/// </summary>
 		protected IEnumerable<KeyValuePair<string, string>> MatchingAllParameters {
 			get { return _matchingAllParams ?? (_matchingAllParams = ImmutableDictionary.Create<string, string>()); }
 			set {
@@ -73,6 +99,10 @@ namespace Inversion.Web.Behaviour {
 			}
 		}
 
+		/// <summary>
+		/// Gives access to an enumeration of context key-value pairs that should not
+		/// be present on the context for this behaviours action to execute.
+		/// </summary>
 		protected IEnumerable<KeyValuePair<string, string>> NonMatchingAllParameters {
 			get { return _nonMatchingAllParams ?? (_nonMatchingAllParams = ImmutableDictionary.Create<string, string>()); }
 			set {
@@ -83,8 +113,20 @@ namespace Inversion.Web.Behaviour {
 			}
 		}
 
+		/// <summary>
+		/// Ensures on instantiation that the base web behaviour constructor
+		/// is called with the message provided.
+		/// </summary>
+		/// <param name="message">The message the behaviour has set as responding to.</param>
 		protected WebActionBehaviour(string message) : base(message) { }
 
+		/// <summary>
+		/// Determines if the behaviours action should execute in response
+		/// to the provided event and context.
+		/// </summary>
+		/// <param name="ev">The event to consider.</param>
+		/// <param name="context">The context to consider.</param>
+		/// <returns></returns>
 		public override bool Condition(IEvent ev, WebContext context) {
 			// TODO: if the event is concrete we can use its hashcode to memoize
 			// the results of this method, which may be important as this

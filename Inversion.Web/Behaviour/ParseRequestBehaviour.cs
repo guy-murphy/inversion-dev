@@ -4,6 +4,10 @@ using Inversion.Process;
 
 namespace Inversion.Web.Behaviour {
 
+	/// <summary>
+	/// Behaviour responsible for deconstructing the request
+	/// into a set of conext prameters.
+	/// </summary>
 	public class ParseRequestBehaviour : WebBehaviour {
 
 		// TODO: redo this implimentation as it's overly brittle
@@ -14,13 +18,34 @@ namespace Inversion.Web.Behaviour {
 		// request but instead represents the root directory of the application
 		private readonly string _appDirectory;
 
-		public ParseRequestBehaviour(string name) : this(name, null) { }
+		/// <summary>
+		/// Instantiates a behaviour that decontructs the request into context parameters.
+		/// </summary>
+		/// <param name="message">The message that the behaviour will respond to.</param>
+		public ParseRequestBehaviour(string message) : this(message, null) { }
 
-		public ParseRequestBehaviour(string name, string appDirectory)
-			: base(name) {
+		/// <summary>
+		/// Instantiates a behaviour that decontructs the request into context parameters.
+		/// </summary>
+		/// <param name="message">The message that the behaviour will respond to.</param>
+		/// <param name="appDirectory">
+		/// Configures an application directory to be regarded for the application.
+		/// The application directory is that part of the request path that is not
+		/// significant to the request but instead represents the root directory of the application.
+		/// </param>
+		public ParseRequestBehaviour(string message, string appDirectory)
+			: base(message) {
 			_appDirectory = appDirectory ?? String.Empty;
 		}
 
+		/// <summary>
+		/// Deconstructs the contexts request into a set of prameters for the context.
+		/// </summary>
+		/// <remarks>
+		/// The deafult implementation uses the convention of `/area/concern/action.aspc/tail?querystring`
+		/// </remarks>
+		/// <param name="ev">The vent that was considered for this action.</param>
+		/// <param name="context">The context to act upon.</param>
 		public override void Action(IEvent ev, WebContext context) {
 			// eliminate the app directory from the path
 			string path = _appDirectory.Length > 0 ? context.Request.UrlInfo.AppPath.Trim('/').Replace(_appDirectory, "") : context.Request.UrlInfo.AppPath;

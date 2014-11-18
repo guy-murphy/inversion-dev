@@ -8,7 +8,7 @@ using Inversion.Process;
 namespace Inversion.Web {
 
 	/// <summary>
-	/// Extends <see cref="ProcessContext"/> with Web specific
+	/// Extends the process context with web specific
 	/// information about an individual request being processed.
 	/// </summary>
 	/// <remarks>
@@ -26,29 +26,47 @@ namespace Inversion.Web {
 		private readonly WebResponse _response;
 		private readonly WebRequest _request;
 
+		/// <summary>
+		/// The underlying http context that is being wrapped by
+		/// this web context.
+		/// </summary>
 		protected HttpContext UnderlyingContext {
 			get { return _underlyingContext; }
 		}
 
-		// not sure how I feel about this access
+		/// <summary>
+		/// Provides access to the running web application
+		/// to which this context belongs.
+		/// </summary>
 		public WebApplication Application {
 			get { return _application; }
 		}
 
-		// will probably be rolled into the context
+		/// <summary>
+		/// Gives access to the web response of this context.
+		/// </summary>
 		public WebResponse Response {
 			get { return _response; }
 		}
 
-		// will probably be rolled into the context
+		/// <summary>
+		/// Gives access to the web request for this context.
+		/// </summary>
 		public WebRequest Request {
 			get { return _request; }
 		}
 
+		/// <summary>
+		/// Gives access to the cache being used for this context.
+		/// </summary>
 		public Cache Cache { // This needs to be changed for an interface that we own
 			get { return this.UnderlyingContext.Cache; }
 		}
 
+		/// <summary>
+		/// Gives access to the `IPrinciple` user object that represents
+		/// the current user for this context.
+		/// </summary>
 		public IPrincipal User {
 			get { return this.UnderlyingContext.User; }
 			set {

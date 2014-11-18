@@ -4,10 +4,25 @@ using Inversion.Process;
 
 namespace Inversion.Web.Behaviour {
 
+	/// <summary>
+	/// Behaviour responsible for driving the view pipeline expressed
+	/// as view-steps.
+	/// </summary>
 	public class ProcessViewsBehaviour : WebBehaviour {
 
-		public ProcessViewsBehaviour(string name) : base(name) { }
+		/// <summary>
+		/// Instantiates a new behaviour responsible for processes the inversion view pipeline.
+		/// </summary>
+		/// <param name="message">The message that the behaviour will respond to.</param>
+		public ProcessViewsBehaviour(string message) : base(message) { }
 
+
+		/// <summary>
+		/// Iterates over each view-step object for the provided context
+		/// and fires the event for that viiews processing. This is a driving behaviour.
+		/// </summary>
+		/// <param name="ev">The vent that was considered for this action.</param>
+		/// <param name="context">The context to act upon.</param>
 		public override void Action(IEvent ev, WebContext context) {
 			// this is the last point we can time until and still output it
 			if (context.Timers.ContainsKey("process-request")) context.Timers.End("process-request");

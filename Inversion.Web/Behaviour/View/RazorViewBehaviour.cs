@@ -94,6 +94,11 @@ namespace Inversion.Web.Behaviour.View {
 
 		}
 
+		/// <summary>
+		/// Tranforms the last view-step using a razor template.
+		/// </summary>
+		/// <param name="ev">The vent that was considered for this action.</param>
+		/// <param name="context">The context to act upon.</param>
 		public override void Action(IEvent ev, WebContext context) {
 
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasModel) { // we should have a model that we're going to render

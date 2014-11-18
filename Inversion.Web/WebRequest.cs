@@ -4,6 +4,13 @@ using System.IO;
 using System.Web;
 
 namespace Inversion.Web {
+	/// <summary>
+	/// Provides a wrapper for the underlying web request for application developers to use.
+	/// </summary>
+	/// <remarks>
+	/// This wrapping is mindful of providing a common interface that can port to other platforms.
+	/// Along with providing a point of extensibility and control.
+	/// </remarks>
 	public class WebRequest {
 
 		private readonly HttpRequest _underlyingRequest;
@@ -13,57 +20,111 @@ namespace Inversion.Web {
 		private readonly string _payload;
 		private readonly ImmutableDictionary<string, string> _headers;
 
+		/// <summary>
+		/// The underlying http request being wrapped.
+		/// </summary>
 		protected HttpRequest UnderlyingRequest {
 			get {
 				return _underlyingRequest;
 			}
 		}
 
+		/// <summary>
+		/// Gives access to any files uploaded by the user agent
+		/// as part of this request.
+		/// </summary>
 		public HttpFileCollection Files {
 			get {
 				return _underlyingRequest.Files;
 			}
 		}
 
+		/// <summary>
+		/// Gives access to a url-info object that provides
+		/// info about the structure of the url of the request.
+		/// </summary>
 		public UrlInfo UrlInfo {
 			get {
 				return _urlInfo;
 			}
 		}
 
+		/// <summary>
+		/// The http method of the request.
+		/// </summary>
 		public string Method {
 			get { return this.UnderlyingRequest.HttpMethod; }
 		}
 
+		/// <summary>
+		/// Returns true if the http method of this request is GET; otherwise returns false.
+		/// </summary>
 		public bool IsGet {
 			get { return this.Method.ToLower() == "get"; }
 		}
 
+		/// <summary>
+		/// Returns true if the http method of this request is POST; otherwise returns false.
+		/// </summary>
 		public bool IsPost {
 			get { return this.Method.ToLower() == "post"; }
 		}
 
+		/// <summary>
+		/// Provides access to the request parameters from both the querystring
+		/// and those that are posted.
+		/// </summary>
+		/// <remarks>
+		/// First params are read from the querystring and then those posted which
+		/// will override any from the querystring.
+		/// </remarks>
 		public IImmutableDictionary<string, string> Params {
 			get { return _params; }
 		}
 
+		/// <summary>
+		/// Gives access to the payload if any of the request.
+		/// </summary>
 		public string Payload {
 			get { return _payload; }
 		}
 
+		/// <summary>
+		/// Gives access to any flags present in the querystring.
+		/// </summary>
+		/// <remarks>
+		/// Any querystring parameter that is a single value rather
+		/// that a key-value pair is regarded as a flag.
+		/// </remarks>
 		public IEnumerable<string> Flags {
 			get { return _flags; }
 		}
 
+		/// <summary>
+		/// Gives access to the headers of the reuqest.
+		/// </summary>
 		public IImmutableDictionary<string, string> Headers {
 			get { return _headers; }
 		}
 
+		/// <summary>
+		/// Gives access to the request cookies.
+		/// </summary>
 		public HttpCookieCollection Cookies {
 			get { return this.UnderlyingRequest.Cookies; }
 		}
 
+		/// <summary>
+		/// Instantiates a new web request by wrapping the http request
+		/// of the http context provided.
+		/// </summary>
+		/// <param name="context">The http context from which to obtain the http request to wrap.</param>
 		public WebRequest(HttpContext context) : this(context.Request) { }
+
+		/// <summary>
+		/// Instantiates a new web request wrapping the http request provided.
+		/// </summary>
+		/// <param name="request">The underlying http request to wrap.</param>
 		public WebRequest(HttpRequest request) {
 			_underlyingRequest = request;
 			_urlInfo = new UrlInfo(request.Url);
