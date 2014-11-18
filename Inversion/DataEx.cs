@@ -33,10 +33,11 @@ namespace Inversion {
 		}
 
 		/// <summary>
-		/// 
+		/// Produces an xml representation of the subject
+		/// `IData` object.
 		/// </summary>
-		/// <param name="self"></param>
-		/// <param name="writer"></param>
+		/// <param name="self">The `IData` object to act upon.</param>
+		/// <param name="writer">The xml writer to write the representation to.</param>
 
 		public static void ToXml(this IData self, TextWriter writer) {
 			using (XmlTextWriter xml = new XmlTextWriter(writer)) {
@@ -45,6 +46,11 @@ namespace Inversion {
 			}
 		}
 
+		/// <summary>
+		/// Produces a json representation of the subject `IData` object.
+		/// </summary>
+		/// <param name="self">The `IData` object to act upon.</param>
+		/// <returns>Return the json representation of the `IData` object as a string.</returns>
 		public static string ToJson(this IData self) {
 			using (StringWriter str = new StringWriter()) {
 				self.ToJson(str);
@@ -52,6 +58,11 @@ namespace Inversion {
 			}
 		}
 
+		/// <summary>
+		/// Produces a json representation of the subject `IData` object.
+		/// </summary>
+		/// <param name="self">The `IData` object to act upon.</param>
+		/// <param name="writer">The text writer the representation should be writtern to.</param>
 		public static void ToJson(this IData self, TextWriter writer) {
 			using (JsonTextWriter json = new JsonTextWriter(writer)) {
 				json.Formatting = Newtonsoft.Json.Formatting.Indented;

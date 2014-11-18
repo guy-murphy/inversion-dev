@@ -29,6 +29,13 @@ namespace Inversion.Collections {
 
 		private readonly DataDictionary<IData> _backing = new DataDictionary<IData>();
 
+		/// <summary>
+		/// Implements trying to set a member of the data model ensuring that the value
+		/// being assigned is both of type `IData` and not null.
+		/// </summary>
+		/// <param name="binder">The binder provided by the call site.</param>
+		/// <param name="value">The value to set.</param>
+		/// <returns>true if the operation is complete, false if the call site should determine behavior.</returns>
 		public override bool TrySetMember(SetMemberBinder binder, object value) {
 			IData data = value as IData;
 			if (data != null) {
@@ -39,16 +46,28 @@ namespace Inversion.Collections {
 			}
 		}
 
-		public override bool TryGetMember(GetMemberBinder binder, out object item) {
+		/// <summary>
+		/// Implements trying to get a member.
+		/// </summary>
+		/// <param name="binder">The binder provided by the call site.</param>
+		/// <param name="result">The result of the get operation.</param>
+		/// <returns>true if the operation is complete, false if the call site should determine behavior.</returns>
+		public override bool TryGetMember(GetMemberBinder binder, out object result) {
+			// is this method actually adding any value over the base implementation?
 			if (_backing.ContainsKey(binder.Name)) {
-				item = _backing[binder.Name];
+				result = _backing[binder.Name];
 				return true;
 			} else {
-				item = null;
+				result = null;
 				return false;
 			}
 		}
 
+		/// <summary>
+		/// Imports the key-value pairs from a provided dictionary into this one.
+		/// </summary>
+		/// <param name="other">The other dictionary to import into this one.</param>
+		/// <returns>Returns the current instance of this dictionary.</returns>
 		public IDataDictionary<IData> Import(IEnumerable<KeyValuePair<string, IData>> other) {
 			foreach (KeyValuePair<string, IData> entry in other) {
 				this.Add(entry);
@@ -59,18 +78,39 @@ namespace Inversion.Collections {
 
 		#region IDictionary<string,IData> Members
 
+		/// <summary>
+		/// Adds the provided value to the model against the specified key.
+		/// </summary>
+		/// <param name="key">The key for the new element.</param>
+		/// <param name="value">The value to be added/</param>
 		public void Add(string key, IData value) {
 			_backing.Add(key, value);
 		}
 
+		/// <summary>
+		/// Determines whether or not the model contains anything stored against the provided key.
+		/// </summary>
+		/// <param name="key">The key to check.</param>
+		/// <returns>
+		/// Returns true if the model contains a key-value pair with a key corresponding to the
+		/// specified key; otherwise returns false.
+		/// </returns>
 		public bool ContainsKey(string key) {
 			return _backing.ContainsKey(key);
 		}
 
+		/// <summary>
+		/// A collection of all the keys contained in the model.
+		/// </summary>
 		public ICollection<string> Keys {
 			get { return _backing.Keys; }
 		}
 
+		/// <summary>
+		/// Removes the key-value pair of the specified key.
+		/// </summary>
+		/// <param name="key">The key to remove from the model.</param>
+		/// <returns>Rreturns true if the key was found and removed; otherwise returns false.</returns>
 		public bool Remove(string key) {
 			return _backing.Remove(key);
 		}

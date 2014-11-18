@@ -16,16 +16,24 @@ namespace Inversion.Collections {
 
 		private readonly string _label;
 
+		/// <summary>
+		/// The label that should be used for the collection in
+		/// any notation presenting the collection. 
+		/// </summary>
+		/// <remarks>This will default to "list".</remarks>
 		public string Label { get { return _label ?? "list"; } }
 
 		/// <summary>
-		/// Instantiates a new empty collection.
+		/// Instantiates a new empty collection with the lable provided.
 		/// </summary>
-
+		/// <param name="label">The label of the collection.</param>
 		public ConcurrentDataCollection(string label) {
 			_label = label;
 		}
 
+		/// <summary>
+		/// Instantiates an empty collection.
+		/// </summary>
 		public ConcurrentDataCollection() : this("list") { }
 
 		/// <summary>
@@ -39,12 +47,17 @@ namespace Inversion.Collections {
 
 		public ConcurrentDataCollection(IEnumerable<T> collection) : base(new object(), collection) { }
 
+		/// <summary>
+		/// Instantiates a collection populating it with the elements
+		/// of the provided collection.
+		/// </summary>
+		/// <param name="other">The other collection to populate the new collection with.</param>
 		public ConcurrentDataCollection(IDataCollection<T> other)
 			: base(other) {
 			_label = other.Label;
 		}
 
-		public object Clone() {
+		object ICloneable.Clone() {
 			return new ConcurrentDataCollection<T>(this);
 		}
 

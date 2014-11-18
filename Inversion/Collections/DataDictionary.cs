@@ -44,10 +44,20 @@ namespace Inversion.Collections {
 			return new DataDictionary<TValue>(this);
 		}
 
+		/// <summary>
+		/// Clones the data dictionary by instantiating a new one
+		/// populated by the elemens of this one.
+		/// </summary>
+		/// <returns></returns>
 		public virtual DataDictionary<TValue> Clone() {
 			return new DataDictionary<TValue>(this);
 		}
 
+		/// <summary>
+		/// Instantiates a dictionary populating it with the elements
+		/// of the provided dictionary.
+		/// </summary>
+		/// <param name="other">The other dictionary to populate the new collection with.</param>
 		public IDataDictionary<TValue> Import(IEnumerable<KeyValuePair<string, TValue>> other) {
 			foreach (KeyValuePair<string, TValue> entry in other) {
 				this.Add(entry.Key, entry.Value);
@@ -55,6 +65,10 @@ namespace Inversion.Collections {
 			return this;
 		}
 
+		/// <summary>
+		/// Produces an xml representation of the elements of the dictionary.
+		/// </summary>
+		/// <param name="writer">The xml writer the representation should be written to.</param>
 		public virtual void ContentToXml(XmlWriter writer) {
 			foreach (KeyValuePair<string, TValue> item in this) {
 				if (item.Value is IData) {

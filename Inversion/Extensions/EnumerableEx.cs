@@ -27,11 +27,12 @@ namespace Inversion.Extensions {
 		}
 
 		/// <summary>
-		/// 
+		/// Produces an XML representation of an enumerable by iterating over
+		/// the elements of the enumerable and calling `.ToXml()` on them.
 		/// </summary>
 		/// <typeparam name="T">The type of elements in the enumerable.</typeparam>
 		/// <param name="self">The enumerable to act upon.</param>
-		/// <param name="writer"></param>
+		/// <param name="writer">The text writer the XML should be written to.</param>
 		/// <param name="label">The label of the enclosing element.</param>
 		public static void ToXml<T>(this IEnumerable<T> self, TextWriter writer, string label) where T : IData {
 			using (XmlTextWriter xml = new XmlTextWriter(writer)) {
@@ -41,11 +42,12 @@ namespace Inversion.Extensions {
 		}
 
 		/// <summary>
-		/// 
+		/// Produces an XML representation of an enumerable by iterating over
+		/// the elements of the enumerable and calling `.ToXml()` on them.
 		/// </summary>
 		/// <typeparam name="T">The type of elements in the enumerable.</typeparam>
 		/// <param name="self">The enumerable to act upon.</param>
-		/// <param name="xml"></param>
+		/// <param name="xml">The xml writer the XML should be written to.</param>
 		/// <param name="label">The label of the enclosing element.</param>
 		public static void ToXml<T>(this IEnumerable<T> self, XmlWriter xml, string label) where T : IData {
 			xml.WriteStartElement(label);
@@ -56,7 +58,8 @@ namespace Inversion.Extensions {
 		}
 
 		/// <summary>
-		/// 
+		/// Produces a JSON representation of an enumerable by iterating over
+		/// the elements of the enumerable and calling `.ToJson()` on them.
 		/// </summary>
 		/// <typeparam name="T">The type of elements in the enumerable.</typeparam>
 		/// <param name="self">The enumerable to act upon.</param>
@@ -69,11 +72,12 @@ namespace Inversion.Extensions {
 		}
 
 		/// <summary>
-		/// 
+		/// Produces a JSON representation of an enumerable by iterating over
+		/// the elements of the enumerable and calling `.ToJson()` on them.
 		/// </summary>
 		/// <typeparam name="T">The type of elements in the enumerable.</typeparam>
 		/// <param name="self">The enumerable to act upon.</param>
-		/// <param name="writer"></param>
+		/// <param name="writer">The text writer the JSON should be written to.</param>
 		public static void ToJson<T>(this IEnumerable<T> self, TextWriter writer) where T : IData {
 			using (JsonTextWriter json = new JsonTextWriter(writer)) {
 				json.Formatting = Newtonsoft.Json.Formatting.Indented;
@@ -82,11 +86,12 @@ namespace Inversion.Extensions {
 		}
 
 		/// <summary>
-		/// 
+		/// Produces a JSON representation of an enumerable by iterating over
+		/// the elements of the enumerable and calling `.ToJson()` on them.
 		/// </summary>
 		/// <typeparam name="T">The type of elements in the enumerable.</typeparam>
 		/// <param name="self">The enumerable to act upon.</param>
-		/// <param name="json"></param>
+		/// <param name="json">The json writer the JSON should be written to.</param>
 		public static void ToJson<T>(this IEnumerable<T> self, JsonWriter json) where T : IData {
 			json.WriteStartArray();
 			foreach (T item in self) {

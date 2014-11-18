@@ -15,19 +15,28 @@ namespace Inversion.Collections {
 
 		private readonly string _label;
 
+		/// <summary>
+		/// The label that should be used for the collection in
+		/// any notation presenting the collection. 
+		/// </summary>
+		/// <remarks>This will default to "list".</remarks>
 		public string Label { get { return _label ?? "list"; } }
 
+		/// <summary>
+		/// Instantiates a new empty collection with the lable provided.
+		/// </summary>
+		/// <param name="label">The label of the collection.</param>
 		public DataCollection(string label) {
 			_label = label;
 		}
 
 		/// <summary>
-		/// Instanciates a new, empty data collection.
+		/// Instantiates a new, empty data collection.
 		/// </summary>
 		public DataCollection() : this("list") { }
 
 		/// <summary>
-		/// Instanciates a new data collection with elements
+		/// Instantiates a new data collection with elements
 		/// copied from the provided collection.
 		/// </summary>
 		/// <param name="collection">
@@ -37,6 +46,11 @@ namespace Inversion.Collections {
 
 		public DataCollection(IEnumerable<T> collection) : base(collection) { }
 
+		/// <summary>
+		/// Instantiates a collection populating it with the elements
+		/// of the provided collection.
+		/// </summary>
+		/// <param name="other">The other collection to populate the new collection with.</param>
 		public DataCollection(IDataCollection<T> other)
 			: base(other) {
 			_label = other.Label;
@@ -46,6 +60,11 @@ namespace Inversion.Collections {
 			return new DataCollection<T>(this);
 		}
 
+		/// <summary>
+		/// Creates a clone of the collection by instantiating
+		/// a new collection populated with the elements of this one.
+		/// </summary>
+		/// <returns>Returns a new collection populated by this one.</returns>
 		public DataCollection<T> Clone() {
 			return new DataCollection<T>(this);
 		}

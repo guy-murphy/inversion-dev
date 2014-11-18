@@ -70,6 +70,12 @@ namespace Inversion.Extensions {
 			return _xmlName.IsMatch(self);
 		}
 
+		/// <summary>
+		/// Filters out characters from string by testing them with a predicate.
+		/// </summary>
+		/// <param name="self">The string to act upon.</param>
+		/// <param name="test">The predicate to test each character with.</param>
+		/// <returns>Returns a new string containing only those charcters for which the test returned true.</returns>
 		public static string Filter(this string self, Predicate<char> test) {
 			StringBuilder sb = new StringBuilder();
 			foreach (char c in self) {
