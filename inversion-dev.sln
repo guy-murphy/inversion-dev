@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Process", "Invers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Spring", "Inversion.Spring\Inversion.Spring.csproj", "{E50603E3-E170-4F0B-9E25-0DF068A77096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Web", "Inversion.Web\Inversion.Web.csproj", "{6951BA6B-4388-4FC8-8298-60DA7563FEE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E50603E3-E170-4F0B-9E25-0DF068A77096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E50603E3-E170-4F0B-9E25-0DF068A77096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E50603E3-E170-4F0B-9E25-0DF068A77096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6951BA6B-4388-4FC8-8298-60DA7563FEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6951BA6B-4388-4FC8-8298-60DA7563FEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6951BA6B-4388-4FC8-8298-60DA7563FEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6951BA6B-4388-4FC8-8298-60DA7563FEE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

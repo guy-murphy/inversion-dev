@@ -24,9 +24,11 @@ namespace Inversion.Web {
 (?<query>[^\#\r\n]*)?
 ";
 
-		public static readonly Regex DefaultRegex = new Regex(DefaultRegexSpec,
-															  RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace |
-															  RegexOptions.Compiled);
+		public static readonly Regex DefaultRegex = new Regex(
+			DefaultRegexSpec,
+			RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace |
+			RegexOptions.Compiled
+		);
 
 		private readonly string _url;
 		private readonly Regex _regex;
