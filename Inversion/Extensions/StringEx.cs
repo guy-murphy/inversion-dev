@@ -86,18 +86,38 @@ namespace Inversion.Extensions {
 			return sb.ToString();
 		}
 
+		/// <summary>
+		/// Produces a new string by removing all non-numeric characters from the sting provided.
+		/// </summary>
+		/// <param name="self">The string to act upon.</param>
+		/// <returns>The new filtered string.</returns>
 		public static string RemoveNonNumeric(this string self) {
 			return self.Filter(c => !char.IsNumber(c));
 		}
 
+		/// <summary>
+		/// Produces a new string by removing all alphabetic characters from the sting provided.
+		/// </summary>
+		/// <param name="self">The string to act upon.</param>
+		/// <returns>The new filtered string.</returns>
 		public static string RemoveNonAlpha(this string self) {
 			return self.Filter(c => !char.IsLetter(c));
 		}
 
+		/// <summary>
+		/// Produces a new string by removing all non-alpha-numeric characters from the sting provided.
+		/// </summary>
+		/// <param name="self">The string to act upon.</param>
+		/// <returns>The new filtered string.</returns>
 		public static string RemoveNonAlphaNumeric(this string self) {
 			return self.Filter(c => !char.IsLetterOrDigit(c));
 		}
 
+		/// <summary>
+		/// Produces a new string by removing all whitespace characters from the sting provided.
+		/// </summary>
+		/// <param name="self">The string to act upon.</param>
+		/// <returns>The new filtered string.</returns>
 		public static string RemoveWhitespace(this string self) {
 			return self.Filter(c => !char.IsWhiteSpace(c));
 		}

@@ -37,6 +37,17 @@
 			return this.Condition(ev, ev.Context);
 		}
 
+		/// <summary>
+		/// Determines if the event specifies the behaviour by name.
+		/// </summary>
+		/// <param name="ev">The event to consult.</param>
+		/// <param name="context">The context to consult.</param>
+		/// <returns>
+		/// Returns true if true if `ev.Message` is the same as `this.Message`
+		///  </returns>
+		/// <remarks>
+		/// The intent is to override for bespoke conditions.
+		/// </remarks>
 		public virtual bool Condition(IEvent ev, ProcessContext context) {
 			// check the base condition
 			// and then either there are no roles specified

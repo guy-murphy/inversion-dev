@@ -115,14 +115,29 @@ namespace Inversion.Collections {
 			return _backing.Remove(key);
 		}
 
+		/// <summary>
+		/// Tries to get the value of the key-value pair with the same
+		/// key as the one provided.
+		/// </summary>
+		/// <param name="key">The key to lookup.</param>
+		/// <param name="value">The value of the found key-value pair.</param>
+		/// <returns>Returns true if the operation was successful; otherwise returns false.</returns>
 		public bool TryGetValue(string key, out IData value) {
 			return _backing.TryGetValue(key, out value);
 		}
 
+		/// <summary>
+		/// A collection of all the values of the model.
+		/// </summary>
 		public ICollection<IData> Values {
 			get { return _backing.Values; }
 		}
 
+		/// <summary>
+		/// Obtains the value of the key-value pair with the same key as the one provided.
+		/// </summary>
+		/// <param name="key">The key to lookup.</param>
+		/// <returns>Returns the value of the key-value pair found, if any.</returns>
 		public IData this[string key] {
 			get { return _backing[key]; }
 			set { _backing[key] = value; }

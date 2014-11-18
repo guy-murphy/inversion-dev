@@ -87,12 +87,20 @@ namespace Inversion.Collections {
 			}
 		}
 
+		/// <summary>
+		/// Produces and xml representation of the dictionary.
+		/// </summary>
+		/// <param name="writer">The xml writer the xml should be written to.</param>
 		public virtual void ToXml(XmlWriter writer) {
 			writer.WriteStartElement("records");
 			this.ContentToXml(writer);
 			writer.WriteEndElement();
 		}
 
+		/// <summary>
+		/// Produces a json representation of the dictionaries elements.
+		/// </summary>
+		/// <param name="writer">The json writer the representation should be written to.</param>
 		public virtual void ContentToJson(JsonWriter writer) {
 			foreach (KeyValuePair<string, TValue> item in this) {
 				if (item.Value is IData) {
@@ -107,6 +115,10 @@ namespace Inversion.Collections {
 			}
 		}
 
+		/// <summary>
+		/// Produces a json representation of the dictionary.
+		/// </summary>
+		/// <param name="writer">The json writer the representation should be written to.</param>
 		public virtual void ToJson(JsonWriter writer) {
 			writer.WriteStartObject();
 			this.ContentToJson(writer);

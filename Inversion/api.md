@@ -32,15 +32,28 @@ Produces an Xml representation of the model.
 Produces a Json respresentation of the model.
 
 * `writer`: The writer to use for producing JSON.
+## `P:Inversion.Collections.IDataCollection`1.Label`
+The label that should be used for the collection in any notation presenting the collection. 
+
 
 ### `:Inversion.Collections.ConcurrentDataCollection`1.#ctor(System.String)`
-Instantiates a new empty collection.
+Instantiates a new empty collection with the lable provided.
+
+* `label`: The label of the collection.
+
+### `:Inversion.Collections.ConcurrentDataCollection`1.#ctor`
+Instantiates an empty collection.
 
 
 ### `:Inversion.Collections.ConcurrentDataCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})`
 Instanciates a new data collection with elements copied from the provided collection.
 
 * `collection`: The collection whose elements are copied into the new data collection.
+
+### `:Inversion.Collections.ConcurrentDataCollection`1.#ctor(Inversion.Collections.IDataCollection{`0})`
+Instantiates a collection populating it with the elements of the provided collection.
+
+* `other`: The other collection to populate the new collection with.
 
 ### `:Inversion.Collections.ConcurrentDataCollection`1.ContentToXml(System.Xml.XmlWriter)`
 Produces an XML representation of the collections elements  to a provided writer.
@@ -61,6 +74,16 @@ Produces an XML representation of the collection  to a provided writer.
 Produces an JSON representation of the collection  to a provided writer.
 
 * `writer`: The  [Newtonsoft.Json.JsonWriter](T-Newtonsoft.Json.JsonWriter)  the representation is written to.
+## `P:Inversion.Collections.ConcurrentDataCollection`1.Label`
+The label that should be used for the collection in any notation presenting the collection. 
+
+#### Remarks
+This will default to "list".
+
+## `T:Inversion.Collections.ConcurrentDataDictionary`1`
+A thread-safe dictionary of key-value pairs where the key is a string and the dictionary itself implements `IData`
+
+`TValue`: The type of the element values.
 
 ## `T:Inversion.Collections.IDataDictionary`1`
 Represents a generic dictionary that implements  [Inversion.IData](T-Inversion.IData) , where the keys are strings.
@@ -76,19 +99,88 @@ Import the provided key/value pairs into the dictionary.
 This dictionary.
 
 
+### `:Inversion.Collections.ConcurrentDataDictionary`1.#ctor`
+Instantiates a new empty dictionary.
+
+
+### `:Inversion.Collections.ConcurrentDataDictionary`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})`
+Instantiates a new dictionary populated with the enumerable of key-value pairs provided.
+
+* `other`: The key-value pairs to populate the dictionary with.
+
+### `:Inversion.Collections.ConcurrentDataDictionary`1.#ctor(Inversion.Collections.DataDictionary{`0})`
+Instantiates a new dictionary populated from the dictionary provided.
+
+* `other`: The other dictionary to populate this dictionary from.
+
+### `:Inversion.Collections.ConcurrentDataDictionary`1.Clone`
+Clones the dictionary.
+
+
+**returns:** 
+Returnes a new dictionary instance populated by this one.
+
+
+### `:Inversion.Collections.ConcurrentDataDictionary`1.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})`
+Imports the key-value pairs from a provided dictionary into this one.
+
+* `other`: The other dictionary to import into this one.
+
+**returns:** 
+Returns the current instance of this dictionary.
+
+
+### `:Inversion.Collections.ConcurrentDataDictionary`1.ContentToXml(System.Xml.XmlWriter)`
+Produces an XML representation of the dictionary elements.
+
+* `writer`: The xml writer the xml should be written to.
+
+### `:Inversion.Collections.ConcurrentDataDictionary`1.ToXml(System.Xml.XmlWriter)`
+Produces and xml representation of the dictionary.
+
+* `writer`: The xml writer the xml should be written to.
+
+### `:Inversion.Collections.ConcurrentDataDictionary`1.ContentToJson(Newtonsoft.Json.JsonWriter)`
+Produces a json representation of the dictionary elements.
+
+* `writer`: The json writer the json should be written to.
+
+### `:Inversion.Collections.ConcurrentDataDictionary`1.ToJson(Newtonsoft.Json.JsonWriter)`
+Produces a json representation of the dictionary.
+
+* `writer`: The json writer the json should be written to.
+
 ## `T:Inversion.Collections.DataCollection`1`
 An implementation of  [Inversion.Collections.IDataCollection`1](T-Inversion.Collections.IDataCollection`1)  as a simple  [System.Collections.Generic.List`1](T-System.Collections.Generic.List`1) . 
 
 `T`: The type of elements in the list.
 
+### `.#ctor(System.String)`
+Instantiates a new empty collection with the lable provided.
+
+* `label`: The label of the collection.
+
 ### `.#ctor`
-Instanciates a new, empty data collection.
+Instantiates a new, empty data collection.
 
 
 ### `.#ctor(System.Collections.Generic.IEnumerable{`0})`
-Instanciates a new data collection with elements copied from the provided collection.
+Instantiates a new data collection with elements copied from the provided collection.
 
 * `collection`: The collection whose elements are copied into the new data collection.
+
+### `.#ctor(Inversion.Collections.IDataCollection{`0})`
+Instantiates a collection populating it with the elements of the provided collection.
+
+* `other`: The other collection to populate the new collection with.
+
+### `.Clone`
+Creates a clone of the collection by instantiating a new collection populated with the elements of this one.
+
+
+**returns:** 
+Returns a new collection populated by this one.
+
 
 ### `.ContentToXml(System.Xml.XmlWriter)`
 Produces an XML representation of the dictionaries elements, to a provided writer.
@@ -109,6 +201,11 @@ Produces an XML representation of the dictionaries  to a provided writer.
 Produces an JSON representation of the dictionaries  to a provided writer.
 
 * `writer`: The  [Newtonsoft.Json.JsonWriter](T-Newtonsoft.Json.JsonWriter)  the representation is written to.
+### `.Label`
+The label that should be used for the collection in any notation presenting the collection. 
+
+#### Remarks
+This will default to "list".
 
 ## `T:Inversion.Collections.DataDictionary`1`
 A collection of key/value pairs, where the key is a string.
@@ -129,6 +226,39 @@ instantiates a new dictionary with the elements copied from iterating over the k
 
 * `other`: The key/value pairs to copy.
 
+### `.Clone`
+Clones the data dictionary by instantiating a new one populated by the elemens of this one.
+
+
+**returns:** 
+
+
+
+### `.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})`
+Instantiates a dictionary populating it with the elements of the provided dictionary.
+
+* `other`: The other dictionary to populate the new collection with.
+
+### `.ContentToXml(System.Xml.XmlWriter)`
+Produces an xml representation of the elements of the dictionary.
+
+* `writer`: The xml writer the representation should be written to.
+
+### `.ToXml(System.Xml.XmlWriter)`
+Produces and xml representation of the dictionary.
+
+* `writer`: The xml writer the xml should be written to.
+
+### `.ContentToJson(Newtonsoft.Json.JsonWriter)`
+Produces a json representation of the dictionaries elements.
+
+* `writer`: The json writer the representation should be written to.
+
+### `.ToJson(Newtonsoft.Json.JsonWriter)`
+Produces a json representation of the dictionary.
+
+* `writer`: The json writer the representation should be written to.
+
 ## `T:Inversion.Collections.DataModel`
 A  [System.Dynamic.DynamicObject](T-System.Dynamic.DynamicObject)  implementing             an  [Inversion.Collections.IDataDictionary`1](T-Inversion.Collections.IDataDictionary`1)  .
 
@@ -137,6 +267,83 @@ This class is intended to help with exposing models to Razor templates, as it al
 
 The initial idea was for  the `ControlState` to be one of these. When I start playing about with Razor a bit more I'll test it to see if there's any consequences.
 
+
+
+### `.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)`
+Implements trying to set a member of the data model ensuring that the value being assigned is both of type `IData` and not null.
+
+* `binder`: The binder provided by the call site.
+* `value`: The value to set.
+
+**returns:** 
+true if the operation is complete, false if the call site should determine behavior.
+
+
+### `.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)`
+Implements trying to get a member.
+
+* `binder`: The binder provided by the call site.
+* `result`: The result of the get operation.
+
+**returns:** 
+true if the operation is complete, false if the call site should determine behavior.
+
+
+### `.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,Inversion.IData}})`
+Imports the key-value pairs from a provided dictionary into this one.
+
+* `other`: The other dictionary to import into this one.
+
+**returns:** 
+Returns the current instance of this dictionary.
+
+
+### `.Add(System.String,Inversion.IData)`
+Adds the provided value to the model against the specified key.
+
+* `key`: The key for the new element.
+* `value`: The value to be added/
+
+### `.ContainsKey(System.String)`
+Determines whether or not the model contains anything stored against the provided key.
+
+* `key`: The key to check.
+
+**returns:** 
+Returns true if the model contains a key-value pair with a key corresponding to the specified key; otherwise returns false.
+
+
+### `.Remove(System.String)`
+Removes the key-value pair of the specified key.
+
+* `key`: The key to remove from the model.
+
+**returns:** 
+Rreturns true if the key was found and removed; otherwise returns false.
+
+
+### `.TryGetValue(System.String,Inversion.IData@)`
+Tries to get the value of the key-value pair with the same key as the one provided.
+
+* `key`: The key to lookup.
+* `value`: The value of the found key-value pair.
+
+**returns:** 
+Returns true if the operation was successful; otherwise returns false.
+
+### `.Keys`
+A collection of all the keys contained in the model.
+
+### `.Values`
+A collection of all the values of the model.
+
+### `.Item(System.String)`
+Obtains the value of the key-value pair with the same key as the one provided.
+
+* `key`: The key to lookup.
+
+**returns:** 
+Returns the value of the key-value pair found, if any.
 
 
 ## `T:Inversion.DataEx`
@@ -155,10 +362,39 @@ Returns the XML representation as a `string`.
 This is implemented by creating a `StringWriter` and calling `.ToXml(IData, StringWriter)`
 
 ### `.ToXml(Inversion.IData,System.IO.TextWriter)`
+Produces an xml representation of the subject `IData` object.
+
+* `self`: The `IData` object to act upon.
+* `writer`: The xml writer to write the representation to.
+
+### `.ToJson(Inversion.IData)`
+Produces a json representation of the subject `IData` object.
+
+* `self`: The `IData` object to act upon.
+
+**returns:** 
+Return the json representation of the `IData` object as a string.
 
 
-* `self`: 
-* `writer`: 
+### `.ToJson(Inversion.IData,System.IO.TextWriter)`
+Produces a json representation of the subject `IData` object.
+
+* `self`: The `IData` object to act upon.
+* `writer`: The text writer the representation should be writtern to.
+
+## `T:Inversion.Extensions.ArrayEx`
+An extension class providing extensions for arrays.
+
+
+### `.DeepClone``1(``0[])`
+A simple extension that constructs a new array from one provided by calling `.Clone()` on each element of the provided array.
+
+`T`: The type of the array elements.
+* `self`: The array to act upon.
+
+**returns:** 
+Provides a new array with elements cloned from the originating array.
+
 
 ## `T:Inversion.Extensions.DictionaryEx`
 Utility extension methods provided for dictionaries.
@@ -177,6 +413,61 @@ Produces an XML representation of the elements of a dictionary.
 
 * `self`: The dictionary being acted upon.
 * `writer`: The  [System.Xml.XmlWriter](T-System.Xml.XmlWriter)  the representation             is written to.
+
+## `T:Inversion.Extensions.EnumerableEx`
+An extension class providing extensions for `IEnumerable{T}` objects.
+
+
+### `.ToXml``1(System.Collections.Generic.IEnumerable{``0},System.String)`
+Produces an XML representation of an enumerable by iterating over the elements of the enumerable and calling `.ToXml()` on them.
+
+`T`: The type of elements in the enumerable.
+* `self`: The enumerable to act upon.
+* `label`: The label of the enclosing element.
+
+**returns:** 
+An XML representation of the provided enumerable.
+
+
+### `.ToXml``1(System.Collections.Generic.IEnumerable{``0},System.IO.TextWriter,System.String)`
+Produces an XML representation of an enumerable by iterating over the elements of the enumerable and calling `.ToXml()` on them.
+
+`T`: The type of elements in the enumerable.
+* `self`: The enumerable to act upon.
+* `writer`: The text writer the XML should be written to.
+* `label`: The label of the enclosing element.
+
+### `.ToXml``1(System.Collections.Generic.IEnumerable{``0},System.Xml.XmlWriter,System.String)`
+Produces an XML representation of an enumerable by iterating over the elements of the enumerable and calling `.ToXml()` on them.
+
+`T`: The type of elements in the enumerable.
+* `self`: The enumerable to act upon.
+* `xml`: The xml writer the XML should be written to.
+* `label`: The label of the enclosing element.
+
+### `.ToJson``1(System.Collections.Generic.IEnumerable{``0})`
+Produces a JSON representation of an enumerable by iterating over the elements of the enumerable and calling `.ToJson()` on them.
+
+`T`: The type of elements in the enumerable.
+* `self`: The enumerable to act upon.
+
+**returns:** 
+An JSON representation of the provided enumerable.
+
+
+### `.ToJson``1(System.Collections.Generic.IEnumerable{``0},System.IO.TextWriter)`
+Produces a JSON representation of an enumerable by iterating over the elements of the enumerable and calling `.ToJson()` on them.
+
+`T`: The type of elements in the enumerable.
+* `self`: The enumerable to act upon.
+* `writer`: The text writer the JSON should be written to.
+
+### `.ToJson``1(System.Collections.Generic.IEnumerable{``0},Newtonsoft.Json.JsonWriter)`
+Produces a JSON representation of an enumerable by iterating over the elements of the enumerable and calling `.ToJson()` on them.
+
+`T`: The type of elements in the enumerable.
+* `self`: The enumerable to act upon.
+* `json`: The json writer the JSON should be written to.
 
 ## `T:Inversion.Extensions.ListEx`
 Utility extension methods provided for lists.
@@ -306,7 +597,11 @@ Removes a specified number of characters from each end of the string builder.
 The string builder being acted upon.
 
 
-### `:Inversion.Extensions.StringEx.HasValue(System.String)`
+## `T:Inversion.Extensions.StringEx`
+An extension class providing extensions for string.
+
+
+### `.HasValue(System.String)`
 Determines if the string is not null and has a length greater than zero.
 
 * `self`: The subject of extension.
@@ -315,13 +610,13 @@ Determines if the string is not null and has a length greater than zero.
 Returns true if the string has a values;             otherwise returns false.
 
 
-### `:Inversion.Extensions.StringEx.AssertHasValue(System.String,System.String)`
+### `.AssertHasValue(System.String,System.String)`
 Checks if a string has a value and if not throws an  [System.ArgumentNullException](T-System.ArgumentNullException) .
 
 * `self`: The subject of extension.
 * `message`: The message to use as part of the exception.
 [Inversion.Extensions.StringEx.HasValue-System.String](M-Inversion.Extensions.StringEx.HasValue-System.String)
-### `:Inversion.Extensions.StringEx.Prepend(System.String,System.Int32,System.Char)`
+### `.Prepend(System.String,System.Int32,System.Char)`
 Places the 
 
 * `self`: 
@@ -332,7 +627,7 @@ Places the
 
 
 
-### `:Inversion.Extensions.StringEx.IsXmlName(System.String)`
+### `.IsXmlName(System.String)`
 Determines if a string is a valid XML tag name.
 
 * `self`: The subject of extension.
@@ -341,7 +636,53 @@ Determines if a string is a valid XML tag name.
 Returns true if the string is a valid XML name;             otherwise, returns false.
 
 
-### `:Inversion.Extensions.StringEx.RemoveInvalidXmlCharacters(System.String)`
+### `.Filter(System.String,System.Predicate{System.Char})`
+Filters out characters from string by testing them with a predicate.
+
+* `self`: The string to act upon.
+* `test`: The predicate to test each character with.
+
+**returns:** 
+Returns a new string containing only those charcters for which the test returned true.
+
+
+### `.RemoveNonNumeric(System.String)`
+Produces a new string by removing all non-numeric characters from the sting provided.
+
+* `self`: The string to act upon.
+
+**returns:** 
+The new filtered string.
+
+
+### `.RemoveNonAlpha(System.String)`
+Produces a new string by removing all alphabetic characters from the sting provided.
+
+* `self`: The string to act upon.
+
+**returns:** 
+The new filtered string.
+
+
+### `.RemoveNonAlphaNumeric(System.String)`
+Produces a new string by removing all non-alpha-numeric characters from the sting provided.
+
+* `self`: The string to act upon.
+
+**returns:** 
+The new filtered string.
+
+
+### `.RemoveWhitespace(System.String)`
+Produces a new string by removing all whitespace characters from the sting provided.
+
+* `self`: The string to act upon.
+
+**returns:** 
+The new filtered string.
+
+
+### `.RemoveInvalidXmlCharacters(System.String)`
 This method ensures that the returned string has only valid XML unicode charcters as specified in the XML 1.0 standard. For reference please see http://www.w3.org/TR/2000/REC-xml-20001006#NT-Char for the standard reference.
 
 * `self`: The string being acted upon.
@@ -389,6 +730,16 @@ Creates a new instance as a copy of the original.
 **returns:** 
 A copy as a `TextData` object.
 
+
+### `.ToXml(System.Xml.XmlWriter)`
+Produces an xml representation of the text data.
+
+* `writer`: The xml writer the representation should be written to.
+
+### `.ToJson(Newtonsoft.Json.JsonWriter)`
+Produces a json representation of the text data.
+
+* `writer`: The json writer the representation should be written to.
 
 ### `.ToString`
 Returns a string that represents the current object.

@@ -82,12 +82,20 @@ namespace Inversion {
 			return new TextData(this);
 		}
 
+		/// <summary>
+		/// Produces an xml representation of the text data.
+		/// </summary>
+		/// <param name="writer">The xml writer the representation should be written to.</param>
 		public void ToXml(XmlWriter writer) {
 			writer.WriteStartElement("text-data");
 			writer.WriteCData(this.Value);
 			writer.WriteEndElement();
 		}
 
+		/// <summary>
+		/// Produces a json representation of the text data.
+		/// </summary>
+		/// <param name="writer">The json writer the representation should be written to.</param>
 		public void ToJson(JsonWriter writer) {
 			writer.WriteStartObject();
 			writer.WritePropertyName("text-data");

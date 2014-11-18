@@ -20,7 +20,7 @@ namespace Inversion.Web.Behaviour.View {
 	/// purpose XSL transform.
 	/// </remarks>
 
-	public class XslViewBehaviour : WebBehaviour {
+	public class XsltViewBehaviour : WebBehaviour {
 
 		// This is a piece of voodoo I was handed by a friend who had some
 		//		similar occasional encoding problems which apparently are
@@ -43,23 +43,54 @@ namespace Inversion.Web.Behaviour.View {
 		}
 
 		private readonly string _contentType;
-
 		private readonly bool _enableCache;
 
-		public XslViewBehaviour(string message) : this(message, "text/xml") { }
 
-		public XslViewBehaviour(string message, string contentType)
+		/// <summary>
+		/// Instantiates a new xslt view behaviour used to provide xslt templating
+		/// primarily for web applications.
+		/// </summary>
+		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <remarks>
+		/// Defaults to caching compiled xslt, to a content type of "text/xml".
+		/// </remarks>
+		public XsltViewBehaviour(string message) : this(message, "text/xml") { }
+
+		/// <summary>
+		/// Instantiates a new xslt view behaviour used to provide xslt templating
+		/// primarily for web applications.
+		/// </summary>
+		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
+		/// <remarks>
+		/// Defaults to caching compiled xslt.
+		/// </remarks>
+		public XsltViewBehaviour(string message, string contentType)
 			: base(message) {
 			_contentType = contentType;
 			_enableCache = true;
 		}
 
-		public XslViewBehaviour(string message, string contentType, bool enableCache)
+		/// <summary>
+		/// Instantiates a new xslt view behaviour used to provide xslt templating
+		/// primarily for web applications.
+		/// </summary>
+		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
+		/// <param name="enableCache">Specifies whether or not the xslt compilation should be cached.</param>
+		public XsltViewBehaviour(string message, string contentType, bool enableCache)
 			: this(message, contentType) {
 			_enableCache = enableCache;
 		}
 
-		public XslViewBehaviour(string message, bool enableCache)
+		/// <summary>
+		/// Instantiates a new xslt view behaviour used to provide xslt templating
+		/// primarily for web applications.
+		/// </summary>
+		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="enableCache">Specifies whether or not the xslt compilation should be cached.</param>
+		/// <remarks>Defaults to a content type of "text/xml".</remarks>
+		public XsltViewBehaviour(string message, bool enableCache)
 			: this(message) {
 			_enableCache = enableCache;
 		}
@@ -69,6 +100,8 @@ namespace Inversion.Web.Behaviour.View {
 		//		ThreadLocal and therefore safe to use
 		//		in this manner on a singleton, would be
 		//		nice to fonfirm this.
+		// At some point this will need to move to being
+		// and injected strategy.
 		private IEnumerable<string> _possibleTemplates(WebContext context) {
 			string area = context.Params["area"];
 			string concern = context.Params["concern"];
@@ -88,6 +121,30 @@ namespace Inversion.Web.Behaviour.View {
 			yield return "default.xslt";
 		}
 
+		/// <summary>
+		/// Takes the content of the last view-step and transforms it with the xslt with the location
+		/// that best matches the path of the url. 
+		/// </summary>
+		/// <param name="ev">The event that gave rise to this action.</param>
+		/// <param name="context">The context within which this action is being performed.</param>
+		/// <remarks>
+		/// The locations checked are produced by the following series of yields:-
+		/// 
+		/// ```java
+		/// // area/concern/action
+		///	yield return Path.Combine(area, concern, action);
+		///	yield return Path.Combine(area, concern, "default.xslt");
+		///	// area/action
+		///	yield return Path.Combine(area, action);
+		///	yield return Path.Combine(area, "default.xslt");
+		///	// concern/action
+		///	yield return Path.Combine(concern, action);
+		///	yield return Path.Combine(concern, "default.xslt");
+		///	// action
+		///	yield return action;
+		///	yield return "default.xslt"; 
+		/// ```
+		/// </remarks>
 		public override void Action(IEvent ev, WebContext context) {
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasContent || context.ViewSteps.Last.HasModel) {
 

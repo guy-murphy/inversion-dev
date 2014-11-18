@@ -62,11 +62,49 @@ This constructor defaults the content type to `text/html`.
 Serialise the model of the last view step to XML.
 
 
-## `T:Inversion.Web.Behaviour.View.XslViewBehaviour`
+## `T:Inversion.Web.Behaviour.View.XsltViewBehaviour`
 A behaviour that will transform the last view step by attempting to find an appropriate XSL style sheet, based upon the context params of *area*, *concern*, and *action*. 
 
 #### Remarks
 This is intended for use in Web application, not as a general purpose XSL transform.
+
+### `.#ctor(System.String)`
+Instantiates a new xslt view behaviour used to provide xslt templating primarily for web applications.
+
+* `message`: The message the behaviour has set as responding to.
+#### Remarks
+Defaults to caching compiled xslt, to a content type of "text/xml".
+
+### `.#ctor(System.String,System.String)`
+Instantiates a new xslt view behaviour used to provide xslt templating primarily for web applications.
+
+* `message`: The message the behaviour has set as responding to.
+* `contentType`: The content type of the view step produced from this behaviour.
+#### Remarks
+Defaults to caching compiled xslt.
+
+### `.#ctor(System.String,System.String,System.Boolean)`
+Instantiates a new xslt view behaviour used to provide xslt templating primarily for web applications.
+
+* `message`: The message the behaviour has set as responding to.
+* `contentType`: The content type of the view step produced from this behaviour.
+* `enableCache`: Specifies whether or not the xslt compilation should be cached.
+
+### `.#ctor(System.String,System.Boolean)`
+Instantiates a new xslt view behaviour used to provide xslt templating primarily for web applications.
+
+* `message`: The message the behaviour has set as responding to.
+* `enableCache`: Specifies whether or not the xslt compilation should be cached.
+#### Remarks
+Defaults to a content type of "text/xml".
+
+### `.Action(Inversion.Process.IEvent,Inversion.Web.WebContext)`
+Takes the content of the last view-step and transforms it with the xslt with the location that best matches the path of the url. 
+
+* `ev`: The event that gave rise to this action.
+* `context`: The context within which this action is being performed.
+#### Remarks
+The locations checked are produced by the following series of yields:-  ```java // area/concern/action yield return Path.Combine(area, concern, action); yield return Path.Combine(area, concern, "default.xslt"); // area/action yield return Path.Combine(area, action); yield return Path.Combine(area, "default.xslt"); // concern/action yield return Path.Combine(concern, action); yield return Path.Combine(concern, "default.xslt"); // action yield return action; yield return "default.xslt";  ```
 
 ## `T:Inversion.Web.IInversionHandler`
 A base handler for Conclave.

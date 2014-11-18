@@ -64,6 +64,18 @@ Returns true if the  [Inversion.Process.IEvent.Message](P-Inversion.Process.IEve
 #### Remarks
 The intent is to override for bespoke conditions.
 
+### `.Condition(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+Determines if the event specifies the behaviour by name.
+
+* `ev`: The event to consult.
+* `context`: The context to consult.
+
+**returns:** 
+Returns true if true if `ev.Message` is the same as `this.Message`
+
+#### Remarks
+The intent is to override for bespoke conditions.
+
 ### `.Action(Inversion.Process.IEvent)`
 The action to perform when the `Condition(IEvent)` is met.
 
