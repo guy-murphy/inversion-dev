@@ -1,0 +1,1 @@
+﻿`Inversion.Spring`, project notes

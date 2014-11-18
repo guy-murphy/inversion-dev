@@ -5,6 +5,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Inversion.Extensions {
+	/// <summary>
+	/// An extension class providing extensions for string.
+	/// </summary>
 	public static class StringEx {
 
 		private static readonly Regex _xmlName = new Regex("[_:A-Za-z][-._:A-Za-z0-9]*");

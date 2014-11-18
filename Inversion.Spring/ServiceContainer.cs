@@ -8,17 +8,11 @@ using Inversion.Process;
 namespace Inversion.Spring {
 	public class ServiceContainer : IServiceContainer {
 
-		private static IServiceContainer _instance = new ServiceContainer();
+		private static readonly IServiceContainer _instance = new ServiceContainer();
 
 		public static IServiceContainer Instance {
 			get {
 				return _instance;
-			}
-			set {
-				if (_instance != null) {
-					throw new ApplicationException("Service container already set");
-				}
-				_instance = value;
 			}
 		}
 

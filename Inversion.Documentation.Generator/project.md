@@ -1,0 +1,1 @@
+﻿`Inversion.Documentation.Generator`, project notes
