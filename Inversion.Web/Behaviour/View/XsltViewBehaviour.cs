@@ -125,8 +125,6 @@ namespace Inversion.Web.Behaviour.View {
 		/// Takes the content of the last view-step and transforms it with the xslt with the location
 		/// that best matches the path of the url. 
 		/// </summary>
-		/// <param name="ev">The event that gave rise to this action.</param>
-		/// <param name="context">The context within which this action is being performed.</param>
 		/// <remarks>
 		/// The locations checked are produced by the following series of yields:-
 		/// 
@@ -145,6 +143,8 @@ namespace Inversion.Web.Behaviour.View {
 		///	yield return "default.xslt"; 
 		/// ```
 		/// </remarks>
+		/// <param name="ev">The event that gave rise to this action.</param>
+		/// <param name="context">The context within which this action is being performed.</param>
 		public override void Action(IEvent ev, WebContext context) {
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasContent || context.ViewSteps.Last.HasModel) {
 

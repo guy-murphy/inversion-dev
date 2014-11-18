@@ -101,10 +101,10 @@ Defaults to a content type of "text/xml".
 ### `.Action(Inversion.Process.IEvent,Inversion.Web.WebContext)`
 Takes the content of the last view-step and transforms it with the xslt with the location that best matches the path of the url. 
 
-* `ev`: The event that gave rise to this action.
-* `context`: The context within which this action is being performed.
 #### Remarks
 The locations checked are produced by the following series of yields:-  ```java // area/concern/action yield return Path.Combine(area, concern, action); yield return Path.Combine(area, concern, "default.xslt"); // area/action yield return Path.Combine(area, action); yield return Path.Combine(area, "default.xslt"); // concern/action yield return Path.Combine(concern, action); yield return Path.Combine(concern, "default.xslt"); // action yield return action; yield return "default.xslt";  ```
+* `ev`: The event that gave rise to this action.
+* `context`: The context within which this action is being performed.
 
 ## `T:Inversion.Web.IInversionHandler`
 A base handler for Conclave.
