@@ -4,7 +4,7 @@ using System.Threading;
 namespace Inversion.Process {
 
 	/// <summary>
-	/// A collection of `ViewStep` objects representing
+	/// A collection of view step objects representing
 	/// the steps taken in a view generating pipeline.
 	/// </summary>
 	/// <remarks>
@@ -48,23 +48,34 @@ namespace Inversion.Process {
 			}
 		}
 
+		/// <summary>
+		/// Releases all reasources currently being used
+		/// by this instance of view steps.
+		/// </summary>
 		public void Dispose() {
-			this.Dispose(true);
-		}
-
-		public void Dispose(bool disposing) {
 			if (!_isDisposed) {
-				if (disposing) {
-					_lock.Dispose();
-				}
+				_lock.Dispose();
 			}
 			_isDisposed = true;
 		}
 
+		/// <summary>
+		/// Creates a new view step and pushes it onto the
+		/// stack of view steps to be processed.
+		/// </summary>
+		/// <param name="name">The name of the view step to be created.</param>
+		/// <param name="contentType">The content type that the new view step represents.</param>
+		/// <param name="content">The actual content of the new view step.</param>
 		public void CreateStep(string name, string contentType, string content) {
 			this.Push(new ViewStep(name, contentType, content));
 		}
 
+		/// <summary>
+		/// Creates a new view step and pushes it onto the
+		/// stack of view steps to be processed.
+		/// </summary>
+		/// <param name="name">The name of the view step to be created.</param>
+		/// <param name="model">The actual model of the new view step.</param>
 		public void CreateStep(string name, IData model) {
 			this.Push(new ViewStep(name, model));
 		}

@@ -86,8 +86,8 @@ namespace Inversion.Web {
 		/// Instantiates a new context object purposed for Web applications.
 		/// </summary>
 		/// <param name="underlyingContext">The underlying http context to wrap.</param>
-
-		public WebContext(HttpContext underlyingContext) {
+		/// <param name="services">The service container the context will use.</param>
+		public WebContext(HttpContext underlyingContext, IServiceContainer services): base(services) {
 			_underlyingContext = underlyingContext;
 			_application = this.UnderlyingContext.ApplicationInstance as WebApplication;
 			_response = new WebResponse(this.UnderlyingContext);

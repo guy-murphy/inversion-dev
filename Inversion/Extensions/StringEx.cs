@@ -140,18 +140,47 @@ namespace Inversion.Extensions {
 			);
 		}
 
+		/// <summary>
+		/// Removes characters from the left side of a string.
+		/// </summary>
+		/// <param name="self">The string to be acted upon.</param>
+		/// <param name="amount">The number of charcters to remove.</param>
+		/// <returns>Returns a new string with the characters removed.</returns>
 		public static string TrimLeftBy(this string self, int amount) {
 			return self.Substring(amount);
 		}
 
+		/// <summary>
+		/// Removes characters from the right side of a string.
+		/// </summary>
+		/// <param name="self">The string to be acted upon.</param>
+		/// <param name="amount">The number of charcters to remove.</param>
+		/// <returns>Returns a new string with the characters removed.</returns>
 		public static string TrimRightBy(this string self, int amount) {
 			return self.Substring(0, self.Length - amount);
 		}
 
+		/// <summary>
+		/// Removes characters from the left and right sides of a string.
+		/// </summary>
+		/// <param name="self">The string to be acted upon.</param>
+		/// <param name="amount">The number of charcters to remove.</param>
+		/// <returns>Returns a new string with the characters removed.</returns>
 		public static string TrimEndsBy(this string self, int amount) {
 			return self.Substring(amount, self.Length - amount);
 		}
 
+		/// <summary>
+		/// Generates a simple hash for a string. 
+		/// </summary>
+		/// <remarks>
+		/// This hash is not asserted to be fit for any particular purpose
+		/// other than simple features where you just need a hash of a string.
+		/// </remarks>
+		/// <param name="self">The string to be acted upon.</param>
+		/// <returns>
+		/// Returns a simple hash of a string.
+		/// </returns>
 		public static string Hash(this string self) {
 			MD5 md5Hasher = MD5.Create();
 			byte[] data = md5Hasher.ComputeHash(System.Text.Encoding.Default.GetBytes(self));
@@ -159,6 +188,20 @@ namespace Inversion.Extensions {
 			return hash;
 		}
 
+		/// <summary>
+		/// Regards all occurrences of substrings starting and finishing with `|`
+		/// pipe charcters as potential keys, and if those keys occur within the
+		/// provided dictionary, replaces those keys in the provided text
+		/// with the corresposponding value in the dictionary.
+		/// </summary>
+		/// <remarks>
+		/// This is performed as a single scan of characters and should be used
+		/// in preference in those situations where you find yourself
+		/// doing multiple replacements on a large string, as this will do them in one go.
+		/// </remarks>
+		/// <param name="text">The text to act upon.</param>
+		/// <param name="kv">The dictionary of key-value pairs for substitution.</param>
+		/// <returns>Returns a new string with any matching keys replaced.</returns>
 		public static string ReplaceKeys(this string text, IDictionary<string, string> kv) {
 			bool readingKey = false;
 			StringBuilder currentKey = new StringBuilder();

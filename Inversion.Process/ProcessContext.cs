@@ -14,7 +14,6 @@ namespace Inversion.Process {
 
 		private bool _isDisposed;
 
-		private readonly Object _sync = new Object();
 		private readonly MemoryCache _cache;
 		private readonly Subject<IEvent> _bus;
 		private readonly ConcurrentDataCollection<string> _messages;
@@ -28,34 +27,14 @@ namespace Inversion.Process {
 		// not 100% sure it's the correct move
 		private readonly IDataDictionary<string> _params;
 
-		private Func<IServiceContainer> _serviceContainerStrategy;
 		private IServiceContainer _serviceContainer;
 
-		public Func<IServiceContainer> ServiceContainerStrategy  {
-			get { return _serviceContainerStrategy; }
-			set {
-				if (_serviceContainerStrategy != null) {
-					throw new ApplicationException("Service container strategy already set");
-				}
-				_serviceContainerStrategy = value;
-			}
-		}
 
 		/// <summary>
 		/// Exposes the processes service container.
 		/// </summary>
 		public IServiceContainer Services {
 			get {
-				if (_serviceContainer == null) {
-					lock (_sync) {
-						if (_serviceContainer == null) {
-							_serviceContainer = this.ServiceContainerStrategy();
-							if (_serviceContainer == null) {
-								throw new ApplicationException("Unable to set up the service container.");
-							}
-						}
-					}
-				}
 				return _serviceContainer; 
 			}
 		}
@@ -138,7 +117,13 @@ namespace Inversion.Process {
 			get { return _params; }
 		}
 
-		public ProcessContext() {
+		/// <summary>
+		/// Instantiates a new process contrext for inversion.
+		/// </summary>
+		/// <remarks>You can think of this type here as "being Inversion". This is the thing.</remarks>
+		/// <param name="services">The service container the context will use.</param>
+		public ProcessContext(IServiceContainer services) {
+			_serviceContainer = services;
 			_cache = MemoryCache.Default;
 			_bus = new Subject<IEvent>();
 			_messages = new ConcurrentDataCollection<string>();
