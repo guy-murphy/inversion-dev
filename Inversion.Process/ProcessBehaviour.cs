@@ -6,20 +6,23 @@
 	/// </summary>
 	public abstract class ProcessBehaviour : IProcessBehaviour {
 
-		private readonly string _message;
+		private readonly string _name;
 
-		public string Message {
+		/// <summary>
+		/// The name the behaviour is known by to the system.
+		/// </summary>
+		public string Name {
 			get {
-				return _message;
+				return _name;
 			}
 		}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="message">The name of the behaviour.</param>
-		protected ProcessBehaviour(string message) {
-			_message = message;
+		/// <param name="name">The name of the behaviour.</param>
+		protected ProcessBehaviour(string name) {
+			_name = name;
 		}
 
 		/// <summary>
@@ -28,7 +31,7 @@
 		/// <param name="ev">The event to consult.</param>
 		/// <returns>
 		/// Returns <b>true</b> if the <see cref="IEvent.Message"/>
-		/// is the same as the <see cref="ProcessBehaviour.Message"/>
+		/// is the same as the <see cref="ProcessBehaviour.Name"/>
 		/// </returns>
 		/// <remarks>
 		/// The intent is to override for bespoke conditions.
@@ -52,7 +55,7 @@
 			// check the base condition
 			// and then either there are no roles specified
 			// or the user is in any of the roles defined
-			return ev.Message == this.Message;
+			return ev.Message == this.Name;
 		}
 
 		/// <summary>

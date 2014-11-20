@@ -4,8 +4,8 @@ using System.Net;
 namespace Inversion.Web {
 
 	/// <summary>
-	/// An exception that is throw when an general error occurs
-	/// within a web application.
+	/// An exception that is thrown when an general error occurs
+	/// within a web application that would correspond to a http status code.
 	/// </summary>
 	public class WebException : ApplicationException {
 

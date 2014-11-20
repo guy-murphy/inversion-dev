@@ -35,14 +35,14 @@ namespace Inversion {
 	/// </remarks>
 	public interface IData : ICloneable {
 		/// <summary>
-		/// Produces an Xml representation of the model.
+		/// Produces an xml representation of the model.
 		/// </summary>
-		/// <param name="writer">The writer to used to write the Xml to. </param>
+		/// <param name="writer">The writer to used to write the xml to. </param>
 		void ToXml(XmlWriter writer);
 		/// <summary>
-		/// Produces a Json respresentation of the model.
+		/// Produces a json respresentation of the model.
 		/// </summary>
-		/// <param name="writer">The writer to use for producing JSON.</param>
+		/// <param name="writer">The writer to use for producing json.</param>
 		void ToJson(JsonWriter writer);
 	}
 }
