@@ -155,7 +155,7 @@ namespace Inversion.Web.Behaviour.View {
 					if (xsl == null) {
 						// we dont have it cached
 						// does the file exist?
-						string templatePath = Path.Combine(context.Application.BaseDirectory, "Resources", "Views", "Xsl", templateName);
+						string templatePath = Path.Combine(context.Application.BaseDirectory, "Resources", "Views", "Xslt", templateName);
 						if (File.Exists(templatePath)) {
 							xsl = new XslCompiledTransform(true);
 							using (XmlReader reader = new XmlTextReader(templatePath)) {

@@ -1,7 +1,8 @@
 ﻿using System;
 using Inversion.Process;
+using Inversion.Web.Behaviour;
 
-namespace Inversion.Web.Behaviour {
+namespace Inversion.Web.Harness {
 
 	/// <summary>
 	/// A simple behaviour to wire up to test the simplest possible output.

@@ -147,30 +147,63 @@ namespace Inversion.Collections {
 
 		#region ICollection<KeyValuePair<string,IData>> Members
 
+		/// <summary>
+		/// Adds an element to the collection.
+		/// </summary>
+		/// <param name="item">The item to add to the collection.</param>
 		public void Add(KeyValuePair<string, IData> item) {
 			((ICollection<KeyValuePair<string, IData>>)_backing).Add(item);
 		}
 
+		/// <summary>
+		/// Removes all elements from the collection.
+		/// </summary>
 		public void Clear() {
 			_backing.Clear();
 		}
 
+		/// <summary>
+		/// Checks to see if the collection contains a particular element.
+		/// </summary>
+		/// <param name="item">The item to check for in the collection.</param>
+		/// <returns>
+		/// Returns true if the item is contained in the collection;
+		/// otherwise returns false.
+		/// </returns>
 		public bool Contains(KeyValuePair<string, IData> item) {
 			return ((ICollection<KeyValuePair<string, IData>>)_backing).Contains(item);
 		}
 
+		/// <summary>
+		/// Copies elements from the collection to and array,
+		/// starting at a specified index in the array.
+		/// </summary>
+		/// <param name="array">The array to copy elements to.</param>
+		/// <param name="arrayIndex">The index in the array to start copying to.</param>
 		public void CopyTo(KeyValuePair<string, IData>[] array, int arrayIndex) {
 			((ICollection<KeyValuePair<string, IData>>)_backing).CopyTo(array, arrayIndex);
 		}
 
+		/// <summary>
+		/// Obtains the number of elements in the collection.
+		/// </summary>
 		public int Count {
 			get { return _backing.Count; }
 		}
 
+		/// <summary>
+		/// Determines if the collection is read-only or not.
+		/// </summary>
 		public bool IsReadOnly {
 			get { return ((ICollection<KeyValuePair<string, IData>>)_backing).IsReadOnly; }
 		}
 
+		/// <summary>
+		/// Removes a specific item from the collection
+		/// if it is present.
+		/// </summary>
+		/// <param name="item">The item to remove from the collection.</param>
+		/// <returns>Returns true if the item was removed; otherwise returns false.</returns>
 		public bool Remove(KeyValuePair<string, IData> item) {
 			return ((ICollection<KeyValuePair<string, IData>>)_backing).Remove(item);
 		}
@@ -179,6 +212,10 @@ namespace Inversion.Collections {
 
 		#region IEnumerable<KeyValuePair<string,IData>> Members
 
+		/// <summary>
+		/// Gets an enumerator that can be used to iterate over the collection.
+		/// </summary>
+		/// <returns>The enumerator for the collection.</returns>
 		public IEnumerator<KeyValuePair<string, IData>> GetEnumerator() {
 			return ((IEnumerable<KeyValuePair<string, IData>>)_backing).GetEnumerator();
 		}
@@ -187,6 +224,10 @@ namespace Inversion.Collections {
 
 		#region IEnumerable Members
 
+		/// <summary>
+		/// Gets an enumerator that can be used to iterate over the collection.
+		/// </summary>
+		/// <returns>The enumerator for the collection.</returns>
 		IEnumerator IEnumerable.GetEnumerator() {
 			return ((IEnumerable)_backing).GetEnumerator();
 		}
@@ -195,10 +236,18 @@ namespace Inversion.Collections {
 
 		#region IData Members
 
+		/// <summary>
+		/// Produces an xml representation of the collection.
+		/// </summary>
+		/// <param name="writer">The xml writer the xml should be written to.</param>
 		public void ToXml(XmlWriter writer) {
 			_backing.ToXml(writer);
 		}
 
+		/// <summary>
+		/// Produces a json representation of the collection.
+		/// </summary>
+		/// <param name="writer">The writer the json should be written to.</param>
 		public void ToJson(JsonWriter writer) {
 			_backing.ToJson(writer);
 		}
@@ -207,6 +256,11 @@ namespace Inversion.Collections {
 
 		#region ICloneable Members
 
+		/// <summary>
+		/// Clones this collection by creating a new one
+		/// populated by elements from this on.
+		/// </summary>
+		/// <returns>Returns the new collection as a copy of this one.</returns>
 		public object Clone() {
 			return _backing.Clone();
 		}

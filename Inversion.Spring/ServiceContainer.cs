@@ -24,18 +24,7 @@ namespace Inversion.Spring {
 		}
 
 		private readonly IApplicationContext _container;
-
-		/// <summary>
-		/// Gets the service if any of the provided name.
-		/// </summary>
-		/// <param name="name">The name of the service to obtain.</param>
-		/// <returns>Returns the service of the specified name.</returns>
-		public object this[string name] {
-			get {
-				return this.GetObject(name);
-			}
-		}
-
+		
 		/// <summary>
 		/// Instantiates a new service container, and configures it
 		/// from the Spring config.
@@ -71,7 +60,7 @@ namespace Inversion.Spring {
 		/// </summary>
 		/// <param name="name">The name of the service to obtain.</param>
 		/// <returns>Returns the service of the specified name.</returns>
-		public object GetObject(string name) {
+		protected object GetService(string name) {
 			return _container.GetObject(name);
 		}
 
@@ -82,7 +71,7 @@ namespace Inversion.Spring {
 		/// <param name="name">The name of the service to obtain.</param>
 		/// <param name="type">The type the service is expected to be.</param>
 		/// <returns>Returns the service of the specified name.</returns>
-		public object GetObject(string name, Type type) {
+		protected object GetService(string name, Type type) {
 			return _container.GetObject(name, type);
 		}
 
@@ -92,8 +81,8 @@ namespace Inversion.Spring {
 		/// <typeparam name="T">The type of the service being obtained.</typeparam>
 		/// <param name="name">The name of the service to obtain.</param>
 		/// <returns>Returns the service of the specified name.</returns>
-		public T GetObject<T>(string name) {
-			return (T)this.GetObject(name, typeof(T));
+		public T GetService<T>(string name) {
+			return (T)this.GetService(name, typeof(T));
 		}
 
 		/// <summary>
@@ -101,7 +90,7 @@ namespace Inversion.Spring {
 		/// </summary>
 		/// <param name="name">The name of the service to check for.</param>
 		/// <returns>Returns true if the service exists; otherwise returns false.</returns>
-		public bool ContainsObject(string name) {
+		public bool ContainsService(string name) {
 			return _container.ContainsObject(name);
 		}
 	}
