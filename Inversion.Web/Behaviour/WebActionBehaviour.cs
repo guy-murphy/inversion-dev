@@ -89,7 +89,7 @@ namespace Inversion.Web.Behaviour {
 		/// Gives access to an enumeration of context key-value pairs that should
 		/// be present on the context for this behaviours action to execute.
 		/// </summary>
-		protected IEnumerable<KeyValuePair<string, string>> MatchingAllParameters {
+		public IEnumerable<KeyValuePair<string, string>> MatchingAllParameters {
 			get { return _matchingAllParams ?? (_matchingAllParams = ImmutableDictionary.Create<string, string>()); }
 			set {
 				if (_matchingAllParams != null) throw new InvalidOperationException("You may not assign MatchingAllParameters once it has been set.");

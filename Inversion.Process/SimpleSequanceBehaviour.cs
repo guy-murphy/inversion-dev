@@ -20,7 +20,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="message">The message this behaviour should respond to.</param>
 		/// <param name="sequence">The sequence of simple messages this behaviour should generate.</param>
-		protected SimpleSequenceBehaviour(string message, IEnumerable<string> sequence)
+		public SimpleSequenceBehaviour(string message, IEnumerable<string> sequence)
 			: base(message) {
 			_sequence = sequence;
 		}

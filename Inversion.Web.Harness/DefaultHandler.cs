@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Inversion.Process;
 using Inversion.Web;
-using Inversion.Spring;
+using Inversion.Naiad;
 
 namespace Inversion.Web.Harness {
 	public class DefaultHandler : IHttpHandler {
@@ -22,7 +22,7 @@ namespace Inversion.Web.Harness {
 			get { return true; }
 		}
 
-		// <summary>
+		/// <summary>
 		/// Processes the current reuqest with the provided `HttpContext`
 		/// </summary>
 		/// <param name="context">

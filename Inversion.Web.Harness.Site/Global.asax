@@ -1,1 +1,1 @@
-﻿<%@ Application Inherits="Inversion.Web.WebApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Inversion.Web.Harness.Site.Global" Language="C#" %>

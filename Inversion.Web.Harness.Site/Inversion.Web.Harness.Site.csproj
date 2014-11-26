@@ -80,9 +80,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Inversion.Naiad\Inversion.Naiad.csproj">
+      <Project>{975446b0-dbc2-498f-94d4-2a6a20f9c5d0}</Project>
+      <Name>Inversion.Naiad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Inversion.Process\Inversion.Process.csproj">
+      <Project>{37f59768-76ea-4d09-8976-bbc3540db5ae}</Project>
+      <Name>Inversion.Process</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inversion.Spring\Inversion.Spring.csproj">
       <Project>{e50603e3-e170-4f0b-9e25-0df068a77096}</Project>
       <Name>Inversion.Spring</Name>
@@ -90,6 +101,10 @@
     <ProjectReference Include="..\Inversion.Web.Harness\Inversion.Web.Harness.csproj">
       <Project>{b2183bfd-9c0e-48aa-b426-4912ce1dadc7}</Project>
       <Name>Inversion.Web.Harness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Inversion.Web\Inversion.Web.csproj">
+      <Project>{6951ba6b-4388-4fc8-8298-60da7563fee4}</Project>
+      <Name>Inversion.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -51,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Inversion.Naiad\Inversion.Naiad.csproj">
+      <Project>{975446b0-dbc2-498f-94d4-2a6a20f9c5d0}</Project>
+      <Name>Inversion.Naiad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inversion.Process\Inversion.Process.csproj">
       <Project>{37f59768-76ea-4d09-8976-bbc3540db5ae}</Project>
       <Name>Inversion.Process</Name>

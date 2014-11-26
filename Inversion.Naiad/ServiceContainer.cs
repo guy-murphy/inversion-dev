@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Concurrent;
-
+using System.Threading;
 using Inversion.Process;
 
 namespace Inversion.Naiad {
 	public class ServiceContainer: IServiceContainer {
 
 		private static readonly ServiceContainer _instance = new ServiceContainer();
+
+		private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
 
 		public static ServiceContainer Instance {
 			get { return _instance; }
@@ -15,15 +17,22 @@ namespace Inversion.Naiad {
 		private readonly ConcurrentDictionary<string, object> _ctors = new ConcurrentDictionary<string, object>();
 
 		public void RegisterService<T>(string name, Func<IServiceContainer, T> ctor) {
-			_ctors[name] = ctor;
+			_lock.EnterWriteLock();
+			try {
+				_ctors[name] = ctor;
+			} finally {
+				_lock.ExitWriteLock();
+			}
 		}
 		
 		public T GetService<T>(string name) {
-			Func<IServiceContainer, T> ctor = _ctors[name] as Func<IServiceContainer, T>;
-			if (ctor == null) {
-				throw new ProcessException("Unable to find the function to create the service named.");
+			_lock.EnterReadLock();
+			try {
+				Func<IServiceContainer, T> ctor = _ctors[name] as Func<IServiceContainer, T>;
+				return ctor(this);
+			} finally {
+				_lock.ExitReadLock();
 			}
-			return ctor(this);
 		}
 
 		public bool ContainsService(string name) {
@@ -31,7 +40,9 @@ namespace Inversion.Naiad {
 		}
 
 		public void Dispose() {
-			_ctors.Clear();
+			lock (_lock) {
+				_ctors.Clear();
+			}
 		}
 
 	}
