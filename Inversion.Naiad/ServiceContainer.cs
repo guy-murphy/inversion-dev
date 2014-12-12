@@ -36,7 +36,12 @@ namespace Inversion.Naiad {
 		}
 
 		public bool ContainsService(string name) {
-			return _ctors.ContainsKey(name);
+			_lock.EnterReadLock();
+			try {
+				return _ctors.ContainsKey(name);
+			} finally {
+				_lock.ExitReadLock();
+			}
 		}
 
 		public void Dispose() {

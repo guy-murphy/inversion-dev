@@ -15,7 +15,7 @@ namespace Inversion.Web.Harness.Site {
 
 		protected void Application_Start(object sender, EventArgs e) {
 
-			Naiad.ServiceContainer.Instance.RegisterService<List<string>>("life-cycle",
+			Naiad.ServiceContainer.Instance.RegisterService("life-cycle",
 				container => {
 					return new List<string> {
 						 "bootstrap",
@@ -31,11 +31,7 @@ namespace Inversion.Web.Harness.Site {
 			Naiad.ServiceContainer.Instance.RegisterService("request-behaviours",
 				container => {
 					return new List<IProcessBehaviour> {
-						new SimpleSequenceBehaviour("process-request", container.GetService<List<string>>("life-cycle")
-							/*new List<string> {
-								"bootstrap", "parse-request", "work", "view-state", "process-views", "render"
-							}*/
-						),
+						new SimpleSequenceBehaviour("process-request", container.GetService<List<string>>("life-cycle")),
 						new BootstrapBehaviour("bootstrap",
 							new Dictionary<string,string> {
 								{"area", "default"}, 

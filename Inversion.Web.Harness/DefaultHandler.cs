@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Inversion.Process;
 using Inversion.Web;
-using Inversion.Naiad;
+using Inversion.Spring;
 
 namespace Inversion.Web.Harness {
 	public class DefaultHandler : IHttpHandler {
