@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Xml;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion.Collections {
 
@@ -28,6 +29,18 @@ namespace Inversion.Collections {
 	public class DataModel : DynamicObject, IDataDictionary<IData> {
 
 		private readonly DataDictionary<IData> _backing = new DataDictionary<IData>();
+
+		/// <summary>
+		/// Provides an abstract representation
+		/// of the objects data expressed as a JSON object.
+		/// </summary>
+		/// <remarks>
+		/// For this type the json object is created each time
+		/// it is accessed.
+		/// </remarks>
+		public JObject Data {
+			get { return this.ToJsonObject(); }
+		}
 
 		/// <summary>
 		/// Implements trying to set a member of the data model ensuring that the value

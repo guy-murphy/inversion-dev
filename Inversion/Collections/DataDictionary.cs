@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion.Collections {
 
@@ -12,6 +13,18 @@ namespace Inversion.Collections {
 
 	[Serializable]
 	public class DataDictionary<TValue> : Dictionary<string, TValue>, IDataDictionary<TValue> {
+
+		/// <summary>
+		/// Provides an abstract representation
+		/// of the objects data expressed as a JSON object.
+		/// </summary>
+		/// <remarks>
+		/// For this type the json object is created each time
+		/// it is accessed.
+		/// </remarks>
+		public JObject Data {
+			get { return this.ToJsonObject(); }
+		}
 
 		/// <summary>
 		/// Instantiates a new empty instance of the dictionary.

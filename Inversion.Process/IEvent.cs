@@ -50,7 +50,7 @@ namespace Inversion.Process {
 		/// can even be used as a "return" value
 		/// for the event.
 		/// </remarks>
-		object Object { get; set; }
+		IData Object { get; set; }
 
 		/// <summary>
 		/// Determines whether or not the parameters 

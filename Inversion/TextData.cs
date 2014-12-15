@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion {
 
@@ -35,14 +36,27 @@ namespace Inversion {
 		}
 
 		private readonly string _text;
+		private JObject _data;
 
 		/// <summary>
 		/// The string value of the text data.
 		/// </summary>
-
 		public string Value {
 			get {
 				return _text;
+			}
+		}
+
+		/// <summary>
+		/// Provides an abstract representation
+		/// of the objects data expressed as a JSON object.
+		/// </summary>
+		/// <remarks>
+		/// For this type the json object is only created the once.
+		/// </remarks>
+		public JObject Data {
+			get {
+				return _data ?? (_data = this.ToJsonObject());
 			}
 		}
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion.Process {
 
@@ -46,6 +47,18 @@ namespace Inversion.Process {
 		/// </summary>
 		public TimeSpan Duration {
 			get { return (this.HasStopped) ? _stop - _start : DateTime.Now - _start; }
+		}
+
+		/// <summary>
+		/// Provides an abstract representation
+		/// of the objects data expressed as a JSON object.
+		/// </summary>
+		/// <remarks>
+		/// For this type the json object is created each time
+		/// it is accessed.
+		/// </remarks>
+		public JObject Data {
+			get { return this.ToJsonObject(); }
 		}
 
 		/// <summary>

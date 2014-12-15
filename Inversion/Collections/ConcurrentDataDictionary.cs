@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.Xml;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion.Collections {
 
@@ -13,6 +14,18 @@ namespace Inversion.Collections {
 	/// </summary>
 	/// <typeparam name="TValue">The type of the element values.</typeparam>
 	public class ConcurrentDataDictionary<TValue> : ConcurrentDictionary<string, TValue>, IDataDictionary<TValue> {
+
+		/// <summary>
+		/// Provides an abstract representation
+		/// of the objects data expressed as a JSON object.
+		/// </summary>
+		/// <remarks>
+		/// For this type the json object is created each time
+		/// it is accessed.
+		/// </remarks>
+		public JObject Data {
+			get { return this.ToJsonObject(); }
+		}
 
 		/// <summary>
 		/// Instantiates a new empty dictionary.

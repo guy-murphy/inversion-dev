@@ -2,6 +2,7 @@
 using System.Xml;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion {
 
@@ -34,6 +35,13 @@ namespace Inversion {
 	/// </para>
 	/// </remarks>
 	public interface IData : ICloneable {
+
+		/// <summary>
+		/// Provides an abstract representation
+		/// of the objects data expressed as a JSON object.
+		/// </summary>
+		JObject Data { get; }
+
 		/// <summary>
 		/// Produces an xml representation of the model.
 		/// </summary>

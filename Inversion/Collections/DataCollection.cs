@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion.Collections {
 
@@ -21,6 +22,18 @@ namespace Inversion.Collections {
 		/// </summary>
 		/// <remarks>This will default to "list".</remarks>
 		public string Label { get { return _label ?? "list"; } }
+
+		/// <summary>
+		/// Provides an abstract representation
+		/// of the objects data expressed as a JSON object.
+		/// </summary>
+		/// <remarks>
+		/// For this type the json object is created each time
+		/// it is accessed.
+		/// </remarks>
+		public JObject Data {
+			get { return this.ToJsonObject(); }
+		}
 
 		/// <summary>
 		/// Instantiates a new empty collection with the lable provided.

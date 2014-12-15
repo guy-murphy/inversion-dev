@@ -21,7 +21,7 @@ namespace Inversion.Process {
 		private readonly string _message;
 		private readonly ProcessContext _context;
 		private readonly IDictionary<string, string> _params;
-		private object _object;
+		private IData _object;
 
 		/// <summary>
 		/// Provides indexed access to the events parameters.
@@ -74,7 +74,7 @@ namespace Inversion.Process {
 		/// can even be used as a "return" value
 		/// for the event.
 		/// </remarks>
-		public object Object {
+		public IData Object {
 			get { return _object; }
 			set {
 				if (_object == null) {
@@ -83,6 +83,18 @@ namespace Inversion.Process {
 					throw new InvalidOperationException("You may only set the Object value of an event the once. Thereafter it is readonly.");
 				}
 			}
+		}
+
+		/// <summary>
+		/// Provides an abstract representation
+		/// of the objects data expressed as a JSON object.
+		/// </summary>
+		/// <remarks>
+		/// For this type the json object is created each time
+		/// it is accessed.
+		/// </remarks>
+		public JObject Data {
+			get { return this.ToJsonObject(); }
 		}
 
 		/// <summary>
@@ -100,7 +112,7 @@ namespace Inversion.Process {
 		/// <param name="message">The simple message the event represents.</param>
 		/// <param name="obj">An object being carried by the event.</param>
 		/// <param name="parameters">The parameters of the event.</param>
-		public Event(ProcessContext context, string message, object obj, IDictionary<string, string> parameters) {
+		public Event(ProcessContext context, string message, IData obj, IDictionary<string, string> parameters) {
 			_context = context;
 			_message = message;
 			_object = obj;
@@ -128,7 +140,7 @@ namespace Inversion.Process {
 		/// A sequnce of context parameter names that should be copied from the context
 		/// to this event.
 		/// </param>
-		public Event(ProcessContext context, string message, object obj, params string[] parms) {
+		public Event(ProcessContext context, string message, IData obj, params string[] parms) {
 			_context = context;
 			_message = message;
 			_object = obj;

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Xml;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Formatting = System.Xml.Formatting;
 
 namespace Inversion {
@@ -68,6 +69,17 @@ namespace Inversion {
 				json.Formatting = Newtonsoft.Json.Formatting.Indented;
 				self.ToJson(json);
 			}
+		}
+
+		/// <summary>
+		/// Provides a JSON Object view of the objects data.
+		/// </summary>
+		/// <param name="self">The `IData` object to act upon.</param>
+		/// <returns>
+		/// Returns a `JObject` representation of this objects data.
+		/// </returns>
+		public static JObject ToJsonObject(this IData self) {
+			return JObject.Parse(self.ToJson());
 		}
 
 
