@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Xml;
 
 using Newtonsoft.Json;
@@ -18,13 +17,14 @@ namespace Inversion {
 	/// of the entity, with the JSON being generated only the once. Unfortunately `JObject` is
 	/// muttable making it unfit for what is supposed to be an immutable view. A guard has been
 	/// put in to throw an exception on property change for the JObject, but this is felt to be
-	/// only just adequate long-term.
+	/// only just adequate long-term. I'm going to see how this plays out in actual usage
+	/// before deciding if it's appropriate. See `JDataObject` for an alternative but similar approach.
 	/// </remarks>
 	public class DataView: IData {
 
 		private readonly string _xml;
 		private readonly string _json;
-		private readonly JObject _data;
+		private readonly JObject _data; // muttable object
 
 		/// <summary>
 		/// Provides an abstract representation
