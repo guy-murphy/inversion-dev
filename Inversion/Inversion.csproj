@@ -57,10 +57,13 @@
     <Compile Include="Extensions\ArrayEx.cs" />
     <Compile Include="Extensions\DictionaryEx.cs" />
     <Compile Include="Extensions\EnumerableEx.cs" />
+    <Compile Include="Extensions\JsonWriterEx.cs" />
     <Compile Include="Extensions\ListEx.cs" />
     <Compile Include="Extensions\StringBuilderEx.cs" />
     <Compile Include="Extensions\StringEx.cs" />
+    <Compile Include="IConsumeData.cs" />
     <Compile Include="IDate.cs" />
+    <Compile Include="IMutate.cs" />
     <Compile Include="JDataObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextData.cs" />

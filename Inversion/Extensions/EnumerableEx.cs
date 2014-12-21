@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using Newtonsoft.Json;
 using Formatting = System.Xml.Formatting;
@@ -99,6 +100,16 @@ namespace Inversion.Extensions {
 				item.ToJson(json);
 			}
 			json.WriteEndArray();
+		}
+
+		/// <summary>
+		/// Produces a hash from all the string elements
+		/// of an enumerable.
+		/// </summary>
+		/// <param name="self">The enumerable of strings to act upon.</param>
+		/// <returns>Returns a has of all the elements.</returns>
+		public static int CalculateHash(this IEnumerable<string> self) {
+			return self.Aggregate(17, (current, item) => current*31 + item.GetHashCode());
 		}
 	}
 }

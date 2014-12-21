@@ -14,7 +14,20 @@ namespace Inversion {
 	/// </remarks>
 	public class JDataObject: JObject, IData {
 
+		/// <summary>
+		/// Instantiates a new `JDataObject` from an other `JObject`.
+		/// </summary>
+		/// <param name="other">
+		/// The `JObject` to copy data from.
+		/// </param>
 		public JDataObject(JObject other): base(other) {}
+
+		/// <summary>
+		/// Instantiates a new `JDataObject` from another `IDataObject`.
+		/// </summary>
+		/// <param name="other">
+		/// The `IData` object to copy data from.
+		/// </param>
 		public JDataObject(IData other) : base(other.ToJson()) { }
 
 		/// <summary>

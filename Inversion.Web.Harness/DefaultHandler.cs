@@ -53,6 +53,17 @@ namespace Inversion.Web.Harness {
 		public virtual void ProcessRequest(WebContext context) {
 			IList<IProcessBehaviour> behaviours = context.Services.GetService<List<IProcessBehaviour>>("request-behaviours");
 			context.Register(behaviours);
+
+			context.Register(
+				(IEvent ev) => ev.Message == "preprocess::work",
+				(IEvent ev, ProcessContext ctx) => ctx.Messages.Add("work preprocess")
+			);
+
+			context.Register(
+				(IEvent ev) => ev.Message == "postprocess::work",
+				(IEvent ev, ProcessContext ctx) => ctx.Messages.Add("work postprocess")
+			);
+
 			context.Timers.Begin("process-request");
 			context.Fire("process-request");
 			context.Completed();

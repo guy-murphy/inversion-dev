@@ -32,8 +32,17 @@ namespace Inversion.Web.Behaviour {
 		/// Ensures on instantiattion that the base process behaviour
 		/// contructor is called with the provided message.
 		/// </summary>
-		/// <param name="message"></param>
+		/// <param name="message">The message this behaviour responds to.</param>
 		protected WebBehaviour(string message) : base(message) { }
+
+		/// <summary>
+		/// Ensures on instantiattion that the base process behaviour
+		/// contructor is called with the provided message.
+		/// </summary>
+		/// <param name="message">The message this behaviour responds to.</param>
+		/// <param name="preprocess">Specifies whether or not preprocessing of this behaviours action should occur.</param>
+		/// <param name="postprocess">Specifies whether or not postprocessing of this behaviours action should occur.</param>
+		protected WebBehaviour(string message, bool preprocess, bool postprocess) : base(message, preprocess, postprocess) { }
 
 		/// <summary>
 		/// Determines if this behaviours action should be executed in

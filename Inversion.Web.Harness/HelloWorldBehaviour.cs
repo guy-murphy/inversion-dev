@@ -8,13 +8,12 @@ namespace Inversion.Web.Harness {
 	/// A simple behaviour to wire up to test the simplest possible output.
 	/// </summary>
 	public class HelloWorldBehaviour : WebActionBehaviour {
-
 		/// <summary>
-		/// Instantiates a new hello world behaviour configured to
-		/// respond to the provided message.
+		/// Ensures on instantiation that the base web behaviour constructor
+		/// is called with the message provided.
 		/// </summary>
-		/// <param name="message">The message this behaviour should respond to.</param>
-		public HelloWorldBehaviour(string message) : base(message) { }
+		/// <param name="message">The message the behaviour has set as responding to.</param>
+		public HelloWorldBehaviour(string message, bool preprocess = true, bool postprocess = true) : base(message, preprocess, postprocess) {}
 
 		/// <summary>
 		/// The action to perform if this behaviours condition is met.

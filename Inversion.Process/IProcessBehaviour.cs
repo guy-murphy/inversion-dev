@@ -1,4 +1,6 @@
 ﻿
+using System.Security.Cryptography.X509Certificates;
+
 namespace Inversion.Process {
 
 	/// <summary>
@@ -41,8 +43,35 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="ev">The event to be processed. </param>
 		void Action(IEvent ev);
+
 		/// <summary>
-		/// process and action for the provided <see cref="IEvent"/>
+		/// Determines whether or not a message should
+		/// be fired prior to this behaviours action being processed.
+		/// </summary>
+		bool AnnouncePreprocess { get; }
+
+		/// <summary>
+		/// Determines whether or not a message should
+		/// be fired after this behaviours action has been processed.
+		/// </summary>
+		bool AnnouncePostprocess { get; }
+
+		/// <summary>
+		/// Perform any processing necessary before the action for this behaviour
+		/// is processed.
+		/// </summary>
+		/// <param name="ev">The event that any preprocessing is responding to.</param>
+		void Preprocess(IEvent ev);
+
+		/// <summary>
+		/// Perform any processing necessary after the action for this behaviour
+		/// is processed.
+		/// </summary>
+		/// <param name="ev">The event that any postprocessing is responding to.</param>
+		void Postprocess(IEvent ev);
+
+		/// <summary>
+		/// Process the action in response to the provided <see cref="IEvent"/>
 		/// with the <see cref="ProcessContext"/> provided.
 		/// </summary>
 		/// <param name="ev">The event to process.</param>
