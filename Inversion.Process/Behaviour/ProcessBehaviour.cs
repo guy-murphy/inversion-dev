@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Inversion.Process {
+namespace Inversion.Process.Behaviour {
 
 	/// <summary>
 	/// A simple named behaviour with a default condition

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Inversion.Process;
+using Inversion.Process.Behaviour;
 
 namespace Inversion.Web.Behaviour {
 	/// <summary>

@@ -62,16 +62,16 @@
     <Compile Include="ErrorMessage.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="IEvent.cs" />
-    <Compile Include="IProcessBehaviour.cs" />
+    <Compile Include="Behaviour\IProcessBehaviour.cs" />
     <Compile Include="IServiceContainer.cs" />
-    <Compile Include="ProcessBehaviour.cs" />
+    <Compile Include="Behaviour\ProcessBehaviour.cs" />
     <Compile Include="ProcessContext.cs" />
     <Compile Include="ProcessException.cs" />
     <Compile Include="ProcessTimer.cs" />
     <Compile Include="ProcessTimerDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RuntimeBehaviour.cs" />
-    <Compile Include="SimpleSequanceBehaviour.cs" />
+    <Compile Include="Behaviour\RuntimeBehaviour.cs" />
+    <Compile Include="Behaviour\SimpleSequenceBehaviour.cs" />
     <Compile Include="ViewStep.cs" />
     <Compile Include="ViewSteps.cs" />
   </ItemGroup>

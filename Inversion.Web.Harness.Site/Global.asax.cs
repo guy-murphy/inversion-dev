@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 
 using Inversion.Process;
+using Inversion.Process.Behaviour;
 using Inversion.Naiad;
 using Inversion.Web.Behaviour;
 using Inversion.Web.Behaviour.View;

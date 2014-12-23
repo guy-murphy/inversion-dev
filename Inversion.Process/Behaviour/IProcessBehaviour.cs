@@ -1,7 +1,7 @@
 ﻿
 using System.Security.Cryptography.X509Certificates;
 
-namespace Inversion.Process {
+namespace Inversion.Process.Behaviour {
 
 	/// <summary>
 	/// The base type for behaviours in Conclave. Behaviours are intended

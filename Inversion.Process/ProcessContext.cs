@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 
 using Inversion.Collections;
+using Inversion.Process.Behaviour;
 
 namespace Inversion.Process {
 

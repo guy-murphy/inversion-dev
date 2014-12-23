@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Inversion.Process {
+namespace Inversion.Process.Behaviour {
 
 	/// <summary>
 	/// A behaviour concerned with driving the processing of a

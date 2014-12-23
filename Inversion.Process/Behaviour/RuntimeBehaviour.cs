@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Inversion.Process {
+namespace Inversion.Process.Behaviour {
 
 	/// <summary>
 	/// A behaviour that facilitates creating behaviours whose conditions and actions
