@@ -353,6 +353,10 @@ namespace Inversion.Process {
 			return parms.Length > 0 && parms.All(parm => this.Params.ContainsKey(parm));
 		}
 
+		public bool HasParams(IEnumerable<string> parms) {
+			return parms != null && parms.All(parm => this.Params.ContainsKey(parm));
+		}
+
 		/// <summary>
 		/// Determines whether or not the parameter name and
 		/// value specified exists in the current context.
@@ -377,7 +381,7 @@ namespace Inversion.Process {
 		/// parameters; otherwise returns false.
 		/// </returns>
 		public bool HasParamValues(IEnumerable<KeyValuePair<string, string>> match) {
-			return match.All(entry => this.Params.Contains(entry));
+			return match != null && match.All(entry => this.Params.Contains(entry));
 		}
 
 		/// <summary>
@@ -409,6 +413,10 @@ namespace Inversion.Process {
 		/// </returns>
 		public bool HasControlState(params string[] parms) {
 			return parms.Length > 0 && parms.All(parm => this.ControlState.Keys.Contains(parm));
+		}
+
+		public bool HasControlState(IEnumerable<string> parms) {
+			return parms != null && parms.All(parm => this.ControlState.Keys.Contains(parm));
 		}
 
 		/// <summary>

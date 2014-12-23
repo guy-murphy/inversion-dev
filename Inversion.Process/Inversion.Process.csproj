@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviour\ApplicationBehaviour.cs" />
-    <Compile Include="Behaviour\BehaviourConditionEx.cs" />
+    <Compile Include="Behaviour\BehaviourConditionPredicates.cs" />
     <Compile Include="DataCollectionEx.cs" />
     <Compile Include="ErrorMessage.cs" />
     <Compile Include="Event.cs" />
