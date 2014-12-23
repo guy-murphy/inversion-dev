@@ -13,7 +13,7 @@ namespace Inversion.Web.Harness {
 		/// is called with the message provided.
 		/// </summary>
 		/// <param name="message">The message the behaviour has set as responding to.</param>
-		public HelloWorldBehaviour(string message, bool preprocess = true, bool postprocess = true) : base(message, preprocess, postprocess) {}
+		public HelloWorldBehaviour(string message, bool preprocess = false, bool postprocess = false) : base(message, preprocess, postprocess) {}
 
 		/// <summary>
 		/// The action to perform if this behaviours condition is met.
