@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Inversion.Collections;
 
-namespace Inversion.Process {
+namespace Inversion.Process.Behaviour {
 
 	/// <summary>
 	/// An abstract provision of an application behaviour that includes features
@@ -59,11 +60,19 @@ namespace Inversion.Process {
 		/// <param name="context">The context upon which to perform any action.</param>
 		public override void Action(IEvent ev, ProcessContext context) {
 			context.Messages.Add("application behaviour");
-			DataDictionary<DataCollection<string>> config = new DataDictionary<DataCollection<string>>();
+			DataDictionary<DataCollection<string>> namedLists = new DataDictionary<DataCollection<string>>();
 			foreach (KeyValuePair<string, IEnumerable<string>> entry in this.NamedLists) {
-				config[entry.Key] = new DataCollection<string>(entry.Value);
+				namedLists[entry.Key] = new DataCollection<string>(entry.Value);
 			}
-			context.ControlState["action-config"] = config;
+			context.ControlState["named-lists"] = namedLists;
+
+			DataDictionary<DataDictionary<string>> namedMaps = new DataDictionary<DataDictionary<string>>();
+			foreach (KeyValuePair<string, IEnumerable<KeyValuePair<string,string>>> map in this.NamedMaps) {
+				namedMaps[map.Key] = new DataDictionary<string>(map.Value);
+			}
+
+			context.ControlState["named-maps"] = namedMaps;
 		}
+		
 	}
 }

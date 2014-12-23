@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationBehaviour.cs" />
+    <Compile Include="Behaviour\ApplicationBehaviour.cs" />
     <Compile Include="DataCollectionEx.cs" />
     <Compile Include="ErrorMessage.cs" />
     <Compile Include="Event.cs" />
