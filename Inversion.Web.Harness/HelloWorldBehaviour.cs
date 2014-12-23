@@ -1,5 +1,6 @@
 ﻿using System;
 using Inversion.Process;
+using Inversion.Process.Behaviour;
 using Inversion.Web.Behaviour;
 
 namespace Inversion.Web.Harness {
@@ -7,7 +8,7 @@ namespace Inversion.Web.Harness {
 	/// <summary>
 	/// A simple behaviour to wire up to test the simplest possible output.
 	/// </summary>
-	public class HelloWorldBehaviour : WebActionBehaviour {
+	public class HelloWorldBehaviour : ApplicationBehaviour {
 		/// <summary>
 		/// Ensures on instantiation that the base web behaviour constructor
 		/// is called with the message provided.
@@ -20,7 +21,7 @@ namespace Inversion.Web.Harness {
 		/// </summary>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, ProcessContext context) {
 			context.Messages.Add("Hello World!");
 			context.Messages.Add(DateTime.Now.ToLongTimeString());
 		}

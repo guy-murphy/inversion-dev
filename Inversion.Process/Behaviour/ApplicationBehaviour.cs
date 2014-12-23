@@ -15,7 +15,7 @@ namespace Inversion.Process.Behaviour {
 	/// for configuring parameter conditions that must be met for the
 	/// behaviours action to execute.
 	/// </summary>
-	public class ApplicationBehaviour: ProcessBehaviour {
+	public abstract class ApplicationBehaviour: ProcessBehaviour {
 
 		private ImmutableDictionary<string, IEnumerable<string>> _namedLists;
 		private ImmutableDictionary<string, IDictionary<string,string>> _namedMaps;
@@ -55,25 +55,19 @@ namespace Inversion.Process.Behaviour {
 		protected ApplicationBehaviour(string name, bool preprocess = false, bool postprocess = false) : base(name, preprocess, postprocess) {}
 
 		/// <summary>
-		/// The action to perform when the `Condition(IEvent)` is met.
+		/// Determines if the event specifies the behaviour by name.
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
-		/// <param name="context">The context upon which to perform any action.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
-			context.Messages.Add("application behaviour");
-			DataDictionary<DataCollection<string>> namedLists = new DataDictionary<DataCollection<string>>();
-			foreach (KeyValuePair<string, IEnumerable<string>> entry in this.NamedLists) {
-				namedLists[entry.Key] = new DataCollection<string>(entry.Value);
-			}
-			context.ControlState["named-lists"] = namedLists;
-
-			DataDictionary<DataDictionary<string>> namedMaps = new DataDictionary<DataDictionary<string>>();
-			foreach (KeyValuePair<string,IDictionary<string,string>> map in this.NamedMaps) {
-				namedMaps[map.Key] = new DataDictionary<string>(map.Value);
-			}
-
-			context.ControlState["named-maps"] = namedMaps;
-			context.Messages.Add(this.NamedMaps["nigel"]["age"]);
+		/// <param name="context">The context to consult.</param>
+		/// <returns>
+		/// Returns true if true if `ev.Message` is the same as `this.Message`
+		///  </returns>
+		/// <remarks>
+		/// The intent is to override for bespoke conditions.
+		/// </remarks>
+		public override bool Condition(IEvent ev, ProcessContext context) {
+			bool condition = base.Condition(ev, context) && this.MacthesAllParameterValues(context);
+			return condition;
 		}
 		
 	}

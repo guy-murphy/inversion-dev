@@ -51,8 +51,13 @@ namespace Inversion.Web.Harness.Site {
 						new XsltViewBehaviour("xslt::view", "text/xml"),
 						new XsltViewBehaviour("xsl::view", "text/html"),
 						new HelloWorldBehaviour("work"){ 
-							MatchingAllParameters = new Dictionary<string,string> {
-								{"action", "hello"}
+							NamedMaps = new Dictionary<string, IDictionary<string, string>> {
+								{
+									"matches-all-parameter-values", 
+									new Dictionary<string,string> {
+										{"action", "hello"}
+									}
+								}
 							}
 						}
 					};
