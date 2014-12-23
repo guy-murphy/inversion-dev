@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -17,10 +18,10 @@ namespace Inversion.Process.Behaviour {
 	public class ApplicationBehaviour: ProcessBehaviour {
 
 		private ImmutableDictionary<string, IEnumerable<string>> _namedLists;
-		private ImmutableDictionary<string, IEnumerable<KeyValuePair<string,string>>> _namedMaps;
+		private ImmutableDictionary<string, IDictionary<string,string>> _namedMaps;
 
-		public IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string,string>>>> NamedMaps {
-			get { return _namedMaps ?? (_namedMaps = ImmutableDictionary<string, IEnumerable<KeyValuePair<string, string>>>.Empty); }
+		public IDictionary<string, IDictionary<string,string>> NamedMaps {
+			get { return _namedMaps ?? (_namedMaps = ImmutableDictionary<string, IDictionary<string, string>>.Empty); }
 			set {
 				if (_namedMaps != null) throw new InvalidOperationException("You may not assign NamedMaps once it has been set.");
 				if (value == null) throw new ArgumentNullException("value");
@@ -29,7 +30,7 @@ namespace Inversion.Process.Behaviour {
 			}
 		}
 
-		public IEnumerable<KeyValuePair<string, IEnumerable<string>>> NamedLists {
+		public IDictionary<string, IEnumerable<string>> NamedLists {
 			get { return _namedLists ?? (_namedLists = ImmutableDictionary<string, IEnumerable<string>>.Empty); }
 			set {
 				if (_namedLists != null) throw new InvalidOperationException("You may not assign NamedLists once it has been set.");
@@ -67,11 +68,12 @@ namespace Inversion.Process.Behaviour {
 			context.ControlState["named-lists"] = namedLists;
 
 			DataDictionary<DataDictionary<string>> namedMaps = new DataDictionary<DataDictionary<string>>();
-			foreach (KeyValuePair<string, IEnumerable<KeyValuePair<string,string>>> map in this.NamedMaps) {
+			foreach (KeyValuePair<string,IDictionary<string,string>> map in this.NamedMaps) {
 				namedMaps[map.Key] = new DataDictionary<string>(map.Value);
 			}
 
 			context.ControlState["named-maps"] = namedMaps;
+			context.Messages.Add(this.NamedMaps["nigel"]["age"]);
 		}
 		
 	}
