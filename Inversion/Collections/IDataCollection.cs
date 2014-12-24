@@ -8,12 +8,14 @@ namespace Inversion.Collections {
 	/// that can be accessed by index.
 	/// </summary>
 	///<typeparam name="T">The type of elements in the list.</typeparam>
-	public interface IDataCollection<T> : IList<T>, IList, IData {
+	public interface IDataCollection<T> : IEnumerable<T>, IEnumerable, ICollection, IData {
 		/// <summary>
 		/// The label that should be used for the collection in
 		/// any notation presenting the collection. 
 		/// </summary>
 		string Label { get; }
+
+		void Add(T item);
 	}
 
 }

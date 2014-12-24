@@ -1,7 +1,7 @@
 ﻿using System;
+
 using Inversion.Process;
 using Inversion.Process.Behaviour;
-using Inversion.Web.Behaviour;
 
 namespace Inversion.Web.Harness {
 

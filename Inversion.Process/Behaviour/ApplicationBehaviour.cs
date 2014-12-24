@@ -1,12 +1,6 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Inversion.Collections;
 
 namespace Inversion.Process.Behaviour {
 
@@ -15,13 +9,19 @@ namespace Inversion.Process.Behaviour {
 	/// for configuring parameter conditions that must be met for the
 	/// behaviours action to execute.
 	/// </summary>
-	public abstract class ApplicationBehaviour: ProcessBehaviour {
+	public abstract class ApplicationBehaviour: ProcessBehaviour, IApplicationBehaviour {
 
 		private ImmutableDictionary<string, IEnumerable<string>> _namedLists;
 		private ImmutableDictionary<string, IDictionary<string,string>> _namedMaps;
 
+		/// <summary>
+		/// Provides access to the behaviours named maps, used to configure
+		/// the behaviour.
+		/// </summary>
 		public IDictionary<string, IDictionary<string,string>> NamedMaps {
-			get { return _namedMaps ?? (_namedMaps = ImmutableDictionary<string, IDictionary<string, string>>.Empty); }
+			get {
+				return _namedMaps ?? (_namedMaps = ImmutableDictionary<string, IDictionary<string, string>>.Empty);
+			}
 			set {
 				if (_namedMaps != null) throw new InvalidOperationException("You may not assign NamedMaps once it has been set.");
 				if (value == null) throw new ArgumentNullException("value");
@@ -30,8 +30,14 @@ namespace Inversion.Process.Behaviour {
 			}
 		}
 
+		/// <summary>
+		/// Provides access to the behaviours named lists,
+		/// used to configure the behaviour.
+		/// </summary>
 		public IDictionary<string, IEnumerable<string>> NamedLists {
-			get { return _namedLists ?? (_namedLists = ImmutableDictionary<string, IEnumerable<string>>.Empty); }
+			get {
+				return _namedLists ?? (_namedLists = ImmutableDictionary<string, IEnumerable<string>>.Empty);
+			}
 			set {
 				if (_namedLists != null) throw new InvalidOperationException("You may not assign NamedLists once it has been set.");
 				if (value == null) throw new ArgumentNullException("value");
@@ -66,8 +72,11 @@ namespace Inversion.Process.Behaviour {
 		/// The intent is to override for bespoke conditions.
 		/// </remarks>
 		public override bool Condition(IEvent ev, ProcessContext context) {
-			bool condition = base.Condition(ev, context) && this.HasAllParameters(context) && this.MacthesAllParamValues(context) && this.HasAllControlStates(context);
-			return condition;
+			return base.Condition(ev, context) &&
+			       this.HasAllParms(context) &&
+			       this.MacthesAllParamValues(context) &&
+			       this.HasAllControlStates(context) &&
+			       this.HasAllFlags(context);
 		}
 		
 	}

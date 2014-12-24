@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -13,7 +14,7 @@ namespace Inversion.Collections {
 	/// </summary>
 	/// <typeparam name="T">The type of the elements in the collection.</typeparam>
 
-	public class ConcurrentDataCollection<T> : SynchronizedCollection<T>, IDataCollection<T> {
+	public class ConcurrentDataCollection<T> : ConcurrentBag<T>, IDataCollection<T> {
 
 		private readonly string _label;
 
@@ -58,7 +59,7 @@ namespace Inversion.Collections {
 		/// new data collection.
 		/// </param>
 
-		public ConcurrentDataCollection(IEnumerable<T> collection) : base(new object(), collection) { }
+		public ConcurrentDataCollection(IEnumerable<T> collection) : base(collection) { }
 
 		/// <summary>
 		/// Instantiates a collection populating it with the elements
@@ -104,6 +105,7 @@ namespace Inversion.Collections {
 			foreach (T item in this) {
 				if (item is ValueType) {
 					writer.WriteValue(item.ToString());
+				// ReSharper disable once CompareNonConstrainedGenericWithNull
 				} else if (item != null) {
 					if (item is IData) {
 						((IData)item).ToJson(writer);
