@@ -348,6 +348,12 @@ namespace Inversion.Process {
 			return parms.Length > 0 && parms.All(parm => this.Params.ContainsKey(parm));
 		}
 
+		/// <summary>
+		/// Determines whether or not the parameters 
+		/// specified exist in the current context.
+		/// </summary>
+		/// <param name="parms">The parameters to check for.</param>
+		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
 		public bool HasParams(IEnumerable<string> parms) {
 			return parms != null && parms.All(parm => this.Params.ContainsKey(parm));
 		}
@@ -410,6 +416,15 @@ namespace Inversion.Process {
 			return parms.Length > 0 && parms.All(parm => this.ControlState.Keys.Contains(parm));
 		}
 
+		/// <summary>
+		/// Dtermines whether or not the control state has entries indexed
+		/// under the keys provided.
+		/// </summary>
+		/// <param name="parms">The keys to check for in the control state.</param>
+		/// <returns>
+		/// Returns true if all the specified keys exist in the control state;
+		/// otherwise returns false.
+		/// </returns>
 		public bool HasControlState(IEnumerable<string> parms) {
 			return parms != null && parms.All(parm => this.ControlState.Keys.Contains(parm));
 		}
