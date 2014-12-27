@@ -9,8 +9,6 @@ namespace Inversion.Process.Behaviour {
 	public abstract class ProcessBehaviour : IProcessBehaviour {
 
 		private readonly string _name;
-		private readonly bool _preprocess;
-		private readonly bool _postprocess;
 
 		/// <summary>
 		/// The name the behaviour is known by to the system.
@@ -20,35 +18,13 @@ namespace Inversion.Process.Behaviour {
 				return _name;
 			}
 		}
-
-		/// <summary>
-		/// Determines whether or not a message should
-		/// be fired prior to this behaviours action being processed.
-		/// </summary>
-		public bool AnnouncePreprocess { get { return _preprocess; } }
-
-		/// <summary>
-		/// Determines whether or not a message should
-		/// be fired after this behaviours action has been processed.
-		/// </summary>
-		public bool AnnouncePostprocess { get { return _postprocess; } }
-
+		
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="name">The name of the behaviour.</param>
-		protected ProcessBehaviour(string name) : this(name, false, false) { }
-
-		/// <summary>
-		/// Creates a new instance of the behaviour.
-		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
-		/// <param name="preprocess">Indicates whether the system should notify before this behaviours action is processed.</param>
-		/// <param name="postprocess">Indicates whether the system should notify after this behaviours action has been processed.</param>
-		protected ProcessBehaviour(string name, bool preprocess, bool postprocess) {
+		protected ProcessBehaviour(string name) {
 			_name = name;
-			_preprocess = preprocess;
-			_postprocess = postprocess;
 		}
 
 		/// <summary>

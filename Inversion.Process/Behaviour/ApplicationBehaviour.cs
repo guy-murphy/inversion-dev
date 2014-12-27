@@ -22,7 +22,7 @@ namespace Inversion.Process.Behaviour {
 			get {
 				return _namedMaps ?? (_namedMaps = ImmutableDictionary<string, IDictionary<string, string>>.Empty);
 			}
-			set {
+			protected set {
 				if (_namedMaps != null) throw new InvalidOperationException("You may not assign NamedMaps once it has been set.");
 				if (value == null) throw new ArgumentNullException("value");
 
@@ -38,7 +38,7 @@ namespace Inversion.Process.Behaviour {
 			get {
 				return _namedLists ?? (_namedLists = ImmutableDictionary<string, IEnumerable<string>>.Empty);
 			}
-			set {
+			protected set {
 				if (_namedLists != null) throw new InvalidOperationException("You may not assign NamedLists once it has been set.");
 				if (value == null) throw new ArgumentNullException("value");
 
@@ -50,15 +50,33 @@ namespace Inversion.Process.Behaviour {
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="name">The name of the behaviour.</param>
-		protected ApplicationBehaviour(string name) : base(name) {}
+		protected ApplicationBehaviour(string name) : base(name) { }
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="name">The name of the behaviour.</param>
+		/// <param name="namedLists">Named lists used to configure this behaviour.</param>	
+		protected ApplicationBehaviour(string name, IDictionary<string, IEnumerable<string>> namedLists) : this(name, namedLists, null) { }
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="name">The name of the behaviour.</param>
+		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
+		protected ApplicationBehaviour(string name, IDictionary<string, IDictionary<string, string>> namedMaps) : this(name, null, namedMaps) { }
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="name">The name of the behaviour.</param>
-		/// <param name="preprocess">Indicates whether the system should notify before this behaviours action is processed.</param>
-		/// <param name="postprocess">Indicates whether the system should notify after this behaviours action has been processed.</param>
-		protected ApplicationBehaviour(string name, bool preprocess = false, bool postprocess = false) : base(name, preprocess, postprocess) {}
+		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
+		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
+		protected ApplicationBehaviour(string name, 
+			IDictionary<string, IEnumerable<string>> namedLists,
+			IDictionary<string, IDictionary<string, string>> namedMaps
+		) : base(name) {
+			this.NamedLists = namedLists ?? ImmutableDictionary<string, IEnumerable<string>>.Empty;
+			this.NamedMaps = namedMaps ?? ImmutableDictionary<string, IDictionary<string, string>>.Empty;
+		}
 
 		/// <summary>
 		/// Determines if the event specifies the behaviour by name.

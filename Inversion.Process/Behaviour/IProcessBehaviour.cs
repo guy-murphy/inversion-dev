@@ -45,18 +45,6 @@ namespace Inversion.Process.Behaviour {
 		void Action(IEvent ev);
 
 		/// <summary>
-		/// Determines whether or not a message should
-		/// be fired prior to this behaviours action being processed.
-		/// </summary>
-		bool AnnouncePreprocess { get; }
-
-		/// <summary>
-		/// Determines whether or not a message should
-		/// be fired after this behaviours action has been processed.
-		/// </summary>
-		bool AnnouncePostprocess { get; }
-
-		/// <summary>
 		/// Perform any processing necessary before the action for this behaviour
 		/// is processed.
 		/// </summary>

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using Inversion.Process;
 using Inversion.Process.Behaviour;
 
@@ -10,11 +10,32 @@ namespace Inversion.Web.Harness {
 	/// </summary>
 	public class HelloWorldBehaviour : ApplicationBehaviour {
 		/// <summary>
-		/// Ensures on instantiation that the base web behaviour constructor
-		/// is called with the message provided.
+		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
-		public HelloWorldBehaviour(string message, bool preprocess = false, bool postprocess = false) : base(message, preprocess, postprocess) {}
+		/// <param name="name">The name of the behaviour.</param>
+		public HelloWorldBehaviour(string name) : base(name) {}
+
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="name">The name of the behaviour.</param>
+		/// <param name="namedLists">Named lists used to configure this behaviour.</param>	
+		public HelloWorldBehaviour(string name, IDictionary<string, IEnumerable<string>> namedLists) : base(name, namedLists) {}
+
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="name">The name of the behaviour.</param>
+		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
+		public HelloWorldBehaviour(string name, IDictionary<string, IDictionary<string, string>> namedMaps) : base(name, namedMaps) {}
+
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="name">The name of the behaviour.</param>
+		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
+		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
+		public HelloWorldBehaviour(string name, IDictionary<string, IEnumerable<string>> namedLists, IDictionary<string, IDictionary<string, string>> namedMaps) : base(name, namedLists, namedMaps) {}
 
 		/// <summary>
 		/// The action to perform if this behaviours condition is met.
