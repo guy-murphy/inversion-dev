@@ -289,6 +289,7 @@ namespace Inversion.Process {
 				xml.WriteStartElement("item");
 				xml.WriteAttributeString("name", entry.Key);
 				xml.WriteAttributeString("value", entry.Value);
+				xml.WriteEndElement();
 			}
 			xml.WriteEndElement();
 			xml.WriteEndElement();

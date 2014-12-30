@@ -50,7 +50,8 @@ namespace Inversion.Web.Harness.Site {
 						new JsonViewBehaviour("json::view", "text/json"),
 						new XsltViewBehaviour("xslt::view", "text/xml"),
 						new XsltViewBehaviour("xsl::view", "text/html"),
-						new HelloWorldBehaviour("work", namedMaps: new NamedMappings {
+						new HelloWorldBehaviour("work", 
+							namedMaps: new NamedMappings {
 								{
 									"matches-all-parameter-values", 
 									new Dictionary<string,string> {

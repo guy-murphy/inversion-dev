@@ -13,6 +13,7 @@ namespace Inversion.Process.Behaviour {
 
 		private ImmutableDictionary<string, IEnumerable<string>> _namedLists;
 		private ImmutableDictionary<string, IDictionary<string,string>> _namedMaps;
+		private ImmutableDictionary<string, IDictionary<string, IEnumerable<string>>> _namedMappedLists;
 
 		/// <summary>
 		/// Provides access to the behaviours named maps, used to configure
@@ -47,35 +48,55 @@ namespace Inversion.Process.Behaviour {
 		}
 
 		/// <summary>
-		/// Creates a new instance of the behaviour.
+		/// Provides access to the behaviours named, mapped lists,
+		/// used to configure the behaviour.
 		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
-		protected ApplicationBehaviour(string name) : base(name) { }
-		/// <summary>
-		/// Creates a new instance of the behaviour.
-		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
-		/// <param name="namedLists">Named lists used to configure this behaviour.</param>	
-		protected ApplicationBehaviour(string name, IDictionary<string, IEnumerable<string>> namedLists) : this(name, namedLists, null) { }
-		/// <summary>
-		/// Creates a new instance of the behaviour.
-		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
-		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
-		protected ApplicationBehaviour(string name, IDictionary<string, IDictionary<string, string>> namedMaps) : this(name, null, namedMaps) { }
+		public IDictionary<string, IDictionary<string, IEnumerable<string>>> NamedMappedLists {
+			get {
+				return _namedMappedLists ?? (_namedMappedLists = ImmutableDictionary<string, IDictionary<string, IEnumerable<string>>>.Empty);
+			}
+			protected set {
+				if (_namedMappedLists != null) throw new InvalidOperationException("You may not assign NamedMappedLists once it has been set.");
+				if (value == null) throw new ArgumentNullException("value");
+
+				_namedMappedLists = value.ToImmutableDictionary();
+			}
+		}
+
+		///// <summary>
+		///// Creates a new instance of the behaviour.
+		///// </summary>
+		///// <param name="message">The name of the behaviour.</param>
+		//protected ApplicationBehaviour(string message) : base(message) { }
+		///// <summary>
+		///// Creates a new instance of the behaviour.
+		///// </summary>
+		///// <param name="message">The name of the behaviour.</param>
+		///// <param name="namedLists">Named lists used to configure this behaviour.</param>	
+		//protected ApplicationBehaviour(string message, IDictionary<string, IEnumerable<string>> namedLists) : this(message, namedLists, null) { }
+		///// <summary>
+		///// Creates a new instance of the behaviour.
+		///// </summary>
+		///// <param name="message">The name of the behaviour.</param>
+		///// <param name="namedMaps">Named maps used to configure this behaviour.</param>
+		//protected ApplicationBehaviour(string message, IDictionary<string, IDictionary<string, string>> namedMaps) : this(message, null, namedMaps) { }
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
+		/// <param name="message">The name of the behaviour.</param>
 		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
 		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
-		protected ApplicationBehaviour(string name, 
+		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
+		protected ApplicationBehaviour(string message, 
 			IDictionary<string, IEnumerable<string>> namedLists,
-			IDictionary<string, IDictionary<string, string>> namedMaps
-		) : base(name) {
+			IDictionary<string, IDictionary<string, string>> namedMaps,
+			IDictionary<string, IDictionary<string, IEnumerable<string>>>  namedMappedLists
+		)
+			: base(message) {
 			this.NamedLists = namedLists ?? ImmutableDictionary<string, IEnumerable<string>>.Empty;
 			this.NamedMaps = namedMaps ?? ImmutableDictionary<string, IDictionary<string, string>>.Empty;
+			this.NamedMappedLists = namedMappedLists ?? ImmutableDictionary<string, IDictionary<string, IEnumerable<string>>>.Empty;
 		}
 
 		/// <summary>
@@ -92,9 +113,9 @@ namespace Inversion.Process.Behaviour {
 		public override bool Condition(IEvent ev, ProcessContext context) {
 			return base.Condition(ev, context) &&
 			       this.HasAllParms(context) &&
-			       this.MacthesAllParamValues(context) &&
 			       this.HasAllControlStates(context) &&
-			       this.HasAllFlags(context);
+			       this.HasAllFlags(context) &&
+			       this.MacthesAllParamValues(context);
 		}
 		
 	}

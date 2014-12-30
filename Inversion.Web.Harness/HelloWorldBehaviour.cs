@@ -12,30 +12,14 @@ namespace Inversion.Web.Harness {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
-		public HelloWorldBehaviour(string name) : base(name) {}
-
-		/// <summary>
-		/// Creates a new instance of the behaviour.
-		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
-		/// <param name="namedLists">Named lists used to configure this behaviour.</param>	
-		public HelloWorldBehaviour(string name, IDictionary<string, IEnumerable<string>> namedLists) : base(name, namedLists) {}
-
-		/// <summary>
-		/// Creates a new instance of the behaviour.
-		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
-		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
-		public HelloWorldBehaviour(string name, IDictionary<string, IDictionary<string, string>> namedMaps) : base(name, namedMaps) {}
-
-		/// <summary>
-		/// Creates a new instance of the behaviour.
-		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
+		/// <param name="message">The name of the behaviour.</param>
 		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
 		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
-		public HelloWorldBehaviour(string name, IDictionary<string, IEnumerable<string>> namedLists, IDictionary<string, IDictionary<string, string>> namedMaps) : base(name, namedLists, namedMaps) {}
+		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
+		public HelloWorldBehaviour(string message, IDictionary<string, IEnumerable<string>> namedLists = null,
+			IDictionary<string, IDictionary<string, string>> namedMaps = null,
+			IDictionary<string, IDictionary<string, IEnumerable<string>>> namedMappedLists = null)
+			: base(message, namedLists, namedMaps, namedMappedLists) {}
 
 		/// <summary>
 		/// The action to perform if this behaviours condition is met.
