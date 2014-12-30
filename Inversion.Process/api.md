@@ -626,7 +626,7 @@ instantiates a new exception wrapping a provided inner exception, with a human r
 Represent the contract of a simple service container from which services may be ontained by name. This interface focused on consuming services from a container and does not speak to the configuration or management of a container.
 
 
-### `.GetService``1(System.String)`
+### `.GetService`{T1}(System.String)`
 Gets the service if any of the provided name and type.
 
 `T`: The type of the service being obtained.

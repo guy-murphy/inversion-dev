@@ -1,10 +1,10 @@
 `Inversion`, projects notes
-## `T:Inversion.Collections.ConcurrentDataCollection`1`
+## `T:Inversion.Collections.ConcurrentDataCollection{T1}`
 An implementation of  [Inversion.Collections.IDataCollection`1](T-Inversion.Collections.IDataCollection`1)  that             is safe for concurrent use.
 
 `T`: The type of the elements in the collection.
 
-## `T:Inversion.Collections.IDataCollection`1`
+## `T:Inversion.Collections.IDataCollection{T1}`
 Represents a collection of  [Inversion.IData](T-Inversion.IData)   objects,              that can be accessed by index.
 
 `T`: The type of elements in the list.
@@ -36,74 +36,74 @@ Produces a json respresentation of the model.
 Provides an abstract representation of the objects data expressed as a JSON object.
 
 
-### `:Inversion.Collections.IDataCollection`1.Add(`0)`
+### `:Inversion.Collections.IDataCollection{T1}.Add({T0})`
 Adds an item to the collection.
 
 * `item`: The item to add to the collection.
-## `P:Inversion.Collections.IDataCollection`1.Label`
+## `P:Inversion.Collections.IDataCollection{T1}.Label`
 The label that should be used for the collection in any notation presenting the collection. 
 
 
-### `:Inversion.Collections.ConcurrentDataCollection`1.#ctor(System.String)`
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.#ctor(System.String)`
 Instantiates a new empty collection with the lable provided.
 
 * `label`: The label of the collection.
 
-### `:Inversion.Collections.ConcurrentDataCollection`1.#ctor`
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.#ctor`
 Instantiates an empty collection.
 
 
-### `:Inversion.Collections.ConcurrentDataCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})`
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.#ctor(System.Collections.Generic.IEnumerable{{T0}})`
 Instanciates a new data collection with elements copied from the provided collection.
 
 * `collection`: The collection whose elements are copied into the new data collection.
 
-### `:Inversion.Collections.ConcurrentDataCollection`1.#ctor(Inversion.Collections.IDataCollection{`0})`
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.#ctor(Inversion.Collections.IDataCollection{{T0}})`
 Instantiates a collection populating it with the elements of the provided collection.
 
 * `other`: The other collection to populate the new collection with.
 
-### `:Inversion.Collections.ConcurrentDataCollection`1.ContentToXml(System.Xml.XmlWriter)`
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.ContentToXml(System.Xml.XmlWriter)`
 Produces an XML representation of the collections elements  to a provided writer.
 
 * `writer`: The  [System.Xml.XmlWriter](T-System.Xml.XmlWriter)  the representation is written to.
 
-### `:Inversion.Collections.ConcurrentDataCollection`1.ContextToJson(Newtonsoft.Json.JsonWriter)`
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.ContextToJson(Newtonsoft.Json.JsonWriter)`
 Produces an JSON representation of the collection to a provided writer.
 
 * `writer`: The  [Newtonsoft.Json.JsonWriter](T-Newtonsoft.Json.JsonWriter)  the representation is written to.
 
-### `:Inversion.Collections.ConcurrentDataCollection`1.ToXml(System.Xml.XmlWriter)`
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.ToXml(System.Xml.XmlWriter)`
 Produces an XML representation of the collection  to a provided writer.
 
 * `writer`: The  [System.Xml.XmlWriter](T-System.Xml.XmlWriter)  the representation is written to.
 
-### `:Inversion.Collections.ConcurrentDataCollection`1.ToJson(Newtonsoft.Json.JsonWriter)`
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.ToJson(Newtonsoft.Json.JsonWriter)`
 Produces an JSON representation of the collection  to a provided writer.
 
 * `writer`: The  [Newtonsoft.Json.JsonWriter](T-Newtonsoft.Json.JsonWriter)  the representation is written to.
-## `P:Inversion.Collections.ConcurrentDataCollection`1.Label`
+## `P:Inversion.Collections.ConcurrentDataCollection{T1}.Label`
 The label that should be used for the collection in any notation presenting the collection. 
 
 #### Remarks
 This will default to "list".
-## `P:Inversion.Collections.ConcurrentDataCollection`1.Data`
+## `P:Inversion.Collections.ConcurrentDataCollection{T1}.Data`
 Provides an abstract representation of the objects data expressed as a JSON object.
 
 #### Remarks
 For this type the json object is created each time it is accessed.
 
-## `T:Inversion.Collections.ConcurrentDataDictionary`1`
+## `T:Inversion.Collections.ConcurrentDataDictionary{T1}`
 A thread-safe dictionary of key-value pairs where the key is a string and the dictionary itself implements `IData`
 
 `TValue`: The type of the element values.
 
-## `T:Inversion.Collections.IDataDictionary`1`
+## `T:Inversion.Collections.IDataDictionary{T1}`
 Represents a generic dictionary that implements  [Inversion.IData](T-Inversion.IData) , where the keys are strings.
 
 `T`: The type of the element values.
 
-### `.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})`
+### `.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,{T0}}})`
 Import the provided key/value pairs into the dictionary.
 
 * `other`: The key/value pairs to copy.
@@ -112,21 +112,21 @@ Import the provided key/value pairs into the dictionary.
 This dictionary.
 
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.#ctor`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.#ctor`
 Instantiates a new empty dictionary.
 
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,{T0}}})`
 Instantiates a new dictionary populated with the enumerable of key-value pairs provided.
 
 * `other`: The key-value pairs to populate the dictionary with.
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.#ctor(Inversion.Collections.DataDictionary{`0})`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.#ctor(Inversion.Collections.DataDictionary{{T0}})`
 Instantiates a new dictionary populated from the dictionary provided.
 
 * `other`: The other dictionary to populate this dictionary from.
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.Clone`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.Clone`
 Clones the dictionary.
 
 
@@ -134,7 +134,7 @@ Clones the dictionary.
 Returnes a new dictionary instance populated by this one.
 
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,{T0}}})`
 Imports the key-value pairs from a provided dictionary into this one.
 
 * `other`: The other dictionary to import into this one.
@@ -143,31 +143,31 @@ Imports the key-value pairs from a provided dictionary into this one.
 Returns the current instance of this dictionary.
 
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.ContentToXml(System.Xml.XmlWriter)`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.ContentToXml(System.Xml.XmlWriter)`
 Produces an XML representation of the dictionary elements.
 
 * `writer`: The xml writer the xml should be written to.
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.ToXml(System.Xml.XmlWriter)`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.ToXml(System.Xml.XmlWriter)`
 Produces and xml representation of the dictionary.
 
 * `writer`: The xml writer the xml should be written to.
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.ContentToJson(Newtonsoft.Json.JsonWriter)`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.ContentToJson(Newtonsoft.Json.JsonWriter)`
 Produces a json representation of the dictionary elements.
 
 * `writer`: The json writer the json should be written to.
 
-### `:Inversion.Collections.ConcurrentDataDictionary`1.ToJson(Newtonsoft.Json.JsonWriter)`
+### `:Inversion.Collections.ConcurrentDataDictionary{T1}.ToJson(Newtonsoft.Json.JsonWriter)`
 Produces a json representation of the dictionary.
 
 * `writer`: The json writer the json should be written to.
-## `P:Inversion.Collections.ConcurrentDataDictionary`1.Data`
+## `P:Inversion.Collections.ConcurrentDataDictionary{T1}.Data`
 Provides an abstract representation of the objects data expressed as a JSON object.
 
 #### Remarks
 For this type the json object is created each time it is accessed.
-## `P:Inversion.Collections.ConcurrentDataDictionary`1.Item(System.String)`
+## `P:Inversion.Collections.ConcurrentDataDictionary{T1}.Item(System.String)`
 Provides indexed acccess tot he dictionary with the key provided.
 
 * `key`: The key used to index a key/value pair.
@@ -176,7 +176,7 @@ Provides indexed acccess tot he dictionary with the key provided.
 Returns the value associated with the specified key.
 
 
-## `T:Inversion.Collections.DataCollection`1`
+## `T:Inversion.Collections.DataCollection{T1}`
 An implementation of  [Inversion.Collections.IDataCollection`1](T-Inversion.Collections.IDataCollection`1)  as a simple  [System.Collections.Generic.List`1](T-System.Collections.Generic.List`1) . 
 
 `T`: The type of elements in the list.
@@ -190,12 +190,12 @@ Instantiates a new empty collection with the lable provided.
 Instantiates a new, empty data collection.
 
 
-### `.#ctor(System.Collections.Generic.IEnumerable{`0})`
+### `.#ctor(System.Collections.Generic.IEnumerable{{T0}})`
 Instantiates a new data collection with elements copied from the provided collection.
 
 * `collection`: The collection whose elements are copied into the new data collection.
 
-### `.#ctor(Inversion.Collections.IDataCollection{`0})`
+### `.#ctor(Inversion.Collections.IDataCollection{{T0}})`
 Instantiates a collection populating it with the elements of the provided collection.
 
 * `other`: The other collection to populate the new collection with.
@@ -238,7 +238,7 @@ Provides an abstract representation of the objects data expressed as a JSON obje
 #### Remarks
 For this type the json object is created each time it is accessed.
 
-## `T:Inversion.Collections.DataDictionary`1`
+## `T:Inversion.Collections.DataDictionary{T1}`
 A collection of key/value pairs, where the key is a string.
 
 `TValue`: The type of the element values.
@@ -247,12 +247,12 @@ A collection of key/value pairs, where the key is a string.
 Instantiates a new empty instance of the dictionary.
 
 
-### `.#ctor(System.Collections.Generic.IDictionary{System.String,`0})`
+### `.#ctor(System.Collections.Generic.IDictionary{System.String,{T0}})`
 instantiates a new dictionary with the elements copied over from the dictionary provided.
 
 * `other`: The dictionary to copy elements from.
 
-### `.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})`
+### `.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,{T0}}})`
 instantiates a new dictionary with the elements copied from iterating over the key/value pairs provided.
 
 * `other`: The key/value pairs to copy.
@@ -265,7 +265,7 @@ Clones the data dictionary by instantiating a new one populated by the elemens o
 
 
 
-### `.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})`
+### `.Import(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,{T0}}})`
 Instantiates a dictionary populating it with the elements of the provided dictionary.
 
 * `other`: The other dictionary to populate the new collection with.
@@ -549,7 +549,7 @@ Provides an abstract representation of the objects data expressed as a JSON obje
 An extension class providing extensions for arrays.
 
 
-### `.DeepClone``1(``0[])`
+### `.DeepClone`{T1}(`{T0}[])`
 A simple extension that constructs a new array from one provided by calling `.Clone()` on each element of the provided array.
 
 `T`: The type of the array elements.
@@ -563,7 +563,7 @@ Provides a new array with elements cloned from the originating array.
 Utility extension methods provided for dictionaries.
 
 
-### `.Import``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})`
+### `.Import`{T2}(System.Collections.Generic.IDictionary{`{T0},`{T1}},System.Collections.Generic.IDictionary{`{T0},`{T1}})`
 Copies the elements from one dictionary to another.
 
 `TKey`: The type of the dictionary keys.
@@ -581,7 +581,7 @@ Produces an XML representation of the elements of a dictionary.
 An extension class providing extensions for `IEnumerable{T}` objects.
 
 
-### `.ToXml``1(System.Collections.Generic.IEnumerable{``0},System.String)`
+### `.ToXml`{T1}(System.Collections.Generic.IEnumerable{`{T0}},System.String)`
 Produces an XML representation of an enumerable by iterating over the elements of the enumerable and calling `.ToXml()` on them.
 
 `T`: The type of elements in the enumerable.
@@ -592,7 +592,7 @@ Produces an XML representation of an enumerable by iterating over the elements o
 An XML representation of the provided enumerable.
 
 
-### `.ToXml``1(System.Collections.Generic.IEnumerable{``0},System.IO.TextWriter,System.String)`
+### `.ToXml`{T1}(System.Collections.Generic.IEnumerable{`{T0}},System.IO.TextWriter,System.String)`
 Produces an XML representation of an enumerable by iterating over the elements of the enumerable and calling `.ToXml()` on them.
 
 `T`: The type of elements in the enumerable.
@@ -600,7 +600,7 @@ Produces an XML representation of an enumerable by iterating over the elements o
 * `writer`: The text writer the XML should be written to.
 * `label`: The label of the enclosing element.
 
-### `.ToXml``1(System.Collections.Generic.IEnumerable{``0},System.Xml.XmlWriter,System.String)`
+### `.ToXml`{T1}(System.Collections.Generic.IEnumerable{`{T0}},System.Xml.XmlWriter,System.String)`
 Produces an XML representation of an enumerable by iterating over the elements of the enumerable and calling `.ToXml()` on them.
 
 `T`: The type of elements in the enumerable.
@@ -608,7 +608,7 @@ Produces an XML representation of an enumerable by iterating over the elements o
 * `xml`: The xml writer the XML should be written to.
 * `label`: The label of the enclosing element.
 
-### `.ToJson``1(System.Collections.Generic.IEnumerable{``0})`
+### `.ToJson`{T1}(System.Collections.Generic.IEnumerable{`{T0}})`
 Produces a JSON representation of an enumerable by iterating over the elements of the enumerable and calling `.ToJson()` on them.
 
 `T`: The type of elements in the enumerable.
@@ -618,14 +618,14 @@ Produces a JSON representation of an enumerable by iterating over the elements o
 An JSON representation of the provided enumerable.
 
 
-### `.ToJson``1(System.Collections.Generic.IEnumerable{``0},System.IO.TextWriter)`
+### `.ToJson`{T1}(System.Collections.Generic.IEnumerable{`{T0}},System.IO.TextWriter)`
 Produces a JSON representation of an enumerable by iterating over the elements of the enumerable and calling `.ToJson()` on them.
 
 `T`: The type of elements in the enumerable.
 * `self`: The enumerable to act upon.
 * `writer`: The text writer the JSON should be written to.
 
-### `.ToJson``1(System.Collections.Generic.IEnumerable{``0},Newtonsoft.Json.JsonWriter)`
+### `.ToJson`{T1}(System.Collections.Generic.IEnumerable{`{T0}},Newtonsoft.Json.JsonWriter)`
 Produces a JSON representation of an enumerable by iterating over the elements of the enumerable and calling `.ToJson()` on them.
 
 `T`: The type of elements in the enumerable.
@@ -658,7 +658,7 @@ Utility extension methods provided for lists.
 #### Remarks
 Just some methods to allow a list to be treated as a stack. If a stack is being used as a context in tree processing, sometimes being able to peek at more than the last element, or also treat the stack like a list is useful.
 
-### `.Push``1(System.Collections.Generic.List{``0},``0)`
+### `.Push`{T1}(System.Collections.Generic.List{`{T0}},`{T0})`
 Pushes an elelent onto the list as if it were a stack.
 
 `T`: The type of the list elements.
@@ -669,7 +669,7 @@ Pushes an elelent onto the list as if it were a stack.
 The list being acted on.
 
 
-### `.Pop``1(System.Collections.Generic.List{``0})`
+### `.Pop`{T1}(System.Collections.Generic.List{`{T0}})`
 Pops an element from the list as if it were a stack.
 
 `T`: The type of the list elements.
@@ -679,7 +679,7 @@ Pops an element from the list as if it were a stack.
 The element that was poped.
 
 
-### `.Peek``1(System.Collections.Generic.List{``0},System.Int32)`
+### `.Peek`{T1}(System.Collections.Generic.List{`{T0}},System.Int32)`
 Provides an index of the list in reverse order, with `list.Peek(0)` considering the last element of the list, and `list.Peek(1)` being the penultimate element of the list. No bounds checking is provided.
 
 `T`: The type of the list elements.
@@ -690,7 +690,7 @@ Provides an index of the list in reverse order, with `list.Peek(0)` considering 
 The element found at the index.
 
 
-### `.Peek``1(System.Collections.Generic.List{``0})`
+### `.Peek`{T1}(System.Collections.Generic.List{`{T0}})`
 Takes a look at the last element of a list without removing it, as if it were a stack.
 
 `T`: The type of the list elements.
@@ -927,13 +927,13 @@ This is performed as a single scan of characters and should be used in preferenc
 Returns a new string with any matching keys replaced.
 
 
-## `T:Inversion.IConsumeData`2`
+## `T:Inversion.IConsumeData{T2}`
 Expresses a type that is able to consume both json and xml representations of itself.
 
 `TBuilder`: The type of the builder being used for this type.
 `TConcrete`: The type of the concrete product of consuming data.
 
-### `.FromConcrete(`1)`
+### `.FromConcrete({T1})`
 Assigns values to this object based on those of the other object provided.
 
 * `other`: The other object from which to take values.
@@ -959,13 +959,13 @@ Produced a concrete object from this one.
 Returns a concrete object from this one.
 
 
-## `T:Inversion.IMutate`2`
+## `T:Inversion.IMutate{T2}`
 Describes a type that manages mutation via a `Mutate` function using a builder object as an intermediary on which to exercise mutation.
 
 `TBuilder`: The type of the builder that will be used for mutation.
 `TConcrete`: The type of the concrete object to be created.
 
-### `.Mutate(System.Func{`0,`1})`
+### `.Mutate(System.Func{{T0},{T1}})`
 Mutates the current object by transforming it to a builder, applying a mutation function to the builder, and then transforming the builder back to a specified concrete type.
 
 * `mutator`: The mutation function to apply to the builder.

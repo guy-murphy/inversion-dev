@@ -37,7 +37,7 @@ Gets the service if any of the provided name. Further asserts that the service i
 Returns the service of the specified name.
 
 
-### `.GetService``1(System.String)`
+### `.GetService`{T1}(System.String)`
 Gets the service if any of the provided name and type.
 
 `T`: The type of the service being obtained.

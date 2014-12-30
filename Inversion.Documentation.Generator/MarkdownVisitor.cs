@@ -10,6 +10,11 @@ namespace Inversion.Documentation.Generator {
 	public class MarkdownVisitor: Visitor {
 		private readonly StringBuilder _builder = new StringBuilder();
 
+		private string _name(string id) {
+			string name = id.Replace("`0", "{T0}").Replace("`1", "{T1}").Replace("`2", "{T2}").Replace("`3", "{T3}");
+			return name;
+		}
+
 		public string Markdown {
 			get { return _builder.ToString(); }
 		}
@@ -19,7 +24,7 @@ namespace Inversion.Documentation.Generator {
 		public override void VisitMethod(Method method) {
 			_builder.AppendLine();
 			string methodName = (_currentType != null) ? method.Id.Replace(_currentType.Id.Substring(1), "").Substring(1) : method.Id;
-			_builder.AppendFormat("### `{0}`", methodName);
+			_builder.AppendFormat("### `{0}`", _name(methodName));
 
 			base.VisitMember(method);
 		}
@@ -29,7 +34,7 @@ namespace Inversion.Documentation.Generator {
 			if (propertyName.StartsWith("P.")) {
 				_builder.AppendFormat("### `{0}`", propertyName.Replace("P.", "."));
 			} else {
-				_builder.AppendFormat("## `{0}`", propertyName);
+				_builder.AppendFormat("## `{0}`", _name(propertyName));
 			}
 
 			base.VisitMember(property);
@@ -37,7 +42,7 @@ namespace Inversion.Documentation.Generator {
 
 		public override void VisitMember(Member member) {
 			_builder.AppendLine();
-			_builder.AppendFormat("### `{0}`", member.Id);
+			_builder.AppendFormat("### `{0}`", _name(member.Id));
 
 			base.VisitMember(member);
 		}
@@ -45,7 +50,7 @@ namespace Inversion.Documentation.Generator {
 		public override void VisitType(TypeDeclaration member) {
 			_currentType = member;
 			_builder.AppendLine();
-			_builder.AppendFormat("## `{0}`", member.Id);
+			_builder.AppendFormat("## `{0}`", _name(member.Id));
 
 			base.VisitMember(member);
 		}
