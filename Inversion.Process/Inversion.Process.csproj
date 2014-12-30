@@ -61,9 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviour\MatchingBehaviour.cs" />
     <Compile Include="Behaviour\ApplicationBehaviour.cs" />
     <Compile Include="Behaviour\BehaviourConditionPredicates.cs" />
     <Compile Include="Behaviour\IApplicationBehaviour.cs" />
+    <Compile Include="Behaviour\MessageTraceBehaviour.cs" />
     <Compile Include="Behaviour\ParameterisedSequenceBehaviour.cs" />
     <Compile Include="DataCollectionEx.cs" />
     <Compile Include="ErrorMessage.cs" />

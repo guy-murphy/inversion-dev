@@ -385,6 +385,15 @@ namespace Inversion.Process {
 			return match != null && match.All(entry => this.Params.Contains(entry));
 		}
 
+		/// <summary>
+		/// Determines whether or not all any of the values for their associated parameter name
+		/// exist in the contexts parameters.
+		/// </summary>
+		/// <param name="match">The possible mapped values to match against.</param>
+		/// <returns>
+		/// Returns if each of the keys has at least one value that exists for the conext;
+		/// otherwise, returns false.
+		/// </returns>
 		public bool HasParamValues(IEnumerable<KeyValuePair<string, IEnumerable<string>>> match) {
 			return match != null && match.All(entry => this.Params.ContainsKey(entry.Key) && entry.Value.Any(value => value == this.Params[entry.Key]));
 		}

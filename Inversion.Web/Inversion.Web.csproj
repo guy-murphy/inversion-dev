@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviour\BehaviourConditionPredicates.cs" />
     <Compile Include="Behaviour\BootstrapBehaviour.cs" />
     <Compile Include="Behaviour\IWebBehaviour.cs" />
     <Compile Include="Behaviour\ParseRequestBehaviour.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="Behaviour\View\RazorViewBehaviour.cs" />
     <Compile Include="Behaviour\View\XmlViewBehaviour.cs" />
     <Compile Include="Behaviour\View\XsltViewBehaviour.cs" />
-    <Compile Include="Behaviour\WebActionBehaviour.cs" />
+    <Compile Include="Behaviour\_WebActionBehaviour.cs" />
     <Compile Include="Behaviour\WebBehaviour.cs" />
     <Compile Include="IInversionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

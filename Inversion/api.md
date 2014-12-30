@@ -24,14 +24,22 @@ Extension methods are provided in  [Inversion.DataEx](T-Inversion.DataEx)  to pr
 
 
 ### `.ToXml(System.Xml.XmlWriter)`
-Produces an Xml representation of the model.
+Produces an xml representation of the model.
 
-* `writer`: The writer to used to write the Xml to. 
+* `writer`: The writer to used to write the xml to. 
 
 ### `.ToJson(Newtonsoft.Json.JsonWriter)`
-Produces a Json respresentation of the model.
+Produces a json respresentation of the model.
 
-* `writer`: The writer to use for producing JSON.
+* `writer`: The writer to use for producing json.
+### `.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
+
+### `:Inversion.Collections.IDataCollection`1.Add(`0)`
+Adds an item to the collection.
+
+* `item`: The item to add to the collection.
 ## `P:Inversion.Collections.IDataCollection`1.Label`
 The label that should be used for the collection in any notation presenting the collection. 
 
@@ -79,6 +87,11 @@ The label that should be used for the collection in any notation presenting the 
 
 #### Remarks
 This will default to "list".
+## `P:Inversion.Collections.ConcurrentDataCollection`1.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
+#### Remarks
+For this type the json object is created each time it is accessed.
 
 ## `T:Inversion.Collections.ConcurrentDataDictionary`1`
 A thread-safe dictionary of key-value pairs where the key is a string and the dictionary itself implements `IData`
@@ -149,6 +162,19 @@ Produces a json representation of the dictionary elements.
 Produces a json representation of the dictionary.
 
 * `writer`: The json writer the json should be written to.
+## `P:Inversion.Collections.ConcurrentDataDictionary`1.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
+#### Remarks
+For this type the json object is created each time it is accessed.
+## `P:Inversion.Collections.ConcurrentDataDictionary`1.Item(System.String)`
+Provides indexed acccess tot he dictionary with the key provided.
+
+* `key`: The key used to index a key/value pair.
+
+**returns:** 
+Returns the value associated with the specified key.
+
 
 ## `T:Inversion.Collections.DataCollection`1`
 An implementation of  [Inversion.Collections.IDataCollection`1](T-Inversion.Collections.IDataCollection`1)  as a simple  [System.Collections.Generic.List`1](T-System.Collections.Generic.List`1) . 
@@ -206,6 +232,11 @@ The label that should be used for the collection in any notation presenting the 
 
 #### Remarks
 This will default to "list".
+### `.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
+#### Remarks
+For this type the json object is created each time it is accessed.
 
 ## `T:Inversion.Collections.DataDictionary`1`
 A collection of key/value pairs, where the key is a string.
@@ -258,6 +289,11 @@ Produces a json representation of the dictionaries elements.
 Produces a json representation of the dictionary.
 
 * `writer`: The json writer the representation should be written to.
+### `.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
+#### Remarks
+For this type the json object is created each time it is accessed.
 
 ## `T:Inversion.Collections.DataModel`
 A  [System.Dynamic.DynamicObject](T-System.Dynamic.DynamicObject)  implementing             an  [Inversion.Collections.IDataDictionary`1](T-Inversion.Collections.IDataDictionary`1)  .
@@ -331,6 +367,78 @@ Tries to get the value of the key-value pair with the same key as the one provid
 **returns:** 
 Returns true if the operation was successful; otherwise returns false.
 
+
+### `.Add(System.Collections.Generic.KeyValuePair{System.String,Inversion.IData})`
+Adds an element to the collection.
+
+* `item`: The item to add to the collection.
+
+### `.Clear`
+Removes all elements from the collection.
+
+
+### `.Contains(System.Collections.Generic.KeyValuePair{System.String,Inversion.IData})`
+Checks to see if the collection contains a particular element.
+
+* `item`: The item to check for in the collection.
+
+**returns:** 
+Returns true if the item is contained in the collection; otherwise returns false.
+
+
+### `.CopyTo(System.Collections.Generic.KeyValuePair{System.String,Inversion.IData}[],System.Int32)`
+Copies elements from the collection to and array, starting at a specified index in the array.
+
+* `array`: The array to copy elements to.
+* `arrayIndex`: The index in the array to start copying to.
+
+### `.Remove(System.Collections.Generic.KeyValuePair{System.String,Inversion.IData})`
+Removes a specific item from the collection if it is present.
+
+* `item`: The item to remove from the collection.
+
+**returns:** 
+Returns true if the item was removed; otherwise returns false.
+
+
+### `.GetEnumerator`
+Gets an enumerator that can be used to iterate over the collection.
+
+
+**returns:** 
+The enumerator for the collection.
+
+
+### `.System#Collections#IEnumerable#GetEnumerator`
+Gets an enumerator that can be used to iterate over the collection.
+
+
+**returns:** 
+The enumerator for the collection.
+
+
+### `.ToXml(System.Xml.XmlWriter)`
+Produces an xml representation of the collection.
+
+* `writer`: The xml writer the xml should be written to.
+
+### `.ToJson(Newtonsoft.Json.JsonWriter)`
+Produces a json representation of the collection.
+
+* `writer`: The writer the json should be written to.
+
+### `.Clone`
+Clones this collection by creating a new one populated by elements from this on.
+
+
+**returns:** 
+Returns the new collection as a copy of this one.
+
+### `.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
+#### Remarks
+For this type the json object is created each time it is accessed.
 ### `.Keys`
 A collection of all the keys contained in the model.
 
@@ -344,6 +452,12 @@ Obtains the value of the key-value pair with the same key as the one provided.
 
 **returns:** 
 Returns the value of the key-value pair found, if any.
+
+### `.Count`
+Obtains the number of elements in the collection.
+
+### `.IsReadOnly`
+Determines if the collection is read-only or not.
 
 
 ## `T:Inversion.DataEx`
@@ -381,6 +495,55 @@ Produces a json representation of the subject `IData` object.
 
 * `self`: The `IData` object to act upon.
 * `writer`: The text writer the representation should be writtern to.
+
+### `.ToJsonObject(Inversion.IData)`
+Provides a JSON Object view of the objects data.
+
+* `self`: The `IData` object to act upon.
+
+**returns:** 
+Returns a `JObject` representation of this objects data.
+
+
+## `T:Inversion.DataView`
+Represents a frozen view of an `IData` object.
+
+#### Remarks
+The idea here is that if you need to be using the JSON representation of a mutable entity, it's going to be expensive to generate that JSON representation each time it is accessed. This applies to XML also, but the case is felt to be more likely with the JSON rep. So the purpose of the data-view is to take a snap-shot of the entity, with the JSON being generated only the once. Unfortunately `JObject` is muttable making it unfit for what is supposed to be an immutable view. A guard has been put in to throw an exception on property change for the JObject, but this is felt to be only just adequate long-term. I'm going to see how this plays out in actual usage before deciding if it's appropriate. See `JDataObject` for an alternative but similar approach.
+
+### `.#ctor(Inversion.IData)`
+Instantiates a new data view object.
+
+* `other`: The `IData` the data view should be created from.
+
+### `.System#ICloneable#Clone`
+Creates a new object that is a copy of the current instance.
+
+
+**returns:** 
+A new object that is a copy of this instance.
+
+
+### `.Clone`
+Creates a new object that is a copy of the current instance.
+
+
+**returns:** 
+A new object that is a copy of this instance.
+
+
+### `.ToXml(System.Xml.XmlWriter)`
+Produces an xml representation of the model.
+
+* `writer`: The writer to used to write the xml to. 
+
+### `.ToJson(Newtonsoft.Json.JsonWriter)`
+Produces a json respresentation of the model.
+
+* `writer`: The writer to use for producing json.
+### `.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
 
 ## `T:Inversion.Extensions.ArrayEx`
 An extension class providing extensions for arrays.
@@ -468,6 +631,26 @@ Produces a JSON representation of an enumerable by iterating over the elements o
 `T`: The type of elements in the enumerable.
 * `self`: The enumerable to act upon.
 * `json`: The json writer the JSON should be written to.
+
+### `.CalculateHash(System.Collections.Generic.IEnumerable{System.String})`
+Produces a hash from all the string elements of an enumerable.
+
+* `self`: The enumerable of strings to act upon.
+
+**returns:** 
+Returns a has of all the elements.
+
+
+## `T:Inversion.Extensions.JsonWriterEx`
+Conventient extension methods for the json writer.
+
+
+### `.WriteProperty(Newtonsoft.Json.JsonWriter,System.String,System.String)`
+Writes both a json property name, and a value at the same time.
+
+* `self`: The json writer to act upon.
+* `name`: The name of the property.
+* `value`: The value of the property.
 
 ## `T:Inversion.Extensions.ListEx`
 Utility extension methods provided for lists.
@@ -691,6 +874,135 @@ This method ensures that the returned string has only valid XML unicode charcter
 A copy of the input string with non-valid charcters removed.
 
 
+### `.TrimLeftBy(System.String,System.Int32)`
+Removes characters from the left side of a string.
+
+* `self`: The string to be acted upon.
+* `amount`: The number of charcters to remove.
+
+**returns:** 
+Returns a new string with the characters removed.
+
+
+### `.TrimRightBy(System.String,System.Int32)`
+Removes characters from the right side of a string.
+
+* `self`: The string to be acted upon.
+* `amount`: The number of charcters to remove.
+
+**returns:** 
+Returns a new string with the characters removed.
+
+
+### `.TrimEndsBy(System.String,System.Int32)`
+Removes characters from the left and right sides of a string.
+
+* `self`: The string to be acted upon.
+* `amount`: The number of charcters to remove.
+
+**returns:** 
+Returns a new string with the characters removed.
+
+
+### `.Hash(System.String)`
+Generates a simple hash for a string. 
+
+#### Remarks
+This hash is not asserted to be fit for any particular purpose other than simple features where you just need a hash of a string.
+* `self`: The string to be acted upon.
+
+**returns:** 
+Returns a simple hash of a string.
+
+
+### `.ReplaceKeys(System.String,System.Collections.Generic.IDictionary{System.String,System.String})`
+Regards all occurrences of substrings starting and finishing with `|` pipe charcters as potential keys, and if those keys occur within the provided dictionary, replaces those keys in the provided text with the corresposponding value in the dictionary.
+
+#### Remarks
+This is performed as a single scan of characters and should be used in preference in those situations where you find yourself doing multiple replacements on a large string, as this will do them in one go.
+* `text`: The text to act upon.
+* `kv`: The dictionary of key-value pairs for substitution.
+
+**returns:** 
+Returns a new string with any matching keys replaced.
+
+
+## `T:Inversion.IConsumeData`2`
+Expresses a type that is able to consume both json and xml representations of itself.
+
+`TBuilder`: The type of the builder being used for this type.
+`TConcrete`: The type of the concrete product of consuming data.
+
+### `.FromConcrete(`1)`
+Assigns values to this object based on those of the other object provided.
+
+* `other`: The other object from which to take values.
+
+**returns:** 
+Returns a builder populated from the provided concrete object.
+
+
+### `.FromJson(Newtonsoft.Json.Linq.JObject)`
+Assigns values to this object based on those in the json provided.
+
+* `json`: The property set from which to take values.
+
+**returns:** 
+Returns a builded populated from the json provided.
+
+
+### `.ToConcrete`
+Produced a concrete object from this one.
+
+
+**returns:** 
+Returns a concrete object from this one.
+
+
+## `T:Inversion.IMutate`2`
+Describes a type that manages mutation via a `Mutate` function using a builder object as an intermediary on which to exercise mutation.
+
+`TBuilder`: The type of the builder that will be used for mutation.
+`TConcrete`: The type of the concrete object to be created.
+
+### `.Mutate(System.Func{`0,`1})`
+Mutates the current object by transforming it to a builder, applying a mutation function to the builder, and then transforming the builder back to a specified concrete type.
+
+* `mutator`: The mutation function to apply to the builder.
+
+**returns:** 
+Returns a concrete object which is the product of a builder that has had the mutation function applied to it.
+
+
+## `T:Inversion.JDataObject`
+Implements a `JObject` as an `IData` type.
+
+#### Remarks
+This is addressing a concern not disimilar to that being addressed by `DataView` which is the presentation of data in abstract terms especially for views or ad-hoc data.
+
+### `.#ctor(Newtonsoft.Json.Linq.JObject)`
+Instantiates a new `JDataObject` from an other `JObject`.
+
+* `other`: The `JObject` to copy data from.
+
+### `.#ctor(Inversion.IData)`
+Instantiates a new `JDataObject` from another `IDataObject`.
+
+* `other`: The `IData` object to copy data from.
+
+### `.ToXml(System.Xml.XmlWriter)`
+Produces an xml representation of the model.
+
+* `writer`: The writer to used to write the xml to. 
+
+### `.ToJson(Newtonsoft.Json.JsonWriter)`
+Produces a json respresentation of the model.
+
+* `writer`: The writer to use for producing json.
+### `.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
+
 ## `T:Inversion.TextData`
 An implementation of  [Inversion.IData](T-Inversion.IData)  that             represents a simple text node within a model.
 
@@ -751,3 +1063,8 @@ A string that represents the current object.
 ### `.Value`
 The string value of the text data.
 
+### `.Data`
+Provides an abstract representation of the objects data expressed as a JSON object.
+
+#### Remarks
+For this type the json object is only created the once.

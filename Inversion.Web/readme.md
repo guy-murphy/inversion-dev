@@ -1,4 +1,18 @@
 `Inversion.Web`, project notes
+## `T:Inversion.Web.Behaviour.BehaviourConditionPredicates`
+Extensions provided for ``WebBehaviour` providing basic checks performed in behaviour conditions.
+
+
+### `.HasAnyUserRoles(Inversion.Web.Behaviour.WebBehaviour,Inversion.Web.WebContext)`
+Determines whether or not the current context user is in any of the `required-user-roles` configured for this behaviour.
+
+* `self`: The behaviour to act upon.
+* `ctx`: The context to consult.
+
+**returns:** 
+Returns true if the current context user is in any of the  `required-user-roles` configured for this behaviour.
+
+
 ## `T:Inversion.Web.Behaviour.BootstrapBehaviour`
 A behaviour responsible for boostrapping the request processing. Out of the box it simply imports the prameters configured for this behaviour into the contexts params, so can be seen as a way to configure a context with default prameters. It should be see as a point of extensibility for setting up the default state of a context prior to processing a request.
 
@@ -17,10 +31,13 @@ The action to perform if this behaviours condition is met.
 * `ev`: The event to consult.
 * `context`: The context upon which to perform any action.
 
-### `:Inversion.Web.Behaviour.WebBehaviour.#ctor(System.String)`
-Ensures on instantiattion that the base process behaviour contructor is called with the provided message.
+### `:Inversion.Web.Behaviour.WebBehaviour.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.String}},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}}})`
+Creates a new instance of the behaviour.
 
-* `message`: 
+* `message`: The name of the behaviour.
+* `namedLists`: Named lists used to configure this behaviour.
+* `namedMaps`: Named maps used to configure this behaviour.
+* `namedMappedLists`: Named maps of lists used to configure this behaviour.
 
 ### `:Inversion.Web.Behaviour.WebBehaviour.Condition(Inversion.Process.IEvent)`
 Determines if this behaviours action should be executed in response to the provided event.
@@ -57,11 +74,6 @@ Implementors should impliment this behaviour with the desired action for their b
 
 * `ev`: The event to consult.
 * `context`: The context upon which to perform any action.
-## `P:Inversion.Web.Behaviour.WebBehaviour.RequiredRoles`
-Provides access to an enumeration of the user roles for this behaviour, one of which the user would need to possess for execution of this behaviours action to occur.
-
-#### Remarks
-These roles would normally be configured for the behavior from the service container.
 
 ### `:Inversion.Web.Behaviour.BootstrapBehaviour.#ctor(System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})`
 Instantiates a new bootstrap behaviour configured with the key-value pairs provided as parameters.
@@ -77,58 +89,6 @@ If the conditions of this behaviour are met, copies the parameters configured fo
 ## `P:Inversion.Web.Behaviour.BootstrapBehaviour.Parameters`
 Gives access to the prameters configured for the bootstrap behaviour that should be copied into the context params early in the request life-cycle.
 
-
-## `T:Inversion.Web.Behaviour.HelloWorldBehaviour`
-A simple behaviour to wire up to test the simplest possible output.
-
-
-## `T:Inversion.Web.Behaviour.WebActionBehaviour`
-An abstract provision of a web behaviour that includes features for configuring parameter conditions that must be met for the behaviours action to execute.
-
-
-### `.#ctor(System.String)`
-Ensures on instantiation that the base web behaviour constructor is called with the message provided.
-
-* `message`: The message the behaviour has set as responding to.
-
-### `.Condition(Inversion.Process.IEvent,Inversion.Web.WebContext)`
-Determines if the behaviours action should execute in response to the provided event and context.
-
-* `ev`: The event to consider.
-* `context`: The context to consider.
-
-**returns:** 
-
-
-### `.IncludedAllControlStates`
-Gives access to an enumeration of control-state keys that should be present in order for this behaviours action to execute.
-
-### `.NonIncludedControlStates`
-Gives access to an enumeration of control-state keys that should not be present in order for this behaviours action to execute.
-
-### `.IncludedAllParameters`
-Gives access to an enumeration of context paramter keys that should be present on the context for this behaviours action to execute.
-
-### `.NonIncludedParameters`
-Gives access to an enumeration of context paramter keys that should not be present on the context for this behaviours action to execute.
-
-### `.MatchingAllParameters`
-Gives access to an enumeration of context key-value pairs that should be present on the context for this behaviours action to execute.
-
-### `.NonMatchingAllParameters`
-Gives access to an enumeration of context key-value pairs that should not be present on the context for this behaviours action to execute.
-
-
-### `:Inversion.Web.Behaviour.HelloWorldBehaviour.#ctor(System.String)`
-Instantiates a new hello world behaviour configured to respond to the provided message.
-
-* `message`: The message this behaviour should respond to.
-
-### `:Inversion.Web.Behaviour.HelloWorldBehaviour.Action(Inversion.Process.IEvent,Inversion.Web.WebContext)`
-The action to perform if this behaviours condition is met.
-
-* `ev`: The event that gave rise to this action.
-* `context`: The context within which this action is being performed.
 
 ## `T:Inversion.Web.Behaviour.ParseRequestBehaviour`
 Behaviour responsible for deconstructing the request into a set of conext prameters.
@@ -460,10 +420,11 @@ Extends the process context with web specific information about an individual re
 #### Remarks
 The context object is threaded through the whole stack and provides a controled pattern and workflow of state, along with access to resources and services external to the application. Everything hangs off the context.
 
-### `.#ctor(System.Web.HttpContext)`
+### `.#ctor(System.Web.HttpContext,Inversion.Process.IServiceContainer)`
 Instantiates a new context object purposed for Web applications.
 
 * `underlyingContext`: The underlying http context to wrap.
+* `services`: The service container the context will use.
 ### `.UnderlyingContext`
 The underlying http context that is being wrapped by this web context.
 
@@ -484,7 +445,7 @@ Gives access to the `IPrinciple` user object that represents the current user fo
 
 
 ## `T:Inversion.Web.WebException`
-An exception that is throw when an general error occurs within a web application.
+An exception that is thrown when an general error occurs within a web application that would correspond to a http status code.
 
 
 ### `.#ctor(System.String)`

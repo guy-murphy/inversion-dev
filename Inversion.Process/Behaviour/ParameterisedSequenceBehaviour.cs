@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 using Inversion.Extensions;
 
 namespace Inversion.Process.Behaviour {
@@ -10,7 +7,7 @@ namespace Inversion.Process.Behaviour {
 	/// A behaviour concerned with driving the processing of a
 	/// sequence of messages.
 	/// </summary>
-	public class ParameterisedSequenceBehaviour : ApplicationBehaviour {
+	public class ParameterisedSequenceBehaviour : MatchingBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>

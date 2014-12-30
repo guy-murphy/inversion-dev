@@ -8,23 +8,23 @@ namespace Inversion.Process.Behaviour {
 	/// </summary>
 	public abstract class ProcessBehaviour : IProcessBehaviour {
 
-		private readonly string _name;
+		private readonly string _message;
 
 		/// <summary>
 		/// The name the behaviour is known by to the system.
 		/// </summary>
-		public string Name {
+		public string Message {
 			get {
-				return _name;
+				return _message;
 			}
 		}
 		
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="name">The name of the behaviour.</param>
-		protected ProcessBehaviour(string name) {
-			_name = name;
+		/// <param name="message">The name of the behaviour.</param>
+		protected ProcessBehaviour(string message) {
+			_message = message;
 		}
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="ev">The event to consult.</param>
 		/// <returns>
 		/// Returns <b>true</b> if the <see cref="IEvent.Message"/>
-		/// is the same as the <see cref="ProcessBehaviour.Name"/>
+		/// is the same as the <see cref="ProcessBehaviour.Message"/>
 		/// </returns>
 		/// <remarks>
 		/// The intent is to override for bespoke conditions.
@@ -57,7 +57,7 @@ namespace Inversion.Process.Behaviour {
 			// check the base condition
 			// and then either there are no roles specified
 			// or the user is in any of the roles defined
-			return ev.Message == this.Name;
+			return ev.Message == this.Message;
 		}
 
 		/// <summary>

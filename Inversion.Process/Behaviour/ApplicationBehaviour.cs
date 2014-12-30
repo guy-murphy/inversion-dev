@@ -71,9 +71,9 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
 		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
 		protected ApplicationBehaviour(string message, 
-			IDictionary<string, IEnumerable<string>> namedLists,
-			IDictionary<string, IDictionary<string, string>> namedMaps,
-			IDictionary<string, IDictionary<string, IEnumerable<string>>>  namedMappedLists
+			IDictionary<string, IEnumerable<string>> namedLists = null,
+			IDictionary<string, IDictionary<string, string>> namedMaps = null,
+			IDictionary<string, IDictionary<string, IEnumerable<string>>>  namedMappedLists = null
 		)
 			: base(message) {
 			this.NamedLists = namedLists ?? ImmutableDictionary<string, IEnumerable<string>>.Empty;
@@ -81,24 +81,6 @@ namespace Inversion.Process.Behaviour {
 			this.NamedMappedLists = namedMappedLists ?? ImmutableDictionary<string, IDictionary<string, IEnumerable<string>>>.Empty;
 		}
 
-		/// <summary>
-		/// Determines if the event specifies the behaviour by name.
-		/// </summary>
-		/// <param name="ev">The event to consult.</param>
-		/// <param name="context">The context to consult.</param>
-		/// <returns>
-		/// Returns true if true if `ev.Message` is the same as `this.Message`
-		///  </returns>
-		/// <remarks>
-		/// The intent is to override for bespoke conditions.
-		/// </remarks>
-		public override bool Condition(IEvent ev, ProcessContext context) {
-			return base.Condition(ev, context) &&
-			       this.HasAllParms(context) &&
-			       this.HasAllControlStates(context) &&
-			       this.HasAllFlags(context) &&
-			       this.MacthesAllParamValues(context);
-		}
 		
 	}
 }

@@ -3,7 +3,8 @@
 namespace Inversion.Process.Behaviour {
 
 	/// <summary>
-	/// Extensions provided basic checks performed in behaviour conditions.
+	/// Extensions provided for ``IApplicationBehaioour` providing
+	/// basic checks performed in behaviour conditions.
 	/// </summary>
 	public static class BehaviourConditionPredicates {
 

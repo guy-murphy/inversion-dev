@@ -37,7 +37,7 @@ namespace Inversion.Process.Behaviour {
 		/// Gets the message that the behaviour will respond to.
 		/// </summary>
 		/// <value>A `string` value.</value>
-		string Name { get; }
+		string Message { get; }
 		/// <summary>
 		/// Process an action for the provided <see cref="IEvent"/>.
 		/// </summary>

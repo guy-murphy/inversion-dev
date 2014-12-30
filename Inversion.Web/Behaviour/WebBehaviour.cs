@@ -10,31 +10,19 @@ namespace Inversion.Web.Behaviour {
 	/// An abstract provision of basic web-centric features for process behaviours
 	/// being used in a web application.
 	/// </summary>
-	public abstract class WebBehaviour : ProcessBehaviour, IWebBehaviour {
-
-		private ImmutableList<string> _requiredRoles;
-
+	public abstract class WebBehaviour : ApplicationBehaviour, IWebBehaviour {
 		/// <summary>
-		/// Provides access to an enumeration of the user roles for this behaviour,
-		/// one of which the user would need to possess for execution of this behaviours
-		/// action to occur.
+		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <remarks>These roles would normally be configured for the behavior from the service container.</remarks>
-		public IEnumerable<string> RequiredRoles {
-			get { return _requiredRoles ?? (_requiredRoles = ImmutableList.Create<string>()); }
-			set {
-				if (_requiredRoles != null) throw new InvalidOperationException("You may not assign RequiredRoles once it has been set.");
-				if (value == null) throw new ArgumentNullException("value");
-				_requiredRoles = ImmutableList.Create<String>(value.ToArray()); // double pass, change
-			}
-		}
-
-		/// <summary>
-		/// Ensures on instantiattion that the base process behaviour
-		/// contructor is called with the provided message.
-		/// </summary>
-		/// <param name="message">The message this behaviour responds to.</param>
-		protected WebBehaviour(string message) : base(message) { }
+		/// <param name="message">The name of the behaviour.</param>
+		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
+		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
+		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
+		protected WebBehaviour(string message, 
+			IDictionary<string, IEnumerable<string>> namedLists = null,
+			IDictionary<string, IDictionary<string, string>> namedMaps = null,
+			IDictionary<string, IDictionary<string, IEnumerable<string>>> namedMappedLists = null)
+			: base(message, namedLists, namedMaps, namedMappedLists) {}
 
 		/// <summary>
 		/// Determines if this behaviours action should be executed in
@@ -55,9 +43,9 @@ namespace Inversion.Web.Behaviour {
 		/// <returns></returns>
 		public virtual bool Condition(IEvent ev, WebContext context) {
 			// check the base condition
-			// and then either there are no roles specified
-			// or the user is in any of the roles defined
-			return base.Condition(ev) && ((_requiredRoles == null || _requiredRoles.Count == 0) || this.RequiredRoles.Any(role => context.User.IsInRole(role)));
+			// and then whether the user for the current context
+			// has any of the roles specified
+			return base.Condition(ev) && this.HasAnyUserRoles(context);
 		}
 
 		/// <summary>
