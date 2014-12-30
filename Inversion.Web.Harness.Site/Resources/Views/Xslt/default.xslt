@@ -31,5 +31,26 @@
 			<xsl:value-of select="." />
 		</li>
 	</xsl:template>
+
+	<xsl:template match="records/item[@name='event-trace']/list">
+		<ul>
+			<xsl:apply-templates />
+		</ul>
+	</xsl:template>
+
+	<xsl:template match="list/event">
+		<li>
+			<xsl:value-of select="@message" />
+			<ul>
+				<xsl:apply-templates />
+			</ul>
+		</li>
+	</xsl:template>
+
+	<xsl:template match="list/event/params/item">
+		<li>
+			<xsl:value-of select="@name" /> = <xsl:value-of select="@value" />
+		</li>
+	</xsl:template>
 	
 </xsl:stylesheet>

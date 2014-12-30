@@ -152,7 +152,7 @@ namespace Inversion.Web.Behaviour.View {
 
 					// check if we have the template cached
 					string cacheKey = String.Concat("xsl::", templateName);
-					XslCompiledTransform xsl = (_enableCache && context.Flags.Contains("nocache")) ? null : context.Cache.Get(cacheKey) as XslCompiledTransform;
+					XslCompiledTransform xsl = (!_enableCache || context.Flags.Contains("nocache")) ? null : context.Cache.Get(cacheKey) as XslCompiledTransform;
 					if (xsl == null) {
 						// we dont have it cached
 						// does the file exist?
