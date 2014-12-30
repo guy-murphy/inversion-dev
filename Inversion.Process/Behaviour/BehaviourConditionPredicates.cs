@@ -29,7 +29,13 @@ namespace Inversion.Process.Behaviour {
 		/// parameters; otherwise returns false.
 		/// </returns>
 		public static bool MacthesAllParamValues(this IApplicationBehaviour self, ProcessContext ctx) {
-			return !self.NamedMaps.ContainsKey("matching-all-param-values") || ctx.HasParamValues(self.NamedMaps["matching-all-param-values"]);
+			return 
+				(!self.NamedMaps.ContainsKey("matching-all-param-values") 
+					|| ctx.HasParamValues(self.NamedMaps["matching-all-param-values"])
+				) &&
+				(!self.NamedMappedLists.ContainsKey("matching-all-param-values") 
+					|| ctx.HasParamValues(self.NamedMaps["matching-all-param-values"])
+				);
 		}
 
 		/// <summary>

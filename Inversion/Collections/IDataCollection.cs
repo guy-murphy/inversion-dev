@@ -14,7 +14,10 @@ namespace Inversion.Collections {
 		/// any notation presenting the collection. 
 		/// </summary>
 		string Label { get; }
-
+		/// <summary>
+		/// Adds an item to the collection.
+		/// </summary>
+		/// <param name="item">The item to add to the collection.</param>
 		void Add(T item);
 	}
 

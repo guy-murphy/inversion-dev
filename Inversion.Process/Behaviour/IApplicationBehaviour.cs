@@ -17,5 +17,7 @@ namespace Inversion.Process.Behaviour {
 		/// used to configure the behaviour.
 		/// </summary>
 		IDictionary<string, IEnumerable<string>> NamedLists { get; }
+
+		IDictionary<string, IDictionary<string, IEnumerable<string>>> NamedMappedLists { get; }
 	}
 }

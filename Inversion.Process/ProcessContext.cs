@@ -47,7 +47,7 @@ namespace Inversion.Process {
 		/// </summary>
 		public IServiceContainer Services {
 			get {
-				return _serviceContainer; 
+				return _serviceContainer;
 			}
 		}
 
@@ -383,6 +383,10 @@ namespace Inversion.Process {
 		/// </returns>
 		public bool HasParamValues(IEnumerable<KeyValuePair<string, string>> match) {
 			return match != null && match.All(entry => this.Params.Contains(entry));
+		}
+
+		public bool HasParamValues(IEnumerable<KeyValuePair<string, IEnumerable<string>>> match) {
+			return match != null && match.All(entry => this.Params.ContainsKey(entry.Key) && entry.Value.Any(value => value == this.Params[entry.Key]));
 		}
 
 		/// <summary>

@@ -63,24 +63,6 @@ namespace Inversion.Process.Behaviour {
 			}
 		}
 
-		///// <summary>
-		///// Creates a new instance of the behaviour.
-		///// </summary>
-		///// <param name="message">The name of the behaviour.</param>
-		//protected ApplicationBehaviour(string message) : base(message) { }
-		///// <summary>
-		///// Creates a new instance of the behaviour.
-		///// </summary>
-		///// <param name="message">The name of the behaviour.</param>
-		///// <param name="namedLists">Named lists used to configure this behaviour.</param>	
-		//protected ApplicationBehaviour(string message, IDictionary<string, IEnumerable<string>> namedLists) : this(message, namedLists, null) { }
-		///// <summary>
-		///// Creates a new instance of the behaviour.
-		///// </summary>
-		///// <param name="message">The name of the behaviour.</param>
-		///// <param name="namedMaps">Named maps used to configure this behaviour.</param>
-		//protected ApplicationBehaviour(string message, IDictionary<string, IDictionary<string, string>> namedMaps) : this(message, null, namedMaps) { }
-
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>

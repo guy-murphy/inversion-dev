@@ -32,9 +32,7 @@ namespace Inversion.Process.Behaviour {
 			foreach (string seqRef in this.NamedLists["sequence"]) {
 				IDictionary<string, string> map = this.NamedMaps[seqRef];
 				string message = seqRef.TrimLeftBy(4);
-				IEvent next = new Event(context, message, map);
-				context.ControlState[next.Message] = next;
-				next.Fire();
+				context.Fire(message, map);
 			}
 		}
 	}
