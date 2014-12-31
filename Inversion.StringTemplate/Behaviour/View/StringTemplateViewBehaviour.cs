@@ -51,21 +51,12 @@ namespace Inversion.StringTemplate.Behaviour.View {
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
 		public override void Action(IEvent ev, WebContext context) {
-			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasContent || context.ViewSteps.Last.HasModel) {
+			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasModel) {
 				foreach (string templateName in _possibleTemplates(context)) {
 					string templatePath = Path.Combine(context.Application.BaseDirectory, "Resources", "Views", "ST", templateName);
 					if (File.Exists(templatePath)) {
 						string src = File.ReadAllText(templatePath);
-						Template template = new Template(src, '$', '$');
-						JObject model;
-						if (context.ViewSteps.Last.HasModel) {
-							model = context.ViewSteps.Last.Model.Data;
-						} else if (context.ViewSteps.Last.HasContent) {
-							model = JObject.Parse(context.ViewSteps.Last.Content);
-						} else {
-							model = new JObject(new { errors = new[] { "Unable to find any content or model to render." } });
-						}
-						template.Add("name", "Guy");
+						Template template = new Template(src, '%', '%');
 						template.Add("model", context.ViewSteps.Last.Model);
 						string result = template.Render();
 						context.ViewSteps.CreateStep(templateName, _contentType, result);
