@@ -32,7 +32,7 @@
 		</li>
 	</xsl:template>
 
-	<xsl:template match="records/item[@name='event-trace']/list">
+	<xsl:template match="records/item[@name='eventTrace']/list">
 		<ul>
 			<xsl:apply-templates />
 		</ul>

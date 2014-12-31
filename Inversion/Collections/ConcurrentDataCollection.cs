@@ -76,6 +76,15 @@ namespace Inversion.Collections {
 		}
 
 		/// <summary>
+		/// Creates a new instance of a data collection as a copy
+		/// of this data collection.
+		/// </summary>
+		/// <returns></returns>
+		public ConcurrentDataCollection<T> Clone() {
+			return new ConcurrentDataCollection<T>(this);
+		}
+
+		/// <summary>
 		/// Produces an XML representation of the collections elements  to a provided writer.
 		/// </summary>
 		/// <param name="writer">

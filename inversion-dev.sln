@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Web.Harness", "In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Naiad", "Inversion.Naiad\Inversion.Naiad.csproj", "{975446B0-DBC2-498F-94D4-2A6A20F9C5D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.DotLiquid", "Inversion.DotLiquid\Inversion.DotLiquid.csproj", "{2D9FC8CE-05AF-465A-9CA9-51B76932F653}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.StringTemplate", "Inversion.StringTemplate\Inversion.StringTemplate.csproj", "{DC33EDC0-055F-4369-A703-FA4F20169C56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{975446B0-DBC2-498F-94D4-2A6A20F9C5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975446B0-DBC2-498F-94D4-2A6A20F9C5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975446B0-DBC2-498F-94D4-2A6A20F9C5D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D9FC8CE-05AF-465A-9CA9-51B76932F653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D9FC8CE-05AF-465A-9CA9-51B76932F653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D9FC8CE-05AF-465A-9CA9-51B76932F653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9FC8CE-05AF-465A-9CA9-51B76932F653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC33EDC0-055F-4369-A703-FA4F20169C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC33EDC0-055F-4369-A703-FA4F20169C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC33EDC0-055F-4369-A703-FA4F20169C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC33EDC0-055F-4369-A703-FA4F20169C56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

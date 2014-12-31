@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Threading;
 
 namespace Inversion.Process {
@@ -12,7 +13,7 @@ namespace Inversion.Process {
 	/// and needs to change. This needs to become a synchronised
 	/// collection.
 	/// </remarks>
-	public class ViewSteps : ConcurrentStack<ViewStep> {
+	public class ViewSteps : ConcurrentStack<ViewStep>, IDisposable {
 
 		private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
 		private bool _isDisposed;

@@ -96,7 +96,6 @@ namespace Inversion.Web.Behaviour.View {
 			_enableCache = enableCache;
 		}
 
-		// TODO: confirm thread safe
 		// The iterator generated for this should be
 		//		ThreadLocal and therefore safe to use
 		//		in this manner on a singleton, would be
@@ -110,15 +109,19 @@ namespace Inversion.Web.Behaviour.View {
 
 			// area/concern/action
 			yield return Path.Combine(area, concern, action);
+			// area/concern/default
 			yield return Path.Combine(area, concern, "default.xslt");
 			// area/action
 			yield return Path.Combine(area, action);
+			// area/default
 			yield return Path.Combine(area, "default.xslt");
 			// concern/action
 			yield return Path.Combine(concern, action);
+			// concern/default
 			yield return Path.Combine(concern, "default.xslt");
 			// action
 			yield return action;
+			// default
 			yield return "default.xslt";
 		}
 

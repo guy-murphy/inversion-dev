@@ -4,7 +4,7 @@ using System.Threading;
 using Inversion.Process;
 
 namespace Inversion.Naiad {
-	public class ServiceContainer: IServiceContainer {
+	public class ServiceContainer : IServiceContainer {
 
 		private static readonly ServiceContainer _instance = new ServiceContainer();
 
@@ -16,6 +16,22 @@ namespace Inversion.Naiad {
 
 		private readonly ConcurrentDictionary<string, object> _ctors = new ConcurrentDictionary<string, object>();
 
+		~ServiceContainer() {
+			Dispose(false);
+		}
+
+		public void Dispose() {
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing) {
+			if (disposing) {
+				_ctors.Clear();
+				_lock.Dispose();
+			}
+		}
+
 		public void RegisterService<T>(string name, Func<IServiceContainer, T> ctor) {
 			_lock.EnterWriteLock();
 			try {
@@ -24,7 +40,7 @@ namespace Inversion.Naiad {
 				_lock.ExitWriteLock();
 			}
 		}
-		
+
 		public T GetService<T>(string name) {
 			_lock.EnterReadLock();
 			try {
@@ -41,12 +57,6 @@ namespace Inversion.Naiad {
 				return _ctors.ContainsKey(name);
 			} finally {
 				_lock.ExitReadLock();
-			}
-		}
-
-		public void Dispose() {
-			lock (_lock) {
-				_ctors.Clear();
 			}
 		}
 
