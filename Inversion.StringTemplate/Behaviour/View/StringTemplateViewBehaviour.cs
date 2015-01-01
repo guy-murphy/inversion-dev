@@ -12,10 +12,10 @@ namespace Inversion.StringTemplate.Behaviour.View {
 	public class StringTemplateViewBehaviour: WebBehaviour {
 		private readonly string _contentType;
 
-		public StringTemplateViewBehaviour(string message) : this(message, "text/html") { }
+		public StringTemplateViewBehaviour(string respondsTo) : this(respondsTo, "text/html") { }
 
-		public StringTemplateViewBehaviour(string message, string contentType)
-			: base(message) {
+		public StringTemplateViewBehaviour(string respondsTo, string contentType)
+			: base(respondsTo) {
 			_contentType = contentType;
 		}
 

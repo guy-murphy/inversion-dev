@@ -15,9 +15,10 @@ namespace Inversion.DotLiquid.Behaviour.View {
 
 		private readonly string _contentType;
 
-		public DotLiquidViewBehaviour(string message) : this(message, "text/html") { }
+		public DotLiquidViewBehaviour(string respondsTo) : this(respondsTo, "text/html") { }
 
-		public DotLiquidViewBehaviour(string message, string contentType):base(message) {
+		public DotLiquidViewBehaviour(string respondsTo, string contentType)
+			: base(respondsTo) {
 			_contentType = contentType;
 		}
 
