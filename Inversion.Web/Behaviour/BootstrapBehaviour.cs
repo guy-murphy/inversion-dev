@@ -29,10 +29,10 @@ namespace Inversion.Web.Behaviour {
 		/// Instantiates a new bootstrap behaviour configured with the key-value
 		/// pairs provided as parameters.
 		/// </summary>
-		/// <param name="message">The message this behaviour should respond to.</param>
+		/// <param name="respondsTo">The message this behaviour should respond to.</param>
 		/// <param name="parms">The key value-pairs to configure as parameters for this behaviour.</param>
-		public BootstrapBehaviour(string message, IEnumerable<KeyValuePair<string, string>> parms)
-			: base(message) {
+		public BootstrapBehaviour(string respondsTo, IEnumerable<KeyValuePair<string, string>> parms)
+			: base(respondsTo) {
 			_params = ImmutableDictionary.CreateRange<string, string>(parms);
 		}
 

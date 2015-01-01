@@ -14,16 +14,16 @@ namespace Inversion.Web.Behaviour.View {
 		/// Instantiates a new xml view behaviour to provide production of xml views.
 		/// </summary>
 		/// <remarks>Defaults the content-type to "text/xml"</remarks>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
-		public XmlViewBehaviour(string message) : this(message, "text/xml") { }
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
+		public XmlViewBehaviour(string respondsTo) : this(respondsTo, "text/xml") { }
 
 		/// <summary>
 		/// Instantiates a new xml view behaviour to provide production of xml views.
 		/// </summary>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
 		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
-		public XmlViewBehaviour(string message, string contentType)
-			: base(message) {
+		public XmlViewBehaviour(string respondsTo, string contentType)
+			: base(respondsTo) {
 			_contentType = contentType;
 		}
 

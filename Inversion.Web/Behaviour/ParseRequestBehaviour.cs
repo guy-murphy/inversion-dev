@@ -21,20 +21,20 @@ namespace Inversion.Web.Behaviour {
 		/// <summary>
 		/// Instantiates a behaviour that decontructs the request into context parameters.
 		/// </summary>
-		/// <param name="message">The message that the behaviour will respond to.</param>
-		public ParseRequestBehaviour(string message) : this(message, null) { }
+		/// <param name="respondsTo">The message that the behaviour will respond to.</param>
+		public ParseRequestBehaviour(string respondsTo) : this(respondsTo, null) { }
 
 		/// <summary>
 		/// Instantiates a behaviour that decontructs the request into context parameters.
 		/// </summary>
-		/// <param name="message">The message that the behaviour will respond to.</param>
+		/// <param name="respondsTo">The message that the behaviour will respond to.</param>
 		/// <param name="appDirectory">
 		/// Configures an application directory to be regarded for the application.
 		/// The application directory is that part of the request path that is not
 		/// significant to the request but instead represents the root directory of the application.
 		/// </param>
-		public ParseRequestBehaviour(string message, string appDirectory)
-			: base(message) {
+		public ParseRequestBehaviour(string respondsTo, string appDirectory)
+			: base(respondsTo) {
 			_appDirectory = appDirectory ?? String.Empty;
 		}
 

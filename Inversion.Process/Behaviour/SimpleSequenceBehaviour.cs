@@ -18,10 +18,10 @@ namespace Inversion.Process.Behaviour {
 		/// Instantiates a new simple sequence behaviour, configuring it
 		/// with a sequence as an enumerable.
 		/// </summary>
-		/// <param name="message">The message this behaviour should respond to.</param>
+		/// <param name="respondsTo">The message this behaviour should respond to.</param>
 		/// <param name="sequence">The sequence of simple messages this behaviour should generate.</param>
-		public SimpleSequenceBehaviour(string message, IEnumerable<string> sequence)
-			: base(message) {
+		public SimpleSequenceBehaviour(string respondsTo, IEnumerable<string> sequence)
+			: base(respondsTo) {
 			_sequence = sequence;
 		}
 

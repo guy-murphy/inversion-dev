@@ -14,17 +14,17 @@ namespace Inversion.Process.Behaviour {
 		/// <summary>
 		/// Instantiates a new runtime behaviour.
 		/// </summary>
-		/// <param name="name">The name by which the behaviour is known to the system.</param>
-		protected RuntimeBehaviour(string name) : base(name) { }
+		/// <param name="respondsTo">The name by which the behaviour is known to the system.</param>
+		protected RuntimeBehaviour(string respondsTo) : base(respondsTo) { }
 
 		/// <summary>
 		/// Instantiates a new runtime behaviour.
 		/// </summary>
-		/// <param name="name">The name by which the behaviour is known to the system.</param>
+		/// <param name="respondsTo">The name by which the behaviour is known to the system.</param>
 		/// <param name="condition">The predicate that will determine if this behaviours action should be executed.</param>
 		/// <param name="action">The action that should be performed if this behaviours conditions are met.</param>
-		public RuntimeBehaviour(string name, Predicate<IEvent> condition, Action<IEvent, ProcessContext> action)
-			: base(name) {
+		public RuntimeBehaviour(string respondsTo, Predicate<IEvent> condition, Action<IEvent, ProcessContext> action)
+			: base(respondsTo) {
 			_condition = condition;
 			_action = action;
 		}

@@ -1,13 +1,13 @@
-﻿<h1>hello %model.params.name% from ST4 </h1>
+﻿<h1>hello `model.params.name` from ST4 </h1>
 	<ul>
-		%model.eventTrace:{ev| 
+		`model.eventTrace:{ev| 
 			<li>
-				%ev.message%
+				`ev.message`
 				<ul>
-					%ev.params.keys:{k|
-						<li>%k% = %ev.params.(k)%</li>
-					}%
+					`ev.params.keys:{k|
+						<li>`k` = `ev.params.(k)`</li>
+					}`
 				</ul>
 			</li>
-		}%
+		}`
 	</ul>

@@ -56,19 +56,19 @@ namespace Inversion.Web.Behaviour.View {
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="message"></param>
+		/// <param name="respondsTo"></param>
 		/// <remarks>
 		/// This constructor defaults the content type to `text/html`.
 		/// </remarks>
-		public RazorViewBehaviour(string message) : this(message, "text/html") { }
+		public RazorViewBehaviour(string respondsTo) : this(respondsTo, "text/html") { }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="message"></param>
+		/// <param name="respondsTo"></param>
 		/// <param name="contentType"></param>
-		public RazorViewBehaviour(string message, string contentType)
-			: base(message) {
+		public RazorViewBehaviour(string respondsTo, string contentType)
+			: base(respondsTo) {
 			_contentType = contentType;
 		}
 

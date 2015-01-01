@@ -51,23 +51,23 @@ namespace Inversion.Web.Behaviour.View {
 		/// Instantiates a new xslt view behaviour used to provide xslt templating
 		/// primarily for web applications.
 		/// </summary>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
 		/// <remarks>
 		/// Defaults to caching compiled xslt, to a content type of "text/xml".
 		/// </remarks>
-		public XsltViewBehaviour(string message) : this(message, "text/xml") { }
+		public XsltViewBehaviour(string respondsTo) : this(respondsTo, "text/xml") { }
 
 		/// <summary>
 		/// Instantiates a new xslt view behaviour used to provide xslt templating
 		/// primarily for web applications.
 		/// </summary>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
 		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
 		/// <remarks>
 		/// Defaults to caching compiled xslt.
 		/// </remarks>
-		public XsltViewBehaviour(string message, string contentType)
-			: base(message) {
+		public XsltViewBehaviour(string respondsTo, string contentType)
+			: base(respondsTo) {
 			_contentType = contentType;
 			_enableCache = true;
 		}
@@ -76,11 +76,11 @@ namespace Inversion.Web.Behaviour.View {
 		/// Instantiates a new xslt view behaviour used to provide xslt templating
 		/// primarily for web applications.
 		/// </summary>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
 		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
 		/// <param name="enableCache">Specifies whether or not the xslt compilation should be cached.</param>
-		public XsltViewBehaviour(string message, string contentType, bool enableCache)
-			: this(message, contentType) {
+		public XsltViewBehaviour(string respondsTo, string contentType, bool enableCache)
+			: this(respondsTo, contentType) {
 			_enableCache = enableCache;
 		}
 
@@ -88,11 +88,11 @@ namespace Inversion.Web.Behaviour.View {
 		/// Instantiates a new xslt view behaviour used to provide xslt templating
 		/// primarily for web applications.
 		/// </summary>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
 		/// <param name="enableCache">Specifies whether or not the xslt compilation should be cached.</param>
 		/// <remarks>Defaults to a content type of "text/xml".</remarks>
-		public XsltViewBehaviour(string message, bool enableCache)
-			: this(message) {
+		public XsltViewBehaviour(string respondsTo, bool enableCache)
+			: this(respondsTo) {
 			_enableCache = enableCache;
 		}
 

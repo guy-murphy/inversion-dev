@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Antlr4.StringTemplate;
+
 using Inversion.Process;
 using Inversion.Web;
 using Inversion.Web.Behaviour;
-using Newtonsoft.Json.Linq;
 
 namespace Inversion.StringTemplate.Behaviour.View {
 	public class StringTemplateViewBehaviour: WebBehaviour {
@@ -56,7 +54,7 @@ namespace Inversion.StringTemplate.Behaviour.View {
 					string templatePath = Path.Combine(context.Application.BaseDirectory, "Resources", "Views", "ST", templateName);
 					if (File.Exists(templatePath)) {
 						string src = File.ReadAllText(templatePath);
-						Template template = new Template(src, '%', '%');
+						Template template = new Template(src, '`', '`');
 						template.Add("model", context.ViewSteps.Last.Model);
 						string result = template.Render();
 						context.ViewSteps.CreateStep(templateName, _contentType, result);

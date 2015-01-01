@@ -12,16 +12,16 @@ namespace Inversion.Web.Behaviour.View {
 		/// Instantiates a new xml view behaviour to provide production of json views.
 		/// </summary>
 		/// <remarks>Defaults the content-type to "application/json"</remarks>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
-		public JsonViewBehaviour(string message) : this(message, "application/json") { }
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
+		public JsonViewBehaviour(string respondsTo) : this(respondsTo, "application/json") { }
 
 		/// <summary>
 		/// Instantiates a new xml view behaviour to provide production of json views.
 		/// </summary>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
 		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
-		public JsonViewBehaviour(string message, string contentType)
-			: base(message) {
+		public JsonViewBehaviour(string respondsTo, string contentType)
+			: base(respondsTo) {
 			_contentType = contentType;
 		}
 

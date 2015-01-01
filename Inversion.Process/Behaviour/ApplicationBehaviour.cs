@@ -66,16 +66,16 @@ namespace Inversion.Process.Behaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="message">The name of the behaviour.</param>
+		/// <param name="respondsTo">The name of the behaviour.</param>
 		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
 		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
 		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
-		protected ApplicationBehaviour(string message, 
+		protected ApplicationBehaviour(string respondsTo, 
 			IDictionary<string, IEnumerable<string>> namedLists = null,
 			IDictionary<string, IDictionary<string, string>> namedMaps = null,
 			IDictionary<string, IDictionary<string, IEnumerable<string>>>  namedMappedLists = null
 		)
-			: base(message) {
+			: base(respondsTo) {
 			this.NamedLists = namedLists ?? ImmutableDictionary<string, IEnumerable<string>>.Empty;
 			this.NamedMaps = namedMaps ?? ImmutableDictionary<string, IDictionary<string, string>>.Empty;
 			this.NamedMappedLists = namedMappedLists ?? ImmutableDictionary<string, IDictionary<string, IEnumerable<string>>>.Empty;

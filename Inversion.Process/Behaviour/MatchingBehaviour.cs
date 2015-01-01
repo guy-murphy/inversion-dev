@@ -2,20 +2,22 @@
 
 namespace Inversion.Process.Behaviour {
 	/// <summary>
-	/// 
+	/// Extends `ApplicationBehaviour` with an implemented `Condition` intended
+	/// to act upont he behaviours configuration to match with state expressed on the
+	/// process context.
 	/// </summary>
 	public abstract class MatchingBehaviour: ApplicationBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="message">The name of the behaviour.</param>
+		/// <param name="respondsTo">The name of the behaviour.</param>
 		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
 		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
 		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
-		protected MatchingBehaviour(string message, IDictionary<string, IEnumerable<string>> namedLists,
+		protected MatchingBehaviour(string respondsTo, IDictionary<string, IEnumerable<string>> namedLists,
 			IDictionary<string, IDictionary<string, string>> namedMaps,
 			IDictionary<string, IDictionary<string, IEnumerable<string>>> namedMappedLists)
-			: base(message, namedLists, namedMaps, namedMappedLists) {}
+			: base(respondsTo, namedLists, namedMaps, namedMappedLists) { }
 
 		/// <summary>
 		/// Determines if the event specifies the behaviour by name.

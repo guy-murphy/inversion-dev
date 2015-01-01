@@ -28,8 +28,8 @@ namespace Inversion.Web.Behaviour {
 		/// <summary>
 		/// Instantiates a new view state behaviour configured with the message provided.
 		/// </summary>
-		/// <param name="message">The message the behaviour has set as responding to.</param>
-		public ViewStateBehaviour(string message) : base(message) { }
+		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
+		public ViewStateBehaviour(string respondsTo) : base(respondsTo) { }
 
 		/// <summary>
 		/// Takes the control state of the provided context and from it produces

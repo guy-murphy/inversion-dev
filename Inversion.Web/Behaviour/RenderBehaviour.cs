@@ -19,11 +19,11 @@ namespace Inversion.Web.Behaviour {
 		/// <summary>
 		/// Creates a new instance of a render behaviour.
 		/// </summary>
-		/// <param name="name">The name of the render behaviour.</param>	
+		/// <param name="respondsTo">The name of the render behaviour.</param>	
 		/// <exception cref="WebException">
 		/// Throws an exception is there is no view step to actually render.
 		/// </exception>
-		public RenderBehaviour(string name) : base(name) { }
+		public RenderBehaviour(string respondsTo) : base(respondsTo) { }
 
 		/// <inheritdoc />
 		public override void Action(IEvent ev, WebContext context) {

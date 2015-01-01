@@ -13,8 +13,8 @@ namespace Inversion.Web.Behaviour {
 		/// <summary>
 		/// Instantiates a new behaviour responsible for processes the inversion view pipeline.
 		/// </summary>
-		/// <param name="message">The message that the behaviour will respond to.</param>
-		public ProcessViewsBehaviour(string message) : base(message) { }
+		/// <param name="respondsTo">The message that the behaviour will respond to.</param>
+		public ProcessViewsBehaviour(string respondsTo) : base(respondsTo) { }
 
 
 		/// <summary>

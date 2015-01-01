@@ -34,7 +34,7 @@
 		/// Gets the message that the behaviour will respond to.
 		/// </summary>
 		/// <value>A `string` value.</value>
-		string Message { get; }
+		string RespondsTo { get; }
 		/// <summary>
 		/// Process an action for the provided <see cref="IEvent"/>.
 		/// </summary>
