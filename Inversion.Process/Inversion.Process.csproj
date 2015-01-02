@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviour\BehaviourConfiguration.cs" />
+    <Compile Include="Behaviour\ConfiguredBehaviour.cs" />
     <Compile Include="Behaviour\MatchingBehaviour.cs" />
     <Compile Include="Behaviour\ApplicationBehaviour.cs" />
     <Compile Include="Behaviour\BehaviourConditionPredicates.cs" />

@@ -19,8 +19,9 @@ namespace Inversion.Spring {
 		/// </summary>
 		public override void Init() {
 
-			this.RegisterObjectDefinitionParser("process", new BehaviourObjectDefinationParser());
+			this.RegisterObjectDefinitionParser("behaviour", new BehaviourObjectDefinationParser());
 			this.RegisterObjectDefinitionParser("message-trace", new BehaviourObjectDefinationParser());
+
 
 		}
 	}

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using Inversion.Collections;
 
 namespace Inversion.Process.Behaviour {
@@ -7,20 +7,15 @@ namespace Inversion.Process.Behaviour {
 	/// <summary>
 	/// A simple behaviour to wire up to test the simplest possible output.
 	/// </summary>
-	public class MessageTraceBehaviour : ProcessBehaviour {
-
-		/// <summary>
-		/// Creates a new instance of a message trace behaviour,
-		/// which normally would be created without a specified message
-		/// to respond to.
-		/// </summary>
-		public MessageTraceBehaviour() : this(String.Empty) { }
-
+	public class MessageTraceBehaviour : ConfiguredBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The name of the behaviour.</param>
-		public MessageTraceBehaviour(string respondsTo) : base(respondsTo) { }
+		/// <param name="config">Configuration for the behaviour.</param>
+		//public MessageTraceBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
+
+		public MessageTraceBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// The action to perform when the `Condition(IEvent)` is met.
