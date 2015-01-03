@@ -30,7 +30,12 @@
 		<xsd:complexContent>
 			<xsd:extension base="objects:identifiedType">
 				<xsd:sequence>
-					<xsd:element ref="config" minOccurs="0" maxOccurs="1" />
+					<xsd:any
+						namespace="##any"
+						processContents="lax"
+						minOccurs="0"
+						maxOccurs="unbounded"
+					/>
 				</xsd:sequence>
 				<xsd:attribute name="responds-to" type="xsd:string" use="required"/>
 				<xsd:attribute name="type" type="xsd:string" use="required"/>
@@ -47,6 +52,16 @@
 			<xsd:complexContent>
 				<xsd:extension base="configured-behaviour-type">
 					<xsd:attribute name="type" type="xsd:string" use="optional" default="Inversion.Process.Behaviour.MessageTraceBehaviour, Inversion.Process"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="message-sequence">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="configured-behaviour-type">
+					<xsd:attribute name="type" type="xsd:string" use="optional" default="Inversion.Process.Behaviour.ParameterisedSequenceBehaviour, Inversion.Process"/>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>

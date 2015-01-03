@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using Inversion.Process.Behaviour;
@@ -27,14 +29,36 @@ namespace Inversion.Spring {
 			HashSet<BehaviourConfiguration.Element> elements = new HashSet<BehaviourConfiguration.Element>();
 			XmlNamespaceManager ns = new XmlNamespaceManager(xml.OwnerDocument.NameTable);
 			ns.AddNamespace("inv", "Inversion.Process.Behaviour");
-			XmlNodeList config = xml.SelectNodes("inv:config/*/*", ns);
-			if (config != null) {
-				foreach (XmlElement node in config) {
-					string value = node.InnerText;
-					string name = node.Name;
-					string scope = node.ParentNode.Name;
-					BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(scope, name, value);
-					elements.Add(element);
+			XmlNodeList frames = xml.SelectNodes("inv:*", ns);
+			if (frames != null) {
+				foreach (XmlElement frameElement in frames) {
+					string frame = frameElement.Name;
+
+					foreach (XmlElement slotElement in frameElement.ChildNodes) {
+						string slot = slotElement.Name;
+
+						int start = elements.Count;
+
+						// read children of slot as <name>value</name>
+						foreach (XmlElement pair in slotElement.ChildNodes) {
+							string name = pair.Name;
+							string value = pair.InnerText;
+							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(frame, slot, name, value);
+							elements.Add(element);
+						}
+						// read attributes of slot as name="value"
+						foreach (XmlAttribute pair in slotElement.Attributes) {
+							string name = pair.Name;
+							string value = pair.Value;
+							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(frame, slot, name, value);
+							elements.Add(element);
+						}
+
+						if (elements.Count == start) { // the slot had no name/value pairs
+							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(frame, slot, String.Empty, String.Empty);
+							elements.Add(element);
+						}
+					}
 				}
 			}
 			builder.AddConstructorArg(elements);

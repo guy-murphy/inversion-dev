@@ -19,59 +19,67 @@ namespace Inversion.Process.Behaviour {
 			_elements = elements.ToImmutableHashSet();
 		}
 
-		public IEnumerable<Element> GetElements(string scope) {
-			return this.Elements.Where(element => element.Scope == scope);
+		public IEnumerable<Element> GetElements(string frame) {
+			return this.Elements.Where(element => element.Frame == frame);
 		}
 
-		public IEnumerable<Element> GetElements(string scope, string name) {
-			return this.Elements.Where(element => element.Scope == scope && element.Name == name);
+		public IEnumerable<Element> GetElements(string frame, string slot) {
+			return this.Elements.Where(element => element.Frame == frame && element.Slot == slot);
 		}
 
-		public IEnumerable<string> GetValues(string scope, string name) {
-			return this.GetElements(scope, name).Select(element => element.Value);
+		public IEnumerable<Element> GetElements(string frame, string slot, string name) {
+			return this.Elements.Where(element => element.Frame == frame && element.Slot == slot && element.Name == name);
 		}
 
-		public string GetValue(string scope, string name) {
-			return this.GetValues(scope, name).FirstOrDefault();
+		public string GetValue(string frame, string slot, string name) {
+			return this.GetValues(frame, slot, name).FirstOrDefault();
 		}
 
-		public bool Has(string scope, string name) {
-			return this.GetElements(scope, name).Any();
+		public IEnumerable<string> GetValues(string frame, string slot, string name) {
+			return this.GetElements(frame, slot, name).Select(element => element.Value);
 		}
 
-		public bool Has(string scope, string name, string value) {
-			return this.Elements.Any(it => it.Scope == scope && it.Name == name && it.Value == value);
+		public IDictionary<string, string> GetMap(string frame, string slot) {
+			return this.GetElements(frame, slot).ToDictionary(e => e.Name, e => e.Value);
+		}
+		
+		public IEnumerable<string> GetNames(string frame, string slot) {
+			return this.GetElements(frame, slot).Select(element => element.Name);
 		}
 
-		public bool HasAll(string scope, string name, params string[] values) {
-			return this.GetValues(scope, name).All(value => values.Contains(value));
+		public IEnumerable<string> GetSlots(string frame) {
+			return this.GetElements(frame).Select(element => element.Slot);
 		}
 
-		public bool HasAny(string scope, string name, params string[] values) {
-			return this.GetValues(scope, name).Any(value => values.Contains(value));
+		public bool Has(string frame, string slot, string name, string value) {
+			return this.Elements.Any(e => e.Frame == frame && e.Slot == slot && e.Name == name && e.Value == value);
+		}
+		
+		public bool HasAll(string frame, string slot, string name, params string[] values) {
+			return this.GetValues(frame, slot, name).All(value => values.Contains(value));
 		}
 
-		public IDataDictionary<string> GetMap(string scope) {
-			DataDictionary<string> map = new DataDictionary<string>();
-			foreach (Element element in this.GetElements(scope)) {
-				map.Add(element.Name, element.Value);
-			}
-			return map;
+		public bool HasAny(string frame, string slot, string name, params string[] values) {
+			return this.GetValues(frame, slot, name).Any(value => values.Contains(value));
 		}
 
-		public class Element : Tuple<string, string, string> {
+		
 
-			public string Scope { get { return this.Item1; } }
-			public string Name { get { return this.Item2; } }
-			public string Value { get { return this.Item3; } }
+		public class Element : Tuple<string, string, string, string> {
+
+			public string Frame { get { return this.Item1; } }
+			public string Slot { get { return this.Item2; } }
+			public string Name { get { return this.Item3; } }
+			public string Value { get { return this.Item4; } }
 
 			/// <summary>
 			/// Initializes a new instance of the element class.
 			/// </summary>
-			/// <param name="scope">The value of the tuple's first component.</param>
-			/// <param name="name">The value of the tuple's second component.</param>
+			/// <param name="frame">The value of the tuple's first component.</param>
+			/// <param name="slot">The value of the tuple's second component.</param>
+			/// <param name="name">The value of the tuple's third component.</param>
 			/// <param name="value">The value of the tuple's third component.</param>
-			public Element(string scope, string name, string value) : base(scope, name, value) { }
+			public Element(string frame, string slot, string name, string value) : base(frame, slot, name, value) { }
 		}
 
 	}
