@@ -6,18 +6,26 @@ namespace Inversion.Process.Behaviour {
 	/// to act upont he behaviours configuration to match with state expressed on the
 	/// process context.
 	/// </summary>
-	public abstract class MatchingBehaviour: ApplicationBehaviour {
+	public abstract class MatchingBehaviour: ConfiguredBehaviour {
+		/// <summary>
+		/// Creates a new instance of the behaviour with no configuration.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		protected MatchingBehaviour(string respondsTo) : base(respondsTo) {}
+
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
-		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
-		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
-		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
-		protected MatchingBehaviour(string respondsTo, IDictionary<string, IEnumerable<string>> namedLists,
-			IDictionary<string, IDictionary<string, string>> namedMaps,
-			IDictionary<string, IDictionary<string, IEnumerable<string>>> namedMappedLists)
-			: base(respondsTo, namedLists, namedMaps, namedMappedLists) { }
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		protected MatchingBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
+
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		protected MatchingBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// Determines if the event specifies the behaviour by name.
@@ -32,11 +40,12 @@ namespace Inversion.Process.Behaviour {
 		/// The intent is to override for bespoke conditions.
 		/// </remarks>
 		public override bool Condition(IEvent ev, ProcessContext context) {
-			return base.Condition(ev, context) &&
-				   this.HasAllParms(context) &&
-				   this.HasAllControlStates(context) &&
-				   this.HasAllFlags(context) &&
-				   this.MacthesAllParamValues(context);
+			return base.Condition(ev, context) && this.HasAllParams(context);
+			//&&
+			//   this.HasAllParms(context) &&
+			//   this.HasAllControlStates(context) &&
+			//   this.HasAllFlags(context) &&
+			//   this.MacthesAllParamValues(context);
 		}
 	}
 }

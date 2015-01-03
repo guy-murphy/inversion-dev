@@ -1,17 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Inversion.Process.Behaviour {
-	public abstract class ConfiguredBehaviour: ProcessBehaviour {
+	public interface IConfiguredBehaviour: IProcessBehaviour {
+		/// <summary>
+		/// Exposes the configuration of the behaviour for querying.
+		/// </summary>
+		BehaviourConfiguration Configuration { get; }
+	}
+
+	/// <summary>
+	/// A behaviour that can be configured.
+	/// </summary>
+	public abstract class ConfiguredBehaviour: ProcessBehaviour, IConfiguredBehaviour {
 
 		private readonly BehaviourConfiguration _config;
 
+		/// <summary>
+		/// Exposes the configuration of the behaviour for querying.
+		/// </summary>
 		public BehaviourConfiguration Configuration {
 			get { return _config; }
 		}
+
+		/// <summary>
+		/// Creates a new instance of the behaviour with no configuration.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		protected ConfiguredBehaviour(string respondsTo) : this(respondsTo, new BehaviourConfiguration()) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.

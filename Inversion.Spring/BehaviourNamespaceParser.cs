@@ -19,7 +19,7 @@ namespace Inversion.Spring {
 		/// </summary>
 		public override void Init() {
 
-			this.RegisterObjectDefinitionParser("behaviour", new BehaviourObjectDefinationParser());
+			this.RegisterObjectDefinitionParser("configure", new BehaviourObjectDefinationParser());
 			this.RegisterObjectDefinitionParser("message-trace", new BehaviourObjectDefinationParser());
 			this.RegisterObjectDefinitionParser("message-sequence", new BehaviourObjectDefinationParser());
 

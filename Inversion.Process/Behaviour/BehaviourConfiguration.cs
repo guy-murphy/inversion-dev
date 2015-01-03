@@ -15,6 +15,10 @@ namespace Inversion.Process.Behaviour {
 			get { return _elements; }
 		}
 
+		public BehaviourConfiguration() {
+			_elements = ImmutableHashSet<Element>.Empty;
+		}
+
 		public BehaviourConfiguration(IEnumerable<Element> elements) {
 			_elements = elements.ToImmutableHashSet();
 		}
@@ -59,6 +63,10 @@ namespace Inversion.Process.Behaviour {
 
 		public bool Has(string frame, string slot, string name, string value) {
 			return this.Elements.Any(e => e.Frame == frame && e.Slot == slot && e.Name == name && e.Value == value);
+		}
+
+		public bool Has(string frame, string slot, string name) {
+			return this.Elements.Any(e => e.Frame == frame && e.Slot == slot && e.Name == name);
 		}
 		
 		public bool HasAll(string frame, string slot, string name, params string[] values) {

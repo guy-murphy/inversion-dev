@@ -72,5 +72,17 @@
 		/// `true` if the condition is met; otherwise,  returns  `false`.
 		/// </returns>
 		bool Condition(IEvent ev);
+
+		/// <summary>
+		/// The considtion that determines whether of not the behaviours action
+		/// is valid to run.
+		/// </summary>
+		/// <param name="ev">The event to consider with the condition.</param>
+		/// <param name="context">The context to use.</param>
+		/// <returns>
+		/// `true` if the condition is met; otherwise,  returns  `false`.
+		/// </returns>
+		bool Condition(IEvent ev, ProcessContext context);
+
 	}
 }

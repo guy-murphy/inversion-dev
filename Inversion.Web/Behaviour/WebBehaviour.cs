@@ -10,17 +10,24 @@ namespace Inversion.Web.Behaviour {
 	/// </summary>
 	public abstract class WebBehaviour : MatchingBehaviour, IWebBehaviour {
 		/// <summary>
+		/// Creates a new instance of the behaviour with no configuration.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		protected WebBehaviour(string respondsTo) : base(respondsTo) {}
+
+		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
-		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
-		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
-		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
-		protected WebBehaviour(string respondsTo, 
-			IDictionary<string, IEnumerable<string>> namedLists = null,
-			IDictionary<string, IDictionary<string, string>> namedMaps = null,
-			IDictionary<string, IDictionary<string, IEnumerable<string>>> namedMappedLists = null)
-			: base(respondsTo, namedLists, namedMaps, namedMappedLists) { }
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		protected WebBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
+
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		protected WebBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// Determines if this behaviours action should be executed in

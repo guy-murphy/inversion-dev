@@ -64,7 +64,7 @@
     <Compile Include="Behaviour\BehaviourConfiguration.cs" />
     <Compile Include="Behaviour\ConfiguredBehaviour.cs" />
     <Compile Include="Behaviour\MatchingBehaviour.cs" />
-    <Compile Include="Behaviour\ApplicationBehaviour.cs" />
+    <Compile Include="Behaviour\_ApplicationBehaviour.cs" />
     <Compile Include="Behaviour\BehaviourConditionPredicates.cs" />
     <Compile Include="Behaviour\IApplicationBehaviour.cs" />
     <Compile Include="Behaviour\MessageTraceBehaviour.cs" />

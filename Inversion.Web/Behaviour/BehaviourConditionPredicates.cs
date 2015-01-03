@@ -19,7 +19,8 @@ namespace Inversion.Web.Behaviour {
 		/// `required-user-roles` configured for this behaviour.
 		/// </returns>
 		public static bool HasAnyUserRoles(this WebBehaviour self, WebContext ctx) {
-			return !self.NamedLists.ContainsKey("required-user-roles") || self.NamedLists["required-user-roles"].Any(role => ctx.User.IsInRole(role));
+			//return !self.NamedLists.ContainsKey("required-user-roles") || self.NamedLists["required-user-roles"].Any(role => ctx.User.IsInRole(role));
+			return !self.Configuration.Has("match", "user", "role") || self.Configuration.GetValues("match", "user", "role").Any(role => ctx.User.IsInRole(role));
 		}
 
 	}
