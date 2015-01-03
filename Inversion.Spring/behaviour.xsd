@@ -13,19 +13,6 @@
 >
 	<xsd:import namespace="http://www.springframework.net"/>
 
-	<xsd:element name="config">
-		<xsd:complexType>
-			<xsd:sequence>			
-				<xsd:any 
-					namespace="##any"
-					processContents="lax"
-					minOccurs="0"
-					maxOccurs="unbounded"
-				/>
-			</xsd:sequence>
-		</xsd:complexType>
-	</xsd:element>
-
 	<xsd:complexType name="configured-behaviour-type">
 		<xsd:complexContent>
 			<xsd:extension base="objects:identifiedType">
@@ -45,7 +32,7 @@
 
 
 
-	<xsd:element name="behaviour" type="configured-behaviour-type"></xsd:element>
+	<xsd:element name="configure" type="configured-behaviour-type"></xsd:element>
 
 	<xsd:element name="message-trace">
 		<xsd:complexType>

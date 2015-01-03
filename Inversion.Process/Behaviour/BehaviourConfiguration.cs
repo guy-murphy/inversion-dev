@@ -20,15 +20,15 @@ namespace Inversion.Process.Behaviour {
 		}
 
 		public IEnumerable<Element> GetElements(string frame) {
-			return this.Elements.Where(element => element.Frame == frame);
+			return this.Elements.Where(element => element.Frame == frame).OrderBy(e => e.Ordinal);
 		}
 
 		public IEnumerable<Element> GetElements(string frame, string slot) {
-			return this.Elements.Where(element => element.Frame == frame && element.Slot == slot);
+			return this.Elements.Where(element => element.Frame == frame && element.Slot == slot).OrderBy(e => e.Ordinal);
 		}
 
 		public IEnumerable<Element> GetElements(string frame, string slot, string name) {
-			return this.Elements.Where(element => element.Frame == frame && element.Slot == slot && element.Name == name);
+			return this.Elements.Where(element => element.Frame == frame && element.Slot == slot && element.Name == name).OrderBy(e => e.Ordinal);
 		}
 
 		public string GetValue(string frame, string slot, string name) {
@@ -40,15 +40,21 @@ namespace Inversion.Process.Behaviour {
 		}
 
 		public IDictionary<string, string> GetMap(string frame, string slot) {
-			return this.GetElements(frame, slot).ToDictionary(e => e.Name, e => e.Value);
+			Dictionary<string,string> map = new Dictionary<string, string>();
+			foreach (Element element in this.GetElements(frame, slot)) {
+				if (element.Name != String.Empty) {
+					map[element.Name] = element.Value;
+				}
+			}
+			return map;
 		}
 		
 		public IEnumerable<string> GetNames(string frame, string slot) {
-			return this.GetElements(frame, slot).Select(element => element.Name);
+			return this.GetElements(frame, slot).Select(element => element.Name).Distinct();
 		}
 
 		public IEnumerable<string> GetSlots(string frame) {
-			return this.GetElements(frame).Select(element => element.Slot);
+			return this.GetElements(frame).Select(element => element.Slot).Distinct();
 		}
 
 		public bool Has(string frame, string slot, string name, string value) {
@@ -65,21 +71,23 @@ namespace Inversion.Process.Behaviour {
 
 		
 
-		public class Element : Tuple<string, string, string, string> {
+		public class Element : Tuple<int, string, string, string, string> {
 
-			public string Frame { get { return this.Item1; } }
-			public string Slot { get { return this.Item2; } }
-			public string Name { get { return this.Item3; } }
-			public string Value { get { return this.Item4; } }
+			public int Ordinal { get { return this.Item1; } }
+			public string Frame { get { return this.Item2; } }
+			public string Slot { get { return this.Item3; } }
+			public string Name { get { return this.Item4; } }
+			public string Value { get { return this.Item5; } }
 
 			/// <summary>
 			/// Initializes a new instance of the element class.
 			/// </summary>
+			/// <param name="ordinal">The order in which this element comes relative to its siblings.</param>
 			/// <param name="frame">The value of the tuple's first component.</param>
 			/// <param name="slot">The value of the tuple's second component.</param>
 			/// <param name="name">The value of the tuple's third component.</param>
 			/// <param name="value">The value of the tuple's third component.</param>
-			public Element(string frame, string slot, string name, string value) : base(frame, slot, name, value) { }
+			public Element(int ordinal, string frame, string slot, string name, string value) : base(ordinal, frame, slot, name, value) { }
 		}
 
 	}

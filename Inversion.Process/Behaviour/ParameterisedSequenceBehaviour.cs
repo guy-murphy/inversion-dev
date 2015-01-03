@@ -7,19 +7,20 @@ namespace Inversion.Process.Behaviour {
 	/// A behaviour concerned with driving the processing of a
 	/// sequence of messages.
 	/// </summary>
-	public class ParameterisedSequenceBehaviour : MatchingBehaviour {
+	public class ParameterisedSequenceBehaviour : ConfiguredBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
-		/// <param name="namedLists">Named lists used to configure this behaviour.</param>
-		/// <param name="namedMaps">Named maps used to configure this behaviour.</param>
-		/// <param name="namedMappedLists">Named maps of lists used to configure this behaviour.</param>
-		public ParameterisedSequenceBehaviour(string respondsTo, 
-			IDictionary<string, IEnumerable<string>> namedLists,
-			IDictionary<string, IDictionary<string, string>> namedMaps,
-			IDictionary<string, IDictionary<string, IEnumerable<string>>> namedMappedLists)
-			: base(respondsTo, namedLists, namedMaps, namedMappedLists) { }
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		public ParameterisedSequenceBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
+
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		public ParameterisedSequenceBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// The action to perform when the `Condition(IEvent)` is met.
@@ -27,10 +28,8 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
 		public override void Action(IEvent ev, ProcessContext context) {
-			foreach (string seqRef in this.NamedLists["sequence"]) {
-				IDictionary<string, string> map = this.NamedMaps[seqRef];
-				string message = seqRef.TrimLeftBy(4);
-				context.Fire(message, map);
+			foreach (string slot in this.Configuration.GetSlots("fire")) {
+				context.Fire(slot, this.Configuration.GetMap("fire", slot));
 			}
 		}
 	}

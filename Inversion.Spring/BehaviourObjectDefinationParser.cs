@@ -31,6 +31,7 @@ namespace Inversion.Spring {
 			ns.AddNamespace("inv", "Inversion.Process.Behaviour");
 			XmlNodeList frames = xml.SelectNodes("inv:*", ns);
 			if (frames != null) {
+				int ordinal = 0;
 				foreach (XmlElement frameElement in frames) {
 					string frame = frameElement.Name;
 
@@ -38,25 +39,27 @@ namespace Inversion.Spring {
 						string slot = slotElement.Name;
 
 						int start = elements.Count;
-
 						// read children of slot as <name>value</name>
 						foreach (XmlElement pair in slotElement.ChildNodes) {
 							string name = pair.Name;
 							string value = pair.InnerText;
-							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(frame, slot, name, value);
+							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(ordinal, frame, slot, name, value);
 							elements.Add(element);
+							ordinal++;
 						}
 						// read attributes of slot as name="value"
 						foreach (XmlAttribute pair in slotElement.Attributes) {
 							string name = pair.Name;
 							string value = pair.Value;
-							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(frame, slot, name, value);
+							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(ordinal, frame, slot, name, value);
 							elements.Add(element);
+							ordinal++;
 						}
 
 						if (elements.Count == start) { // the slot had no name/value pairs
-							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(frame, slot, String.Empty, String.Empty);
+							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(ordinal, frame, slot, String.Empty, String.Empty);
 							elements.Add(element);
+							ordinal++;
 						}
 					}
 				}

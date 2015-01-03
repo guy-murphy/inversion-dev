@@ -21,7 +21,7 @@ namespace Inversion.Spring {
 
 			this.RegisterObjectDefinitionParser("behaviour", new BehaviourObjectDefinationParser());
 			this.RegisterObjectDefinitionParser("message-trace", new BehaviourObjectDefinationParser());
-
+			this.RegisterObjectDefinitionParser("message-sequence", new BehaviourObjectDefinationParser());
 
 		}
 	}
