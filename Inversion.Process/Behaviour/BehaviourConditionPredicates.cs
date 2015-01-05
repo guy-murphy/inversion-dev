@@ -10,59 +10,93 @@ namespace Inversion.Process.Behaviour {
 
 		/// <summary>
 		/// Determines whether or not the parameters 
+		/// specified exist in the current event.
+		/// </summary>
+		/// <param name="self">The behaviour to act upon.</param>
+		/// <param name="ev">The event to consult.</param>
+		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
+		public static bool EventHasAllParams(this IConfiguredBehaviour self, IEvent ev) {
+			return ev.HasParams(self.Configuration.GetNames("event", "has"));
+		}
+
+		/// <summary>
+		/// Determines whether or not all the key-value pairs
+		/// provided exist in the events parameters.
+		/// </summary>
+		/// <param name="self">The behaviour to act upon.</param>
+		/// <param name="ev">The event to consult.</param>
+		/// <returns>
+		/// Returns true if all the key-value pairs specified exists in the events
+		/// parameters; otherwise returns false.
+		/// </returns>
+		public static bool EventMatchesAllParamValues(this IConfiguredBehaviour self, IEvent ev) {
+			return ev.HasParamValues(self.Configuration.GetMap("event", "match"));
+		}
+
+		/// <summary>
+		/// Determines whether or not the parameters 
 		/// specified exist in the current context.
 		/// </summary>
 		/// <param name="self">The behaviour to act upon.</param>
 		/// <param name="ctx">The context to consult.</param>
 		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
-		public static bool HasAllParams(this IConfiguredBehaviour self, ProcessContext ctx) {
-			//return !self.NamedLists.ContainsKey("has-all-params") || ctx.HasParams(self.NamedLists["has-all-params"]);
-			return ctx.HasParams(self.Configuration.GetNames("has", "all-params"));
+		public static bool ContextHasAllParams(this IConfiguredBehaviour self, ProcessContext ctx) {
+			return ctx.HasParams(self.Configuration.GetNames("context", "has"));
 		}
 
-		///// <summary>
-		///// Determines whether or not all the key-value pairs
-		///// provided exist in the contexts parameters.
-		///// </summary>
-		///// <param name="self">The behaviour to act upon.</param>
-		///// <param name="ctx">The context to consult.</param>
-		///// <returns>
-		///// Returns true if all the key-value pairs specified exists in the contexts
-		///// parameters; otherwise returns false.
-		///// </returns>
-		//public static bool MacthesAllParamValues(this IConfiguredBehaviour self, ProcessContext ctx) {
-		//	return 
-		//		(!self.NamedMaps.ContainsKey("matching-all-param-values") 
-		//			|| ctx.HasParamValues(self.NamedMaps["matching-all-param-values"])
-		//		) &&
-		//		(!self.NamedMappedLists.ContainsKey("matching-all-param-values") 
-		//			|| ctx.HasParamValues(self.NamedMaps["matching-all-param-values"])
-		//		);
-		//}
+		/// <summary>
+		/// Determines whether or not all the key-value pairs
+		/// provided exist in the contexts parameters.
+		/// </summary>
+		/// <param name="self">The behaviour to act upon.</param>
+		/// <param name="ctx">The context to consult.</param>
+		/// <returns>
+		/// Returns true if all the key-value pairs specified exists in the contexts
+		/// parameters; otherwise returns false.
+		/// </returns>
+		public static bool ContextMacthesAllParamValues(this IConfiguredBehaviour self, ProcessContext ctx) {
+			return ctx.HasParamValues(self.Configuration.GetMap("context", "match"));
+		}
 
-		///// <summary>
-		///// Dtermines whether or not the control state has entries indexed
-		///// under the keys provided.
-		///// </summary>
-		///// <param name="self">The behaviour to act upon.</param>
-		///// <param name="ctx">The context to consult.</param>
-		///// <returns>
-		///// Returns true if all the specified keys exist in the control state;
-		///// otherwise returns false.
-		///// </returns>
-		//public static bool HasAllControlStates(this IConfiguredBehaviour self, ProcessContext ctx) {
-		//	return !self.NamedLists.ContainsKey("has-all-control-states") || ctx.HasControlState(self.NamedLists["has-all-control-states"]);
-		//}
+		/// <summary>
+		/// Determines whether or not all the key-value pairs
+		/// provided are NOT in the contexts parameters.
+		/// </summary>
+		/// <param name="self">The behaviour to act upon.</param>
+		/// <param name="ctx">The context to consult.</param>
+		/// <returns>
+		/// Returns true if all the key-value pairs specified are absent in the contexts
+		/// parameters; otherwise returns false.
+		/// </returns>
+		public static bool ContextExcludes(this IConfiguredBehaviour self, ProcessContext ctx) {
+			return !ctx.HasParamValues(self.Configuration.GetMap("context", "excludes"));
+		}
 
-		///// <summary>
-		///// Determines whether or not each of the specified
-		///// is set on the context.
-		///// </summary>
-		///// <param name="self">The behaviour to act upon.</param>
-		///// <param name="ctx">The context to consult.</param>
-		///// <returns>Returns true is all flags are set on the context; otherwise, returns false.</returns>
-		//public static bool HasAllFlags(this IConfiguredBehaviour self, ProcessContext ctx) {
-		//	return !self.NamedLists.ContainsKey("has-all-flags") || self.NamedLists["has-all-flags"].All(flag => ctx.IsFlagged(flag));
-		//}
+		/// <summary>
+		/// Dtermines whether or not the control state has entries indexed
+		/// under the keys provided.
+		/// </summary>
+		/// <param name="self">The behaviour to act upon.</param>
+		/// <param name="ctx">The context to consult.</param>
+		/// <returns>
+		/// Returns true if all the specified keys exist in the control state;
+		/// otherwise returns false.
+		/// </returns>
+		public static bool ContextHasAllControlStates(this IConfiguredBehaviour self, ProcessContext ctx) {
+			return ctx.HasControlState(self.Configuration.GetNames("control-state", "has"));
+		}
+
+		/// <summary>
+		/// Determines whether or not each of the specified
+		/// is set on the context.
+		/// </summary>
+		/// <param name="self">The behaviour to act upon.</param>
+		/// <param name="ctx">The context to consult.</param>
+		/// <returns>Returns true is all flags are set on the context; otherwise, returns false.</returns>
+		public static bool ContextHasAllFlags(this IConfiguredBehaviour self, ProcessContext ctx) {
+			return
+				self.Configuration.GetMap("context", "flagged")
+					.All(kv => kv.Value == "true" && ctx.IsFlagged(kv.Key) || !ctx.IsFlagged(kv.Key));
+		}
 	}
 }

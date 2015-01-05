@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using Spring.Objects.Factory.Xml;
 
 namespace Inversion.Spring {
+	/// <summary>
+	/// Registers tags to be used in configuration with the class that will process
+	/// those tags.
+	/// </summary>
 	[NamespaceParser(
 		Namespace = "Inversion.Process.Behaviour", 
 		SchemaLocationAssemblyHint = typeof(BehaviourNamespaceParser), 

@@ -60,6 +60,13 @@ namespace Inversion.Process {
 		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
 		bool HasParams(params string[] parms);
 		/// <summary>
+		/// Determines whether or not the parameters 
+		/// specified exist in the event.
+		/// </summary>
+		/// <param name="parms">The parameters to check for.</param>
+		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
+		bool HasParams(IEnumerable<string> parms);
+		/// <summary>
 		/// Determines whether or not all the key-value pairs
 		/// provided exist in the events parameters.
 		/// </summary>

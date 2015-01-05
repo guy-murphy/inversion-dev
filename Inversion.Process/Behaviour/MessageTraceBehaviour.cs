@@ -7,13 +7,26 @@ namespace Inversion.Process.Behaviour {
 	/// <summary>
 	/// A simple behaviour to wire up to test the simplest possible output.
 	/// </summary>
-	public class MessageTraceBehaviour : ProcessBehaviour {
+	public class MessageTraceBehaviour : MatchingBehaviour {
+		/// <summary>
+		/// Creates a new instance of the behaviour with no configuration.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		public MessageTraceBehaviour(string respondsTo) : base(respondsTo) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
-		public MessageTraceBehaviour(string respondsTo) : base(respondsTo) {}
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		public MessageTraceBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
+
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		public MessageTraceBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// The action to perform when the `Condition(IEvent)` is met.

@@ -7,7 +7,7 @@ namespace Inversion.Web.Behaviour {
 	/// <summary>
 	/// Provides a web behaviour with common config driven selection criteria.
 	/// </summary>
-	public abstract class MatchingWebBehaviour: MatchingBehaviour, IWebBehaviour, IConfiguredBehaviour {
+	public abstract class MatchingWebBehaviour: MatchingBehaviour, IWebBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour with no configuration.
 		/// </summary>
@@ -38,7 +38,8 @@ namespace Inversion.Web.Behaviour {
 		/// `true` if the condition is met; otherwise,  returns  `false`.
 		/// </returns>
 		public bool Condition(IEvent ev, WebContext context) {
-			return base.Condition(ev) && this.HasAnyUserRoles(context);
+			return base.Condition(ev, context) && 
+				this.HasAnyUserRoles(context);
 		}
 
 		/// <summary>

@@ -212,6 +212,16 @@ namespace Inversion.Process {
 		}
 
 		/// <summary>
+		/// Determines whether or not the parameters 
+		/// specified exist in the event.
+		/// </summary>
+		/// <param name="parms">The parameters to check for.</param>
+		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
+		public bool HasParams(IEnumerable<string> parms) {
+			return parms != null && parms.All(parm => this.Params.ContainsKey(parm));
+		}
+
+		/// <summary>
 		/// Determines whether or not all the key-value pairs
 		/// provided exist in the events parameters.
 		/// </summary>
