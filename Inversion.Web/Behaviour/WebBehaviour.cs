@@ -8,26 +8,12 @@ namespace Inversion.Web.Behaviour {
 	/// An abstract provision of basic web-centric features for process behaviours
 	/// being used in a web application.
 	/// </summary>
-	public abstract class WebBehaviour : MatchingBehaviour, IWebBehaviour {
+	public abstract class WebBehaviour : ProcessBehaviour, IWebBehaviour {
 		/// <summary>
-		/// Creates a new instance of the behaviour with no configuration.
+		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="respondsTo">The name of the behaviour.</param>
 		protected WebBehaviour(string respondsTo) : base(respondsTo) {}
-
-		/// <summary>
-		/// Creates a new instance of the behaviour.
-		/// </summary>
-		/// <param name="respondsTo">The message the behaviour will respond to.</param>
-		/// <param name="config">Configuration for the behaviour.</param>
-		protected WebBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
-
-		/// <summary>
-		/// Creates a new instance of the behaviour.
-		/// </summary>
-		/// <param name="respondsTo">The message the behaviour will respond to.</param>
-		/// <param name="config">Configuration for the behaviour.</param>
-		protected WebBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// Determines if this behaviours action should be executed in
@@ -46,11 +32,8 @@ namespace Inversion.Web.Behaviour {
 		/// <param name="ev">The event to consider.</param>
 		/// <param name="context">The context to consider.</param>
 		/// <returns></returns>
-		public virtual bool Condition(IEvent ev, WebContext context) {
-			// check the base condition
-			// and then whether the user for the current context
-			// has any of the roles specified
-			return base.Condition(ev) && this.HasAnyUserRoles(context);
+		public bool Condition(IEvent ev, WebContext context) {
+			return base.Condition(ev, context);
 		}
 
 		/// <summary>

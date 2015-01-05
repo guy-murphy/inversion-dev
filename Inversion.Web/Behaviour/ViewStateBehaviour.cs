@@ -3,6 +3,7 @@ using System.Linq;
 
 using Inversion.Collections;
 using Inversion.Process;
+using Inversion.Process.Behaviour;
 
 namespace Inversion.Web.Behaviour {
 
@@ -23,7 +24,7 @@ namespace Inversion.Web.Behaviour {
 	/// you would swap out for an alternate implementation.
 	/// </para>
 	/// </remarks>
-	public class ViewStateBehaviour : WebBehaviour {
+	public class ViewStateBehaviour : ProcessBehaviour {
 
 		/// <summary>
 		/// Instantiates a new view state behaviour configured with the message provided.
@@ -42,7 +43,7 @@ namespace Inversion.Web.Behaviour {
 		/// </remarks>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, ProcessContext context) {
 			DataDictionary<IData> model = new DataDictionary<IData>();
 
 			// copy from the context

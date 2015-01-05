@@ -1,0 +1,1554 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html class="index">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Inversion</title>
+        <meta name="viewport" content="width=device-width">
+
+		
+
+		
+			<link rel="stylesheet" type="text/css" href="assets/css/font.css?version=0.9.5.10" />
+			<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css?version=0.9.5.10" />
+			<link rel="stylesheet" type="text/css" href="assets/css/style.css?version=0.9.5.10" />
+			<link rel="stylesheet" type="text/css" href="assets/css/dynamic.css?version=0.9.5.10" />
+			
+			<!--[if IE 8]>
+				<script src="assets/js/vendor.ie8.js?version=0.9.5.10"></script>
+			<![endif]-->
+			<![if !IE 8]>
+				<script src="assets/js/vendor.js?version=0.9.5.10"></script>
+			<![endif]>
+
+			<script src="assets/js/app.js?version=0.9.5.10"></script>
+		
+
+		<script>
+			var homeString = "Home";
+			var searchIndex = [ 
+	
+			
+
+
+
+
+
+
+
+
+
+
+
+	{ "Name" : "Inversion", "Url" : "#namespace/Inversion", "Type" : "Namespace" },
+	
+		{ "Name" : "DataEx", "Url" : "#type/DataEx", "Type" : "Type" },
+
+		
+			{ "Name" : "ToJson", "Url" : "#type/DataEx?ToJson6", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/DataEx?ToJson7", "Type" : "Method" },
+		
+			{ "Name" : "ToJsonObject", "Url" : "#type/DataEx?ToJsonObject", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/DataEx?ToXml6", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/DataEx?ToXml7", "Type" : "Method" },
+		
+		{ "Name" : "DataView", "Url" : "#type/DataView", "Type" : "Type" },
+
+		
+			{ "Name" : "_data", "Url" : "#type/DataView?_data", "Type" : "Field" },
+		
+			{ "Name" : "_json", "Url" : "#type/DataView?_json", "Type" : "Field" },
+		
+			{ "Name" : "_xml", "Url" : "#type/DataView?_xml", "Type" : "Field" },
+		
+			{ "Name" : "Data", "Url" : "#type/DataView?Data", "Type" : "Property" },
+		
+			{ "Name" : "Clone", "Url" : "#type/DataView?Clone6", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/DataView?ToJson8", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/DataView?ToXml8", "Type" : "Method" },
+		
+		{ "Name" : "IConsumeData", "Url" : "#type/IConsumeData", "Type" : "Type" },
+
+		
+			{ "Name" : "FromConcrete", "Url" : "#type/IConsumeData?FromConcrete", "Type" : "Method" },
+		
+			{ "Name" : "FromJson", "Url" : "#type/IConsumeData?FromJson", "Type" : "Method" },
+		
+			{ "Name" : "ToConcrete", "Url" : "#type/IConsumeData?ToConcrete", "Type" : "Method" },
+		
+		{ "Name" : "IData", "Url" : "#type/IData", "Type" : "Type" },
+
+		
+			{ "Name" : "Data", "Url" : "#type/IData?Data", "Type" : "Property" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/IData?ToJson12", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/IData?ToXml12", "Type" : "Method" },
+		
+		{ "Name" : "IMutate", "Url" : "#type/IMutate", "Type" : "Type" },
+
+		
+			{ "Name" : "Mutate", "Url" : "#type/IMutate?Mutate", "Type" : "Method" },
+		
+		{ "Name" : "JDataObject", "Url" : "#type/JDataObject", "Type" : "Type" },
+
+		
+			{ "Name" : "Data", "Url" : "#type/JDataObject?Data", "Type" : "Property" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/JDataObject?ToJson13", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/JDataObject?ToXml13", "Type" : "Method" },
+		
+		{ "Name" : "TextData", "Url" : "#type/TextData", "Type" : "Type" },
+
+		
+			{ "Name" : "_data", "Url" : "#type/TextData?_data", "Type" : "Field" },
+		
+			{ "Name" : "_text", "Url" : "#type/TextData?_text", "Type" : "Field" },
+		
+			{ "Name" : "Data", "Url" : "#type/TextData?Data", "Type" : "Property" },
+		
+			{ "Name" : "Value", "Url" : "#type/TextData?Value", "Type" : "Property" },
+		
+			{ "Name" : "Clone", "Url" : "#type/TextData?Clone7", "Type" : "Method" },
+		
+			{ "Name" : "op_Implicit", "Url" : "#type/TextData?op_Implicit2", "Type" : "Method" },
+		
+			{ "Name" : "op_Implicit", "Url" : "#type/TextData?op_Implicit", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/TextData?ToJson14", "Type" : "Method" },
+		
+			{ "Name" : "ToString", "Url" : "#type/TextData?ToString", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/TextData?ToXml14", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Collections", "Url" : "#namespace/Inversion.Collections", "Type" : "Namespace" },
+	
+		{ "Name" : "ConcurrentDataCollection", "Url" : "#type/ConcurrentDataCollection", "Type" : "Type" },
+
+		
+			{ "Name" : "_label", "Url" : "#type/ConcurrentDataCollection?_label", "Type" : "Field" },
+		
+			{ "Name" : "Data", "Url" : "#type/ConcurrentDataCollection?Data", "Type" : "Property" },
+		
+			{ "Name" : "Label", "Url" : "#type/ConcurrentDataCollection?Label", "Type" : "Property" },
+		
+			{ "Name" : "Clone", "Url" : "#type/ConcurrentDataCollection?Clone", "Type" : "Method" },
+		
+			{ "Name" : "ContentToXml", "Url" : "#type/ConcurrentDataCollection?ContentToXml", "Type" : "Method" },
+		
+			{ "Name" : "ContextToJson", "Url" : "#type/ConcurrentDataCollection?ContextToJson", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/ConcurrentDataCollection?ToJson", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/ConcurrentDataCollection?ToXml", "Type" : "Method" },
+		
+		{ "Name" : "ConcurrentDataDictionary", "Url" : "#type/ConcurrentDataDictionary", "Type" : "Type" },
+
+		
+			{ "Name" : "Data", "Url" : "#type/ConcurrentDataDictionary?Data", "Type" : "Property" },
+		
+			{ "Name" : "Item", "Url" : "#type/ConcurrentDataDictionary?Item", "Type" : "Property" },
+		
+			{ "Name" : "Clone", "Url" : "#type/ConcurrentDataDictionary?Clone2", "Type" : "Method" },
+		
+			{ "Name" : "ContentToJson", "Url" : "#type/ConcurrentDataDictionary?ContentToJson", "Type" : "Method" },
+		
+			{ "Name" : "ContentToXml", "Url" : "#type/ConcurrentDataDictionary?ContentToXml2", "Type" : "Method" },
+		
+			{ "Name" : "Import", "Url" : "#type/ConcurrentDataDictionary?Import", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/ConcurrentDataDictionary?ToJson2", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/ConcurrentDataDictionary?ToXml2", "Type" : "Method" },
+		
+		{ "Name" : "DataCollection", "Url" : "#type/DataCollection", "Type" : "Type" },
+
+		
+			{ "Name" : "_label", "Url" : "#type/DataCollection?_label", "Type" : "Field" },
+		
+			{ "Name" : "Data", "Url" : "#type/DataCollection?Data", "Type" : "Property" },
+		
+			{ "Name" : "Label", "Url" : "#type/DataCollection?Label", "Type" : "Property" },
+		
+			{ "Name" : "Clone", "Url" : "#type/DataCollection?Clone3", "Type" : "Method" },
+		
+			{ "Name" : "ContentToXml", "Url" : "#type/DataCollection?ContentToXml3", "Type" : "Method" },
+		
+			{ "Name" : "ContextToJson", "Url" : "#type/DataCollection?ContextToJson2", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/DataCollection?ToJson3", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/DataCollection?ToXml3", "Type" : "Method" },
+		
+		{ "Name" : "DataDictionary", "Url" : "#type/DataDictionary", "Type" : "Type" },
+
+		
+			{ "Name" : "Data", "Url" : "#type/DataDictionary?Data", "Type" : "Property" },
+		
+			{ "Name" : "Clone", "Url" : "#type/DataDictionary?Clone4", "Type" : "Method" },
+		
+			{ "Name" : "ContentToJson", "Url" : "#type/DataDictionary?ContentToJson2", "Type" : "Method" },
+		
+			{ "Name" : "ContentToXml", "Url" : "#type/DataDictionary?ContentToXml4", "Type" : "Method" },
+		
+			{ "Name" : "Import", "Url" : "#type/DataDictionary?Import2", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/DataDictionary?ToJson4", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/DataDictionary?ToXml4", "Type" : "Method" },
+		
+		{ "Name" : "DataModel", "Url" : "#type/DataModel", "Type" : "Type" },
+
+		
+			{ "Name" : "_backing", "Url" : "#type/DataModel?_backing", "Type" : "Field" },
+		
+			{ "Name" : "Count", "Url" : "#type/DataModel?Count", "Type" : "Property" },
+		
+			{ "Name" : "Data", "Url" : "#type/DataModel?Data", "Type" : "Property" },
+		
+			{ "Name" : "IsReadOnly", "Url" : "#type/DataModel?IsReadOnly", "Type" : "Property" },
+		
+			{ "Name" : "Item", "Url" : "#type/DataModel?Item", "Type" : "Property" },
+		
+			{ "Name" : "Keys", "Url" : "#type/DataModel?Keys", "Type" : "Property" },
+		
+			{ "Name" : "Values", "Url" : "#type/DataModel?Values", "Type" : "Property" },
+		
+			{ "Name" : "Add", "Url" : "#type/DataModel?Add2", "Type" : "Method" },
+		
+			{ "Name" : "Add", "Url" : "#type/DataModel?Add", "Type" : "Method" },
+		
+			{ "Name" : "Clear", "Url" : "#type/DataModel?Clear", "Type" : "Method" },
+		
+			{ "Name" : "Clone", "Url" : "#type/DataModel?Clone5", "Type" : "Method" },
+		
+			{ "Name" : "Contains", "Url" : "#type/DataModel?Contains", "Type" : "Method" },
+		
+			{ "Name" : "ContainsKey", "Url" : "#type/DataModel?ContainsKey", "Type" : "Method" },
+		
+			{ "Name" : "CopyTo", "Url" : "#type/DataModel?CopyTo", "Type" : "Method" },
+		
+			{ "Name" : "GetEnumerator", "Url" : "#type/DataModel?GetEnumerator", "Type" : "Method" },
+		
+			{ "Name" : "Import", "Url" : "#type/DataModel?Import3", "Type" : "Method" },
+		
+			{ "Name" : "Remove", "Url" : "#type/DataModel?Remove2", "Type" : "Method" },
+		
+			{ "Name" : "Remove", "Url" : "#type/DataModel?Remove", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/DataModel?ToJson5", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/DataModel?ToXml5", "Type" : "Method" },
+		
+			{ "Name" : "TryGetMember", "Url" : "#type/DataModel?TryGetMember", "Type" : "Method" },
+		
+			{ "Name" : "TryGetValue", "Url" : "#type/DataModel?TryGetValue", "Type" : "Method" },
+		
+			{ "Name" : "TrySetMember", "Url" : "#type/DataModel?TrySetMember", "Type" : "Method" },
+		
+		{ "Name" : "IDataCollection", "Url" : "#type/IDataCollection", "Type" : "Type" },
+
+		
+			{ "Name" : "Label", "Url" : "#type/IDataCollection?Label", "Type" : "Property" },
+		
+			{ "Name" : "Add", "Url" : "#type/IDataCollection?Add3", "Type" : "Method" },
+		
+		{ "Name" : "IDataDictionary", "Url" : "#type/IDataDictionary3", "Type" : "Type" },
+
+		
+			{ "Name" : "Import", "Url" : "#type/IDataDictionary3?Import4", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Documentation.Generator", "Url" : "#namespace/Inversion.Documentation.Generator", "Type" : "Namespace" },
+	
+		{ "Name" : "MarkdownVisitor", "Url" : "#type/MarkdownVisitor", "Type" : "Type" },
+
+		
+			{ "Name" : "_builder", "Url" : "#type/MarkdownVisitor?_builder", "Type" : "Field" },
+		
+			{ "Name" : "_currentType", "Url" : "#type/MarkdownVisitor?_currentType", "Type" : "Field" },
+		
+			{ "Name" : "Markdown", "Url" : "#type/MarkdownVisitor?Markdown", "Type" : "Property" },
+		
+			{ "Name" : "_name", "Url" : "#type/MarkdownVisitor?_name", "Type" : "Method" },
+		
+			{ "Name" : "_normalizeLink", "Url" : "#type/MarkdownVisitor?_normalizeLink", "Type" : "Method" },
+		
+			{ "Name" : "VisitAssembly", "Url" : "#type/MarkdownVisitor?VisitAssembly", "Type" : "Method" },
+		
+			{ "Name" : "VisitC", "Url" : "#type/MarkdownVisitor?VisitC", "Type" : "Method" },
+		
+			{ "Name" : "VisitCode", "Url" : "#type/MarkdownVisitor?VisitCode", "Type" : "Method" },
+		
+			{ "Name" : "VisitDescription", "Url" : "#type/MarkdownVisitor?VisitDescription", "Type" : "Method" },
+		
+			{ "Name" : "VisitDocument", "Url" : "#type/MarkdownVisitor?VisitDocument", "Type" : "Method" },
+		
+			{ "Name" : "VisitExample", "Url" : "#type/MarkdownVisitor?VisitExample", "Type" : "Method" },
+		
+			{ "Name" : "VisitMember", "Url" : "#type/MarkdownVisitor?VisitMember", "Type" : "Method" },
+		
+			{ "Name" : "VisitMethod", "Url" : "#type/MarkdownVisitor?VisitMethod", "Type" : "Method" },
+		
+			{ "Name" : "VisitPara", "Url" : "#type/MarkdownVisitor?VisitPara", "Type" : "Method" },
+		
+			{ "Name" : "VisitParam", "Url" : "#type/MarkdownVisitor?VisitParam", "Type" : "Method" },
+		
+			{ "Name" : "VisitParamRef", "Url" : "#type/MarkdownVisitor?VisitParamRef", "Type" : "Method" },
+		
+			{ "Name" : "VisitProperty", "Url" : "#type/MarkdownVisitor?VisitProperty", "Type" : "Method" },
+		
+			{ "Name" : "VisitRemarks", "Url" : "#type/MarkdownVisitor?VisitRemarks", "Type" : "Method" },
+		
+			{ "Name" : "VisitReturns", "Url" : "#type/MarkdownVisitor?VisitReturns", "Type" : "Method" },
+		
+			{ "Name" : "VisitSee", "Url" : "#type/MarkdownVisitor?VisitSee", "Type" : "Method" },
+		
+			{ "Name" : "VisitSeeAlso", "Url" : "#type/MarkdownVisitor?VisitSeeAlso", "Type" : "Method" },
+		
+			{ "Name" : "VisitSummary", "Url" : "#type/MarkdownVisitor?VisitSummary", "Type" : "Method" },
+		
+			{ "Name" : "VisitText", "Url" : "#type/MarkdownVisitor?VisitText", "Type" : "Method" },
+		
+			{ "Name" : "VisitType", "Url" : "#type/MarkdownVisitor?VisitType", "Type" : "Method" },
+		
+			{ "Name" : "VisitTypeParam", "Url" : "#type/MarkdownVisitor?VisitTypeParam", "Type" : "Method" },
+		
+			{ "Name" : "VisitValue", "Url" : "#type/MarkdownVisitor?VisitValue", "Type" : "Method" },
+		
+		{ "Name" : "Program", "Url" : "#type/Program", "Type" : "Type" },
+
+		
+			{ "Name" : "Main", "Url" : "#type/Program?Main", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.DotLiquid.Behaviour.View", "Url" : "#namespace/Inversion.DotLiquid.Behaviour.View", "Type" : "Namespace" },
+	
+		{ "Name" : "DotLiquidViewBehaviour", "Url" : "#type/DotLiquidViewBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_contentType", "Url" : "#type/DotLiquidViewBehaviour?_contentType", "Type" : "Field" },
+		
+			{ "Name" : "_possibleTemplates", "Url" : "#type/DotLiquidViewBehaviour?_possibleTemplates3", "Type" : "Method" },
+		
+			{ "Name" : "Action", "Url" : "#type/DotLiquidViewBehaviour?Action22", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Extensions", "Url" : "#namespace/Inversion.Extensions", "Type" : "Namespace" },
+	
+		{ "Name" : "ArrayEx", "Url" : "#type/ArrayEx", "Type" : "Type" },
+
+		
+			{ "Name" : "DeepClone", "Url" : "#type/ArrayEx?DeepClone", "Type" : "Method" },
+		
+		{ "Name" : "DictionaryEx", "Url" : "#type/DictionaryEx", "Type" : "Type" },
+
+		
+			{ "Name" : "ContentToXml", "Url" : "#type/DictionaryEx?ContentToXml5", "Type" : "Method" },
+		
+			{ "Name" : "Import", "Url" : "#type/DictionaryEx?Import5", "Type" : "Method" },
+		
+		{ "Name" : "EnumerableEx", "Url" : "#type/EnumerableEx", "Type" : "Type" },
+
+		
+			{ "Name" : "CalculateHash", "Url" : "#type/EnumerableEx?CalculateHash", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/EnumerableEx?ToJson9", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/EnumerableEx?ToJson11", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/EnumerableEx?ToJson10", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/EnumerableEx?ToXml10", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/EnumerableEx?ToXml9", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/EnumerableEx?ToXml11", "Type" : "Method" },
+		
+		{ "Name" : "JsonWriterEx", "Url" : "#type/JsonWriterEx", "Type" : "Type" },
+
+		
+			{ "Name" : "WriteProperty", "Url" : "#type/JsonWriterEx?WriteProperty", "Type" : "Method" },
+		
+		{ "Name" : "ListEx", "Url" : "#type/ListEx", "Type" : "Type" },
+
+		
+			{ "Name" : "Peek", "Url" : "#type/ListEx?Peek2", "Type" : "Method" },
+		
+			{ "Name" : "Peek", "Url" : "#type/ListEx?Peek", "Type" : "Method" },
+		
+			{ "Name" : "Pop", "Url" : "#type/ListEx?Pop", "Type" : "Method" },
+		
+			{ "Name" : "Push", "Url" : "#type/ListEx?Push", "Type" : "Method" },
+		
+		{ "Name" : "StringBuilderEx", "Url" : "#type/StringBuilderEx", "Type" : "Type" },
+
+		
+			{ "Name" : "Filter", "Url" : "#type/StringBuilderEx?Filter", "Type" : "Method" },
+		
+			{ "Name" : "RemoveNonAlpha", "Url" : "#type/StringBuilderEx?RemoveNonAlpha", "Type" : "Method" },
+		
+			{ "Name" : "RemoveNonAlphaNumeric", "Url" : "#type/StringBuilderEx?RemoveNonAlphaNumeric", "Type" : "Method" },
+		
+			{ "Name" : "RemoveNonNumeric", "Url" : "#type/StringBuilderEx?RemoveNonNumeric", "Type" : "Method" },
+		
+			{ "Name" : "RemoveWhitespace", "Url" : "#type/StringBuilderEx?RemoveWhitespace", "Type" : "Method" },
+		
+			{ "Name" : "TrimEndsBy", "Url" : "#type/StringBuilderEx?TrimEndsBy", "Type" : "Method" },
+		
+			{ "Name" : "TrimLeftBy", "Url" : "#type/StringBuilderEx?TrimLeftBy", "Type" : "Method" },
+		
+			{ "Name" : "TrimRightBy", "Url" : "#type/StringBuilderEx?TrimRightBy", "Type" : "Method" },
+		
+		{ "Name" : "StringEx", "Url" : "#type/StringEx", "Type" : "Type" },
+
+		
+			{ "Name" : "_xmlName", "Url" : "#type/StringEx?_xmlName", "Type" : "Field" },
+		
+			{ "Name" : "AssertHasValue", "Url" : "#type/StringEx?AssertHasValue", "Type" : "Method" },
+		
+			{ "Name" : "Filter", "Url" : "#type/StringEx?Filter2", "Type" : "Method" },
+		
+			{ "Name" : "Hash", "Url" : "#type/StringEx?Hash", "Type" : "Method" },
+		
+			{ "Name" : "HasValue", "Url" : "#type/StringEx?HasValue", "Type" : "Method" },
+		
+			{ "Name" : "IsXmlName", "Url" : "#type/StringEx?IsXmlName", "Type" : "Method" },
+		
+			{ "Name" : "Prepend", "Url" : "#type/StringEx?Prepend", "Type" : "Method" },
+		
+			{ "Name" : "RemoveInvalidXmlCharacters", "Url" : "#type/StringEx?RemoveInvalidXmlCharacters", "Type" : "Method" },
+		
+			{ "Name" : "RemoveNonAlpha", "Url" : "#type/StringEx?RemoveNonAlpha2", "Type" : "Method" },
+		
+			{ "Name" : "RemoveNonAlphaNumeric", "Url" : "#type/StringEx?RemoveNonAlphaNumeric2", "Type" : "Method" },
+		
+			{ "Name" : "RemoveNonNumeric", "Url" : "#type/StringEx?RemoveNonNumeric2", "Type" : "Method" },
+		
+			{ "Name" : "RemoveWhitespace", "Url" : "#type/StringEx?RemoveWhitespace2", "Type" : "Method" },
+		
+			{ "Name" : "ReplaceKeys", "Url" : "#type/StringEx?ReplaceKeys", "Type" : "Method" },
+		
+			{ "Name" : "TrimEndsBy", "Url" : "#type/StringEx?TrimEndsBy2", "Type" : "Method" },
+		
+			{ "Name" : "TrimLeftBy", "Url" : "#type/StringEx?TrimLeftBy2", "Type" : "Method" },
+		
+			{ "Name" : "TrimRightBy", "Url" : "#type/StringEx?TrimRightBy2", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Naiad", "Url" : "#namespace/Inversion.Naiad", "Type" : "Namespace" },
+	
+		{ "Name" : "NamedMappings", "Url" : "#type/NamedMappings", "Type" : "Type" },
+
+		
+		{ "Name" : "ServiceContainer", "Url" : "#type/ServiceContainer2", "Type" : "Type" },
+
+		
+			{ "Name" : "_ctors", "Url" : "#type/ServiceContainer2?_ctors", "Type" : "Field" },
+		
+			{ "Name" : "_instance", "Url" : "#type/ServiceContainer2?_instance", "Type" : "Field" },
+		
+			{ "Name" : "_lock", "Url" : "#type/ServiceContainer2?_lock", "Type" : "Field" },
+		
+			{ "Name" : "Instance", "Url" : "#type/ServiceContainer2?Instance", "Type" : "Property" },
+		
+			{ "Name" : "ContainsService", "Url" : "#type/ServiceContainer2?ContainsService3", "Type" : "Method" },
+		
+			{ "Name" : "Dispose", "Url" : "#type/ServiceContainer2?Dispose5", "Type" : "Method" },
+		
+			{ "Name" : "Dispose", "Url" : "#type/ServiceContainer2?Dispose6", "Type" : "Method" },
+		
+			{ "Name" : "Finalize", "Url" : "#type/ServiceContainer2?Finalize2", "Type" : "Method" },
+		
+			{ "Name" : "GetService", "Url" : "#type/ServiceContainer2?GetService5", "Type" : "Method" },
+		
+			{ "Name" : "RegisterService", "Url" : "#type/ServiceContainer2?RegisterService", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Process", "Url" : "#namespace/Inversion.Process", "Type" : "Namespace" },
+	
+		{ "Name" : "DataCollectionEx", "Url" : "#type/DataCollectionEx", "Type" : "Type" },
+
+		
+			{ "Name" : "CreateMessage", "Url" : "#type/DataCollectionEx?CreateMessage", "Type" : "Method" },
+		
+			{ "Name" : "CreateMessage", "Url" : "#type/DataCollectionEx?CreateMessage2", "Type" : "Method" },
+		
+		{ "Name" : "ErrorMessage", "Url" : "#type/ErrorMessage", "Type" : "Type" },
+
+		
+			{ "Name" : "_data", "Url" : "#type/ErrorMessage?_data", "Type" : "Field" },
+		
+			{ "Name" : "_exception", "Url" : "#type/ErrorMessage?_exception", "Type" : "Field" },
+		
+			{ "Name" : "_message", "Url" : "#type/ErrorMessage?_message", "Type" : "Field" },
+		
+			{ "Name" : "Data", "Url" : "#type/ErrorMessage?Data", "Type" : "Property" },
+		
+			{ "Name" : "Exception", "Url" : "#type/ErrorMessage?Exception", "Type" : "Property" },
+		
+			{ "Name" : "Message", "Url" : "#type/ErrorMessage?Message", "Type" : "Property" },
+		
+			{ "Name" : "Clone", "Url" : "#type/ErrorMessage?Clone8", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/ErrorMessage?ToJson15", "Type" : "Method" },
+		
+			{ "Name" : "ToString", "Url" : "#type/ErrorMessage?ToString2", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/ErrorMessage?ToXml15", "Type" : "Method" },
+		
+		{ "Name" : "Event", "Url" : "#type/Event", "Type" : "Type" },
+
+		
+			{ "Name" : "_context", "Url" : "#type/Event?_context", "Type" : "Field" },
+		
+			{ "Name" : "_message", "Url" : "#type/Event?_message", "Type" : "Field" },
+		
+			{ "Name" : "_object", "Url" : "#type/Event?_object", "Type" : "Field" },
+		
+			{ "Name" : "_params", "Url" : "#type/Event?_params", "Type" : "Field" },
+		
+			{ "Name" : "Context", "Url" : "#type/Event?Context", "Type" : "Property" },
+		
+			{ "Name" : "Data", "Url" : "#type/Event?Data", "Type" : "Property" },
+		
+			{ "Name" : "Item", "Url" : "#type/Event?Item", "Type" : "Property" },
+		
+			{ "Name" : "Message", "Url" : "#type/Event?Message", "Type" : "Property" },
+		
+			{ "Name" : "Object", "Url" : "#type/Event?Object", "Type" : "Property" },
+		
+			{ "Name" : "Params", "Url" : "#type/Event?Params", "Type" : "Property" },
+		
+			{ "Name" : "Add", "Url" : "#type/Event?Add4", "Type" : "Method" },
+		
+			{ "Name" : "Clone", "Url" : "#type/Event?Clone9", "Type" : "Method" },
+		
+			{ "Name" : "Fire", "Url" : "#type/Event?Fire", "Type" : "Method" },
+		
+			{ "Name" : "FromJson", "Url" : "#type/Event?FromJson2", "Type" : "Method" },
+		
+			{ "Name" : "FromXml", "Url" : "#type/Event?FromXml", "Type" : "Method" },
+		
+			{ "Name" : "GetEnumerator", "Url" : "#type/Event?GetEnumerator2", "Type" : "Method" },
+		
+			{ "Name" : "HasParams", "Url" : "#type/Event?HasParams", "Type" : "Method" },
+		
+			{ "Name" : "HasParamValues", "Url" : "#type/Event?HasParamValues", "Type" : "Method" },
+		
+			{ "Name" : "HasRequiredParams", "Url" : "#type/Event?HasRequiredParams", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/Event?ToJson16", "Type" : "Method" },
+		
+			{ "Name" : "ToString", "Url" : "#type/Event?ToString3", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/Event?ToXml16", "Type" : "Method" },
+		
+		{ "Name" : "IEvent", "Url" : "#type/IEvent", "Type" : "Type" },
+
+		
+			{ "Name" : "Context", "Url" : "#type/IEvent?Context", "Type" : "Property" },
+		
+			{ "Name" : "Item", "Url" : "#type/IEvent?Item", "Type" : "Property" },
+		
+			{ "Name" : "Message", "Url" : "#type/IEvent?Message", "Type" : "Property" },
+		
+			{ "Name" : "Object", "Url" : "#type/IEvent?Object", "Type" : "Property" },
+		
+			{ "Name" : "Params", "Url" : "#type/IEvent?Params", "Type" : "Property" },
+		
+			{ "Name" : "Add", "Url" : "#type/IEvent?Add5", "Type" : "Method" },
+		
+			{ "Name" : "Fire", "Url" : "#type/IEvent?Fire2", "Type" : "Method" },
+		
+			{ "Name" : "HasParams", "Url" : "#type/IEvent?HasParams2", "Type" : "Method" },
+		
+			{ "Name" : "HasParamValues", "Url" : "#type/IEvent?HasParamValues2", "Type" : "Method" },
+		
+			{ "Name" : "HasRequiredParams", "Url" : "#type/IEvent?HasRequiredParams2", "Type" : "Method" },
+		
+		{ "Name" : "IServiceContainer", "Url" : "#type/IServiceContainer", "Type" : "Type" },
+
+		
+			{ "Name" : "ContainsService", "Url" : "#type/IServiceContainer?ContainsService", "Type" : "Method" },
+		
+			{ "Name" : "GetService", "Url" : "#type/IServiceContainer?GetService", "Type" : "Method" },
+		
+		{ "Name" : "ProcessContext", "Url" : "#type/ProcessContext", "Type" : "Type" },
+
+		
+			{ "Name" : "_bus", "Url" : "#type/ProcessContext?_bus", "Type" : "Field" },
+		
+			{ "Name" : "_cache", "Url" : "#type/ProcessContext?_cache", "Type" : "Field" },
+		
+			{ "Name" : "_controlState", "Url" : "#type/ProcessContext?_controlState", "Type" : "Field" },
+		
+			{ "Name" : "_errors", "Url" : "#type/ProcessContext?_errors", "Type" : "Field" },
+		
+			{ "Name" : "_flags", "Url" : "#type/ProcessContext?_flags", "Type" : "Field" },
+		
+			{ "Name" : "_isDisposed", "Url" : "#type/ProcessContext?_isDisposed", "Type" : "Field" },
+		
+			{ "Name" : "_messages", "Url" : "#type/ProcessContext?_messages", "Type" : "Field" },
+		
+			{ "Name" : "_params", "Url" : "#type/ProcessContext?_params", "Type" : "Field" },
+		
+			{ "Name" : "_serviceContainer", "Url" : "#type/ProcessContext?_serviceContainer", "Type" : "Field" },
+		
+			{ "Name" : "_steps", "Url" : "#type/ProcessContext?_steps", "Type" : "Field" },
+		
+			{ "Name" : "_timers", "Url" : "#type/ProcessContext?_timers", "Type" : "Field" },
+		
+			{ "Name" : "Bus", "Url" : "#type/ProcessContext?Bus", "Type" : "Property" },
+		
+			{ "Name" : "ControlState", "Url" : "#type/ProcessContext?ControlState", "Type" : "Property" },
+		
+			{ "Name" : "Errors", "Url" : "#type/ProcessContext?Errors", "Type" : "Property" },
+		
+			{ "Name" : "Flags", "Url" : "#type/ProcessContext?Flags", "Type" : "Property" },
+		
+			{ "Name" : "Messages", "Url" : "#type/ProcessContext?Messages", "Type" : "Property" },
+		
+			{ "Name" : "ObjectCache", "Url" : "#type/ProcessContext?ObjectCache", "Type" : "Property" },
+		
+			{ "Name" : "Params", "Url" : "#type/ProcessContext?Params", "Type" : "Property" },
+		
+			{ "Name" : "Services", "Url" : "#type/ProcessContext?Services", "Type" : "Property" },
+		
+			{ "Name" : "Timers", "Url" : "#type/ProcessContext?Timers", "Type" : "Property" },
+		
+			{ "Name" : "ViewSteps", "Url" : "#type/ProcessContext?ViewSteps", "Type" : "Property" },
+		
+			{ "Name" : "Completed", "Url" : "#type/ProcessContext?Completed", "Type" : "Method" },
+		
+			{ "Name" : "Dispose", "Url" : "#type/ProcessContext?Dispose", "Type" : "Method" },
+		
+			{ "Name" : "Dispose", "Url" : "#type/ProcessContext?Dispose2", "Type" : "Method" },
+		
+			{ "Name" : "Finalize", "Url" : "#type/ProcessContext?Finalize", "Type" : "Method" },
+		
+			{ "Name" : "Fire", "Url" : "#type/ProcessContext?Fire3", "Type" : "Method" },
+		
+			{ "Name" : "Fire", "Url" : "#type/ProcessContext?Fire4", "Type" : "Method" },
+		
+			{ "Name" : "Fire", "Url" : "#type/ProcessContext?Fire5", "Type" : "Method" },
+		
+			{ "Name" : "FireWith", "Url" : "#type/ProcessContext?FireWith", "Type" : "Method" },
+		
+			{ "Name" : "HasControlState", "Url" : "#type/ProcessContext?HasControlState2", "Type" : "Method" },
+		
+			{ "Name" : "HasControlState", "Url" : "#type/ProcessContext?HasControlState", "Type" : "Method" },
+		
+			{ "Name" : "HasParams", "Url" : "#type/ProcessContext?HasParams4", "Type" : "Method" },
+		
+			{ "Name" : "HasParams", "Url" : "#type/ProcessContext?HasParams3", "Type" : "Method" },
+		
+			{ "Name" : "HasParamValue", "Url" : "#type/ProcessContext?HasParamValue", "Type" : "Method" },
+		
+			{ "Name" : "HasParamValues", "Url" : "#type/ProcessContext?HasParamValues3", "Type" : "Method" },
+		
+			{ "Name" : "HasRequiredControlState", "Url" : "#type/ProcessContext?HasRequiredControlState", "Type" : "Method" },
+		
+			{ "Name" : "HasRequiredParams", "Url" : "#type/ProcessContext?HasRequiredParams3", "Type" : "Method" },
+		
+			{ "Name" : "IsFlagged", "Url" : "#type/ProcessContext?IsFlagged", "Type" : "Method" },
+		
+			{ "Name" : "ParamOrDefault", "Url" : "#type/ProcessContext?ParamOrDefault", "Type" : "Method" },
+		
+			{ "Name" : "Register", "Url" : "#type/ProcessContext?Register", "Type" : "Method" },
+		
+			{ "Name" : "Register", "Url" : "#type/ProcessContext?Register2", "Type" : "Method" },
+		
+			{ "Name" : "Register", "Url" : "#type/ProcessContext?Register3", "Type" : "Method" },
+		
+			{ "Name" : "ToString", "Url" : "#type/ProcessContext?ToString4", "Type" : "Method" },
+		
+		{ "Name" : "ProcessException", "Url" : "#type/ProcessException", "Type" : "Type" },
+
+		
+		{ "Name" : "ProcessTimer", "Url" : "#type/ProcessTimer", "Type" : "Type" },
+
+		
+			{ "Name" : "_start", "Url" : "#type/ProcessTimer?_start", "Type" : "Field" },
+		
+			{ "Name" : "_stop", "Url" : "#type/ProcessTimer?_stop", "Type" : "Field" },
+		
+			{ "Name" : "Data", "Url" : "#type/ProcessTimer?Data", "Type" : "Property" },
+		
+			{ "Name" : "Duration", "Url" : "#type/ProcessTimer?Duration", "Type" : "Property" },
+		
+			{ "Name" : "HasStopped", "Url" : "#type/ProcessTimer?HasStopped", "Type" : "Property" },
+		
+			{ "Name" : "Start", "Url" : "#type/ProcessTimer?Start", "Type" : "Property" },
+		
+			{ "Name" : "Stop", "Url" : "#type/ProcessTimer?Stop", "Type" : "Property" },
+		
+			{ "Name" : "Begin", "Url" : "#type/ProcessTimer?Begin", "Type" : "Method" },
+		
+			{ "Name" : "Clone", "Url" : "#type/ProcessTimer?Clone10", "Type" : "Method" },
+		
+			{ "Name" : "End", "Url" : "#type/ProcessTimer?End", "Type" : "Method" },
+		
+			{ "Name" : "ToJson", "Url" : "#type/ProcessTimer?ToJson17", "Type" : "Method" },
+		
+			{ "Name" : "ToXml", "Url" : "#type/ProcessTimer?ToXml17", "Type" : "Method" },
+		
+		{ "Name" : "ProcessTimerDictionary", "Url" : "#type/ProcessTimerDictionary", "Type" : "Type" },
+
+		
+			{ "Name" : "Begin", "Url" : "#type/ProcessTimerDictionary?Begin2", "Type" : "Method" },
+		
+			{ "Name" : "End", "Url" : "#type/ProcessTimerDictionary?End2", "Type" : "Method" },
+		
+			{ "Name" : "TimeAction", "Url" : "#type/ProcessTimerDictionary?TimeAction", "Type" : "Method" },
+		
+		{ "Name" : "ViewStep", "Url" : "#type/ViewStep", "Type" : "Type" },
+
+		
+			{ "Name" : "_content", "Url" : "#type/ViewStep?_content", "Type" : "Field" },
+		
+			{ "Name" : "_contentType", "Url" : "#type/ViewStep?_contentType", "Type" : "Field" },
+		
+			{ "Name" : "_model", "Url" : "#type/ViewStep?_model", "Type" : "Field" },
+		
+			{ "Name" : "_name", "Url" : "#type/ViewStep?_name", "Type" : "Field" },
+		
+			{ "Name" : "Content", "Url" : "#type/ViewStep?Content", "Type" : "Property" },
+		
+			{ "Name" : "ContentType", "Url" : "#type/ViewStep?ContentType", "Type" : "Property" },
+		
+			{ "Name" : "HasContent", "Url" : "#type/ViewStep?HasContent", "Type" : "Property" },
+		
+			{ "Name" : "HasModel", "Url" : "#type/ViewStep?HasModel", "Type" : "Property" },
+		
+			{ "Name" : "Model", "Url" : "#type/ViewStep?Model", "Type" : "Property" },
+		
+			{ "Name" : "Name", "Url" : "#type/ViewStep?Name", "Type" : "Property" },
+		
+		{ "Name" : "ViewSteps", "Url" : "#type/ViewSteps", "Type" : "Type" },
+
+		
+			{ "Name" : "_isDisposed", "Url" : "#type/ViewSteps?_isDisposed", "Type" : "Field" },
+		
+			{ "Name" : "_lock", "Url" : "#type/ViewSteps?_lock", "Type" : "Field" },
+		
+			{ "Name" : "HasSteps", "Url" : "#type/ViewSteps?HasSteps", "Type" : "Property" },
+		
+			{ "Name" : "Last", "Url" : "#type/ViewSteps?Last", "Type" : "Property" },
+		
+			{ "Name" : "CreateStep", "Url" : "#type/ViewSteps?CreateStep2", "Type" : "Method" },
+		
+			{ "Name" : "CreateStep", "Url" : "#type/ViewSteps?CreateStep", "Type" : "Method" },
+		
+			{ "Name" : "Dispose", "Url" : "#type/ViewSteps?Dispose3", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Process.Behaviour", "Url" : "#namespace/Inversion.Process.Behaviour", "Type" : "Namespace" },
+	
+		{ "Name" : "BehaviourConditionPredicates", "Url" : "#type/BehaviourConditionPredicates", "Type" : "Type" },
+
+		
+			{ "Name" : "HasAllParams", "Url" : "#type/BehaviourConditionPredicates?HasAllParams", "Type" : "Method" },
+		
+		{ "Name" : "BehaviourConfiguration", "Url" : "#type/BehaviourConfiguration", "Type" : "Type" },
+
+		
+			{ "Name" : "_elements", "Url" : "#type/BehaviourConfiguration?_elements", "Type" : "Field" },
+		
+			{ "Name" : "Elements", "Url" : "#type/BehaviourConfiguration?Elements", "Type" : "Property" },
+		
+			{ "Name" : "GetElements", "Url" : "#type/BehaviourConfiguration?GetElements", "Type" : "Method" },
+		
+			{ "Name" : "GetElements", "Url" : "#type/BehaviourConfiguration?GetElements2", "Type" : "Method" },
+		
+			{ "Name" : "GetElements", "Url" : "#type/BehaviourConfiguration?GetElements3", "Type" : "Method" },
+		
+			{ "Name" : "GetMap", "Url" : "#type/BehaviourConfiguration?GetMap", "Type" : "Method" },
+		
+			{ "Name" : "GetNames", "Url" : "#type/BehaviourConfiguration?GetNames", "Type" : "Method" },
+		
+			{ "Name" : "GetSlots", "Url" : "#type/BehaviourConfiguration?GetSlots", "Type" : "Method" },
+		
+			{ "Name" : "GetValue", "Url" : "#type/BehaviourConfiguration?GetValue", "Type" : "Method" },
+		
+			{ "Name" : "GetValues", "Url" : "#type/BehaviourConfiguration?GetValues", "Type" : "Method" },
+		
+			{ "Name" : "Has", "Url" : "#type/BehaviourConfiguration?Has2", "Type" : "Method" },
+		
+			{ "Name" : "Has", "Url" : "#type/BehaviourConfiguration?Has", "Type" : "Method" },
+		
+			{ "Name" : "HasAll", "Url" : "#type/BehaviourConfiguration?HasAll", "Type" : "Method" },
+		
+			{ "Name" : "HasAny", "Url" : "#type/BehaviourConfiguration?HasAny", "Type" : "Method" },
+		
+		{ "Name" : "ConfiguredBehaviour", "Url" : "#type/ConfiguredBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_config", "Url" : "#type/ConfiguredBehaviour?_config", "Type" : "Field" },
+		
+			{ "Name" : "Configuration", "Url" : "#type/ConfiguredBehaviour?Configuration", "Type" : "Property" },
+		
+		{ "Name" : "IApplicationBehaviour", "Url" : "#type/IApplicationBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "NamedLists", "Url" : "#type/IApplicationBehaviour?NamedLists", "Type" : "Property" },
+		
+			{ "Name" : "NamedMappedLists", "Url" : "#type/IApplicationBehaviour?NamedMappedLists", "Type" : "Property" },
+		
+			{ "Name" : "NamedMaps", "Url" : "#type/IApplicationBehaviour?NamedMaps", "Type" : "Property" },
+		
+		{ "Name" : "IConfiguredBehaviour", "Url" : "#type/IConfiguredBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Configuration", "Url" : "#type/IConfiguredBehaviour?Configuration", "Type" : "Property" },
+		
+		{ "Name" : "IProcessBehaviour", "Url" : "#type/IProcessBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "RespondsTo", "Url" : "#type/IProcessBehaviour?RespondsTo", "Type" : "Property" },
+		
+			{ "Name" : "Action", "Url" : "#type/IProcessBehaviour?Action3", "Type" : "Method" },
+		
+			{ "Name" : "Action", "Url" : "#type/IProcessBehaviour?Action4", "Type" : "Method" },
+		
+			{ "Name" : "Condition", "Url" : "#type/IProcessBehaviour?Condition2", "Type" : "Method" },
+		
+			{ "Name" : "Condition", "Url" : "#type/IProcessBehaviour?Condition3", "Type" : "Method" },
+		
+			{ "Name" : "Postprocess", "Url" : "#type/IProcessBehaviour?Postprocess", "Type" : "Method" },
+		
+			{ "Name" : "Preprocess", "Url" : "#type/IProcessBehaviour?Preprocess", "Type" : "Method" },
+		
+		{ "Name" : "MatchingBehaviour", "Url" : "#type/MatchingBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Condition", "Url" : "#type/MatchingBehaviour?Condition", "Type" : "Method" },
+		
+		{ "Name" : "MessageTraceBehaviour", "Url" : "#type/MessageTraceBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Action", "Url" : "#type/MessageTraceBehaviour?Action", "Type" : "Method" },
+		
+		{ "Name" : "ParameterisedSequenceBehaviour", "Url" : "#type/ParameterisedSequenceBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Action", "Url" : "#type/ParameterisedSequenceBehaviour?Action2", "Type" : "Method" },
+		
+		{ "Name" : "ProcessBehaviour", "Url" : "#type/ProcessBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_respondsTo", "Url" : "#type/ProcessBehaviour?_respondsTo", "Type" : "Field" },
+		
+			{ "Name" : "RespondsTo", "Url" : "#type/ProcessBehaviour?RespondsTo", "Type" : "Property" },
+		
+			{ "Name" : "Action", "Url" : "#type/ProcessBehaviour?Action5", "Type" : "Method" },
+		
+			{ "Name" : "Action", "Url" : "#type/ProcessBehaviour?Action6", "Type" : "Method" },
+		
+			{ "Name" : "Condition", "Url" : "#type/ProcessBehaviour?Condition4", "Type" : "Method" },
+		
+			{ "Name" : "Condition", "Url" : "#type/ProcessBehaviour?Condition5", "Type" : "Method" },
+		
+			{ "Name" : "Postprocess", "Url" : "#type/ProcessBehaviour?Postprocess2", "Type" : "Method" },
+		
+			{ "Name" : "Preprocess", "Url" : "#type/ProcessBehaviour?Preprocess2", "Type" : "Method" },
+		
+		{ "Name" : "RuntimeBehaviour", "Url" : "#type/RuntimeBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_action", "Url" : "#type/RuntimeBehaviour?_action", "Type" : "Field" },
+		
+			{ "Name" : "_condition", "Url" : "#type/RuntimeBehaviour?_condition", "Type" : "Field" },
+		
+			{ "Name" : "Action", "Url" : "#type/RuntimeBehaviour?Action7", "Type" : "Method" },
+		
+			{ "Name" : "Condition", "Url" : "#type/RuntimeBehaviour?Condition6", "Type" : "Method" },
+		
+		{ "Name" : "SimpleSequenceBehaviour", "Url" : "#type/SimpleSequenceBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_sequence", "Url" : "#type/SimpleSequenceBehaviour?_sequence", "Type" : "Field" },
+		
+			{ "Name" : "Action", "Url" : "#type/SimpleSequenceBehaviour?Action8", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Spring", "Url" : "#namespace/Inversion.Spring", "Type" : "Namespace" },
+	
+		{ "Name" : "BehaviourNamespaceParser", "Url" : "#type/BehaviourNamespaceParser", "Type" : "Type" },
+
+		
+			{ "Name" : "Init", "Url" : "#type/BehaviourNamespaceParser?Init", "Type" : "Method" },
+		
+		{ "Name" : "BehaviourObjectDefinationParser", "Url" : "#type/BehaviourObjectDefinationParser", "Type" : "Type" },
+
+		
+			{ "Name" : "ShouldGenerateIdAsFallback", "Url" : "#type/BehaviourObjectDefinationParser?ShouldGenerateIdAsFallback", "Type" : "Property" },
+		
+			{ "Name" : "DoParse", "Url" : "#type/BehaviourObjectDefinationParser?DoParse", "Type" : "Method" },
+		
+			{ "Name" : "GetObjectTypeName", "Url" : "#type/BehaviourObjectDefinationParser?GetObjectTypeName", "Type" : "Method" },
+		
+		{ "Name" : "ServiceContainer", "Url" : "#type/ServiceContainer", "Type" : "Type" },
+
+		
+			{ "Name" : "_container", "Url" : "#type/ServiceContainer?_container", "Type" : "Field" },
+		
+			{ "Name" : "_instance", "Url" : "#type/ServiceContainer?_instance", "Type" : "Field" },
+		
+			{ "Name" : "Instance", "Url" : "#type/ServiceContainer?Instance", "Type" : "Property" },
+		
+			{ "Name" : "ContainsService", "Url" : "#type/ServiceContainer?ContainsService2", "Type" : "Method" },
+		
+			{ "Name" : "Dispose", "Url" : "#type/ServiceContainer?Dispose4", "Type" : "Method" },
+		
+			{ "Name" : "GetService", "Url" : "#type/ServiceContainer?GetService2", "Type" : "Method" },
+		
+			{ "Name" : "GetService", "Url" : "#type/ServiceContainer?GetService3", "Type" : "Method" },
+		
+			{ "Name" : "GetService", "Url" : "#type/ServiceContainer?GetService4", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.StringTemplate.Behaviour.View", "Url" : "#namespace/Inversion.StringTemplate.Behaviour.View", "Type" : "Namespace" },
+	
+		{ "Name" : "StringTemplateViewBehaviour", "Url" : "#type/StringTemplateViewBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_contentType", "Url" : "#type/StringTemplateViewBehaviour?_contentType", "Type" : "Field" },
+		
+			{ "Name" : "_possibleTemplates", "Url" : "#type/StringTemplateViewBehaviour?_possibleTemplates4", "Type" : "Method" },
+		
+			{ "Name" : "Action", "Url" : "#type/StringTemplateViewBehaviour?Action23", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Web", "Url" : "#namespace/Inversion.Web", "Type" : "Namespace" },
+	
+		{ "Name" : "IInversionHandler", "Url" : "#type/IInversionHandler", "Type" : "Type" },
+
+		
+			{ "Name" : "ProcessRequest", "Url" : "#type/IInversionHandler?ProcessRequest", "Type" : "Method" },
+		
+		{ "Name" : "UrlInfo", "Url" : "#type/UrlInfo", "Type" : "Type" },
+
+		
+			{ "Name" : "_match", "Url" : "#type/UrlInfo?_match", "Type" : "Field" },
+		
+			{ "Name" : "_query", "Url" : "#type/UrlInfo?_query", "Type" : "Field" },
+		
+			{ "Name" : "_regex", "Url" : "#type/UrlInfo?_regex", "Type" : "Field" },
+		
+			{ "Name" : "_url", "Url" : "#type/UrlInfo?_url", "Type" : "Field" },
+		
+			{ "Name" : "DefaultRegex", "Url" : "#type/UrlInfo?DefaultRegex", "Type" : "Field" },
+		
+			{ "Name" : "DefaultRegexSpec", "Url" : "#type/UrlInfo?DefaultRegexSpec", "Type" : "Field" },
+		
+			{ "Name" : "AppPath", "Url" : "#type/UrlInfo?AppPath", "Type" : "Property" },
+		
+			{ "Name" : "AppUrl", "Url" : "#type/UrlInfo?AppUrl", "Type" : "Property" },
+		
+			{ "Name" : "Domain", "Url" : "#type/UrlInfo?Domain", "Type" : "Property" },
+		
+			{ "Name" : "Extension", "Url" : "#type/UrlInfo?Extension", "Type" : "Property" },
+		
+			{ "Name" : "File", "Url" : "#type/UrlInfo?File", "Type" : "Property" },
+		
+			{ "Name" : "FullPath", "Url" : "#type/UrlInfo?FullPath", "Type" : "Property" },
+		
+			{ "Name" : "Match", "Url" : "#type/UrlInfo?Match", "Type" : "Property" },
+		
+			{ "Name" : "Protocol", "Url" : "#type/UrlInfo?Protocol", "Type" : "Property" },
+		
+			{ "Name" : "Query", "Url" : "#type/UrlInfo?Query", "Type" : "Property" },
+		
+			{ "Name" : "QueryString", "Url" : "#type/UrlInfo?QueryString", "Type" : "Property" },
+		
+			{ "Name" : "Regex", "Url" : "#type/UrlInfo?Regex", "Type" : "Property" },
+		
+			{ "Name" : "Tail", "Url" : "#type/UrlInfo?Tail", "Type" : "Property" },
+		
+			{ "Name" : "Url", "Url" : "#type/UrlInfo?Url", "Type" : "Property" },
+		
+			{ "Name" : "Clone", "Url" : "#type/UrlInfo?Clone11", "Type" : "Method" },
+		
+			{ "Name" : "ProcessUrl", "Url" : "#type/UrlInfo?ProcessUrl", "Type" : "Method" },
+		
+		{ "Name" : "WebApplication", "Url" : "#type/WebApplication", "Type" : "Type" },
+
+		
+			{ "Name" : "_baseDirectory", "Url" : "#type/WebApplication?_baseDirectory", "Type" : "Field" },
+		
+			{ "Name" : "BaseDirectory", "Url" : "#type/WebApplication?BaseDirectory", "Type" : "Property" },
+		
+		{ "Name" : "WebContext", "Url" : "#type/WebContext", "Type" : "Type" },
+
+		
+			{ "Name" : "_application", "Url" : "#type/WebContext?_application", "Type" : "Field" },
+		
+			{ "Name" : "_request", "Url" : "#type/WebContext?_request", "Type" : "Field" },
+		
+			{ "Name" : "_response", "Url" : "#type/WebContext?_response", "Type" : "Field" },
+		
+			{ "Name" : "_underlyingContext", "Url" : "#type/WebContext?_underlyingContext", "Type" : "Field" },
+		
+			{ "Name" : "Application", "Url" : "#type/WebContext?Application", "Type" : "Property" },
+		
+			{ "Name" : "Cache", "Url" : "#type/WebContext?Cache", "Type" : "Property" },
+		
+			{ "Name" : "Request", "Url" : "#type/WebContext?Request", "Type" : "Property" },
+		
+			{ "Name" : "Response", "Url" : "#type/WebContext?Response", "Type" : "Property" },
+		
+			{ "Name" : "UnderlyingContext", "Url" : "#type/WebContext?UnderlyingContext", "Type" : "Property" },
+		
+			{ "Name" : "User", "Url" : "#type/WebContext?User", "Type" : "Property" },
+		
+		{ "Name" : "WebException", "Url" : "#type/WebException", "Type" : "Type" },
+
+		
+			{ "Name" : "_status", "Url" : "#type/WebException?_status", "Type" : "Field" },
+		
+			{ "Name" : "Status", "Url" : "#type/WebException?Status", "Type" : "Property" },
+		
+		{ "Name" : "WebRequest", "Url" : "#type/WebRequest", "Type" : "Type" },
+
+		
+			{ "Name" : "_flags", "Url" : "#type/WebRequest?_flags", "Type" : "Field" },
+		
+			{ "Name" : "_headers", "Url" : "#type/WebRequest?_headers", "Type" : "Field" },
+		
+			{ "Name" : "_params", "Url" : "#type/WebRequest?_params", "Type" : "Field" },
+		
+			{ "Name" : "_payload", "Url" : "#type/WebRequest?_payload", "Type" : "Field" },
+		
+			{ "Name" : "_underlyingRequest", "Url" : "#type/WebRequest?_underlyingRequest", "Type" : "Field" },
+		
+			{ "Name" : "_urlInfo", "Url" : "#type/WebRequest?_urlInfo", "Type" : "Field" },
+		
+			{ "Name" : "Cookies", "Url" : "#type/WebRequest?Cookies", "Type" : "Property" },
+		
+			{ "Name" : "Files", "Url" : "#type/WebRequest?Files", "Type" : "Property" },
+		
+			{ "Name" : "Flags", "Url" : "#type/WebRequest?Flags", "Type" : "Property" },
+		
+			{ "Name" : "Headers", "Url" : "#type/WebRequest?Headers", "Type" : "Property" },
+		
+			{ "Name" : "IsGet", "Url" : "#type/WebRequest?IsGet", "Type" : "Property" },
+		
+			{ "Name" : "IsPost", "Url" : "#type/WebRequest?IsPost", "Type" : "Property" },
+		
+			{ "Name" : "Method", "Url" : "#type/WebRequest?Method", "Type" : "Property" },
+		
+			{ "Name" : "Params", "Url" : "#type/WebRequest?Params", "Type" : "Property" },
+		
+			{ "Name" : "Payload", "Url" : "#type/WebRequest?Payload", "Type" : "Property" },
+		
+			{ "Name" : "UnderlyingRequest", "Url" : "#type/WebRequest?UnderlyingRequest", "Type" : "Property" },
+		
+			{ "Name" : "UrlInfo", "Url" : "#type/WebRequest?UrlInfo", "Type" : "Property" },
+		
+		{ "Name" : "WebResponse", "Url" : "#type/WebResponse", "Type" : "Type" },
+
+		
+			{ "Name" : "_underlyingResponse", "Url" : "#type/WebResponse?_underlyingResponse", "Type" : "Field" },
+		
+			{ "Name" : "ContentType", "Url" : "#type/WebResponse?ContentType", "Type" : "Property" },
+		
+			{ "Name" : "Cookies", "Url" : "#type/WebResponse?Cookies", "Type" : "Property" },
+		
+			{ "Name" : "Output", "Url" : "#type/WebResponse?Output", "Type" : "Property" },
+		
+			{ "Name" : "OutputStream", "Url" : "#type/WebResponse?OutputStream", "Type" : "Property" },
+		
+			{ "Name" : "StatusCode", "Url" : "#type/WebResponse?StatusCode", "Type" : "Property" },
+		
+			{ "Name" : "StatusDescription", "Url" : "#type/WebResponse?StatusDescription", "Type" : "Property" },
+		
+			{ "Name" : "UnderlyingResponse", "Url" : "#type/WebResponse?UnderlyingResponse", "Type" : "Property" },
+		
+			{ "Name" : "End", "Url" : "#type/WebResponse?End3", "Type" : "Method" },
+		
+			{ "Name" : "PermanentRedirect", "Url" : "#type/WebResponse?PermanentRedirect", "Type" : "Method" },
+		
+			{ "Name" : "Redirect", "Url" : "#type/WebResponse?Redirect", "Type" : "Method" },
+		
+			{ "Name" : "Write", "Url" : "#type/WebResponse?Write", "Type" : "Method" },
+		
+			{ "Name" : "WriteFormat", "Url" : "#type/WebResponse?WriteFormat", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Web.Behaviour", "Url" : "#namespace/Inversion.Web.Behaviour", "Type" : "Namespace" },
+	
+		{ "Name" : "BehaviourConditionPredicates", "Url" : "#type/BehaviourConditionPredicates2", "Type" : "Type" },
+
+		
+			{ "Name" : "HasAnyUserRoles", "Url" : "#type/BehaviourConditionPredicates2?HasAnyUserRoles", "Type" : "Method" },
+		
+		{ "Name" : "BootstrapBehaviour", "Url" : "#type/BootstrapBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_params", "Url" : "#type/BootstrapBehaviour?_params", "Type" : "Field" },
+		
+			{ "Name" : "Parameters", "Url" : "#type/BootstrapBehaviour?Parameters", "Type" : "Property" },
+		
+			{ "Name" : "Action", "Url" : "#type/BootstrapBehaviour?Action9", "Type" : "Method" },
+		
+		{ "Name" : "IWebBehaviour", "Url" : "#type/IWebBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Action", "Url" : "#type/IWebBehaviour?Action10", "Type" : "Method" },
+		
+		{ "Name" : "ParseRequestBehaviour", "Url" : "#type/ParseRequestBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_appDirectory", "Url" : "#type/ParseRequestBehaviour?_appDirectory", "Type" : "Field" },
+		
+			{ "Name" : "Action", "Url" : "#type/ParseRequestBehaviour?Action11", "Type" : "Method" },
+		
+		{ "Name" : "ProcessViewsBehaviour", "Url" : "#type/ProcessViewsBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Action", "Url" : "#type/ProcessViewsBehaviour?Action12", "Type" : "Method" },
+		
+		{ "Name" : "RenderBehaviour", "Url" : "#type/RenderBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Action", "Url" : "#type/RenderBehaviour?Action13", "Type" : "Method" },
+		
+		{ "Name" : "ViewStateBehaviour", "Url" : "#type/ViewStateBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Action", "Url" : "#type/ViewStateBehaviour?Action14", "Type" : "Method" },
+		
+		{ "Name" : "WebBehaviour", "Url" : "#type/WebBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "Action", "Url" : "#type/WebBehaviour?Action19", "Type" : "Method" },
+		
+			{ "Name" : "Action", "Url" : "#type/WebBehaviour?Action20", "Type" : "Method" },
+		
+			{ "Name" : "Action", "Url" : "#type/WebBehaviour?Action21", "Type" : "Method" },
+		
+			{ "Name" : "Condition", "Url" : "#type/WebBehaviour?Condition7", "Type" : "Method" },
+		
+			{ "Name" : "Condition", "Url" : "#type/WebBehaviour?Condition8", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Web.Behaviour.View", "Url" : "#namespace/Inversion.Web.Behaviour.View", "Type" : "Namespace" },
+	
+		{ "Name" : "JsonViewBehaviour", "Url" : "#type/JsonViewBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_contentType", "Url" : "#type/JsonViewBehaviour?_contentType", "Type" : "Field" },
+		
+			{ "Name" : "Action", "Url" : "#type/JsonViewBehaviour?Action15", "Type" : "Method" },
+		
+		{ "Name" : "RazorViewBehaviour", "Url" : "#type/RazorViewBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_contentType", "Url" : "#type/RazorViewBehaviour?_contentType", "Type" : "Field" },
+		
+			{ "Name" : "_possibleTemplates", "Url" : "#type/RazorViewBehaviour?_possibleTemplates", "Type" : "Method" },
+		
+			{ "Name" : "Action", "Url" : "#type/RazorViewBehaviour?Action16", "Type" : "Method" },
+		
+		{ "Name" : "XmlViewBehaviour", "Url" : "#type/XmlViewBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_contentType", "Url" : "#type/XmlViewBehaviour?_contentType", "Type" : "Field" },
+		
+			{ "Name" : "Action", "Url" : "#type/XmlViewBehaviour?Action17", "Type" : "Method" },
+		
+		{ "Name" : "XsltViewBehaviour", "Url" : "#type/XsltViewBehaviour", "Type" : "Type" },
+
+		
+			{ "Name" : "_contentType", "Url" : "#type/XsltViewBehaviour?_contentType", "Type" : "Field" },
+		
+			{ "Name" : "_enableCache", "Url" : "#type/XsltViewBehaviour?_enableCache", "Type" : "Field" },
+		
+			{ "Name" : "_possibleTemplates", "Url" : "#type/XsltViewBehaviour?_possibleTemplates2", "Type" : "Method" },
+		
+			{ "Name" : "Action", "Url" : "#type/XsltViewBehaviour?Action18", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Web.Harness", "Url" : "#namespace/Inversion.Web.Harness", "Type" : "Namespace" },
+	
+		{ "Name" : "DefaultHandler", "Url" : "#type/DefaultHandler", "Type" : "Type" },
+
+		
+			{ "Name" : "IsReusable", "Url" : "#type/DefaultHandler?IsReusable", "Type" : "Property" },
+		
+			{ "Name" : "ProcessRequest", "Url" : "#type/DefaultHandler?ProcessRequest3", "Type" : "Method" },
+		
+			{ "Name" : "ProcessRequest", "Url" : "#type/DefaultHandler?ProcessRequest2", "Type" : "Method" },
+		
+	{ "Name" : "Inversion.Web.Harness.Site", "Url" : "#namespace/Inversion.Web.Harness.Site", "Type" : "Namespace" },
+	
+		{ "Name" : "Global", "Url" : "#type/Global", "Type" : "Type" },
+
+		
+			{ "Name" : "Application_AuthenticateRequest", "Url" : "#type/Global?Application_AuthenticateRequest", "Type" : "Method" },
+		
+			{ "Name" : "Application_BeginRequest", "Url" : "#type/Global?Application_BeginRequest", "Type" : "Method" },
+		
+			{ "Name" : "Application_End", "Url" : "#type/Global?Application_End", "Type" : "Method" },
+		
+			{ "Name" : "Application_Error", "Url" : "#type/Global?Application_Error", "Type" : "Method" },
+		
+			{ "Name" : "Application_Start", "Url" : "#type/Global?Application_Start", "Type" : "Method" },
+		
+			{ "Name" : "Session_End", "Url" : "#type/Global?Session_End", "Type" : "Method" },
+		
+			{ "Name" : "Session_Start", "Url" : "#type/Global?Session_Start", "Type" : "Method" },
+		
+
+		];
+		</script>
+
+    </head>
+    <body>   
+		<div class="ui-layout-north">
+			
+				<h1 id="sitetitle"><a href="index.html">Inversion</a></h1>
+			
+			<div id="subtitle"><p>Home</p></div>
+		</div>
+        <div class="ui-layout-south">
+			<div class="user-footer markdown">
+				
+			</div>
+			<div class="sd-footer">
+				
+
+				 <a href="https://github.com/guy-murphy/inversion-dev" target="_blank">Inversion</a>  by <a href="http://guy-murphy.github.io/" target="_blank">Guy Murphy</a> - generated by <a href="http://sharpDox.de" target="_blank">sharpDox</a>
+			</div>
+		</div>
+        <div class="ui-layout-west">
+			<div id="search">
+				<i class="icon-search"></i> <input id="searchInput" type="text" />
+				<div id="searchResults">
+				</div>
+			</div>
+			<div id="navigation">
+				<ul>
+	<li data-jstree='{"icon":"icon-home"}' id="home" class="jstree-open"><a href="#home">Home</a>
+	<ul>
+		
+				
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion"><a href="#namespace/Inversion">Inversion</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DataEx"><a href="#type/DataEx">DataEx</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DataView"><a href="#type/DataView">DataView</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IConsumeData"><a href="#type/IConsumeData">IConsumeData</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IData"><a href="#type/IData">IData</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IMutate"><a href="#type/IMutate">IMutate</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/JDataObject"><a href="#type/JDataObject">JDataObject</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/TextData"><a href="#type/TextData">TextData</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Collections"><a href="#namespace/Inversion.Collections">Inversion.Collections</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ConcurrentDataCollection"><a href="#type/ConcurrentDataCollection">ConcurrentDataCollection</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ConcurrentDataDictionary"><a href="#type/ConcurrentDataDictionary">ConcurrentDataDictionary</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DataCollection"><a href="#type/DataCollection">DataCollection</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DataDictionary"><a href="#type/DataDictionary">DataDictionary</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DataModel"><a href="#type/DataModel">DataModel</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IDataCollection"><a href="#type/IDataCollection">IDataCollection</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IDataDictionary3"><a href="#type/IDataDictionary3">IDataDictionary</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Documentation.Generator"><a href="#namespace/Inversion.Documentation.Generator">Inversion.Documentation.Generator</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/MarkdownVisitor"><a href="#type/MarkdownVisitor">MarkdownVisitor</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/Program"><a href="#type/Program">Program</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.DotLiquid.Behaviour.View"><a href="#namespace/Inversion.DotLiquid.Behaviour.View">Inversion.DotLiquid.Behaviour.View</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DotLiquidViewBehaviour"><a href="#type/DotLiquidViewBehaviour">DotLiquidViewBehaviour</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Extensions"><a href="#namespace/Inversion.Extensions">Inversion.Extensions</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ArrayEx"><a href="#type/ArrayEx">ArrayEx</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DictionaryEx"><a href="#type/DictionaryEx">DictionaryEx</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/EnumerableEx"><a href="#type/EnumerableEx">EnumerableEx</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/JsonWriterEx"><a href="#type/JsonWriterEx">JsonWriterEx</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ListEx"><a href="#type/ListEx">ListEx</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/StringBuilderEx"><a href="#type/StringBuilderEx">StringBuilderEx</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/StringEx"><a href="#type/StringEx">StringEx</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Naiad"><a href="#namespace/Inversion.Naiad">Inversion.Naiad</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/NamedMappings"><a href="#type/NamedMappings">NamedMappings</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ServiceContainer2"><a href="#type/ServiceContainer2">ServiceContainer</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Process"><a href="#namespace/Inversion.Process">Inversion.Process</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DataCollectionEx"><a href="#type/DataCollectionEx">DataCollectionEx</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ErrorMessage"><a href="#type/ErrorMessage">ErrorMessage</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/Event"><a href="#type/Event">Event</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IEvent"><a href="#type/IEvent">IEvent</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IServiceContainer"><a href="#type/IServiceContainer">IServiceContainer</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ProcessContext"><a href="#type/ProcessContext">ProcessContext</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ProcessException"><a href="#type/ProcessException">ProcessException</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ProcessTimer"><a href="#type/ProcessTimer">ProcessTimer</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ProcessTimerDictionary"><a href="#type/ProcessTimerDictionary">ProcessTimerDictionary</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ViewStep"><a href="#type/ViewStep">ViewStep</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ViewSteps"><a href="#type/ViewSteps">ViewSteps</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Process.Behaviour"><a href="#namespace/Inversion.Process.Behaviour">Inversion.Process.Behaviour</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/BehaviourConditionPredicates"><a href="#type/BehaviourConditionPredicates">BehaviourConditionPredicates</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/BehaviourConfiguration"><a href="#type/BehaviourConfiguration">BehaviourConfiguration</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ConfiguredBehaviour"><a href="#type/ConfiguredBehaviour">ConfiguredBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IApplicationBehaviour"><a href="#type/IApplicationBehaviour">IApplicationBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IConfiguredBehaviour"><a href="#type/IConfiguredBehaviour">IConfiguredBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IProcessBehaviour"><a href="#type/IProcessBehaviour">IProcessBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/MatchingBehaviour"><a href="#type/MatchingBehaviour">MatchingBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/MessageTraceBehaviour"><a href="#type/MessageTraceBehaviour">MessageTraceBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ParameterisedSequenceBehaviour"><a href="#type/ParameterisedSequenceBehaviour">ParameterisedSequenceBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ProcessBehaviour"><a href="#type/ProcessBehaviour">ProcessBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/RuntimeBehaviour"><a href="#type/RuntimeBehaviour">RuntimeBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/SimpleSequenceBehaviour"><a href="#type/SimpleSequenceBehaviour">SimpleSequenceBehaviour</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Spring"><a href="#namespace/Inversion.Spring">Inversion.Spring</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/BehaviourNamespaceParser"><a href="#type/BehaviourNamespaceParser">BehaviourNamespaceParser</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/BehaviourObjectDefinationParser"><a href="#type/BehaviourObjectDefinationParser">BehaviourObjectDefinationParser</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ServiceContainer"><a href="#type/ServiceContainer">ServiceContainer</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.StringTemplate.Behaviour.View"><a href="#namespace/Inversion.StringTemplate.Behaviour.View">Inversion.StringTemplate.Behaviour.View</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/StringTemplateViewBehaviour"><a href="#type/StringTemplateViewBehaviour">StringTemplateViewBehaviour</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Web"><a href="#namespace/Inversion.Web">Inversion.Web</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IInversionHandler"><a href="#type/IInversionHandler">IInversionHandler</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/UrlInfo"><a href="#type/UrlInfo">UrlInfo</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/WebApplication"><a href="#type/WebApplication">WebApplication</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/WebContext"><a href="#type/WebContext">WebContext</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/WebException"><a href="#type/WebException">WebException</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/WebRequest"><a href="#type/WebRequest">WebRequest</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/WebResponse"><a href="#type/WebResponse">WebResponse</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Web.Behaviour"><a href="#namespace/Inversion.Web.Behaviour">Inversion.Web.Behaviour</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/BehaviourConditionPredicates2"><a href="#type/BehaviourConditionPredicates2">BehaviourConditionPredicates</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/BootstrapBehaviour"><a href="#type/BootstrapBehaviour">BootstrapBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/interface_public.png"}' id="node-type/IWebBehaviour"><a href="#type/IWebBehaviour">IWebBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ParseRequestBehaviour"><a href="#type/ParseRequestBehaviour">ParseRequestBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ProcessViewsBehaviour"><a href="#type/ProcessViewsBehaviour">ProcessViewsBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/RenderBehaviour"><a href="#type/RenderBehaviour">RenderBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/ViewStateBehaviour"><a href="#type/ViewStateBehaviour">ViewStateBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/WebBehaviour"><a href="#type/WebBehaviour">WebBehaviour</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Web.Behaviour.View"><a href="#namespace/Inversion.Web.Behaviour.View">Inversion.Web.Behaviour.View</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/JsonViewBehaviour"><a href="#type/JsonViewBehaviour">JsonViewBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/RazorViewBehaviour"><a href="#type/RazorViewBehaviour">RazorViewBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/XmlViewBehaviour"><a href="#type/XmlViewBehaviour">XmlViewBehaviour</a></li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/XsltViewBehaviour"><a href="#type/XsltViewBehaviour">XsltViewBehaviour</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Web.Harness"><a href="#namespace/Inversion.Web.Harness">Inversion.Web.Harness</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/DefaultHandler"><a href="#type/DefaultHandler">DefaultHandler</a></li>
+
+</ul>
+
+</li>
+	
+		<li data-jstree='{"icon":"./assets/images/icons/namespace_public.png"}' id="node-namespace/Inversion.Web.Harness.Site"><a href="#namespace/Inversion.Web.Harness.Site">Inversion.Web.Harness.Site</a> 
+ 
+
+<ul>
+
+	
+		<li data-jstree='{"icon":"./assets/images/icons/class_public.png"}' id="node-type/Global"><a href="#type/Global">Global</a></li>
+
+</ul>
+
+</li>
+
+
+		
+	</ul>
+	</li>	
+</ul>
+			</div>
+		</div>
+		<div id="loader"><i class="icon-refresh icon-spin"></i></div>
+		<iframe id="content" class="ui-layout-center" frameborder="0" width="100%" src="article/home.html"></iframe>
+    </body>
+</html>
+

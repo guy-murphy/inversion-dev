@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Inversion.Process;
+using Inversion.Process.Behaviour;
 
 namespace Inversion.Web.Behaviour {
 

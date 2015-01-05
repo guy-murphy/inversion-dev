@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SDConfig>
+  <section guid="9e8e8bc4-bfdd-11e3-a297-170828518c08">
+    <item key="HeaderBackground" value="#3F72DB" />
+    <item key="SubHeaderBackground" value="#2862db" />
+    <item key="Color" value="#FFFFFF" />
+    <item key="DisableSequenceDiagrams" value="False" />
+  </section>
+  <section guid="feacbce2-8290-4d90-bb05-373b9d7dbbfc">
+    <item key="ConfigFileName" value="inversion" />
+    <item key="PathToConfig" value="E:\Users\User\Documents\GitHub\inversion-dev\doc\inversion.sdox" />
+    <item key="LastBuild" value="5.1.2015 - 07:06" />
+    <item key="ProjectName" value="Inversion" />
+    <item key="ProjectUrl" value="https://github.com/guy-murphy/inversion-dev" />
+    <item key="Author" value="Guy Murphy" />
+    <item key="AuthorUrl" value="http://guy-murphy.github.io/" />
+    <item key="InputFile" value="E:\Users\User\Documents\GitHub\inversion-dev\inversion-dev.sln" />
+    <item key="OutputPath" value="E:\Users\User\Documents\GitHub\inversion-dev\doc" />
+    <item key="DocLanguage" value="en" />
+    <item key="ExcludePrivate" value="False" />
+    <item key="ExcludeProtected" value="False" />
+    <item key="ExcludeInternal" value="False" />
+    <item key="ExcludedIdentifiers" value="" />
+    <item key="ActivatedExporters" value="Html" />
+  </section>
+</SDConfig>

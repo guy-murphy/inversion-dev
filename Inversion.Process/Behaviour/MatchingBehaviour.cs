@@ -2,7 +2,7 @@
 
 namespace Inversion.Process.Behaviour {
 	/// <summary>
-	/// Extends `ApplicationBehaviour` with an implemented `Condition` intended
+	/// Extends `ConfiguredBehaviour` with an implemented `Condition` intended
 	/// to act upont he behaviours configuration to match with state expressed on the
 	/// process context.
 	/// </summary>

@@ -30,7 +30,7 @@ namespace Inversion.Spring {
 			XmlNamespaceManager ns = new XmlNamespaceManager(xml.OwnerDocument.NameTable);
 			ns.AddNamespace("inv", "Inversion.Process.Behaviour");
 			XmlNodeList frames = xml.SelectNodes("inv:*", ns);
-			if (frames != null) {
+			if (frames != null && frames.Count > 0) {
 				int ordinal = 0;
 				foreach (XmlElement frameElement in frames) {
 					string frame = frameElement.Name;
@@ -63,8 +63,8 @@ namespace Inversion.Spring {
 						}
 					}
 				}
+				builder.AddConstructorArg(elements);
 			}
-			builder.AddConstructorArg(elements);
 		}
 
 	}

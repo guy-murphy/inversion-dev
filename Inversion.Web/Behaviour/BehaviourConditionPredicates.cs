@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Inversion.Process.Behaviour;
 
 namespace Inversion.Web.Behaviour {
 
@@ -18,8 +19,7 @@ namespace Inversion.Web.Behaviour {
 		/// Returns true if the current context user is in any of the 
 		/// `required-user-roles` configured for this behaviour.
 		/// </returns>
-		public static bool HasAnyUserRoles(this WebBehaviour self, WebContext ctx) {
-			//return !self.NamedLists.ContainsKey("required-user-roles") || self.NamedLists["required-user-roles"].Any(role => ctx.User.IsInRole(role));
+		public static bool HasAnyUserRoles(this IConfiguredBehaviour self, WebContext ctx) {
 			return !self.Configuration.Has("match", "user", "role") || self.Configuration.GetValues("match", "user", "role").Any(role => ctx.User.IsInRole(role));
 		}
 

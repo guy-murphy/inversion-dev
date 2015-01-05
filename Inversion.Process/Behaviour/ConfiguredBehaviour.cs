@@ -1,13 +1,6 @@
 ﻿using System.Collections.Generic;
 
 namespace Inversion.Process.Behaviour {
-	public interface IConfiguredBehaviour: IProcessBehaviour {
-		/// <summary>
-		/// Exposes the configuration of the behaviour for querying.
-		/// </summary>
-		BehaviourConfiguration Configuration { get; }
-	}
-
 	/// <summary>
 	/// A behaviour that can be configured.
 	/// </summary>

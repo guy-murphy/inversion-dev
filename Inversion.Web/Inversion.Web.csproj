@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="Behaviour\BehaviourConditionPredicates.cs" />
     <Compile Include="Behaviour\BootstrapBehaviour.cs" />
+    <Compile Include="Behaviour\ConfiguredWebBehaviour.cs" />
     <Compile Include="Behaviour\IWebBehaviour.cs" />
+    <Compile Include="Behaviour\MatchingWebBehaviour.cs" />
     <Compile Include="Behaviour\ParseRequestBehaviour.cs" />
     <Compile Include="Behaviour\ProcessViewsBehaviour.cs" />
     <Compile Include="Behaviour\RenderBehaviour.cs" />

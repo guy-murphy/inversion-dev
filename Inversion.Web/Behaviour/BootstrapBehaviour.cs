@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 
 using Inversion.Process;
+using Inversion.Process.Behaviour;
 
 namespace Inversion.Web.Behaviour {
 
@@ -12,7 +13,7 @@ namespace Inversion.Web.Behaviour {
 	/// with default prameters. It should be see as a point of extensibility for
 	/// setting up the default state of a context prior to processing a request.
 	/// </summary>
-	public class BootstrapBehaviour : WebBehaviour {
+	public class BootstrapBehaviour : ProcessBehaviour {
 
 		private readonly ImmutableDictionary<string, string> _params;
 
@@ -42,7 +43,7 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, ProcessContext context) {
 			context.Params.Import(this.Parameters);
 		}
 	}
