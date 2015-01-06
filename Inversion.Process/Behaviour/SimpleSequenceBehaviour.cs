@@ -31,7 +31,7 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context that should be acted apon.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			foreach (string item in _sequence) {
 				context.Fire(item);			
 			}

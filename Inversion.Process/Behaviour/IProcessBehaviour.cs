@@ -61,7 +61,7 @@
 		/// </summary>
 		/// <param name="ev">The event to process.</param>
 		/// <param name="context">The context to use.</param>
-		void Action(IEvent ev, ProcessContext context);
+		void Action(IEvent ev, IProcessContext context);
 
 		/// <summary>
 		/// The considtion that determines whether of not the behaviours action
@@ -82,7 +82,7 @@
 		/// <returns>
 		/// `true` if the condition is met; otherwise,  returns  `false`.
 		/// </returns>
-		bool Condition(IEvent ev, ProcessContext context);
+		bool Condition(IEvent ev, IProcessContext context);
 
 	}
 }

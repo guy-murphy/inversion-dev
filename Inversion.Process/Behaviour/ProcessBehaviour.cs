@@ -53,7 +53,7 @@ namespace Inversion.Process.Behaviour {
 		/// <remarks>
 		/// The intent is to override for bespoke conditions.
 		/// </remarks>
-		public virtual bool Condition(IEvent ev, ProcessContext context) {
+		public virtual bool Condition(IEvent ev, IProcessContext context) {
 			// check the base condition
 			// and then either there are no roles specified
 			// or the user is in any of the roles defined
@@ -103,7 +103,7 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public abstract void Action(IEvent ev, ProcessContext context);
+		public abstract void Action(IEvent ev, IProcessContext context);
 
 	}
 }

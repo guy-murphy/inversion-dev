@@ -9,7 +9,7 @@ namespace Inversion.Process.Behaviour {
 	public class RuntimeBehaviour : ProcessBehaviour {
 
 		private readonly Predicate<IEvent> _condition;
-		private readonly Action<IEvent, ProcessContext> _action;
+		private readonly Action<IEvent, IProcessContext> _action;
 
 		/// <summary>
 		/// Instantiates a new runtime behaviour.
@@ -23,7 +23,7 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="respondsTo">The name by which the behaviour is known to the system.</param>
 		/// <param name="condition">The predicate that will determine if this behaviours action should be executed.</param>
 		/// <param name="action">The action that should be performed if this behaviours conditions are met.</param>
-		public RuntimeBehaviour(string respondsTo, Predicate<IEvent> condition, Action<IEvent, ProcessContext> action)
+		public RuntimeBehaviour(string respondsTo, Predicate<IEvent> condition, Action<IEvent, IProcessContext> action)
 			: base(respondsTo) {
 			_condition = condition;
 			_action = action;
@@ -44,7 +44,7 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			_action(ev, context);
 		}
 	}

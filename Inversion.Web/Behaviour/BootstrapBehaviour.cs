@@ -43,7 +43,7 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			context.Params.Import(this.Parameters);
 		}
 	}

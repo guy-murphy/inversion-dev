@@ -18,7 +18,7 @@ namespace Inversion.StringTemplate.Behaviour.View {
 			_contentType = contentType;
 		}
 
-		private IEnumerable<string> _possibleTemplates(ProcessContext context) {
+		private IEnumerable<string> _possibleTemplates(IProcessContext context) {
 			string area = context.Params["area"];
 			string concern = context.Params["concern"];
 			string action = String.Format("{0}.st", context.Params["action"]);
@@ -47,7 +47,7 @@ namespace Inversion.StringTemplate.Behaviour.View {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasModel) {
 				foreach (string templateName in _possibleTemplates(context)) {
 					string templatePath = Path.Combine(context.ParamOrDefault("baseDirectory", ""), "Resources", "Views", "ST", templateName);

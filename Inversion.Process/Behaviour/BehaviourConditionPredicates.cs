@@ -41,7 +41,7 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="self">The behaviour to act upon.</param>
 		/// <param name="ctx">The context to consult.</param>
 		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
-		public static bool ContextHasAllParams(this IConfiguredBehaviour self, ProcessContext ctx) {
+		public static bool ContextHasAllParams(this IConfiguredBehaviour self, IProcessContext ctx) {
 			return ctx.HasParams(self.Configuration.GetNames("context", "has"));
 		}
 
@@ -55,7 +55,7 @@ namespace Inversion.Process.Behaviour {
 		/// Returns true if all the key-value pairs specified exists in the contexts
 		/// parameters; otherwise returns false.
 		/// </returns>
-		public static bool ContextMacthesAllParamValues(this IConfiguredBehaviour self, ProcessContext ctx) {
+		public static bool ContextMacthesAllParamValues(this IConfiguredBehaviour self, IProcessContext ctx) {
 			return ctx.HasParamValues(self.Configuration.GetMap("context", "match"));
 		}
 
@@ -69,7 +69,7 @@ namespace Inversion.Process.Behaviour {
 		/// Returns true if all the key-value pairs specified are absent in the contexts
 		/// parameters; otherwise returns false.
 		/// </returns>
-		public static bool ContextExcludes(this IConfiguredBehaviour self, ProcessContext ctx) {
+		public static bool ContextExcludes(this IConfiguredBehaviour self, IProcessContext ctx) {
 			return !ctx.HasParamValues(self.Configuration.GetMap("context", "excludes"));
 		}
 
@@ -83,7 +83,7 @@ namespace Inversion.Process.Behaviour {
 		/// Returns true if all the specified keys exist in the control state;
 		/// otherwise returns false.
 		/// </returns>
-		public static bool ContextHasAllControlStates(this IConfiguredBehaviour self, ProcessContext ctx) {
+		public static bool ContextHasAllControlStates(this IConfiguredBehaviour self, IProcessContext ctx) {
 			return ctx.HasControlState(self.Configuration.GetNames("control-state", "has"));
 		}
 
@@ -97,7 +97,7 @@ namespace Inversion.Process.Behaviour {
 		/// Returns true if all the key-value pairs specified are absent in the contexts
 		/// parameters; otherwise returns false.
 		/// </returns>
-		public static bool ContextExcludesControlState(this IConfiguredBehaviour self, ProcessContext ctx) {
+		public static bool ContextExcludesControlState(this IConfiguredBehaviour self, IProcessContext ctx) {
 			return self.Configuration.GetNames("control-state", "exclude").All(key => !ctx.ControlState.ContainsKey(key));
 		}
 
@@ -108,7 +108,7 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="self">The behaviour to act upon.</param>
 		/// <param name="ctx">The context to consult.</param>
 		/// <returns>Returns true is all flags are set on the context; otherwise, returns false.</returns>
-		public static bool ContextHasAllFlags(this IConfiguredBehaviour self, ProcessContext ctx) {
+		public static bool ContextHasAllFlags(this IConfiguredBehaviour self, IProcessContext ctx) {
 			return
 				self.Configuration.GetMap("context", "flagged")
 					.All(kv => kv.Value == "true" && ctx.IsFlagged(kv.Key) || !ctx.IsFlagged(kv.Key));

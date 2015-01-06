@@ -103,7 +103,7 @@ namespace Inversion.Web.Behaviour.View {
 		//		nice to fonfirm this.
 		// At some point this will need to move to being
 		// and injected strategy.
-		private IEnumerable<string> _possibleTemplates(ProcessContext context) {
+		private IEnumerable<string> _possibleTemplates(IProcessContext context) {
 			string area = context.Params["area"];
 			string concern = context.Params["concern"];
 			string action = String.Format("{0}.xslt", context.Params["action"]);
@@ -149,7 +149,7 @@ namespace Inversion.Web.Behaviour.View {
 		/// </remarks>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasContent || context.ViewSteps.Last.HasModel) {
 
 				foreach (string templateName in _possibleTemplates(context)) {

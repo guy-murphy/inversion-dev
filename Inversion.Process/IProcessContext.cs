@@ -107,7 +107,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="condition">The predicate to use as the behaviours condition.</param>
 		/// <param name="action">The action to use as the behaviours action.</param>
-		void Register(Predicate<IEvent> condition, Action<IEvent, ProcessContext> action);
+		void Register(Predicate<IEvent> condition, Action<IEvent, IProcessContext> action);
 
 		/// <summary>
 		/// Fires an event on the context. Each behaviour registered with context

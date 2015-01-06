@@ -33,7 +33,7 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			DataCollection<IEvent> events = context.ControlState["eventTrace"] as DataCollection<IEvent> ?? new DataCollection<IEvent>();
 			events.Add(ev);
 			context.ControlState["eventTrace"] = events;

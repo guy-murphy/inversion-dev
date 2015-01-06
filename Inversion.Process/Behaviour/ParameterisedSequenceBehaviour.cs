@@ -27,7 +27,7 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			foreach (string slot in this.Configuration.GetSlots("fire")) {
 				context.Fire(slot, this.Configuration.GetMap("fire", slot));
 			}

@@ -49,7 +49,7 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public override void Action(IEvent ev, ProcessContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			this.Action(ev, (WebContext)context);
 		}
 

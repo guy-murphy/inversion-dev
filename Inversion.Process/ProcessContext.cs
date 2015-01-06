@@ -239,7 +239,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="condition">The predicate to use as the behaviours condition.</param>
 		/// <param name="action">The action to use as the behaviours action.</param>
-		public void Register(Predicate<IEvent> condition, Action<IEvent, ProcessContext> action) {
+		public void Register(Predicate<IEvent> condition, Action<IEvent, IProcessContext> action) {
 			this.Register(new RuntimeBehaviour(String.Empty, condition, action));
 		}
 
