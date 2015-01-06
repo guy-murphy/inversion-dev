@@ -6,12 +6,12 @@ namespace Inversion.Process.Behaviour {
 	/// </summary>
 	public abstract class ConfiguredBehaviour: ProcessBehaviour, IConfiguredBehaviour {
 
-		private readonly BehaviourConfiguration _config;
+		private readonly Configuration _config;
 
 		/// <summary>
 		/// Exposes the configuration of the behaviour for querying.
 		/// </summary>
-		public BehaviourConfiguration Configuration {
+		public Configuration Configuration {
 			get { return _config; }
 		}
 
@@ -19,14 +19,14 @@ namespace Inversion.Process.Behaviour {
 		/// Creates a new instance of the behaviour with no configuration.
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
-		protected ConfiguredBehaviour(string respondsTo) : this(respondsTo, new BehaviourConfiguration()) {}
+		protected ConfiguredBehaviour(string respondsTo) : this(respondsTo, new Configuration()) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		protected ConfiguredBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo) {
+		protected ConfiguredBehaviour(string respondsTo, Configuration config) : base(respondsTo) {
 			_config = config;
 		}
 
@@ -35,8 +35,8 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		protected ConfiguredBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo) {
-			_config = new BehaviourConfiguration(config);
+		protected ConfiguredBehaviour(string respondsTo, IEnumerable<Configuration.Element> config) : base(respondsTo) {
+			_config = new Configuration(config);
 		}
 
 	}

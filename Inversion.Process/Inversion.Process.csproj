@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behaviour\BehaviourConfiguration.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="Behaviour\ConfiguredBehaviour.cs" />
     <Compile Include="Behaviour\IConfiguredBehaviour.cs" />
     <Compile Include="Behaviour\MatchingBehaviour.cs" />
@@ -73,11 +73,14 @@
     <Compile Include="DataCollectionEx.cs" />
     <Compile Include="ErrorMessage.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="IConfigured.cs" />
     <Compile Include="IEvent.cs" />
     <Compile Include="Behaviour\IProcessBehaviour.cs" />
+    <Compile Include="IProcessContext.cs" />
     <Compile Include="IServiceContainer.cs" />
     <Compile Include="Behaviour\ProcessBehaviour.cs" />
     <Compile Include="ProcessContext.cs" />
+    <Compile Include="ProcessContextEx.cs" />
     <Compile Include="ProcessException.cs" />
     <Compile Include="ProcessTimer.cs" />
     <Compile Include="ProcessTimerDictionary.cs" />

@@ -22,14 +22,14 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		protected ConfiguredWebBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
+		protected ConfiguredWebBehaviour(string respondsTo, Configuration config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		protected ConfiguredWebBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
+		protected ConfiguredWebBehaviour(string respondsTo, IEnumerable<Configuration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// The considtion that determines whether of not the behaviours action

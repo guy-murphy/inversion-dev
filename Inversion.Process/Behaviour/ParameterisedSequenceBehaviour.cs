@@ -13,14 +13,14 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		public ParameterisedSequenceBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
+		public ParameterisedSequenceBehaviour(string respondsTo, Configuration config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		public ParameterisedSequenceBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
+		public ParameterisedSequenceBehaviour(string respondsTo, IEnumerable<Configuration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// The action to perform when the `Condition(IEvent)` is met.

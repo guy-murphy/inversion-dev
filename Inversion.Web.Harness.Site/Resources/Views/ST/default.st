@@ -1,4 +1,12 @@
-﻿<h1>hello `model.params.name` from ST4 </h1>
+﻿<h2>Hello `ctx.params.name`</h2>
+<h3>context params</h3>
+<ul>
+    `ctx.params.keys:{k|
+        <li>`k` = `ctx.params.(k)`</li>
+    }`
+</ul>
+
+<h3>event trace</h3>
 	<ul>
 		`model.eventTrace:{ev| 
 			<li>

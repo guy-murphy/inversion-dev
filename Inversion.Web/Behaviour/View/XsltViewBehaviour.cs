@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Text;
-using System.Web.Caching;
 using System.Xml;
 using System.Xml.Xsl;
 
 using Inversion.Process;
+using Inversion.Process.Behaviour;
 
 namespace Inversion.Web.Behaviour.View {
 
@@ -21,7 +22,7 @@ namespace Inversion.Web.Behaviour.View {
 	/// purpose XSL transform.
 	/// </remarks>
 
-	public class XsltViewBehaviour : WebBehaviour {
+	public class XsltViewBehaviour : ProcessBehaviour {
 
 		// This is a piece of voodoo I was handed by a friend who had some
 		//		similar occasional encoding problems which apparently are
@@ -102,7 +103,7 @@ namespace Inversion.Web.Behaviour.View {
 		//		nice to fonfirm this.
 		// At some point this will need to move to being
 		// and injected strategy.
-		private IEnumerable<string> _possibleTemplates(WebContext context) {
+		private IEnumerable<string> _possibleTemplates(ProcessContext context) {
 			string area = context.Params["area"];
 			string concern = context.Params["concern"];
 			string action = String.Format("{0}.xslt", context.Params["action"]);
@@ -148,24 +149,28 @@ namespace Inversion.Web.Behaviour.View {
 		/// </remarks>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, ProcessContext context) {
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasContent || context.ViewSteps.Last.HasModel) {
 
 				foreach (string templateName in _possibleTemplates(context)) {
 
 					// check if we have the template cached
 					string cacheKey = String.Concat("xsl::", templateName);
-					XslCompiledTransform xsl = (!_enableCache || context.Flags.Contains("nocache")) ? null : context.Cache.Get(cacheKey) as XslCompiledTransform;
+					XslCompiledTransform xsl = (!_enableCache || context.IsFlagged("nocache")) ? null : context.ObjectCache.Get(cacheKey) as XslCompiledTransform;
 					if (xsl == null) {
 						// we dont have it cached
-						// does the file exist?
-						string templatePath = Path.Combine(context.Application.BaseDirectory, "Resources", "Views", "Xslt", templateName);
+						// does the file exist?					
+						string templatePath = Path.Combine(context.ParamOrDefault("baseDirectory", ""), "Resources", "Views", "Xslt", templateName);
 						if (File.Exists(templatePath)) {
 							xsl = new XslCompiledTransform(true);
 							using (XmlReader reader = new XmlTextReader(templatePath)) {
 								xsl.Load(reader);
 								if (_enableCache) {
-									context.Cache.Add(cacheKey, xsl, new CacheDependency(templatePath), Cache.NoAbsoluteExpiration, new TimeSpan(1, 0, 0), CacheItemPriority.High, null);
+									CacheItemPolicy policy = new CacheItemPolicy {
+										                                             AbsoluteExpiration = ObjectCache.InfiniteAbsoluteExpiration
+									                                             };								
+									policy.ChangeMonitors.Add(new HostFileChangeMonitor(new []{templatePath}));
+									context.ObjectCache.Add(cacheKey, xsl, policy);
 								}
 							}
 						}

@@ -22,7 +22,7 @@ namespace Inversion.Process {
 	/// on its bus *are* Inversion. Everything else is chosen convention about
 	/// how those behaviours interact with each other via the context.
 	/// </remarks>
-	public class ProcessContext : IDisposable {
+	public class ProcessContext : IProcessContext {
 
 		private bool _isDisposed;
 
@@ -67,7 +67,7 @@ namespace Inversion.Process {
 		/// This really needs replaced with our own interface
 		/// that we control. This isn't portable.
 		/// </remarks>
-		protected ObjectCache ObjectCache {
+		public ObjectCache ObjectCache {
 			get { return _cache; }
 		}
 
@@ -288,24 +288,6 @@ namespace Inversion.Process {
 			return ev;
 		}
 
-		//public IEvent Fire(string message, object obj) {
-		//	IEvent ev = new Event(this, message, obj);
-		//	this.Fire(ev);
-		//	return ev;
-		//}
-
-		//public IEvent Fire(string message, object obj, IDictionary<string, string> parms) {
-		//	IEvent ev = new Event(this, message, obj, parms);
-		//	this.Fire(ev);
-		//	return ev;
-		//}
-
-		//public IEvent Fire(string message, object obj, params string[] parms) {
-		//	IEvent ev = new Event(this, message, obj, parms);
-		//	this.Fire(ev);
-		//	return ev;
-		//}
-
 		/// <summary>
 		/// Contructs an event with the message specified, using the supplied
 		/// parameter keys to copy parameters from the context to the constructed event.
@@ -326,151 +308,6 @@ namespace Inversion.Process {
 		/// </summary>
 		public void Completed() {
 			this.Bus.OnCompleted();
-		}
-
-		/// <summary>
-		/// Determines whether or not the flag of the
-		/// specified key exists.
-		/// </summary>
-		/// <param name="flag">The key of the flag to check for.</param>
-		/// <returns>Returns true if the flag exists; otherwise returns false.</returns>
-		public bool IsFlagged(string flag) {
-			return this.Flags.Contains(flag);
-		}
-
-		/// <summary>
-		/// Determines whether or not the parameters 
-		/// specified exist in the current context.
-		/// </summary>
-		/// <param name="parms">The parameters to check for.</param>
-		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
-		public bool HasParams(params string[] parms) {
-			return parms.Length > 0 && parms.All(parm => this.Params.ContainsKey(parm));
-		}
-
-		/// <summary>
-		/// Determines whether or not the parameters 
-		/// specified exist in the current context.
-		/// </summary>
-		/// <param name="parms">The parameters to check for.</param>
-		/// <returns>Returns true if all the parameters exist; otherwise return false.</returns>
-		public bool HasParams(IEnumerable<string> parms) {
-			return parms != null && parms.All(parm => this.Params.ContainsKey(parm));
-		}
-
-		/// <summary>
-		/// Determines whether or not the parameter name and
-		/// value specified exists in the current context.
-		/// </summary>
-		/// <param name="name">The name of the parameter to check for.</param>
-		/// <param name="value">The value of the parameter to check for.</param>
-		/// <returns>
-		/// Returns true if a parameter with the name and value specified exists
-		/// in this conext; otherwise returns false.
-		/// </returns>
-		public bool HasParamValue(string name, string value) {
-			return this.Params.ContainsKey(name) && this.Params[name] == value;
-		}
-
-		/// <summary>
-		/// Determines whether or not all the key-value pairs
-		/// provided exist in the contexts parameters.
-		/// </summary>
-		/// <param name="match">The key-value pairs to check for.</param>
-		/// <returns>
-		/// Returns true if all the key-value pairs specified exists in the contexts
-		/// parameters; otherwise returns false.
-		/// </returns>
-		public bool HasParamValues(IEnumerable<KeyValuePair<string, string>> match) {
-			return match != null && match.All(entry => this.Params.Contains(entry));
-		}
-
-		/// <summary>
-		/// Determines whether or not all any of the values for their associated parameter name
-		/// exist in the contexts parameters.
-		/// </summary>
-		/// <param name="match">The possible mapped values to match against.</param>
-		/// <returns>
-		/// Returns if each of the keys has at least one value that exists for the conext;
-		/// otherwise, returns false.
-		/// </returns>
-		public bool HasParamValues(IEnumerable<KeyValuePair<string, IEnumerable<string>>> match) {
-			return match != null && match.All(entry => this.Params.ContainsKey(entry.Key) && entry.Value.Any(value => value == this.Params[entry.Key]));
-		}
-
-		/// <summary>
-		/// Determines whether or not the specified
-		/// paramters exist in this context, and produces
-		/// and error for each one that does not exist.
-		/// </summary>
-		/// <param name="parms">The parameter keys to check for.</param>
-		/// <returns>Returns true if all the paramter keys are present; otherwise returns false.</returns>
-		public bool HasRequiredParams(params string[] parms) {
-			bool has = parms.Length > 0;
-			foreach (string parm in parms) {
-				if (!this.Params.ContainsKey(parm)) {
-					has = false;
-					this.Errors.CreateMessage(String.Format("The parameter '{0}' is required and was not present.", parm));
-				}
-			}
-			return has;
-		}
-
-		/// <summary>
-		/// Dtermines whether or not the control state has entries indexed
-		/// under the keys provided.
-		/// </summary>
-		/// <param name="parms">The keys to check for in the control state.</param>
-		/// <returns>
-		/// Returns true if all the specified keys exist in the control state;
-		/// otherwise returns false.
-		/// </returns>
-		public bool HasControlState(params string[] parms) {
-			return parms.Length > 0 && parms.All(parm => this.ControlState.Keys.Contains(parm));
-		}
-
-		/// <summary>
-		/// Dtermines whether or not the control state has entries indexed
-		/// under the keys provided.
-		/// </summary>
-		/// <param name="parms">The keys to check for in the control state.</param>
-		/// <returns>
-		/// Returns true if all the specified keys exist in the control state;
-		/// otherwise returns false.
-		/// </returns>
-		public bool HasControlState(IEnumerable<string> parms) {
-			return parms != null && parms.All(parm => this.ControlState.Keys.Contains(parm));
-		}
-
-		/// <summary>
-		/// Dtermines whether or not the control state has entries indexed
-		/// under the keys provided, and creates an error for each one that doesn't.
-		/// </summary>
-		/// <param name="parms">The keys to check for in the control state.</param>
-		/// <returns>
-		/// Returns true if all the specified keys exist in the control state;
-		/// otherwise returns false.
-		/// </returns>
-		public bool HasRequiredControlState(params string[] parms) {
-			bool has = parms.Length > 0;
-			foreach (string parm in parms) {
-				if (!this.ControlState.ContainsKey(parm)) {
-					has = false;
-					this.Errors.CreateMessage(String.Format("The control state '{0}' is required and was not present.", parm));
-				}
-			}
-			return has;
-		}
-
-		/// <summary>
-		/// Obtains the context prarameter for the specified
-		/// key, or if it doesn't exist uses the default value specified.
-		/// </summary>	
-		/// <param name="key">The key of the context parameter to use.</param>
-		/// <param name="defaultValue">The value to use if the parameter doesn't exist.</param>
-		/// <returns>Returns the specified parameter if it exists; otherwise returns false.</returns>
-		public string ParamOrDefault(string key, string defaultValue) {
-			return this.Params.ContainsKey(key) ? this.Params[key] : defaultValue;
 		}
 
 		/// <summary>

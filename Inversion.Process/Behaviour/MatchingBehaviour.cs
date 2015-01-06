@@ -18,14 +18,14 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		protected MatchingBehaviour(string respondsTo, BehaviourConfiguration config) : base(respondsTo, config) {}
+		protected MatchingBehaviour(string respondsTo, Configuration config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		protected MatchingBehaviour(string respondsTo, IEnumerable<BehaviourConfiguration.Element> config) : base(respondsTo, config) {}
+		protected MatchingBehaviour(string respondsTo, IEnumerable<Configuration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// Determines if the event specifies the behaviour by name.

@@ -8,6 +8,7 @@ namespace Inversion.Process.Behaviour {
 	/// </summary>
 	public static class BehaviourConditionPredicates {
 
+
 		/// <summary>
 		/// Determines whether or not the parameters 
 		/// specified exist in the current event.
@@ -84,6 +85,20 @@ namespace Inversion.Process.Behaviour {
 		/// </returns>
 		public static bool ContextHasAllControlStates(this IConfiguredBehaviour self, ProcessContext ctx) {
 			return ctx.HasControlState(self.Configuration.GetNames("control-state", "has"));
+		}
+
+		/// <summary>
+		/// Determines whether or not all the key-value pairs
+		/// provided are NOT in the contexts control state.
+		/// </summary>
+		/// <param name="self">The behaviour to act upon.</param>
+		/// <param name="ctx">The context to consult.</param>
+		/// <returns>
+		/// Returns true if all the key-value pairs specified are absent in the contexts
+		/// parameters; otherwise returns false.
+		/// </returns>
+		public static bool ContextExcludesControlState(this IConfiguredBehaviour self, ProcessContext ctx) {
+			return self.Configuration.GetNames("control-state", "exclude").All(key => !ctx.ControlState.ContainsKey(key));
 		}
 
 		/// <summary>

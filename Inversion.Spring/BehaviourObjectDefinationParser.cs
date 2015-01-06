@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-
+using Inversion.Process;
 using Spring.Objects.Factory.Support;
 using Spring.Objects.Factory.Xml;
 
@@ -50,13 +50,17 @@ namespace Inversion.Spring {
 
 			// now we're going to read any config defined within our behaviour identified
 			// by its namespace "Inversion.Process.Behaviour"
-			HashSet<BehaviourConfiguration.Element> elements = new HashSet<BehaviourConfiguration.Element>();
+			HashSet<Configuration.Element> elements = new HashSet<Configuration.Element>();
 			XmlNamespaceManager ns = new XmlNamespaceManager(xml.OwnerDocument.NameTable);
 			ns.AddNamespace("inv", "Inversion.Process.Behaviour");
 			XmlNodeList frames = xml.SelectNodes("inv:*", ns);
+
 			// do we have any config then?
 			if (frames != null && frames.Count > 0) {
 				int ordinal = 0;
+
+				// we're going to read the config into tuples
+				// of frame, slot, name, value
 				foreach (XmlElement frameElement in frames) {
 					string frame = frameElement.Name;
 
@@ -64,7 +68,7 @@ namespace Inversion.Spring {
 					foreach (XmlAttribute pair in frameElement.Attributes) {
 						string slot = pair.Name;
 						string name = pair.Value;
-						BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(ordinal, frame, slot, name, String.Empty);
+						Configuration.Element element = new Configuration.Element(ordinal, frame, slot, name, String.Empty);
 						elements.Add(element);
 						ordinal++;
 					}
@@ -77,7 +81,7 @@ namespace Inversion.Spring {
 						foreach (XmlElement pair in slotElement.ChildNodes) {
 							string name = pair.Name;
 							string value = pair.InnerText;
-							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(ordinal, frame, slot, name, value);
+							Configuration.Element element = new Configuration.Element(ordinal, frame, slot, name, value);
 							elements.Add(element);
 							ordinal++;
 						}
@@ -85,13 +89,13 @@ namespace Inversion.Spring {
 						foreach (XmlAttribute pair in slotElement.Attributes) {
 							string name = pair.Name;
 							string value = pair.Value;
-							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(ordinal, frame, slot, name, value);
+							Configuration.Element element = new Configuration.Element(ordinal, frame, slot, name, value);
 							elements.Add(element);
 							ordinal++;
 						}
 
 						if (elements.Count == start) { // the slot had no name/value pairs
-							BehaviourConfiguration.Element element = new BehaviourConfiguration.Element(ordinal, frame, slot, String.Empty, String.Empty);
+							Configuration.Element element = new Configuration.Element(ordinal, frame, slot, String.Empty, String.Empty);
 							elements.Add(element);
 							ordinal++;
 						}
