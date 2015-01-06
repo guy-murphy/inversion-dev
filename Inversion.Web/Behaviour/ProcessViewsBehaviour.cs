@@ -9,7 +9,7 @@ namespace Inversion.Web.Behaviour {
 	/// Behaviour responsible for driving the view pipeline expressed
 	/// as view-steps.
 	/// </summary>
-	public class ProcessViewsBehaviour : WebBehaviour {
+	public class ProcessViewsBehaviour : ProcessBehaviour {
 
 		/// <summary>
 		/// Instantiates a new behaviour responsible for processes the inversion view pipeline.
@@ -24,13 +24,13 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="ev">The vent that was considered for this action.</param>
 		/// <param name="context">The context to act upon.</param>
-		public override void Action(IEvent ev, IWebContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			// this is the last point we can time until and still output it
 			if (context.Timers.ContainsKey("process-request")) context.Timers.End("process-request");
 			// check that we have an initial view step laid down at least
 			if (context.ViewSteps.HasSteps) {
 				// then determine how many views there are to process
-				string[] views = (String.IsNullOrWhiteSpace(context.Request.UrlInfo.Tail)) ? new string[] { "xsl" } : context.Request.UrlInfo.Tail.Split('/');
+				string[] views = (context.HasParams("tail")) ? new string[] { "xsl" } : context.Params["tail"].Split('/');
 				foreach (string view in views) {
 					if (!String.IsNullOrEmpty(view)) {
 
@@ -39,7 +39,7 @@ namespace Inversion.Web.Behaviour {
 					}
 				}
 			} else {
-				throw new WebException("There are no view steps to render.");
+				throw new ProcessException("There are no view steps to process.");
 			}
 		}
 	}

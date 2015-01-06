@@ -70,8 +70,9 @@ namespace Inversion.Web.Behaviour {
 				context.Flags.Add(flag);
 			}
 			context.Params.Import(context.Request.Headers);
-			// note method
+			// note method and tail
 			context.Params["method"] = context.Request.Method;
+			context.Params["tail"] = context.Request.UrlInfo.Tail;
 		}
 	}
 }
