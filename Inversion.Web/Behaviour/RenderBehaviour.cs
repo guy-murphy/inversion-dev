@@ -26,7 +26,7 @@ namespace Inversion.Web.Behaviour {
 		public RenderBehaviour(string respondsTo) : base(respondsTo) { }
 
 		/// <inheritdoc />
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, IWebContext context) {
 			// first check that we have something to write to the response stream
 			if (context.ViewSteps.HasSteps) {
 				// then check to see if it's text to be written out

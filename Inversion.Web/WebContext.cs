@@ -18,7 +18,7 @@ namespace Inversion.Web {
 	/// to the application. Everything hangs off the context.
 	/// </remarks>
 
-	public class WebContext : ProcessContext {
+	public class WebContext : ProcessContext, IWebContext {
 
 		// while the fields are all readonly, the types are all mutable
 		private readonly HttpContext _underlyingContext;
@@ -73,8 +73,8 @@ namespace Inversion.Web {
 				// the user will already have a WindowsPrincipal assigned to it
 				// we're wanting to latch this value so that it's only set the once, to offer as much immutability as possible
 				// this can't be done at instantiation of WebContext, and the value is not likely to be null when we come to it
-				// so we endure the identity of the  principal we're using has a custom authentication type that we will recognise
-				if (this.UnderlyingContext.User == null || this.UnderlyingContext.User.Identity.AuthenticationType != "Conclave") {
+				// so we ensure the identity of the  principal we're using has a custom authentication type that we will recognise
+				if (this.UnderlyingContext.User == null || this.UnderlyingContext.User.Identity.AuthenticationType != "Inversion") {
 					this.UnderlyingContext.User = value;
 				} else {
 					throw new InvalidOperationException("You may only set the value of User the once, thereafter it is readonly.");

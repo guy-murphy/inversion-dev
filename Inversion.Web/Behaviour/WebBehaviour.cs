@@ -22,7 +22,7 @@ namespace Inversion.Web.Behaviour {
 		/// <param name="ev">The event to consider.</param>
 		/// <returns>Returns true if this behaviours action to execute in response to this event; otherwise returns  false.</returns>
 		public override bool Condition(IEvent ev) {
-			return this.Condition(ev, (WebContext)ev.Context);
+			return this.Condition(ev, (IWebContext)ev.Context);
 		}
 
 		/// <summary>
@@ -32,7 +32,7 @@ namespace Inversion.Web.Behaviour {
 		/// <param name="ev">The event to consider.</param>
 		/// <param name="context">The context to consider.</param>
 		/// <returns></returns>
-		public bool Condition(IEvent ev, WebContext context) {
+		public bool Condition(IEvent ev, IWebContext context) {
 			return base.Condition(ev, context);
 		}
 
@@ -59,7 +59,7 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public abstract void Action(IEvent ev, WebContext context);
+		public abstract void Action(IEvent ev, IWebContext context);
 
 	}
 }

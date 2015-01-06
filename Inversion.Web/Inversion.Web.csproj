@@ -68,6 +68,7 @@
     <Compile Include="Behaviour\View\XsltViewBehaviour.cs" />
     <Compile Include="Behaviour\WebBehaviour.cs" />
     <Compile Include="IInversionHandler.cs" />
+    <Compile Include="IWebContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlInfo.cs" />
     <Compile Include="WebApplication.cs" />

@@ -22,7 +22,7 @@ namespace Inversion.DotLiquid.Behaviour.View {
 			_contentType = contentType;
 		}
 
-		private IEnumerable<string> _possibleTemplates(WebContext context) {
+		private IEnumerable<string> _possibleTemplates(IWebContext context) {
 			string area = context.Params["area"];
 			string concern = context.Params["concern"];
 			string action = String.Format("{0}.liquid", context.Params["action"]);
@@ -51,7 +51,7 @@ namespace Inversion.DotLiquid.Behaviour.View {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, IWebContext context) {
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasContent || context.ViewSteps.Last.HasModel) {			
 				foreach (string templateName in _possibleTemplates(context)) {
 					string templatePath = Path.Combine(context.Application.BaseDirectory, "Resources", "Views", "Liquid", templateName);

@@ -17,13 +17,13 @@ namespace Inversion.Web.Behaviour {
 		/// <returns>
 		/// `true` if the condition is met; otherwise,  returns  `false`.
 		/// </returns>
-		bool Condition(IEvent ev, WebContext context);
+		bool Condition(IEvent ev, IWebContext context);
 
 		/// <summary>
 		/// The action to perform if this behaviours condition is met.
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		void Action(IEvent ev, WebContext context);
+		void Action(IEvent ev, IWebContext context);
 	}
 }

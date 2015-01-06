@@ -46,7 +46,7 @@ namespace Inversion.Web.Behaviour {
 		/// </remarks>
 		/// <param name="ev">The vent that was considered for this action.</param>
 		/// <param name="context">The context to act upon.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, IWebContext context) {
 			// eliminate the app directory from the path
 			string path = _appDirectory.Length > 0 ? context.Request.UrlInfo.AppPath.Trim('/').Replace(_appDirectory, "") : context.Request.UrlInfo.AppPath;
 			path = path.Trim('/');

@@ -32,7 +32,7 @@ namespace Inversion.Web.Behaviour.View {
 		/// </summary>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, IWebContext context) {
 			if (context.ViewSteps.HasSteps) {
 				if (context.ViewSteps.Last.HasModel) {
 					TextWriter writer = new StringWriter();

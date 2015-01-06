@@ -77,7 +77,7 @@ namespace Inversion.Web.Behaviour.View {
 		//		ThreadLocal and therefore safe to use
 		//		in this manner on a singleton, would be
 		//		nice to fonfirm this.
-		private IEnumerable<string> _possibleTemplates(WebContext context) {
+		private IEnumerable<string> _possibleTemplates(IWebContext context) {
 			string area = context.Params["area"];
 			string concern = context.Params["concern"];
 			string action = String.Format("{0}.cshtml", context.Params["action"]);
@@ -99,7 +99,7 @@ namespace Inversion.Web.Behaviour.View {
 		/// </summary>
 		/// <param name="ev">The vent that was considered for this action.</param>
 		/// <param name="context">The context to act upon.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, IWebContext context) {
 
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasModel) { // we should have a model that we're going to render
 

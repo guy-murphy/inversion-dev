@@ -24,7 +24,7 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="ev">The vent that was considered for this action.</param>
 		/// <param name="context">The context to act upon.</param>
-		public override void Action(IEvent ev, WebContext context) {
+		public override void Action(IEvent ev, IWebContext context) {
 			// this is the last point we can time until and still output it
 			if (context.Timers.ContainsKey("process-request")) context.Timers.End("process-request");
 			// check that we have an initial view step laid down at least

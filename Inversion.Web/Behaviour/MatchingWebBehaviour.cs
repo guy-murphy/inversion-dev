@@ -37,7 +37,7 @@ namespace Inversion.Web.Behaviour {
 		/// <returns>
 		/// `true` if the condition is met; otherwise,  returns  `false`.
 		/// </returns>
-		public bool Condition(IEvent ev, WebContext context) {
+		public bool Condition(IEvent ev, IWebContext context) {
 			return base.Condition(ev, context) && 
 				this.HasAnyUserRoles(context);
 		}
@@ -47,7 +47,7 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
-		public abstract void Action(IEvent ev, WebContext context);
+		public abstract void Action(IEvent ev, IWebContext context);
 
 	}
 }
