@@ -30,7 +30,7 @@ namespace Inversion.Web.Behaviour {
 			// check that we have an initial view step laid down at least
 			if (context.ViewSteps.HasSteps) {
 				// then determine how many views there are to process
-				string[] views = (context.HasParams("tail")) ? new string[] { "xsl" } : context.Params["tail"].Split('/');
+				string[] views = (context.HasParams("tail")) ? context.Params["tail"].Split('/') : new string[] { "xsl" };
 				foreach (string view in views) {
 					if (!String.IsNullOrEmpty(view)) {
 
