@@ -75,7 +75,7 @@ namespace Inversion.Process {
 		public string GetValue(string frame, string slot, string name) {
 			return this.GetValues(frame, slot, name).FirstOrDefault();
 		}
-		
+
 		/// <summary>
 		/// Gets the specified values from the configuration.
 		/// </summary>
@@ -94,7 +94,7 @@ namespace Inversion.Process {
 		/// <param name="slot">The slot of the map.</param>
 		/// <returns>Returns a map matching the frame and slot specified.</returns>
 		public IDictionary<string, string> GetMap(string frame, string slot) {
-			Dictionary<string,string> map = new Dictionary<string, string>();
+			Dictionary<string, string> map = new Dictionary<string, string>();
 			foreach (Element element in this.GetElements(frame, slot)) {
 				if (element.Name != String.Empty) {
 					map[element.Name] = element.Value;
@@ -102,7 +102,7 @@ namespace Inversion.Process {
 			}
 			return map;
 		}
-		
+
 		/// <summary>
 		/// Gets names from the configuration.
 		/// </summary>
@@ -221,6 +221,27 @@ namespace Inversion.Process {
 			/// <param name="name">The value of the tuple's third component.</param>
 			/// <param name="value">The value of the tuple's third component.</param>
 			public Element(int ordinal, string frame, string slot, string name, string value) : base(ordinal, frame, slot, name, value) { }
+		}
+
+		public class Builder: HashSet<Element> {
+
+			//public static implicit operator Configuration(Builder builder) {
+			//	return builder.ToConcrete();
+			//}
+			
+			public Configuration ToConcrete() {
+				return new Configuration(this);
+			}
+
+			public void Add(string frame, string slot) {
+				this.Add(frame, slot, String.Empty);
+			}
+			public void Add(string frame, string slot, string name) {
+				this.Add(frame, slot, name, String.Empty);
+			}
+			public void Add(string frame, string slot, string name, string value) {
+				this.Add(new Element(this.Count(), frame, slot, name, value));
+			}
 		}
 
 	}

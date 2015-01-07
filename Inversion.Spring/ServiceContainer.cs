@@ -81,7 +81,7 @@ namespace Inversion.Spring {
 		/// <typeparam name="T">The type of the service being obtained.</typeparam>
 		/// <param name="name">The name of the service to obtain.</param>
 		/// <returns>Returns the service of the specified name.</returns>
-		public T GetService<T>(string name) {
+		public T GetService<T>(string name) where T: class {
 			return (T)this.GetService(name, typeof(T));
 		}
 

@@ -15,6 +15,7 @@ namespace Inversion.Naiad {
 		}
 
 		private readonly ConcurrentDictionary<string, object> _ctors = new ConcurrentDictionary<string, object>();
+		private readonly ConcurrentDictionary<string, object> _objs = new ConcurrentDictionary<string, object>();
 
 		~ServiceContainer() {
 			Dispose(false);
@@ -41,11 +42,17 @@ namespace Inversion.Naiad {
 			}
 		}
 
-		public T GetService<T>(string name) {
+		public T GetService<T>(string name) where T : class {
 			_lock.EnterReadLock();
 			try {
-				Func<IServiceContainer, T> ctor = _ctors[name] as Func<IServiceContainer, T>;
-				return ctor(this);
+				if (_objs.ContainsKey(name)) {
+					return _objs[name] as T;
+				} else {
+					Func<IServiceContainer, T> ctor = _ctors[name] as Func<IServiceContainer, T>;
+					T obj = ctor(this);
+					_objs[name] = obj;
+					return obj;
+				}
 			} finally {
 				_lock.ExitReadLock();
 			}

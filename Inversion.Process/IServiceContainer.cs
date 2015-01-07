@@ -16,7 +16,7 @@ namespace Inversion.Process {
 		/// <typeparam name="T">The type of the service being obtained.</typeparam>
 		/// <param name="name">The name of the service to obtain.</param>
 		/// <returns>Returns the service of the specified name.</returns>
-		T GetService<T>(string name);
+		T GetService<T>(string name) where T: class;
 		/// <summary>
 		/// Determines if the container has a service of a specified name.
 		/// </summary>
