@@ -1,46 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 
 using Antlr4.StringTemplate;
 
 using Inversion.Process;
-using Inversion.Process.Behaviour;
+using Inversion.Web.Behaviour.View;
 
 namespace Inversion.StringTemplate.Behaviour.View {
-	public class StringTemplateViewBehaviour : ProcessBehaviour {
-		private readonly string _contentType;
+	/// <summary>
+	/// A behaviour that will transform the last view step by attempting to find
+	/// an appropriate ST4 template, based upon the context params
+	/// of *area*, *concern*, and *action*. 
+	/// </summary>
+	public class StringTemplateViewBehaviour : ViewBehaviour {
 
+		/// <summary>
+		/// Creates a new instance of the behaviour, with the default
+		/// content type of "text/html".
+		/// </summary>
+		/// <param name="respondsTo">The name of the behaviour.</param>
 		public StringTemplateViewBehaviour(string respondsTo) : this(respondsTo, "text/html") { }
-
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
 		public StringTemplateViewBehaviour(string respondsTo, string contentType)
-			: base(respondsTo) {
-			_contentType = contentType;
-		}
-
-		private IEnumerable<string> _possibleTemplates(IProcessContext context) {
-			string area = context.Params["area"];
-			string concern = context.Params["concern"];
-			string action = String.Format("{0}.st", context.Params["action"]);
-
-			// area/concern/action
-			yield return Path.Combine(area, concern, action);
-			// area/concern/default
-			yield return Path.Combine(area, concern, "default.st");
-			// area/action
-			yield return Path.Combine(area, action);
-			// area/default
-			yield return Path.Combine(area, "default.st");
-			// concern/action
-			yield return Path.Combine(concern, action);
-			// concern/default
-			yield return Path.Combine(concern, "default.st");
-			// action
-			yield return action;
-			// default
-			yield return "default.st";
-		}
-
+			: base(respondsTo, contentType) {}
+		
 		/// <summary>
 		/// Implementors should impliment this behaviour with the desired action
 		/// for their behaviour.
@@ -49,7 +35,7 @@ namespace Inversion.StringTemplate.Behaviour.View {
 		/// <param name="context">The context upon which to perform any action.</param>
 		public override void Action(IEvent ev, IProcessContext context) {
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasModel) {
-				foreach (string templateName in _possibleTemplates(context)) {
+				foreach (string templateName in this.GetPossibleTemplates(context, "st")) {
 					string templatePath = Path.Combine(context.ParamOrDefault("baseDirectory", ""), "Resources", "Views", "ST", templateName);
 					if (File.Exists(templatePath)) {
 						string src = File.ReadAllText(templatePath);
@@ -57,7 +43,7 @@ namespace Inversion.StringTemplate.Behaviour.View {
 						template.Add("ctx", context);
 						template.Add("model", context.ViewSteps.Last.Model);
 						string result = template.Render();
-						context.ViewSteps.CreateStep(templateName, _contentType, result);
+						context.ViewSteps.CreateStep(templateName, this.ContentType, result);
 					}
 				}
 			}

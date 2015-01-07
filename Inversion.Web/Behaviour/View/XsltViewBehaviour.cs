@@ -130,23 +130,6 @@ namespace Inversion.Web.Behaviour.View {
 		/// Takes the content of the last view-step and transforms it with the xslt with the location
 		/// that best matches the path of the url. 
 		/// </summary>
-		/// <remarks>
-		/// The locations checked are produced by the following series of yields:-
-		/// <code>
-		///	//area/concern/action
-		///	yield return Path.Combine(area, concern, action);
-		///	yield return Path.Combine(area, concern, "default.xslt");
-		///	// area/action
-		///	yield return Path.Combine(area, action);
-		///	yield return Path.Combine(area, "default.xslt");
-		///	// concern/action
-		///	yield return Path.Combine(concern, action);
-		///	yield return Path.Combine(concern, "default.xslt");
-		///	// action
-		///	yield return action;
-		///	yield return "default.xslt"; 
-		/// </code>
-		/// </remarks>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
 		public override void Action(IEvent ev, IProcessContext context) {
@@ -186,12 +169,12 @@ namespace Inversion.Web.Behaviour.View {
 
 						StringBuilder result = new StringBuilder();
 						XmlDocument input = new XmlDocument();
-						// this needs tidied up						
+						
 						string inputText = context.ViewSteps.Last.Content ?? context.ViewSteps.Last.Model.ToXml();
 						input.LoadXml(inputText);
 						xsl.Transform(input, args, new StringWriterWithEncoding(result, Encoding.UTF8));
 						context.ViewSteps.CreateStep(templateName, _contentType, result.ToString());
-						break;
+						break; // we've found and processed our template, no need to keep looking
 					}
 				}
 

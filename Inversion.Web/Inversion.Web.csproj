@@ -64,6 +64,7 @@
     <Compile Include="Behaviour\ViewStateBehaviour.cs" />
     <Compile Include="Behaviour\View\JsonViewBehaviour.cs" />
     <Compile Include="Behaviour\View\RazorViewBehaviour.cs" />
+    <Compile Include="Behaviour\View\ViewBehaviour.cs" />
     <Compile Include="Behaviour\View\XmlViewBehaviour.cs" />
     <Compile Include="Behaviour\View\XsltViewBehaviour.cs" />
     <Compile Include="Behaviour\WebBehaviour.cs" />

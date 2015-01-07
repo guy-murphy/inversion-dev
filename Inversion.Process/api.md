@@ -1,10 +1,178 @@
 
-## `T:Inversion.Process.Behaviour.MatchingBehaviour`
+## `T:Inversion.Process.Configuration`
+Provides an immutable, ordered collection of configuration elements.
 
 
+### `.#ctor`
+Instantiates a new, empty configuration.
 
-## `T:Inversion.Process.Behaviour.ApplicationBehaviour`
-An abstract provision of an application behaviour that includes features for configuring parameter conditions that must be met for the behaviours action to execute.
+
+### `.#ctor(System.Collections.Generic.IEnumerable{Inversion.Process.Configuration.Element})`
+Instantiates a new configuration from the elements provided.
+
+* `elements`: The elements to populate the configuration with.
+
+### `.GetElements(System.String)`
+Gets the elements for a specified frame.
+
+* `frame`: The frame to get the elements for.
+
+**returns:** 
+Returns an enumerable of the matching elements.
+
+
+### `.GetElements(System.String,System.String)`
+Gets the elements for the specified frame and slot.
+
+* `frame`: The frame to get the elements for.
+* `slot`: The slot within a frame to get the elements for.
+
+**returns:** 
+Returns an enumerable of the matching elements.
+
+
+### `.GetElements(System.String,System.String,System.String)`
+Gets the elements for the specified frame and slot.
+
+* `frame`: The frame to get the elements for.
+* `slot`: The slot within a frame to get the elements for.
+* `name`: The name within the slot to get the elements for.
+
+**returns:** 
+Returns an enumerable of the matching elements.
+
+
+### `.GetValue(System.String,System.String,System.String)`
+Gets the specified value from the configuration.
+
+* `frame`: The frame of the value.
+* `slot`: The slot of the value.
+* `name`: The name of the value.
+
+**returns:** 
+Returns the value macthing the frame, slot, and name specified.
+
+
+### `.GetValues(System.String,System.String,System.String)`
+Gets the specified values from the configuration.
+
+* `frame`: The frame of the values.
+* `slot`: The slot of the values.
+* `name`: The name of the values.
+
+**returns:** 
+Returns the values matching the frame, slot, and name specified.
+
+
+### `.GetMap(System.String,System.String)`
+Get a map of name/value pairs from the configuration.
+
+* `frame`: The frame of the map.
+* `slot`: The slot of the map.
+
+**returns:** 
+Returns a map matching the frame and slot specified.
+
+
+### `.GetNames(System.String,System.String)`
+Gets names from the configuration.
+
+* `frame`: The frame of the names.
+* `slot`: The slot of the names.
+
+**returns:** 
+Returns an enumerable of the names matching the frame and slot specified.
+
+
+### `.GetSlots(System.String)`
+Gets slots from the configuration.
+
+* `frame`: The frame of the slots.
+
+**returns:** 
+Returns an enumerable of the slots matching the frame specified.
+
+
+### `.Has(System.String,System.String,System.String,System.String)`
+Determines whether or not the configuration has an element with the frame, slot, name and value specified.
+
+* `frame`: The frame of the element.
+* `slot`: The slot of the element.
+* `name`: The name of the element.
+* `value`: The value of the element.
+
+**returns:** 
+Returns true if the configuration containes the specified element; otherwise, returns false.
+
+
+### `.Has(System.String,System.String,System.String)`
+Determines whether or not the configuration has any elements with the frame, slot, and name specified.
+
+* `frame`: The frame of the element.
+* `slot`: The slot of the element.
+* `name`: The name of the element.
+
+**returns:** 
+Returns true if the configuration containes the specified element; otherwise, returns false.
+
+
+### `.HasAll(System.String,System.String,System.String,System.String[])`
+Determines whether or not the configuration has all elements with the frame, slot, name and values specified.
+
+* `frame`: The frame of the element.
+* `slot`: The slot of the element.
+* `name`: The name of the element.
+* `values`: The values of the elements.
+
+**returns:** 
+Returns true if the configuration containes all the specified elements; otherwise, returns false.
+
+
+### `.HasAny(System.String,System.String,System.String,System.String[])`
+Determines whether or not the configuration has any of then elements with the frame, slot, name and values specified.
+
+* `frame`: The frame of the element.
+* `slot`: The slot of the element.
+* `name`: The name of the element.
+* `values`: The values of the elements.
+
+**returns:** 
+Returns true if the configuration containes any of the specified elements; otherwise, returns false.
+
+### `.Elements`
+The elements comprising the configuration.
+
+
+## `T:Inversion.Process.Configuration.Element`
+Models an element of a behaviour configuration.
+
+
+### `.#ctor(System.Int32,System.String,System.String,System.String,System.String)`
+Initializes a new instance of the element class.
+
+* `ordinal`: The order in which this element comes relative to its siblings.
+* `frame`: The value of the tuple's first component.
+* `slot`: The value of the tuple's second component.
+* `name`: The value of the tuple's third component.
+* `value`: The value of the tuple's third component.
+### `.Ordinal`
+The order or position which this element occupies relative to its siblings.
+
+### `.Frame`
+The frame of this element.
+
+### `.Slot`
+The slot of this element.
+
+### `.Name`
+The name of this element.
+
+### `.Value`
+The value of this element.
+
+
+## `T:Inversion.Process.Behaviour.ConfiguredBehaviour`
+A behaviour that can be configured.
 
 
 ## `T:Inversion.Process.Behaviour.ProcessBehaviour`
@@ -47,7 +215,7 @@ Perform any processing necessary after the action for this behaviour is processe
 
 * `ev`: The event that any postprocessing is responding to.
 
-### `.Action(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+### `.Action(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
 Process the action in response to the provided  [Inversion.Process.IEvent](T-Inversion.Process.IEvent) with the  [Inversion.Process.ProcessContext](T-Inversion.Process.ProcessContext)  provided.
 
 * `ev`: The event to process.
@@ -61,7 +229,17 @@ The considtion that determines whether of not the behaviours action is valid to 
 **returns:** 
 `true` if the condition is met; otherwise,  returns  `false`.
 
-### `.Message`
+
+### `.Condition(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
+The considtion that determines whether of not the behaviours action is valid to run.
+
+* `ev`: The event to consider with the condition.
+* `context`: The context to use.
+
+**returns:** 
+`true` if the condition is met; otherwise,  returns  `false`.
+
+### `.RespondsTo`
 Gets the message that the behaviour will respond to.
 
 
@@ -70,7 +248,7 @@ Gets the message that the behaviour will respond to.
 ### `:Inversion.Process.Behaviour.ProcessBehaviour.#ctor(System.String)`
 Creates a new instance of the behaviour.
 
-* `message`: The name of the behaviour.
+* `respondsTo`: The name of the behaviour.
 
 ### `:Inversion.Process.Behaviour.ProcessBehaviour.Condition(Inversion.Process.IEvent)`
 Determines if the event specifies the behaviour by name.
@@ -78,12 +256,12 @@ Determines if the event specifies the behaviour by name.
 * `ev`: The event to consult.
 
 **returns:** 
-Returns true if the  [Inversion.Process.IEvent.Message](P-Inversion.Process.IEvent.Message) is the same as the  [Inversion.Process.Behaviour.ProcessBehaviour.Message](P-Inversion.Process.Behaviour.ProcessBehaviour.Message) 
+Returns true if the  [Inversion.Process.IEvent.Message](P-Inversion.Process.IEvent.Message) is the same as the  [Inversion.Process.Behaviour.ProcessBehaviour.RespondsTo](P-Inversion.Process.Behaviour.ProcessBehaviour.RespondsTo) 
 
 #### Remarks
 The intent is to override for bespoke conditions.
 
-### `:Inversion.Process.Behaviour.ProcessBehaviour.Condition(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+### `:Inversion.Process.Behaviour.ProcessBehaviour.Condition(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
 Determines if the event specifies the behaviour by name.
 
 * `ev`: The event to consult.
@@ -114,54 +292,68 @@ The action to perform when the `Condition(IEvent)` is met.
 
 * `ev`: The event to consult.
 
-### `:Inversion.Process.Behaviour.ProcessBehaviour.Action(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+### `:Inversion.Process.Behaviour.ProcessBehaviour.Action(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
 The action to perform when the `Condition(IEvent)` is met.
 
 * `ev`: The event to consult.
 * `context`: The context upon which to perform any action.
-## `P:Inversion.Process.Behaviour.ProcessBehaviour.Message`
+## `P:Inversion.Process.Behaviour.ProcessBehaviour.RespondsTo`
 The name the behaviour is known by to the system.
 
 
-## `T:Inversion.Process.Behaviour.IApplicationBehaviour`
-Represents a behaviour that can be configured for use in an application.
-
-### `.NamedMaps`
-Provides access to the behaviours named maps, used to configure the behaviour.
-
-### `.NamedLists`
-Provides access to the behaviours named lists, used to configure the behaviour.
-
-### `.NamedMappedLists`
-Provides acces to the behaviours named map of lists used to configure the behaviour.
+## `T:Inversion.Process.Behaviour.IConfiguredBehaviour`
+Described a behaviour that has a configuration.
 
 
-### `:Inversion.Process.Behaviour.ApplicationBehaviour.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.String}},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}}})`
+## `T:Inversion.Process.IConfigured`
+Expresses access to structured configuration for a component suitable for querying.
+
+### `.Configuration`
+Provices access to component configuration stuiable for querying.
+
+
+### `:Inversion.Process.Behaviour.ConfiguredBehaviour.#ctor(System.String)`
+Creates a new instance of the behaviour with no configuration.
+
+* `respondsTo`: The message the behaviour will respond to.
+
+### `:Inversion.Process.Behaviour.ConfiguredBehaviour.#ctor(System.String,Inversion.Process.Configuration)`
 Creates a new instance of the behaviour.
 
-* `message`: The name of the behaviour.
-* `namedLists`: Named lists used to configure this behaviour.
-* `namedMaps`: Named maps used to configure this behaviour.
-* `namedMappedLists`: Named maps of lists used to configure this behaviour.
-## `P:Inversion.Process.Behaviour.ApplicationBehaviour.NamedMaps`
-Provides access to the behaviours named maps, used to configure the behaviour.
+* `respondsTo`: The message the behaviour will respond to.
+* `config`: Configuration for the behaviour.
 
-## `P:Inversion.Process.Behaviour.ApplicationBehaviour.NamedLists`
-Provides access to the behaviours named lists, used to configure the behaviour.
-
-## `P:Inversion.Process.Behaviour.ApplicationBehaviour.NamedMappedLists`
-Provides access to the behaviours named, mapped lists, used to configure the behaviour.
-
-
-### `:Inversion.Process.Behaviour.MatchingBehaviour.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.String}},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}}})`
+### `:Inversion.Process.Behaviour.ConfiguredBehaviour.#ctor(System.String,System.Collections.Generic.IEnumerable{Inversion.Process.Configuration.Element})`
 Creates a new instance of the behaviour.
 
-* `message`: The name of the behaviour.
-* `namedLists`: Named lists used to configure this behaviour.
-* `namedMaps`: Named maps used to configure this behaviour.
-* `namedMappedLists`: Named maps of lists used to configure this behaviour.
+* `respondsTo`: The message the behaviour will respond to.
+* `config`: Configuration for the behaviour.
+## `P:Inversion.Process.Behaviour.ConfiguredBehaviour.Configuration`
+Exposes the configuration of the behaviour for querying.
 
-### `:Inversion.Process.Behaviour.MatchingBehaviour.Condition(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+
+## `T:Inversion.Process.Behaviour.MatchingBehaviour`
+Extends `ConfiguredBehaviour` with an implemented `Condition` intended to act upont he behaviours configuration to match with state expressed on the process context.
+
+
+### `.#ctor(System.String)`
+Creates a new instance of the behaviour with no configuration.
+
+* `respondsTo`: The message the behaviour will respond to.
+
+### `.#ctor(System.String,Inversion.Process.Configuration)`
+Creates a new instance of the behaviour.
+
+* `respondsTo`: The message the behaviour will respond to.
+* `config`: Configuration for the behaviour.
+
+### `.#ctor(System.String,System.Collections.Generic.IEnumerable{Inversion.Process.Configuration.Element})`
+Creates a new instance of the behaviour.
+
+* `respondsTo`: The message the behaviour will respond to.
+* `config`: Configuration for the behaviour.
+
+### `.Condition(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
 Determines if the event specifies the behaviour by name.
 
 * `ev`: The event to consult.
@@ -177,7 +369,27 @@ The intent is to override for bespoke conditions.
 Extensions provided for ``IApplicationBehaioour` providing basic checks performed in behaviour conditions.
 
 
-### `.HasAllParms(Inversion.Process.Behaviour.IApplicationBehaviour,Inversion.Process.ProcessContext)`
+### `.EventHasAllParams(Inversion.Process.Behaviour.IConfiguredBehaviour,Inversion.Process.IEvent)`
+Determines whether or not the parameters  specified exist in the current event.
+
+* `self`: The behaviour to act upon.
+* `ev`: The event to consult.
+
+**returns:** 
+Returns true if all the parameters exist; otherwise return false.
+
+
+### `.EventMatchesAllParamValues(Inversion.Process.Behaviour.IConfiguredBehaviour,Inversion.Process.IEvent)`
+Determines whether or not all the key-value pairs provided exist in the events parameters.
+
+* `self`: The behaviour to act upon.
+* `ev`: The event to consult.
+
+**returns:** 
+Returns true if all the key-value pairs specified exists in the events parameters; otherwise returns false.
+
+
+### `.ContextHasAllParams(Inversion.Process.Behaviour.IConfiguredBehaviour,Inversion.Process.IProcessContext)`
 Determines whether or not the parameters  specified exist in the current context.
 
 * `self`: The behaviour to act upon.
@@ -187,7 +399,7 @@ Determines whether or not the parameters  specified exist in the current context
 Returns true if all the parameters exist; otherwise return false.
 
 
-### `.MacthesAllParamValues(Inversion.Process.Behaviour.IApplicationBehaviour,Inversion.Process.ProcessContext)`
+### `.ContextMacthesAllParamValues(Inversion.Process.Behaviour.IConfiguredBehaviour,Inversion.Process.IProcessContext)`
 Determines whether or not all the key-value pairs provided exist in the contexts parameters.
 
 * `self`: The behaviour to act upon.
@@ -197,7 +409,17 @@ Determines whether or not all the key-value pairs provided exist in the contexts
 Returns true if all the key-value pairs specified exists in the contexts parameters; otherwise returns false.
 
 
-### `.HasAllControlStates(Inversion.Process.Behaviour.IApplicationBehaviour,Inversion.Process.ProcessContext)`
+### `.ContextExcludes(Inversion.Process.Behaviour.IConfiguredBehaviour,Inversion.Process.IProcessContext)`
+Determines whether or not all the key-value pairs provided are NOT in the contexts parameters.
+
+* `self`: The behaviour to act upon.
+* `ctx`: The context to consult.
+
+**returns:** 
+Returns true if all the key-value pairs specified are absent in the contexts parameters; otherwise returns false.
+
+
+### `.ContextHasAllControlStates(Inversion.Process.Behaviour.IConfiguredBehaviour,Inversion.Process.IProcessContext)`
 Dtermines whether or not the control state has entries indexed under the keys provided.
 
 * `self`: The behaviour to act upon.
@@ -207,7 +429,17 @@ Dtermines whether or not the control state has entries indexed under the keys pr
 Returns true if all the specified keys exist in the control state; otherwise returns false.
 
 
-### `.HasAllFlags(Inversion.Process.Behaviour.IApplicationBehaviour,Inversion.Process.ProcessContext)`
+### `.ContextExcludesControlState(Inversion.Process.Behaviour.IConfiguredBehaviour,Inversion.Process.IProcessContext)`
+Determines whether or not all the key-value pairs provided are NOT in the contexts control state.
+
+* `self`: The behaviour to act upon.
+* `ctx`: The context to consult.
+
+**returns:** 
+Returns true if all the key-value pairs specified are absent in the contexts parameters; otherwise returns false.
+
+
+### `.ContextHasAllFlags(Inversion.Process.Behaviour.IConfiguredBehaviour,Inversion.Process.IProcessContext)`
 Determines whether or not each of the specified is set on the context.
 
 * `self`: The behaviour to act upon.
@@ -221,28 +453,24 @@ Returns true is all flags are set on the context; otherwise, returns false.
 A simple behaviour to wire up to test the simplest possible output.
 
 
-### `.#ctor`
-Creates a new instance of a message trace behaviour, which normally would be created without a specified message to respond to.
-
-
 ### `.#ctor(System.String)`
+Creates a new instance of the behaviour with no configuration.
+
+* `respondsTo`: The message the behaviour will respond to.
+
+### `.#ctor(System.String,Inversion.Process.Configuration)`
 Creates a new instance of the behaviour.
 
-* `message`: The name of the behaviour.
+* `respondsTo`: The message the behaviour will respond to.
+* `config`: Configuration for the behaviour.
 
-### `.Condition(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
-Determines if the event specifies the behaviour by name.
+### `.#ctor(System.String,System.Collections.Generic.IEnumerable{Inversion.Process.Configuration.Element})`
+Creates a new instance of the behaviour.
 
-* `ev`: The event to consult.
-* `context`: The context to consult.
+* `respondsTo`: The message the behaviour will respond to.
+* `config`: Configuration for the behaviour.
 
-**returns:** 
-Returns true if true if `ev.Message` is the same as `this.Message`
-
-#### Remarks
-The intent is to override for bespoke conditions.
-
-### `.Action(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+### `.Action(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
 The action to perform when the `Condition(IEvent)` is met.
 
 * `ev`: The event to consult.
@@ -252,15 +480,19 @@ The action to perform when the `Condition(IEvent)` is met.
 A behaviour concerned with driving the processing of a sequence of messages.
 
 
-### `.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.String}},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}}})`
+### `.#ctor(System.String,Inversion.Process.Configuration)`
 Creates a new instance of the behaviour.
 
-* `message`: The name of the behaviour.
-* `namedLists`: Named lists used to configure this behaviour.
-* `namedMaps`: Named maps used to configure this behaviour.
-* `namedMappedLists`: Named maps of lists used to configure this behaviour.
+* `respondsTo`: The message the behaviour will respond to.
+* `config`: Configuration for the behaviour.
 
-### `.Action(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+### `.#ctor(System.String,System.Collections.Generic.IEnumerable{Inversion.Process.Configuration.Element})`
+Creates a new instance of the behaviour.
+
+* `respondsTo`: The message the behaviour will respond to.
+* `config`: Configuration for the behaviour.
+
+### `.Action(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
 The action to perform when the `Condition(IEvent)` is met.
 
 * `ev`: The event to consult.
@@ -370,6 +602,15 @@ Adds a key-value pair as a parameter to the event.
 * `value`: The value of the parameter.
 
 ### `.HasParams(System.String[])`
+Determines whether or not the parameters  specified exist in the event.
+
+* `parms`: The parameters to check for.
+
+**returns:** 
+Returns true if all the parameters exist; otherwise return false.
+
+
+### `.HasParams(System.Collections.Generic.IEnumerable{System.String})`
 Determines whether or not the parameters  specified exist in the event.
 
 * `parms`: The parameters to check for.
@@ -504,6 +745,15 @@ Determines whether or not the parameters  specified exist in the event.
 Returns true if all the parameters exist; otherwise return false.
 
 
+### `:Inversion.Process.Event.HasParams(System.Collections.Generic.IEnumerable{System.String})`
+Determines whether or not the parameters  specified exist in the event.
+
+* `parms`: The parameters to check for.
+
+**returns:** 
+Returns true if all the parameters exist; otherwise return false.
+
+
 ### `:Inversion.Process.Event.HasParamValues(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})`
 Determines whether or not all the key-value pairs provided exist in the events parameters.
 
@@ -622,6 +872,101 @@ instantiates a new exception wrapping a provided inner exception, with a human r
 * `message`: The human readable message for the exception.
 * `err`: The inner exception to wrap.
 
+## `T:Inversion.Process.IProcessContext`
+Provides a processing context as a self-contained and sufficient channel of application execution. The context manages a set of behaviours and mediates between them and the outside world.
+
+#### Remarks
+The process context along with the `IBehaviour` objects registered on its bus *are* Inversion. Everything else is chosen convention about how those behaviours interact with each other via the context.
+
+### `.Register(Inversion.Process.Behaviour.IProcessBehaviour)`
+Registers a behaviour with the context ensuring it is consulted for each event fired on this context.
+
+* `behaviour`: The behaviour to register with this context.
+
+### `.Register(System.Collections.Generic.IEnumerable{Inversion.Process.Behaviour.IProcessBehaviour})`
+Registers a whole bunch of behaviours with this context ensuring each one is consulted when an event is fired on this context.
+
+* `behaviours`: The behaviours to register with this context.
+
+### `.Register(System.Predicate{Inversion.Process.IEvent},System.Action{Inversion.Process.IEvent,Inversion.Process.IProcessContext})`
+Creates and registers a runtime behaviour with this context constructed  from a predicate representing the behaviours condition, and an action representing the behaviours action. This behaviour will be consulted for any event fired on this context.
+
+* `condition`: The predicate to use as the behaviours condition.
+* `action`: The action to use as the behaviours action.
+
+### `.Fire(Inversion.Process.IEvent)`
+Fires an event on the context. Each behaviour registered with context is consulted in no particular order, and for each behaviour that has a condition that returns true when applied to the event, that behaviours action is executed.
+
+* `ev`: The event to fire on this context.
+
+**returns:** 
+
+
+
+### `.Fire(System.String)`
+Constructs a simple event, with a simple string message and fires it on this context.
+
+* `message`: The message to assign to the event.
+
+**returns:** 
+Returns the event that was constructed and fired on this context.
+
+
+### `.Fire(System.String,System.Collections.Generic.IDictionary{System.String,System.String})`
+Constructs an event using the message specified, and using the dictionary provided to populate the parameters of the event. This event is then fired on this context.
+
+* `message`: The message to assign to the event.
+* `parms`: The parameters to populate the event with.
+
+**returns:** 
+Returns the event that was constructed and fired on this context.
+
+
+### `.FireWith(System.String,System.String[])`
+Contructs an event with the message specified, using the supplied parameter keys to copy parameters from the context to the constructed event. This event is then fired on this context.
+
+* `message`: The message to assign to the event.
+* `parms`: The parameters to copy from the context.
+
+**returns:** 
+Returns the event that was constructed and fired on this context.
+
+### `.Services`
+Exposes the processes service container.
+
+### `.ObjectCache`
+Provsion of a simple object cache for the context.
+
+#### Remarks
+This really needs replaced with our own interface that we control. This isn't portable.
+### `.Messages`
+Messages intended for user feedback.
+
+#### Remarks
+This is a poor mechanism for localisation, and may need to be treated as tokens by the front end to localise.
+### `.Errors`
+Error messages intended for user feedback.
+
+#### Remarks
+This is a poor mechanism for localisation, and may need to be treated as tokens by the front end to localise.
+### `.Timers`
+A dictionary of named timers.
+
+#### Remarks
+`ProcessTimer` is only intended for informal timings, and it not intended for proper metrics.
+### `.ViewSteps`
+Gives access to a collection of view steps that will be used to control the render pipeline for this context.
+
+### `.ControlState`
+Gives access to the current control state of the context. This is the common state that behaviours share and that provides the end state or result of a contexts running process.
+
+### `.Flags`
+Flags for the context available to behaviours as shared state.
+
+### `.Params`
+The parameters of the contexts execution available to behaviours as shared state.
+
+
 ## `T:Inversion.Process.IServiceContainer`
 Represent the contract of a simple service container from which services may be ontained by name. This interface focused on consuming services from a container and does not speak to the configuration or management of a container.
 
@@ -683,7 +1028,7 @@ Registers a whole bunch of behaviours with this context ensuring each one is con
 
 * `behaviours`: The behaviours to register with this context.
 
-### `.Register(System.Predicate{Inversion.Process.IEvent},System.Action{Inversion.Process.IEvent,Inversion.Process.ProcessContext})`
+### `.Register(System.Predicate{Inversion.Process.IEvent},System.Action{Inversion.Process.IEvent,Inversion.Process.IProcessContext})`
 Creates and registers a runtime behaviour with this context constructed  from a predicate representing the behaviours condition, and an action representing the behaviours action. This behaviour will be consulted for any event fired on this context.
 
 * `condition`: The predicate to use as the behaviours condition.
@@ -731,107 +1076,6 @@ Returns the event that was constructed and fired on this context.
 Instructs the context that operations have finished, and that while it may still be consulted no further events will be fired.
 
 
-### `.IsFlagged(System.String)`
-Determines whether or not the flag of the specified key exists.
-
-* `flag`: The key of the flag to check for.
-
-**returns:** 
-Returns true if the flag exists; otherwise returns false.
-
-
-### `.HasParams(System.String[])`
-Determines whether or not the parameters  specified exist in the current context.
-
-* `parms`: The parameters to check for.
-
-**returns:** 
-Returns true if all the parameters exist; otherwise return false.
-
-
-### `.HasParams(System.Collections.Generic.IEnumerable{System.String})`
-Determines whether or not the parameters  specified exist in the current context.
-
-* `parms`: The parameters to check for.
-
-**returns:** 
-Returns true if all the parameters exist; otherwise return false.
-
-
-### `.HasParamValue(System.String,System.String)`
-Determines whether or not the parameter name and value specified exists in the current context.
-
-* `name`: The name of the parameter to check for.
-* `value`: The value of the parameter to check for.
-
-**returns:** 
-Returns true if a parameter with the name and value specified exists in this conext; otherwise returns false.
-
-
-### `.HasParamValues(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})`
-Determines whether or not all the key-value pairs provided exist in the contexts parameters.
-
-* `match`: The key-value pairs to check for.
-
-**returns:** 
-Returns true if all the key-value pairs specified exists in the contexts parameters; otherwise returns false.
-
-
-### `.HasParamValues(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.String}}})`
-Determines whether or not all any of the values for their associated parameter name exist in the contexts parameters.
-
-* `match`: The possible mapped values to match against.
-
-**returns:** 
-Returns if each of the keys has at least one value that exists for the conext; otherwise, returns false.
-
-
-### `.HasRequiredParams(System.String[])`
-Determines whether or not the specified paramters exist in this context, and produces and error for each one that does not exist.
-
-* `parms`: The parameter keys to check for.
-
-**returns:** 
-Returns true if all the paramter keys are present; otherwise returns false.
-
-
-### `.HasControlState(System.String[])`
-Dtermines whether or not the control state has entries indexed under the keys provided.
-
-* `parms`: The keys to check for in the control state.
-
-**returns:** 
-Returns true if all the specified keys exist in the control state; otherwise returns false.
-
-
-### `.HasControlState(System.Collections.Generic.IEnumerable{System.String})`
-Dtermines whether or not the control state has entries indexed under the keys provided.
-
-* `parms`: The keys to check for in the control state.
-
-**returns:** 
-Returns true if all the specified keys exist in the control state; otherwise returns false.
-
-
-### `.HasRequiredControlState(System.String[])`
-Dtermines whether or not the control state has entries indexed under the keys provided, and creates an error for each one that doesn't.
-
-* `parms`: The keys to check for in the control state.
-
-**returns:** 
-Returns true if all the specified keys exist in the control state; otherwise returns false.
-
-
-### `.ParamOrDefault(System.String,System.String)`
-Obtains the context prarameter for the specified key, or if it doesn't exist uses the default value specified.
-
-* `key`: The key of the context parameter to use.
-* `defaultValue`: The value to use if the parameter doesn't exist.
-
-**returns:** 
-Returns the specified parameter if it exists; otherwise returns false.
-
-
 ### `.ToString`
 Provides a string representation of the context and its current state.
 
@@ -876,6 +1120,122 @@ Flags for the context available to behaviours as shared state.
 
 ### `.Params`
 The parameters of the contexts execution available to behaviours as shared state.
+
+
+## `T:Inversion.Process.ProcessContextEx`
+Extension methods for `IProcessContext` concerned with performing checks upon that context.
+
+
+### `.IsFlagged(Inversion.Process.IProcessContext,System.String)`
+Determines whether or not the flag of the specified key exists.
+
+* `flag`: The key of the flag to check for.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if the flag exists; otherwise returns false.
+
+
+### `.HasParams(Inversion.Process.IProcessContext,System.String[])`
+Determines whether or not the parameters  specified exist in the current context.
+
+* `parms`: The parameters to check for.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if all the parameters exist; otherwise return false.
+
+
+### `.HasParams(Inversion.Process.IProcessContext,System.Collections.Generic.IEnumerable{System.String})`
+Determines whether or not the parameters  specified exist in the current context.
+
+* `parms`: The parameters to check for.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if all the parameters exist; otherwise return false.
+
+
+### `.HasParamValue(Inversion.Process.IProcessContext,System.String,System.String)`
+Determines whether or not the parameter name and value specified exists in the current context.
+
+* `name`: The name of the parameter to check for.
+* `value`: The value of the parameter to check for.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if a parameter with the name and value specified exists in this conext; otherwise returns false.
+
+
+### `.HasParamValues(Inversion.Process.IProcessContext,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})`
+Determines whether or not all the key-value pairs provided exist in the contexts parameters.
+
+* `match`: The key-value pairs to check for.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if all the key-value pairs specified exists in the contexts parameters; otherwise returns false.
+
+
+### `.HasParamValues(Inversion.Process.IProcessContext,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.String}}})`
+Determines whether or not all any of the values for their associated parameter name exist in the contexts parameters.
+
+* `match`: The possible mapped values to match against.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns if each of the keys has at least one value that exists for the conext; otherwise, returns false.
+
+
+### `.HasRequiredParams(Inversion.Process.IProcessContext,System.String[])`
+Determines whether or not the specified paramters exist in this context, and produces and error for each one that does not exist.
+
+* `parms`: The parameter keys to check for.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if all the paramter keys are present; otherwise returns false.
+
+
+### `.HasControlState(Inversion.Process.IProcessContext,System.String[])`
+Dtermines whether or not the control state has entries indexed under the keys provided.
+
+* `parms`: The keys to check for in the control state.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if all the specified keys exist in the control state; otherwise returns false.
+
+
+### `.HasControlState(Inversion.Process.IProcessContext,System.Collections.Generic.IEnumerable{System.String})`
+Dtermines whether or not the control state has entries indexed under the keys provided.
+
+* `parms`: The keys to check for in the control state.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if all the specified keys exist in the control state; otherwise returns false.
+
+
+### `.HasRequiredControlState(Inversion.Process.IProcessContext,System.String[])`
+Dtermines whether or not the control state has entries indexed under the keys provided, and creates an error for each one that doesn't.
+
+* `parms`: The keys to check for in the control state.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns true if all the specified keys exist in the control state; otherwise returns false.
+
+
+### `.ParamOrDefault(Inversion.Process.IProcessContext,System.String,System.String)`
+Obtains the context prarameter for the specified key, or if it doesn't exist uses the default value specified.
+
+* `key`: The key of the context parameter to use.
+* `defaultValue`: The value to use if the parameter doesn't exist.
+* `self`: The context being acted upon.
+
+**returns:** 
+Returns the specified parameter if it exists; otherwise returns false.
 
 
 ## `T:Inversion.Process.ProcessException`
@@ -1011,12 +1371,12 @@ A behaviour that facilitates creating behaviours whose conditions and actions ar
 ### `.#ctor(System.String)`
 Instantiates a new runtime behaviour.
 
-* `name`: The name by which the behaviour is known to the system.
+* `respondsTo`: The name by which the behaviour is known to the system.
 
-### `.#ctor(System.String,System.Predicate{Inversion.Process.IEvent},System.Action{Inversion.Process.IEvent,Inversion.Process.ProcessContext})`
+### `.#ctor(System.String,System.Predicate{Inversion.Process.IEvent},System.Action{Inversion.Process.IEvent,Inversion.Process.IProcessContext})`
 Instantiates a new runtime behaviour.
 
-* `name`: The name by which the behaviour is known to the system.
+* `respondsTo`: The name by which the behaviour is known to the system.
 * `condition`: The predicate that will determine if this behaviours action should be executed.
 * `action`: The action that should be performed if this behaviours conditions are met.
 
@@ -1029,7 +1389,7 @@ Determines if this behaviours action should be executed in response to the provi
 Returns true if this behaviours action to execute in response to this event; otherwise returns  false.
 
 
-### `.Action(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+### `.Action(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
 The action to perform if this behaviours condition is met.
 
 * `ev`: The event to consult.
@@ -1044,10 +1404,10 @@ You can think of behaviour as taking one incoming message and turning it into a 
 ### `.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String})`
 Instantiates a new simple sequence behaviour, configuring it with a sequence as an enumerable.
 
-* `message`: The message this behaviour should respond to.
+* `respondsTo`: The message this behaviour should respond to.
 * `sequence`: The sequence of simple messages this behaviour should generate.
 
-### `.Action(Inversion.Process.IEvent,Inversion.Process.ProcessContext)`
+### `.Action(Inversion.Process.IEvent,Inversion.Process.IProcessContext)`
 if the conditions of this behaviour are met it will generate a sequence of configured messages.
 
 * `ev`: The event that gave rise to this action.

@@ -63,6 +63,14 @@ Instantiates a collection populating it with the elements of the provided collec
 
 * `other`: The other collection to populate the new collection with.
 
+### `:Inversion.Collections.ConcurrentDataCollection{T1}.Clone`
+Creates a new instance of a data collection as a copy of this data collection.
+
+
+**returns:** 
+
+
+
 ### `:Inversion.Collections.ConcurrentDataCollection{T1}.ContentToXml(System.Xml.XmlWriter)`
 Produces an XML representation of the collections elements  to a provided writer.
 

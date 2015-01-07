@@ -1,4 +1,34 @@
 `Inversion.Spring`, project notes
+## `T:Inversion.Spring.BehaviourObjectDefinationParser`
+Implements a parser that is able to parse behaviour definations in a Spring XML object config.
+
+
+### `.GetObjectTypeName(System.Xml.XmlElement)`
+Obtains the fully qualified type name of the object represented by the XML element.
+
+* `element`: The object representation in XML.
+
+**returns:** 
+Returns the fully qualified type name for the object being described.
+
+
+### `.DoParse(System.Xml.XmlElement,Spring.Objects.Factory.Support.ObjectDefinitionBuilder)`
+Parse the supplied XmlElement and populate the supplied ObjectDefinitionBuilder as required.
+
+* `xml`: The obejct representation in XML.
+* `builder`: The builder used to build the object defination in Spring.
+### `.ShouldGenerateIdAsFallback`
+Gets a value indicating whether an ID should be generated instead  if the passed in XmlElement does not specify an "id" attribute explicitly. 
+
+
+## `T:Inversion.Spring.BehaviourNamespaceParser`
+Registers tags to be used in configuration with the class that will process those tags.
+
+
+### `.Init`
+Invoked by  [Spring.Objects.Factory.Xml.NamespaceParserRegistry](T-Spring.Objects.Factory.Xml.NamespaceParserRegistry)  after construction but before any                         elements have been parsed.
+
+
 ## `T:Inversion.Spring.ServiceContainer`
 A service container backed by Sprint.NET
 
