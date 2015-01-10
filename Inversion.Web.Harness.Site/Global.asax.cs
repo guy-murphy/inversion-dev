@@ -49,12 +49,12 @@ namespace Inversion.Web.Harness.Site {
 							}
 						),
 						new BootstrapBehaviour("bootstrap", 
-							new Dictionary<string,string> {
-								{"area", "default"},
-								{"concern", "default"},
-								{"action", "default"},
-								{"appPath", "/web.harness"},
-								{"baseDirectory", @"e:\Users\User\Documents\GitHub\inversion-dev\Inversion.Web.Harness.Site\"}
+							new Configuration.Builder {
+								{"context", "copy", "area", "default"},
+								{"context", "copy", "concern", "default"},
+								{"context", "copy", "action", "default"},
+								{"context", "copy", "appPath", "/web.harness"},
+								{"context", "copy", "basePath", @"e:\Users\User\Documents\GitHub\inversion-dev\Inversion.Web.Harness.Site\"}
 							}
 						),
 						new ParseRequestBehaviour("parse-request", "Inversion.Web.Harness.Site"),

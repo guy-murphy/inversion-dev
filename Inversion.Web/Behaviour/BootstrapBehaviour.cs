@@ -13,29 +13,26 @@ namespace Inversion.Web.Behaviour {
 	/// with default prameters. It should be see as a point of extensibility for
 	/// setting up the default state of a context prior to processing a request.
 	/// </summary>
-	public class BootstrapBehaviour : ProcessBehaviour {
-
-		private readonly ImmutableDictionary<string, string> _params;
+	public class BootstrapBehaviour : ConfiguredBehaviour {
+		/// <summary>
+		/// Creates a new instance of the behaviour with no configuration.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		public BootstrapBehaviour(string respondsTo) : base(respondsTo) {}
 
 		/// <summary>
-		/// Gives access to the prameters configured for the bootstrap behaviour
-		/// that should be copied into the context params early in the
-		/// request life-cycle.
+		/// Creates a new instance of the behaviour.
 		/// </summary>
-		protected IDictionary<string, string> Parameters {
-			get { return _params; }
-		}
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		public BootstrapBehaviour(string respondsTo, Configuration config) : base(respondsTo, config) {}
 
 		/// <summary>
-		/// Instantiates a new bootstrap behaviour configured with the key-value
-		/// pairs provided as parameters.
+		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The message this behaviour should respond to.</param>
-		/// <param name="parms">The key value-pairs to configure as parameters for this behaviour.</param>
-		public BootstrapBehaviour(string respondsTo, IEnumerable<KeyValuePair<string, string>> parms)
-			: base(respondsTo) {
-			_params = ImmutableDictionary.CreateRange<string, string>(parms);
-		}
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		public BootstrapBehaviour(string respondsTo, IEnumerable<Configuration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// If the conditions of this behaviour are met, copies the parameters
@@ -44,7 +41,7 @@ namespace Inversion.Web.Behaviour {
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
 		public override void Action(IEvent ev, IProcessContext context) {
-			context.Params.Import(this.Parameters);
+			context.Params.Import(this.Configuration.GetMap("context", "set"));
 		}
 	}
 }

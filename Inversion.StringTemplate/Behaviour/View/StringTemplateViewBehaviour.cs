@@ -36,7 +36,7 @@ namespace Inversion.StringTemplate.Behaviour.View {
 		public override void Action(IEvent ev, IProcessContext context) {
 			if (context.ViewSteps.HasSteps && context.ViewSteps.Last.HasModel) {
 				foreach (string templateName in this.GetPossibleTemplates(context, "st")) {
-					string templatePath = Path.Combine(context.ParamOrDefault("baseDirectory", ""), "Resources", "Views", "ST", templateName);
+					string templatePath = Path.Combine(context.ParamOrDefault("basePath", ""), "Resources", "Views", "ST", templateName);
 					if (File.Exists(templatePath)) {
 						string src = File.ReadAllText(templatePath);
 						Template template = new Template(src, '`', '`');

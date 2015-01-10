@@ -33,6 +33,7 @@
 
 
 	<xsd:element name="configure" type="configured-behaviour-type"></xsd:element>
+	<xsd:element name="behaviour" type="configured-behaviour-type"></xsd:element>
 
 	<xsd:element name="message-trace">
 		<xsd:complexType>
@@ -49,6 +50,16 @@
 			<xsd:complexContent>
 				<xsd:extension base="configured-behaviour-type">
 					<xsd:attribute name="type" type="xsd:string" use="optional" default="Inversion.Process.Behaviour.ParameterisedSequenceBehaviour, Inversion.Process"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="view">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="configured-behaviour-type">
+					<xsd:attribute name="content-type" type="xsd:string" use="required"/>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>

@@ -22,10 +22,11 @@ namespace Inversion.Spring {
 		///             elements have been parsed.
 		/// </summary>
 		public override void Init() {
-
-			this.RegisterObjectDefinitionParser("configure", new BehaviourObjectDefinationParser());
+			this.RegisterObjectDefinitionParser("behaviour", new BehaviourObjectDefinationParser());
 			this.RegisterObjectDefinitionParser("message-trace", new BehaviourObjectDefinationParser());
 			this.RegisterObjectDefinitionParser("message-sequence", new BehaviourObjectDefinationParser());
+
+			this.RegisterObjectDefinitionParser("view", new ViewBehaviourObjectDefinationParser());
 
 		}
 	}

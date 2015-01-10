@@ -75,7 +75,7 @@ namespace Inversion.Process {
 		public string GetValue(string frame, string slot, string name) {
 			return this.GetValues(frame, slot, name).FirstOrDefault();
 		}
-
+		
 		/// <summary>
 		/// Gets the specified values from the configuration.
 		/// </summary>
@@ -223,22 +223,66 @@ namespace Inversion.Process {
 			public Element(int ordinal, string frame, string slot, string name, string value) : base(ordinal, frame, slot, name, value) { }
 		}
 
+		/// <summary>
+		/// Provides a specialised, mutable hashset of elements
+		/// that can be used to conveniently build Configuration.
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// The primary utility of the builder is to faciliate from code
+		/// rather than say from Spring config the likes of...
+		/// </para>
+		/// <code>
+		///     new ParameterisedSequenceBehaviour("process-request", 
+		///		new Configuration.Builder {
+		///			{"fire", "bootstrap"},
+		///			{"fire", "parse-request"},
+		///			{"fire", "work"},
+		///			{"fire", "view-state"},
+		///			{"fire", "process-views"},
+		///			{"fire", "render"}
+		///		}
+		///	)
+		/// </code>
+		/// <para>
+		/// This approach become important in unit-tests where use of `Inversion.Naiad`
+		/// may be attractive over Spring.
+		/// </para>
+		/// </remarks>
 		public class Builder: HashSet<Element> {
-
-			//public static implicit operator Configuration(Builder builder) {
-			//	return builder.ToConcrete();
-			//}
 			
+			/// <summary>
+			/// Produces a configuration from the builder.
+			/// </summary>
+			/// <returns>Returns a configuration initialised from this builder.</returns>
 			public Configuration ToConcrete() {
 				return new Configuration(this);
 			}
 
+			/// <summary>
+			/// Adds an element to the builder.
+			/// </summary>
+			/// <param name="frame">The frame of the element to add.</param>
+			/// <param name="slot">The slot of the element to add.</param>
 			public void Add(string frame, string slot) {
 				this.Add(frame, slot, String.Empty);
 			}
+			/// <summary>
+			/// Adds an element to the builder.
+			/// </summary>
+			/// <param name="frame">The frame of the element to add.</param>
+			/// <param name="slot">The slot of the element to add.</param>
+			/// <param name="name">The name of the element to add.</param>
 			public void Add(string frame, string slot, string name) {
 				this.Add(frame, slot, name, String.Empty);
 			}
+			/// <summary>
+			/// Adds an element to the builder.
+			/// </summary>
+			/// <param name="frame">The frame of the element to add.</param>
+			/// <param name="slot">The slot of the element to add.</param>
+			/// <param name="name">The name of the element to add.</param>
+			/// <param name="value">The value of the element to add.</param>
 			public void Add(string frame, string slot, string name, string value) {
 				this.Add(new Element(this.Count(), frame, slot, name, value));
 			}
