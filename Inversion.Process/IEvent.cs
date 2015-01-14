@@ -40,7 +40,7 @@ namespace Inversion.Process {
 		/// <remarks>
 		/// And event always belongs to a context.
 		/// </remarks>
-		ProcessContext Context { get; }
+		IProcessContext Context { get; }
 
 		/// <summary>
 		/// Any object that the event may be carrying.

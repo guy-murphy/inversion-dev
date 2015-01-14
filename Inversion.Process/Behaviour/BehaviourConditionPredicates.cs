@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Inversion.Process.Behaviour {
 
@@ -11,7 +12,8 @@ namespace Inversion.Process.Behaviour {
 
 		/// <summary>
 		/// Determines whether or not the parameters 
-		/// specified exist in the current event.
+		/// specified exist in the current event. This does not test
+		/// the values of any parameters, merely that they exist.
 		/// </summary>
 		/// <param name="self">The behaviour to act upon.</param>
 		/// <param name="ev">The event to consult.</param>
@@ -70,7 +72,7 @@ namespace Inversion.Process.Behaviour {
 		/// parameters; otherwise returns false.
 		/// </returns>
 		public static bool ContextExcludes(this IConfiguredBehaviour self, IProcessContext ctx) {
-			return !ctx.HasParamValues(self.Configuration.GetMap("context", "excludes"));
+			return self.Configuration.GetMap("context", "excludes").All(kv => !ctx.Params.Contains(kv));
 		}
 
 		/// <summary>
@@ -98,7 +100,7 @@ namespace Inversion.Process.Behaviour {
 		/// parameters; otherwise returns false.
 		/// </returns>
 		public static bool ContextExcludesControlState(this IConfiguredBehaviour self, IProcessContext ctx) {
-			return self.Configuration.GetNames("control-state", "exclude").All(key => !ctx.ControlState.ContainsKey(key));
+			return self.Configuration.GetNames("control-state", "excludes").All(key => !ctx.ControlState.ContainsKey(key));
 		}
 
 		/// <summary>
@@ -109,9 +111,20 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="ctx">The context to consult.</param>
 		/// <returns>Returns true is all flags are set on the context; otherwise, returns false.</returns>
 		public static bool ContextHasAllFlags(this IConfiguredBehaviour self, IProcessContext ctx) {
-			return
-				self.Configuration.GetMap("context", "flagged")
-					.All(kv => kv.Value == "true" && ctx.IsFlagged(kv.Key) || !ctx.IsFlagged(kv.Key));
+			// because LINQ can be a pain in the arse to debug when
+			// you're being too clever for your own good
+			foreach (KeyValuePair<string, string> kv in self.Configuration.GetMap("context", "flagged")) {
+				if (kv.Value == "true") {
+					if (!ctx.IsFlagged(kv.Key)) {
+						return false;
+					}
+				} else {
+					if (ctx.IsFlagged(kv.Key)) {
+						return false;
+					}
+				}
+			}
+			return true;
 		}
 	}
 }

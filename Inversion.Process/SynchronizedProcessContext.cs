@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Subjects;
 using System.Reactive.Linq;
 using System.Runtime.Caching;
@@ -22,17 +21,17 @@ namespace Inversion.Process {
 	/// on its bus *are* Inversion. Everything else is chosen convention about
 	/// how those behaviours interact with each other via the context.
 	/// </remarks>
-	public class ProcessContext : IProcessContext {
+	public class SynchronizedProcessContext : IProcessContext {
 
 		private bool _isDisposed;
 
 		private readonly MemoryCache _cache;
-		private readonly Subject<IEvent> _bus;
-		private readonly DataCollection<string> _messages;
-		private readonly DataCollection<ErrorMessage> _errors;
+		private readonly ISubject<IEvent,IEvent> _bus;
+		private readonly ConcurrentDataCollection<string> _messages;
+		private readonly ConcurrentDataCollection<ErrorMessage> _errors;
 		private readonly ProcessTimerDictionary _timers;
-		private readonly DataDictionary<object> _controlState;
-		private readonly DataCollection<string> _flags;
+		private readonly ConcurrentDataDictionary<object> _controlState;
+		private readonly ConcurrentDataCollection<string> _flags;
 		private readonly ViewSteps _steps;
 		// move this up from WebContext to facilitate
 		// access to the context params from an Event
@@ -54,7 +53,7 @@ namespace Inversion.Process {
 		/// <summary>
 		/// The event bus of the process.
 		/// </summary>
-		protected ISubject<IEvent> Bus {
+		protected ISubject<IEvent,IEvent> Bus {
 			get {
 				return _bus;
 			}
@@ -155,15 +154,15 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <remarks>You can think of this type here as "being Inversion". This is the thing.</remarks>
 		/// <param name="services">The service container the context will use.</param>
-		public ProcessContext(IServiceContainer services) {
+		public SynchronizedProcessContext(IServiceContainer services) {
 			_serviceContainer = services;
 			_cache = MemoryCache.Default;
-			_bus = new Subject<IEvent>();
-			_messages = new DataCollection<string>();
-			_errors = new DataCollection<ErrorMessage>();
+			_bus = Subject.Synchronize(new Subject<IEvent>());
+			_messages = new ConcurrentDataCollection<string>();
+			_errors = new ConcurrentDataCollection<ErrorMessage>();
 			_timers = new ProcessTimerDictionary();
-			_controlState = new DataDictionary<object>();
-			_flags = new DataCollection<string>();
+			_controlState = new ConcurrentDataDictionary<object>();
+			_flags = new ConcurrentDataCollection<string>();
 			_steps = new ViewSteps();
 			_params = new ConcurrentDataDictionary<string>();
 		}
@@ -171,7 +170,7 @@ namespace Inversion.Process {
 		/// <summary>
 		/// Desrtructor for the type.
 		/// </summary>
-		~ProcessContext() {
+		~SynchronizedProcessContext() {
 			// ensure unmanaged resources are cleaned up
 			// this might all be a bit conceipted, I'm not sure
 			// we've run into a real use-case requiring this since day one.
@@ -200,7 +199,7 @@ namespace Inversion.Process {
 			if (!_isDisposed) {
 				if (disposing) {
 					// managed resource clean-up
-					if (_bus != null) _bus.Dispose();
+					
 				}
 				// unmanaged resource clean-up
 				// ... nothing to do

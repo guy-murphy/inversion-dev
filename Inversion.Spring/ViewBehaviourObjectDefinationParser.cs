@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Xml;
 using Spring.Objects.Factory.Support;
 using Spring.Objects.Factory.Xml;
 
 namespace Inversion.Spring {
+	/// <summary>
+	/// Implements a parser that is able to parse view behaviour definations
+	/// in a Spring XML object config.
+	/// </summary>
 	public class ViewBehaviourObjectDefinationParser : AbstractSimpleObjectDefinitionParser {
 
 		/// <summary>

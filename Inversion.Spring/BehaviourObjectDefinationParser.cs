@@ -5,7 +5,6 @@ using Inversion.Process;
 using Spring.Objects.Factory.Support;
 using Spring.Objects.Factory.Xml;
 
-using Inversion.Process.Behaviour;
 
 namespace Inversion.Spring {
 

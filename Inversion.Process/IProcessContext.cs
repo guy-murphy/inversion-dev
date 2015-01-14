@@ -77,7 +77,7 @@ namespace Inversion.Process {
 		/// <summary>
 		/// Flags for the context available to behaviours as shared state.
 		/// </summary>
-		ConcurrentDataCollection<string> Flags { get; }
+		IDataCollection<string> Flags { get; }
 
 		/// <summary>
 		/// The parameters of the contexts execution available

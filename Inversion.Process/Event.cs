@@ -19,7 +19,7 @@ namespace Inversion.Process {
 	public class Event : IEvent, IEnumerable<KeyValuePair<string, string>> {
 
 		private readonly string _message;
-		private readonly ProcessContext _context;
+		private readonly IProcessContext _context;
 		private readonly IDictionary<string, string> _params;
 		private IData _object;
 
@@ -60,7 +60,7 @@ namespace Inversion.Process {
 		/// <remarks>
 		/// And event always belongs to a context.
 		/// </remarks>
-		public ProcessContext Context {
+		public IProcessContext Context {
 			get {
 				return _context;
 			}
@@ -103,7 +103,7 @@ namespace Inversion.Process {
 		/// <param name="context">The context to which the event is bound.</param>
 		/// <param name="message">The simple message the event represents.</param>
 		/// <param name="parameters">The parameters of the event.</param>
-		public Event(ProcessContext context, string message, IDictionary<string, string> parameters) : this(context, message, null, parameters) { }
+		public Event(IProcessContext context, string message, IDictionary<string, string> parameters) : this(context, message, null, parameters) { }
 
 		/// <summary>
 		/// Instantiates a new event bound  to a context.
@@ -112,7 +112,7 @@ namespace Inversion.Process {
 		/// <param name="message">The simple message the event represents.</param>
 		/// <param name="obj">An object being carried by the event.</param>
 		/// <param name="parameters">The parameters of the event.</param>
-		public Event(ProcessContext context, string message, IData obj, IDictionary<string, string> parameters) {
+		public Event(IProcessContext context, string message, IData obj, IDictionary<string, string> parameters) {
 			_context = context;
 			_message = message;
 			_object = obj;
@@ -128,7 +128,7 @@ namespace Inversion.Process {
 		/// A sequnce of context parameter names that should be copied from the context
 		/// to this event.
 		/// </param>
-		public Event(ProcessContext context, string message, params string[] parms) : this(context, message, null, parms) { }
+		public Event(IProcessContext context, string message, params string[] parms) : this(context, message, null, parms) { }
 
 		/// <summary>
 		/// Instantiates a new event bound  to a context.
@@ -140,7 +140,7 @@ namespace Inversion.Process {
 		/// A sequnce of context parameter names that should be copied from the context
 		/// to this event.
 		/// </param>
-		public Event(ProcessContext context, string message, IData obj, params string[] parms) {
+		public Event(IProcessContext context, string message, IData obj, params string[] parms) {
 			_context = context;
 			_message = message;
 			_object = obj;

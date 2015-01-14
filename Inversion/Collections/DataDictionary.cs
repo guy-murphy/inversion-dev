@@ -27,6 +27,17 @@ namespace Inversion.Collections {
 		}
 
 		/// <summary>
+		/// Provides indexed acccess tot he dictionary with
+		/// the key provided.
+		/// </summary>
+		/// <param name="key">The key used to index a key/value pair.</param>
+		/// <returns>Returns the value associated with the specified key.</returns>
+		public new TValue this[string key] {
+			get { return this.ContainsKey(key) ? base[key] : default(TValue); }
+			set { base[key] = value; }
+		}
+
+		/// <summary>
 		/// Instantiates a new empty instance of the dictionary.
 		/// </summary>
 
