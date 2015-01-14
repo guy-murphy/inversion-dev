@@ -12,7 +12,7 @@ namespace Inversion.Collections {
 	/// </summary>
 	/// <typeparam name="T">The type of elements in the list.</typeparam>
 
-	public class DataCollection<T> : List<T>, IDataCollection<T> {
+	public class DataCollection<T> : HashSet<T>, IDataCollection<T> {
 
 		private readonly string _label;
 

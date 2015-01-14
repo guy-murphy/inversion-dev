@@ -44,7 +44,7 @@ namespace Inversion.Process.Tests.Behaviour {
 
 		[TestMethod]
 		public void EventHasAllParams() {
-			foreach (IProcessContext ctx in _getContexts()) {
+			foreach (IProcessContext context in _getContexts()) {
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"event", "has", "p1"},
@@ -53,7 +53,7 @@ namespace Inversion.Process.Tests.Behaviour {
 					}
 				);
 
-				Event ev = new Event(ctx, "test") {
+				Event ev = new Event(context, "test") {
 					{"p1", "v1"},
 					{"p2", "v2"},
 					{"p3", "v3"}
@@ -69,7 +69,7 @@ namespace Inversion.Process.Tests.Behaviour {
 
 		[TestMethod]
 		public void EventMatchesAllParamValues() {
-			foreach (IProcessContext ctx in _getContexts()) {
+			foreach (IProcessContext context in _getContexts()) {
 
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
@@ -79,7 +79,7 @@ namespace Inversion.Process.Tests.Behaviour {
 					}
 				);
 
-				Event ev = new Event(ctx, "test") {
+				Event ev = new Event(context, "test") {
 					{"p1", "v1"},
 					{"p2", "v2"},
 					{"p3", "v3"}
@@ -97,10 +97,10 @@ namespace Inversion.Process.Tests.Behaviour {
 
 		[TestMethod]
 		public void ContextHasAllParams() {
-			foreach (IProcessContext ctx in _getContexts()) {
-				ctx.Params.Add("p1", "v1");
-				ctx.Params.Add("p2", "v2");
-				ctx.Params.Add("p3", "v3");
+			foreach (IProcessContext context in _getContexts()) {
+				context.Params.Add("p1", "v1");
+				context.Params.Add("p2", "v2");
+				context.Params.Add("p3", "v3");
 
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
@@ -111,19 +111,19 @@ namespace Inversion.Process.Tests.Behaviour {
 				);
 
 				// positive
-				Assert.IsTrue(behaviour.ContextHasAllParams(ctx));
+				Assert.IsTrue(behaviour.ContextHasAllParams(context));
 				// negative
-				ctx.Params.Remove("p2");
-				Assert.IsFalse(behaviour.ContextHasAllParams(ctx));
+				context.Params.Remove("p2");
+				Assert.IsFalse(behaviour.ContextHasAllParams(context));
 			}
 		}
 
 		[TestMethod]
 		public void ContextMacthesAllParamValues() {
-			foreach (IProcessContext ctx in _getContexts()) {
-				ctx.Params.Add("p1", "v1");
-				ctx.Params.Add("p2", "v2");
-				ctx.Params.Add("p3", "v3");
+			foreach (IProcessContext context in _getContexts()) {
+				context.Params.Add("p1", "v1");
+				context.Params.Add("p2", "v2");
+				context.Params.Add("p3", "v3");
 
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
@@ -134,18 +134,18 @@ namespace Inversion.Process.Tests.Behaviour {
 				);
 
 				// positive
-				Assert.IsTrue(behaviour.ContextMacthesAllParamValues(ctx));
+				Assert.IsTrue(behaviour.ContextMacthesAllParamValues(context));
 				// negative
-				ctx.Params.Remove("p2");
-				Assert.IsFalse(behaviour.ContextMacthesAllParamValues(ctx));
-				ctx.Params.Add("p2", "v0");
-				Assert.IsFalse(behaviour.ContextMacthesAllParamValues(ctx));
+				context.Params.Remove("p2");
+				Assert.IsFalse(behaviour.ContextMacthesAllParamValues(context));
+				context.Params.Add("p2", "v0");
+				Assert.IsFalse(behaviour.ContextMacthesAllParamValues(context));
 			}
 		}
 
 		[TestMethod]
 		public void ContextExcludes() {
-			foreach (IProcessContext ctx in _getContexts()) {
+			foreach (IProcessContext context in _getContexts()) {
 
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
@@ -156,18 +156,18 @@ namespace Inversion.Process.Tests.Behaviour {
 				);
 
 				// positive
-				Assert.IsTrue(behaviour.ContextExcludes(ctx));
+				Assert.IsTrue(behaviour.ContextExcludes(context));
 				// negative
-				ctx.Params.Add("p2", "v2");
-				Assert.IsFalse(behaviour.ContextExcludes(ctx));
+				context.Params.Add("p2", "v2");
+				Assert.IsFalse(behaviour.ContextExcludes(context));
 			}
 		}
 
 		[TestMethod]
 		public void ContextHasAllControlStates() {
-			foreach (IProcessContext ctx in _getContexts()) {
-				ctx.ControlState["p1"] = "v1";
-				ctx.ControlState["p2"] = "v2";
+			foreach (IProcessContext context in _getContexts()) {
+				context.ControlState["p1"] = "v1";
+				context.ControlState["p2"] = "v2";
 
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
@@ -177,16 +177,16 @@ namespace Inversion.Process.Tests.Behaviour {
 				);
 
 				// positive 
-				Assert.IsTrue(behaviour.ContextHasAllControlStates(ctx));
+				Assert.IsTrue(behaviour.ContextHasAllControlStates(context));
 				// negative
-				ctx.ControlState.Remove("p2");
-				Assert.IsFalse(behaviour.ContextHasAllControlStates(ctx));
+				context.ControlState.Remove("p2");
+				Assert.IsFalse(behaviour.ContextHasAllControlStates(context));
 			}
 		}
 
 		[TestMethod]
 		public void ContextExcludesControlState() {
-			foreach (IProcessContext ctx in _getContexts()) {
+			foreach (IProcessContext context in _getContexts()) {
 
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
@@ -196,21 +196,21 @@ namespace Inversion.Process.Tests.Behaviour {
 				);
 
 				// positive 
-				Assert.IsTrue(behaviour.ContextExcludesControlState(ctx));
+				Assert.IsTrue(behaviour.ContextExcludesControlState(context));
 				// negative
-				ctx.ControlState["p1"] = "v1";
-				Assert.IsFalse(behaviour.ContextExcludesControlState(ctx));
-				ctx.ControlState.Remove("p1");
-				ctx.ControlState["p2"] = "v2";
-				Assert.IsFalse(behaviour.ContextExcludesControlState(ctx));
+				context.ControlState["p1"] = "v1";
+				Assert.IsFalse(behaviour.ContextExcludesControlState(context));
+				context.ControlState.Remove("p1");
+				context.ControlState["p2"] = "v2";
+				Assert.IsFalse(behaviour.ContextExcludesControlState(context));
 			}
 		}
 
 		[TestMethod]
 		public void ContextHasAllFlags() {
-			foreach (IProcessContext ctx in _getContexts()) {
-				ctx.Flags.Add("f1");
-				ctx.Flags.Add("f2");
+			foreach (IProcessContext context in _getContexts()) {
+				context.Flags.Add("f1");
+				context.Flags.Add("f2");
 
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
@@ -221,14 +221,14 @@ namespace Inversion.Process.Tests.Behaviour {
 				);
 
 				// positive
-				Assert.IsTrue(behaviour.ContextHasAllFlags(ctx));
+				Assert.IsTrue(behaviour.ContextHasAllFlags(context));
 				// negative
-				ctx.Flags.Add("f3");
-				Assert.IsFalse(behaviour.ContextHasAllFlags(ctx));
-				ctx.Flags.Remove("f3");
-				Assert.IsTrue(behaviour.ContextHasAllFlags(ctx));
-				ctx.Flags.Remove("f1");
-				Assert.IsFalse(behaviour.ContextHasAllFlags(ctx));
+				context.Flags.Add("f3");
+				Assert.IsFalse(behaviour.ContextHasAllFlags(context));
+				context.Flags.Remove("f3");
+				Assert.IsTrue(behaviour.ContextHasAllFlags(context));
+				context.Flags.Remove("f1");
+				Assert.IsFalse(behaviour.ContextHasAllFlags(context));
 			}
 		}
 
