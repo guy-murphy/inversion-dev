@@ -51,7 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Behaviour\TestBehaviour.cs" />
-    <Compile Include="Behaviour\TestBehaviourConditionPredicates.cs" />
+    <Compile Include="Behaviour\TestSelectionCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
