@@ -17,20 +17,28 @@ namespace Inversion.Process.Tests.Behaviour {
 		public void RespondsTo() {
 			foreach (IProcessContext context in _getContexts()) {
 
-				context.Register(new TestBehaviour("*") {
-					Perform = (ev, ctx) => ctx.Flags.Add("any-hit")
-				});
-				context.Register(new TestBehaviour("test-message") {
-					Perform = (ev, ctx) => ctx.Flags.Add("test-hit")
-				});
-				context.Register(new TestBehaviour("never-message") {
-					Perform = (ev, ctx) => ctx.Flags.Add("never-hit")
-				});
+				context.Register(new TestBehaviour(
+					respondsTo: "*", 
+					action: (ev, ctx) => ctx.Flags.Add("any-hit"))
+				);
+				context.Register(new TestBehaviour(
+					respondsTo: "test-message", 
+					action: (ev, ctx) => ctx.Flags.Add("test-hit"))
+				);
+				context.Register(new TestBehaviour(
+					respondsTo: "never-message", 
+					action: (ev, ctx) => ctx.Flags.Add("never-hit"))
+				);
+				context.Register(
+					condition: (ev) => ev.Message == "left-field", 
+					action: (ev, ctx) => ctx.Flags.Add("left-field")
+				);
 				
 				context.Fire("test-message");
 				Assert.IsTrue(context.IsFlagged("any-hit"));
 				Assert.IsTrue(context.IsFlagged("test-hit"));
 				Assert.IsFalse(context.IsFlagged("never-hit"));
+				Assert.IsFalse(context.IsFlagged("left-field"));
 
 				context.Flags.Clear();
 
@@ -38,6 +46,15 @@ namespace Inversion.Process.Tests.Behaviour {
 				Assert.IsTrue(context.IsFlagged("any-hit"));
 				Assert.IsFalse(context.IsFlagged("test-hit"));
 				Assert.IsFalse(context.IsFlagged("never-hit"));
+				Assert.IsFalse(context.IsFlagged("left-field"));
+
+				context.Flags.Clear();
+
+				context.Fire("left-field");
+				Assert.IsTrue(context.IsFlagged("any-hit"));
+				Assert.IsFalse(context.IsFlagged("test-hit"));
+				Assert.IsFalse(context.IsFlagged("never-hit"));
+				Assert.IsTrue(context.IsFlagged("left-field"));
 			}
 		}
 
