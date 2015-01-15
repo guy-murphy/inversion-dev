@@ -6,7 +6,7 @@ using System.Runtime.Caching;
 using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
-
+using Inversion.Data;
 using Inversion.Process;
 using Inversion.Process.Behaviour;
 
@@ -143,16 +143,15 @@ namespace Inversion.Web.Behaviour.View {
 					if (xsl == null) {
 						// we dont have it cached
 						// does the file exist?					
-						string templatePath = Path.Combine(context.ParamOrDefault("basePath", ""), "Resources", "Views", "Xslt", templateName);
-						if (File.Exists(templatePath)) {
+						string templatePath = Path.Combine("Resources", "Views", "Xslt", templateName);
+						if (context.Resources.Exists(templatePath)){
 							xsl = new XslCompiledTransform(true);
-							using (XmlReader reader = new XmlTextReader(templatePath)) {
+							using (XmlReader reader = context.Resources.Open(templatePath).AsXmlReader()) {
 								xsl.Load(reader);
 								if (_enableCache) {
 									CacheItemPolicy policy = new CacheItemPolicy {
 										                                             AbsoluteExpiration = ObjectCache.InfiniteAbsoluteExpiration
 									                                             };								
-									policy.ChangeMonitors.Add(new HostFileChangeMonitor(new []{templatePath}));
 									context.ObjectCache.Add(cacheKey, xsl, policy);
 								}
 							}

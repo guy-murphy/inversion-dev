@@ -16,21 +16,27 @@ namespace Inversion.Data {
 		}
 
 		public static XmlDocument AsXmlDocument(this Stream self) {
-			XmlDocument document = new XmlDocument();
-			document.Load(self);
-			return document;
+			using (self) {
+				XmlDocument document = new XmlDocument();
+				document.Load(self);
+				return document;
+			}
 		}
 
 		public static XslCompiledTransform AsXslDocument(this Stream self) {
-			XslCompiledTransform xsl = new XslCompiledTransform(true);
-			xsl.Load(self.AsXmlReader());
-			return xsl;
+			using (self) {
+				XslCompiledTransform xsl = new XslCompiledTransform(true);
+				xsl.Load(self.AsXmlReader());
+				return xsl;
+			}
 		}
 
 		public static string AsText(this Stream self) {
-			TextReader reader = new StreamReader(self);
-			string text = reader.ReadToEnd();
-			return text;
+			using (self) {
+				TextReader reader = new StreamReader(self);
+				string text = reader.ReadToEnd();
+				return text;
+			}
 		}
 
 	}
