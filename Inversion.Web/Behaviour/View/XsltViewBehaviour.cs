@@ -145,15 +145,12 @@ namespace Inversion.Web.Behaviour.View {
 						// does the file exist?					
 						string templatePath = Path.Combine("Resources", "Views", "Xslt", templateName);
 						if (context.Resources.Exists(templatePath)){
-							xsl = new XslCompiledTransform(true);
-							using (XmlReader reader = context.Resources.Open(templatePath).AsXmlReader()) {
-								xsl.Load(reader);
-								if (_enableCache) {
-									CacheItemPolicy policy = new CacheItemPolicy {
-										                                             AbsoluteExpiration = ObjectCache.InfiniteAbsoluteExpiration
-									                                             };								
-									context.ObjectCache.Add(cacheKey, xsl, policy);
-								}
+							xsl = context.Resources.Open(templatePath).AsXslDocument();
+							if (_enableCache) {
+								CacheItemPolicy policy = new CacheItemPolicy {
+									AbsoluteExpiration = ObjectCache.InfiniteAbsoluteExpiration
+								};
+								context.ObjectCache.Add(cacheKey, xsl, policy);
 							}
 						}
 					}
