@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Caching;
 using Inversion.Collections;
+using Inversion.Data;
 using Inversion.Process.Behaviour;
 
 namespace Inversion.Process {
@@ -20,6 +21,8 @@ namespace Inversion.Process {
 		/// Exposes the processes service container.
 		/// </summary>
 		IServiceContainer Services { get; }
+
+		IResourceAdapter Resources { get; }
 
 		/// <summary>
 		/// Provsion of a simple object cache for the context.

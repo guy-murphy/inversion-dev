@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Subjects;
 using System.Reactive.Linq;
 using System.Runtime.Caching;
@@ -8,6 +7,7 @@ using System.Text;
 using System.Threading;
 
 using Inversion.Collections;
+using Inversion.Data;
 using Inversion.Process.Behaviour;
 
 namespace Inversion.Process {
@@ -34,30 +34,31 @@ namespace Inversion.Process {
 		private readonly DataDictionary<object> _controlState;
 		private readonly DataCollection<string> _flags;
 		private readonly ViewSteps _steps;
-		// move this up from WebContext to facilitate
-		// access to the context params from an Event
-		// not 100% sure it's the correct move
 		private readonly IDataDictionary<string> _params;
 
 		private readonly IServiceContainer _serviceContainer;
+		private readonly IResourceAdapter _resources;
 
 
 		/// <summary>
 		/// Exposes the processes service container.
 		/// </summary>
 		public IServiceContainer Services {
-			get {
-				return _serviceContainer;
-			}
+			get { return _serviceContainer; }
+		}
+
+		/// <summary>
+		/// Exposes resources external to the process.
+		/// </summary>
+		public IResourceAdapter Resources {
+			get { return _resources; }
 		}
 
 		/// <summary>
 		/// The event bus of the process.
 		/// </summary>
 		protected ISubject<IEvent> Bus {
-			get {
-				return _bus;
-			}
+			get { return _bus; }
 		}
 
 		/// <summary>
@@ -94,9 +95,7 @@ namespace Inversion.Process {
 		/// by the front end to localise.
 		/// </remarks>
 		public IDataCollection<ErrorMessage> Errors {
-			get {
-				return _errors;
-			}
+			get { return _errors; }
 		}
 
 		/// <summary>
@@ -117,9 +116,7 @@ namespace Inversion.Process {
 		/// pipeline for this context.
 		/// </summary>
 		public ViewSteps ViewSteps {
-			get {
-				return _steps;
-			}
+			get { return _steps; }
 		}
 
 		/// <summary>
@@ -128,18 +125,14 @@ namespace Inversion.Process {
 		/// provides the end state or result of a contexts running process.
 		/// </summary>
 		public IDataDictionary<object> ControlState {
-			get {
-				return _controlState;
-			}
+			get { return _controlState; }
 		}
 
 		/// <summary>
 		/// Flags for the context available to behaviours as shared state.
 		/// </summary>
 		public IDataCollection<string> Flags {
-			get {
-				return _flags;
-			}
+			get { return _flags; }
 		}
 
 		/// <summary>
@@ -155,8 +148,10 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <remarks>You can think of this type here as "being Inversion". This is the thing.</remarks>
 		/// <param name="services">The service container the context will use.</param>
-		public ProcessContext(IServiceContainer services) {
+		/// <param name="resources">The resources available to the context.</param>
+		public ProcessContext(IServiceContainer services, IResourceAdapter resources) {
 			_serviceContainer = services;
+			_resources = resources;
 			_cache = MemoryCache.Default;
 			_bus = new Subject<IEvent>();
 			_messages = new DataCollection<string>();

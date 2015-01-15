@@ -2,7 +2,7 @@
 using System.Security.Principal;
 using System.Web;
 using System.Web.Caching;
-
+using Inversion.Data;
 using Inversion.Process;
 
 namespace Inversion.Web {
@@ -87,7 +87,8 @@ namespace Inversion.Web {
 		/// </summary>
 		/// <param name="underlyingContext">The underlying http context to wrap.</param>
 		/// <param name="services">The service container the context will use.</param>
-		public WebContext(HttpContext underlyingContext, IServiceContainer services): base(services) {
+		/// <param name="resources">The resources available to the context.</param>
+		public WebContext(HttpContext underlyingContext, IServiceContainer services, IResourceAdapter resources): base(services, resources) {
 			_underlyingContext = underlyingContext;
 			_application = this.UnderlyingContext.ApplicationInstance as WebApplication;
 			_response = new WebResponse(this.UnderlyingContext);

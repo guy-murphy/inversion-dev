@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Linq;
 using Inversion.Process;
 
 namespace Inversion.Web.Behaviour {
@@ -73,6 +73,7 @@ namespace Inversion.Web.Behaviour {
 			// note method and tail
 			context.Params["method"] = context.Request.Method;
 			context.Params["tail"] = context.Request.UrlInfo.Tail;
+			context.Params["views"] = String.Join(";", context.Request.UrlInfo.Tail.Split('/'));
 		}
 	}
 }

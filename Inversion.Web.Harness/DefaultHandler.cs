@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web;
-
+using Inversion.Data;
 using Inversion.Process.Behaviour;
 using Inversion.Spring;
 //using Inversion.Naiad;
@@ -33,7 +33,7 @@ namespace Inversion.Web.Harness {
 		/// be thought of as the where the work begins.
 		/// </remarks>
 		public void ProcessRequest(HttpContext context) {
-			this.ProcessRequest(new WebContext(context, ServiceContainer.Instance));
+			this.ProcessRequest(new WebContext(context, ServiceContainer.Instance, FileSystemResourceAdapter.Instance));
 		}
 
 		/// <summary>

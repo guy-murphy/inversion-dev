@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
+using Inversion.Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using Inversion.Naiad;
 using Inversion.Process.Behaviour;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Inversion.Process.Tests.Behaviour {
 	[TestClass]
-	public class TestSelectionCriteria {
+	public class SelectionCriteriaTests {
 
 
 		private IEnumerable<IProcessContext> _getContexts() {
-			yield return new ProcessContext(ServiceContainer.Instance);
-			yield return new SynchronizedProcessContext(ServiceContainer.Instance);
+			yield return new ProcessContext(ServiceContainer.Instance, FileSystemResourceAdapter.Instance);
+			yield return new SynchronizedProcessContext(ServiceContainer.Instance, FileSystemResourceAdapter.Instance);
 		}
 
 		[TestMethod]
@@ -30,7 +32,7 @@ namespace Inversion.Process.Tests.Behaviour {
 					action: (ev, ctx) => ctx.Flags.Add("never-hit"))
 				);
 				context.Register(
-					condition: (ev) => ev.Message == "left-field", 
+					condition: (ev) => ev.Message.Contains("left") && ev.Message.Contains("field"), 
 					action: (ev, ctx) => ctx.Flags.Add("left-field")
 				);
 				
@@ -51,6 +53,14 @@ namespace Inversion.Process.Tests.Behaviour {
 				context.Flags.Clear();
 
 				context.Fire("left-field");
+				Assert.IsTrue(context.IsFlagged("any-hit"));
+				Assert.IsFalse(context.IsFlagged("test-hit"));
+				Assert.IsFalse(context.IsFlagged("never-hit"));
+				Assert.IsTrue(context.IsFlagged("left-field"));
+
+				context.Flags.Clear();
+
+				context.Fire("fielding-left");
 				Assert.IsTrue(context.IsFlagged("any-hit"));
 				Assert.IsFalse(context.IsFlagged("test-hit"));
 				Assert.IsFalse(context.IsFlagged("never-hit"));

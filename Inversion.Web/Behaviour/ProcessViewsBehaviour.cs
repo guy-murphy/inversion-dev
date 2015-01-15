@@ -1,5 +1,7 @@
 ﻿using System;
-
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Inversion.Process;
 using Inversion.Process.Behaviour;
 
@@ -31,7 +33,7 @@ namespace Inversion.Web.Behaviour {
 			if (context.ViewSteps.HasSteps) {
 				// then determine how many views there are to process
 				// in this convention we take the view as specified by the "tail" of the request url
-				string[] views = context.HasParams("tail") ? context.Params["tail"].Split('/') : new string[] { "xsl" };
+				IEnumerable<string> views = context.HasParams("views") && !String.IsNullOrWhiteSpace(context.Params["views"]) ? context.Params["views"].Split(';').Where(s => !String.IsNullOrEmpty(s)) : new string[] { "xsl" };
 				foreach (string view in views) {
 					if (!String.IsNullOrEmpty(view)) {
 
