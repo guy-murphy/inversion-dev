@@ -254,5 +254,15 @@ namespace Inversion.Extensions {
 			XDocument xml = XDocument.Parse(self);
 			return xml;
 		}
+
+		/// <summary>
+		/// Loads the string into an XElement.
+		/// </summary>
+		/// <param name="self">The string being acted upon.</param>
+		/// <returns>Returns an XElement with the string loaded.</returns>
+		public static XElement AsXElement(this string self) {
+			XElement xml = XElement.Parse(self);
+			return xml;
+		}
 	}
 }

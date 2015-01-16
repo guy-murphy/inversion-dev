@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Xsl;
 
 namespace Inversion.Data {
@@ -51,6 +52,25 @@ namespace Inversion.Data {
 				XslCompiledTransform xsl = new XslCompiledTransform(true);
 				xsl.Load(self.AsXmlReader());
 				return xsl;
+			}
+		}
+
+		/// <summary>
+		/// Loads the stream into an XDocument and disposes of the stream.
+		/// </summary>
+		/// <param name="self">The stream being acted upon.</param>
+		/// <returns>Returns an XDocument with the stream loaded.</returns>
+		public static XDocument AsXDocument(this Stream self) {
+			using (self) {
+				XDocument xml = XDocument.Load(self);
+				return xml;
+			}
+		}
+
+		public static XElement AsXElement(this Stream self) {
+			using (self) {
+				XElement xml = XElement.Load(self);
+				return xml;
 			}
 		}
 

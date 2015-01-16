@@ -97,6 +97,9 @@ namespace Inversion.Web.Tests.Behaviour {
 
 			string render = ((MockWebResponse)context.Response).Result;
 			Assert.AreEqual(context.ViewSteps.Last.Content, render);
+
+			XElement result1 = context.Resources.Open("Behaviour/Resources/Results/result1.xml").AsXElement();
+			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
 		}
 
 		[TestMethod]
