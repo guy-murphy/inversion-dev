@@ -85,6 +85,7 @@
     <EmbeddedResource Include="Behaviour\Resources\Views\Xslt\test1.xslt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Behaviour\Resources\Results\result1.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

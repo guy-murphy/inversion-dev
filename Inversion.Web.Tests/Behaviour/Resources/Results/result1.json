@@ -1,0 +1,26 @@
+﻿{
+  "messages": [],
+  "errors": [],
+  "flags": [],
+  "timers": {},
+  "params": {
+    "action": "test1",
+    "views": "json"
+  },
+  "eventTrace": [
+    {
+      "_type": "event",
+      "message": "work-message-one",
+      "params": {
+        "trace": "true"
+      }
+    },
+    {
+      "_type": "event",
+      "message": "work-message-two",
+      "params": {
+        "trace": "true"
+      }
+    }
+  ]
+}

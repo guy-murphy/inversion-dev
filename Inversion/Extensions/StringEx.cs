@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion.Extensions {
 	/// <summary>
@@ -263,6 +264,15 @@ namespace Inversion.Extensions {
 		public static XElement AsXElement(this string self) {
 			XElement xml = XElement.Parse(self);
 			return xml;
+		}
+
+		/// <summary>
+		/// Loads the string into a JObject.
+		/// </summary>
+		/// <param name="self">The string being acted upon.</param>
+		/// <returns>Returns a JObject with the string loaded.</returns>
+		public static JObject AsJObject(this string self) {
+			return JObject.Parse(self);
 		}
 	}
 }

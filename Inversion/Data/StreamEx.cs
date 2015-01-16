@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Xsl;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Inversion.Data {
 
@@ -67,10 +69,26 @@ namespace Inversion.Data {
 			}
 		}
 
+		/// <summary>
+		/// Loads the stream into an XElement and disposes of the stream.
+		/// </summary>
+		/// <param name="self">The stream being acted upon.</param>
+		/// <returns>Returns an XElement with the stream loaded.</returns>
 		public static XElement AsXElement(this Stream self) {
 			using (self) {
 				XElement xml = XElement.Load(self);
 				return xml;
+			}
+		}
+
+		/// <summary>
+		/// Loads the stream into a JObject and disposes of the stream.
+		/// </summary>
+		/// <param name="self">The stream being acted upon.</param>
+		/// <returns>Returns a JObject with the stream loaded.</returns>
+		public static JObject AsJObject(this Stream self) {
+			using (JsonReader reader = new JsonTextReader(new StreamReader(self))) {
+				return JObject.Load(reader);
 			}
 		}
 
