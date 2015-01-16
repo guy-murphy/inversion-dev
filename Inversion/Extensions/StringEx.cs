@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Inversion.Extensions {
 	/// <summary>
@@ -226,6 +228,31 @@ namespace Inversion.Extensions {
 				}
 			}
 			return result.ToString();
+		}
+
+		/// <summary>
+		/// Loads the string into an xml document.
+		/// </summary>
+		/// <param name="self">The string being acted upon.</param>
+		/// <returns>
+		/// Returns an xml document with the string loaded.
+		/// </returns>
+		public static XmlDocument AsXmlDocument(this string self) {
+			XmlDocument xml = new XmlDocument();
+			xml.LoadXml(self);
+			return xml;
+		}
+
+		/// <summary>
+		/// Loads the string into an XDocument.
+		/// </summary>
+		/// <param name="self">The string being acted upon.</param>
+		/// <returns>
+		/// Returns an XDocument with the string loaded.
+		/// </returns>
+		public static XDocument AsXDocument(this string self) {
+			XDocument xml = XDocument.Parse(self);
+			return xml;
 		}
 	}
 }

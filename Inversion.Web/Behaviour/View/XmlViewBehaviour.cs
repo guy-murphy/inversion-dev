@@ -1,12 +1,13 @@
 ﻿using System.IO;
 using Inversion.Process;
+using Inversion.Process.Behaviour;
 
 namespace Inversion.Web.Behaviour.View {
 
 	/// <summary>
 	/// Serialise the model of the last view step to XML.
 	/// </summary>
-	public class XmlViewBehaviour : WebBehaviour {
+	public class XmlViewBehaviour : ProcessBehaviour {
 
 		private readonly string _contentType;
 
@@ -32,7 +33,7 @@ namespace Inversion.Web.Behaviour.View {
 		/// </summary>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, IWebContext context) {
+		public override void Action(IEvent ev, IProcessContext context) {
 			if (context.ViewSteps.HasSteps) {
 				if (context.ViewSteps.Last.HasModel) {
 					TextWriter writer = new StringWriter();
