@@ -22,6 +22,9 @@ namespace Inversion.Process {
 		/// </summary>
 		IServiceContainer Services { get; }
 
+		/// <summary>
+		/// Exposes resources available to the context.
+		/// </summary>
 		IResourceAdapter Resources { get; }
 
 		/// <summary>

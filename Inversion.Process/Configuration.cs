@@ -114,6 +114,15 @@ namespace Inversion.Process {
 		}
 
 		/// <summary>
+		/// Gets the specified name from the configuration.
+		/// </summary>
+		/// <param name="frame">The frame of the names.</param>
+		/// <param name="slot">The slot of the names.</param>
+		/// <returns>Gets the first name under the frame and slot specified.</returns>
+		public string GetName(string frame, string slot) {
+			return this.GetNames(frame, slot).FirstOrDefault();
+		}
+		/// <summary>
 		/// Gets slots from the configuration.
 		/// </summary>
 		/// <param name="frame">The frame of the slots.</param>
@@ -151,6 +160,20 @@ namespace Inversion.Process {
 		/// </returns>
 		public bool Has(string frame, string slot, string name) {
 			return this.Elements.Any(e => e.Frame == frame && e.Slot == slot && e.Name == name);
+		}
+
+		/// <summary>
+		/// Determines whether or not the configuration has any elements with the
+		/// frame and slot specified.
+		/// </summary>
+		/// <param name="frame">The frame of the element.</param>
+		/// <param name="slot">The slot of the element.</param>
+		/// <returns>
+		/// Returns true if the configuration containes the specified element;
+		/// otherwise, returns false.
+		/// </returns>
+		public bool Has(string frame, string slot) {
+			return this.Elements.Any(e => e.Frame == frame && e.Slot == slot);
 		}
 
 		/// <summary>

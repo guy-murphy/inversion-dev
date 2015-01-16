@@ -11,14 +11,25 @@ namespace Inversion.Web.Behaviour {
 	/// Behaviour responsible for driving the view pipeline expressed
 	/// as view-steps.
 	/// </summary>
-	public class ProcessViewsBehaviour : ProcessBehaviour {
+	public class ProcessViewsBehaviour : ConfiguredBehaviour {
 
 		/// <summary>
 		/// Instantiates a new behaviour responsible for processes the inversion view pipeline.
 		/// </summary>
 		/// <param name="respondsTo">The message that the behaviour will respond to.</param>
 		public ProcessViewsBehaviour(string respondsTo) : base(respondsTo) { }
-
+		/// <summary>
+		/// Instantiates a new behaviour responsible for processes the inversion view pipeline.
+		/// </summary>
+		/// <param name="respondsTo">The message that the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		public ProcessViewsBehaviour(string respondsTo, Configuration config) : base(respondsTo, config) { }
+		/// <summary>
+		/// Creates a new instance of the behaviour.
+		/// </summary>
+		/// <param name="respondsTo">The message the behaviour will respond to.</param>
+		/// <param name="config">Configuration for the behaviour.</param>
+		public ProcessViewsBehaviour(string respondsTo, IEnumerable<Configuration.Element> config) : base(respondsTo, config) {}
 
 		/// <summary>
 		/// Iterates over each view-step object for the provided context
@@ -33,10 +44,16 @@ namespace Inversion.Web.Behaviour {
 			if (context.ViewSteps.HasSteps) {
 				// then determine how many views there are to process
 				// in this convention we take the view as specified by the "tail" of the request url
-				IEnumerable<string> views = context.HasParams("views") && !String.IsNullOrWhiteSpace(context.Params["views"]) ? context.Params["views"].Split(';').Where(s => !String.IsNullOrEmpty(s)) : new string[] { "xsl" };
+				IEnumerable<string> views;
+				if (context.HasParams("views")) {
+					views = context.Params["views"].Split(new string[] {";"}, StringSplitOptions.RemoveEmptyEntries);
+				} else if (this.Configuration.Has("config", "default-view")) {
+					views = this.Configuration.GetNames("config", "default-view");
+				} else {
+					views = new String[] {"st"};
+				}
 				foreach (string view in views) {
 					if (!String.IsNullOrEmpty(view)) {
-
 						string msg = String.Format("{0}::view", view);
 						context.Fire(msg);
 					}

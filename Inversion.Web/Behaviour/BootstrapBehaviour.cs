@@ -36,12 +36,20 @@ namespace Inversion.Web.Behaviour {
 
 		/// <summary>
 		/// If the conditions of this behaviour are met, copies the parameters
-		/// configured for this behaviour into the context parameters.
+		/// configured for this behaviour into the context parameters, but only if those parameters
+		/// aren't already set.
 		/// </summary>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
 		public override void Action(IEvent ev, IProcessContext context) {
 			context.Params.Import(this.Configuration.GetMap("context", "set"));
+			IDictionary<string, string> mappings = this.Configuration.GetMap("context", "set");
+			foreach (KeyValuePair<string, string> entry in mappings) {
+				if (!context.HasParams(entry.Key)) {
+					context.Params.Add(entry);
+				}
+			}
+
 		}
 	}
 }

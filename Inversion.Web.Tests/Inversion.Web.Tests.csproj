@@ -78,7 +78,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Behaviour\Resources\Views\Xslt\t1.xslt" />
+    <EmbeddedResource Include="Behaviour\Resources\Views\Xslt\test1.xslt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

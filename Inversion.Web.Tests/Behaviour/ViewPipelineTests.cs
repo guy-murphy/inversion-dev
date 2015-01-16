@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Runtime.Remoting.Contexts;
 using System.Xml;
 using System.Xml.Linq;
 using Inversion.Data;
@@ -21,14 +22,14 @@ namespace Inversion.Web.Tests.Behaviour {
 
 		[TestInitialize]
 		public void Init() {
-			Naiad.ServiceContainer.Instance.RegisterService("request-behaviours",
+			Naiad.ServiceContainer.Instance.RegisterService("test-behaviours",
 				container => {
 					return new List<IProcessBehaviour> {
 						new MessageTraceBehaviour("*", new Configuration.Builder {
 								{"event", "match", "trace", "true"}
 							}
 						),
-						new ParameterisedSequenceBehaviour("process-request", new Configuration.Builder {
+						new ParameterisedSequenceBehaviour("test", new Configuration.Builder {
 								{"fire", "bootstrap"},
 								{"fire", "work"},
 								{"fire", "view-state"},
@@ -36,20 +37,23 @@ namespace Inversion.Web.Tests.Behaviour {
 							}
 						),
 						new ParameterisedSequenceBehaviour("work", new Configuration.Builder {
-								{"fire", "work-message-one"}, 
-								{"fire", "work-message-two"}
+								{"fire", "work-message-one", "trace", "true"}, 
+								{"fire", "work-message-two", "trace", "true"}
 							}
 						),
 						new BootstrapBehaviour("bootstrap", new Configuration.Builder {
 								{"context", "copy", "area", "default"},
 								{"context", "copy", "concern", "default"},
 								{"context", "copy", "action", "default"},
-								{"context", "copy", "appPath", "/web.harness"}, 
-								{"context", "copy", "basePath", @"e:\Users\User\Documents\GitHub\inversion-dev\Inversion.Web.Harness.Site\"}
+								{"context", "copy", "appPath", "/web.harness"}
 							}
 						),
 						new ViewStateBehaviour("view-state"),
-						new ProcessViewsBehaviour("process-views"),
+						new ProcessViewsBehaviour("process-views", new Configuration.Builder {
+								{"config", "default-view", "xml"}
+							}
+						),
+						new JsonViewBehaviour("xml::view", "text/json"),
 						new XmlViewBehaviour("xml::view", "text/xml"),
 						new XsltViewBehaviour("xslt::view", "text/xml"),
 						new XsltViewBehaviour("xsl::view", "text/html"),
@@ -59,19 +63,24 @@ namespace Inversion.Web.Tests.Behaviour {
 			);
 		}
 
-		[TestMethod]
-		public void TestMethod1() {
-
+		protected IProcessContext GetContext() {
 			IProcessContext context = new ProcessContext(ServiceContainer.Instance, new AssemblyResourceAdapter(Assembly.GetExecutingAssembly()));
+			IList<IProcessBehaviour> behaviours = context.Services.GetService<List<IProcessBehaviour>>("test-behaviours");
+			context.Register(behaviours);
+			return context;
+		}
 
-			XmlDocument doc = context.Resources.Open("Behaviour/Resources/Views/Xslt/t1.xslt").AsXmlDocument();
-			string xml = doc.OuterXml;
-			Debug.Write(xml);
-			
+		[TestMethod]
+		public void BasicXmlViewTest() {
+			IProcessContext context = this.GetContext();
+			context.Params["views"] = "xml";
+			context.Fire("test");
+		}
 
-			//string path = Path.Combine("Inversion.Web.Tests.Behaviour", "Resources", "Views", "Xslt", "t1.xslt");
-			//XmlDocument doc = new XmlDocument();
-			//doc.Load(new XmlTextReader(path));
+		public void BasicJsonViewTest() {
+			IProcessContext context = this.GetContext();
+			context.Params["views"] = "json";
+			context.Fire("test");
 		}
 	}
 }

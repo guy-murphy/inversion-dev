@@ -7,14 +7,24 @@ using System.Reflection;
 namespace Inversion.Data {
 
 	/// <summary>
-	/// 
+	/// Describes basic functionality for reading resources
+	/// external to the application from an assembly.
 	/// </summary>
+	/// <remarks>
+	/// The primary utility for this class is in testing contexts with
+	/// behaviours that have expectations of normally file-system resources
+	/// to run in the context of a unit test with no file-system.
+	/// </remarks>
 	public class AssemblyResourceAdapter: IResourceAdapter {
 
 
 		private readonly Assembly _assembly;
 		private readonly string _base;
 
+		/// <summary>
+		/// The assembly which this adapter is using
+		/// to resolve resources.
+		/// </summary>
 		protected Assembly Assembly {
 			get { return _assembly; }
 		}
@@ -26,11 +36,22 @@ namespace Inversion.Data {
 			get { return _base; }
 		}
 
+		/// <summary>
+		/// Instantiates a new resource adapter for the assembly specified.
+		/// </summary>
+		/// <param name="assembly"></param>
 		public AssemblyResourceAdapter(Assembly assembly) {
 			_assembly = assembly;
 			_base = this.Assembly.GetName().Name;
 		}
 
+		/// <summary>
+		/// Resolves the path specified into a fully
+		/// qualified assembly resource name from the
+		/// path specified.
+		/// </summary>
+		/// <param name="path">The path to resolve as a resource name.</param>
+		/// <returns>Returns a fully qualified asembly resource name.</returns>
 		protected string ResolvePath(string path) {
 			string resolvedPath = String.Concat(this.Base, ".", String.Join(".", path.Split(new string[]{"\\", "/"}, StringSplitOptions.RemoveEmptyEntries)));
 			return resolvedPath;
