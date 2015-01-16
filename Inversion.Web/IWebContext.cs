@@ -25,18 +25,18 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Gives access to the web response of this context.
 		/// </summary>
-		WebResponse Response { get; }
+		IWebResponse Response { get; }
 
 		/// <summary>
 		/// Gives access to the web request for this context.
 		/// </summary>
 		IWebRequest Request { get; }
 
-		/// <summary>
-		/// Gives access to the cache being used for this context.
-		/// </summary>
-		Cache Cache { // This needs to be changed for an interface that we own
-			get; }
+		///// <summary>
+		///// Gives access to the cache being used for this context.
+		///// </summary>
+		//Cache Cache { // This needs to be changed for an interface that we own
+		//	get; }
 
 		/// <summary>
 		/// Gives access to the `IPrinciple` user object that represents

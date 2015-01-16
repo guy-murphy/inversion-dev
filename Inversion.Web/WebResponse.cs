@@ -10,7 +10,7 @@ namespace Inversion.Web {
 	/// This wrapping is mindful of providing a common interface that can port to other platforms.
 	/// Along with providing a point of extensibility and control.
 	/// </remarks>
-	public class WebResponse {
+	public class WebResponse : IWebResponse {
 
 		private readonly HttpResponse _underlyingResponse;
 

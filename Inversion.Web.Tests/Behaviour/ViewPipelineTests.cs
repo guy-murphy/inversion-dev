@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
@@ -31,9 +32,11 @@ namespace Inversion.Web.Tests.Behaviour {
 						),
 						new ParameterisedSequenceBehaviour("test", new Configuration.Builder {
 								{"fire", "bootstrap"},
+								{"fire", "parse-request"},
 								{"fire", "work"},
 								{"fire", "view-state"},
-								{"fire", "process-views"}
+								{"fire", "process-views"},
+								{"fire", "render"}
 							}
 						),
 						new ParameterisedSequenceBehaviour("work", new Configuration.Builder {
@@ -55,6 +58,7 @@ namespace Inversion.Web.Tests.Behaviour {
 								{"config", "default-view", "xml"}
 							}
 						),
+						new RenderBehaviour("render"),
 						new JsonViewBehaviour("json::view", "text/json"),
 						new XmlViewBehaviour("xml::view", "text/xml"),
 						new XsltViewBehaviour("xslt::view", "text/xml"),
@@ -65,8 +69,8 @@ namespace Inversion.Web.Tests.Behaviour {
 			);
 		}
 
-		protected IProcessContext GetContext() {
-			IProcessContext context = new ProcessContext(ServiceContainer.Instance, new AssemblyResourceAdapter(Assembly.GetExecutingAssembly()));
+		protected IWebContext GetContext() {
+			IWebContext context = new MockWebContext(ServiceContainer.Instance, new AssemblyResourceAdapter(Assembly.GetExecutingAssembly()));
 			IList<IProcessBehaviour> behaviours = context.Services.GetService<List<IProcessBehaviour>>("test-behaviours");
 			context.Register(behaviours);
 			return context;
@@ -74,7 +78,7 @@ namespace Inversion.Web.Tests.Behaviour {
 
 		[TestMethod]
 		public void BasicXmlView() {
-			IProcessContext context = this.GetContext();
+			IWebContext context = this.GetContext();
 			context.Params["action"] = "test1";
 			context.Params["views"] = "xml";
 			context.Fire("test");
@@ -90,11 +94,14 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event").Count() == 2);
 			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event[@message='work-message-one']").Count() == 1);
 			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event[@message='work-message-two']").Count() == 1);
+
+			string render = ((MockWebResponse)context.Response).Result;
+			Assert.AreEqual(context.ViewSteps.Last.Content, render);
 		}
 
 		[TestMethod]
 		public void BasicJsonView() {
-			IProcessContext context = this.GetContext();
+			IWebContext context = this.GetContext();
 			context.Params["action"] = "test1";
 			context.Params["views"] = "json";
 			context.Fire("test");
@@ -110,6 +117,9 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(result["eventTrace"].Values<JObject>().Count() == 2);
 			Assert.IsTrue(result.SelectTokens("$.eventTrace[?(@.message=='work-message-one')]").Count() == 1);
 			Assert.IsTrue(result.SelectTokens("$.eventTrace[?(@.message=='work-message-two')]").Count() == 1);
+
+			string render = ((MockWebResponse)context.Response).Result;
+			Assert.AreEqual(context.ViewSteps.Last.Content, render);
 		}
 	}
 }

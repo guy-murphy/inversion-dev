@@ -45,7 +45,7 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Gives access to the web response of this context.
 		/// </summary>
-		public WebResponse Response {
+		public IWebResponse Response {
 			get { return _response; }
 		}
 
@@ -56,12 +56,12 @@ namespace Inversion.Web {
 			get { return _request; }
 		}
 
-		/// <summary>
-		/// Gives access to the cache being used for this context.
-		/// </summary>
-		public Cache Cache { // This needs to be changed for an interface that we own
-			get { return this.UnderlyingContext.Cache; }
-		}
+		///// <summary>
+		///// Gives access to the cache being used for this context.
+		///// </summary>
+		//public Cache Cache { // This needs to be changed for an interface that we own
+		//	get { return this.UnderlyingContext.Cache; }
+		//}
 
 		/// <summary>
 		/// Gives access to the `IPrinciple` user object that represents

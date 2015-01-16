@@ -81,6 +81,11 @@ namespace Inversion.Web {
 			get { throw new NotImplementedException("The HttpCookieCollection has not been mocked."); }
 		}
 
+		/// <summary>
+		/// Instantiates a new mock web request
+		/// from the url provided.
+		/// </summary>
+		/// <param name="url">The url of the request to be mocked.</param>
 		public MockWebRequest(string url) {
 			this.UrlInfo = new UrlInfo(url);
 			foreach (KeyValuePair<string, string> entry in this.UrlInfo.Query) {

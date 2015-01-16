@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text.RegularExpressions;
 
 using Inversion.Collections;
@@ -39,7 +41,7 @@ namespace Inversion.Web {
 
 		private readonly string _url;
 		private readonly Regex _regex;
-		private readonly DataDictionary<string> _query;
+		private IDictionary<string,string> _query;
 		private Match _match;
 
 		/// <summary>
@@ -160,7 +162,7 @@ namespace Inversion.Web {
 		/// A name / value dictionary as the propduct of
 		/// parsing the <see cref="QueryString"/>
 		/// </summary>
-		public DataDictionary<string> Query {
+		public IDictionary<string, string> Query {
 			get {
 				return _query;
 			}
@@ -192,6 +194,7 @@ namespace Inversion.Web {
 		public UrlInfo(string url, Regex regex) {
 			_url = url;
 			_regex = regex;
+			this.ProcessUrl();
 		}
 
 		/// <summary>
@@ -202,7 +205,7 @@ namespace Inversion.Web {
 		public UrlInfo(UrlInfo info) {
 			_url = info.Url;
 			_regex = info.Regex;
-			_query = new DataDictionary<string>();
+			_query = new DataDictionary<string>(info.Query);
 		}
 
 		/// <summary>
@@ -211,6 +214,7 @@ namespace Inversion.Web {
 		public void ProcessUrl() {
 			_match = this.Regex.Match(_url);
 			if (!String.IsNullOrWhiteSpace(this.QueryString)) {
+				Dictionary<string,string> qs = new Dictionary<string, string>();
 				foreach (string term in this.QueryString.Split(new string[] {"&"}, StringSplitOptions.RemoveEmptyEntries)) {
 					string[] pair = term.Split(new string[] {"="}, StringSplitOptions.RemoveEmptyEntries);
 					switch (pair.Length) {
@@ -221,10 +225,10 @@ namespace Inversion.Web {
 							this.Query[pair[0]] = pair[0];
 							break;
 					}
-					if (pair.Length == 2) {
-						
-					}
 				}
+				_query = qs.ToImmutableDictionary();
+			} else {
+				_query = ImmutableDictionary<string, string>.Empty;
 			}
 		}
 
