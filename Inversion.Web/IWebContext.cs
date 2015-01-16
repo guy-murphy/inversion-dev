@@ -30,7 +30,7 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Gives access to the web request for this context.
 		/// </summary>
-		WebRequest Request { get; }
+		IWebRequest Request { get; }
 
 		/// <summary>
 		/// Gives access to the cache being used for this context.

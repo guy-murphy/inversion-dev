@@ -211,7 +211,20 @@ namespace Inversion.Web {
 		public void ProcessUrl() {
 			_match = this.Regex.Match(_url);
 			if (!String.IsNullOrWhiteSpace(this.QueryString)) {
-
+				foreach (string term in this.QueryString.Split(new string[] {"&"}, StringSplitOptions.RemoveEmptyEntries)) {
+					string[] pair = term.Split(new string[] {"="}, StringSplitOptions.RemoveEmptyEntries);
+					switch (pair.Length) {
+						case 2:
+							this.Query[pair[0]] = pair[1];
+							break;
+						case 1:
+							this.Query[pair[0]] = pair[0];
+							break;
+					}
+					if (pair.Length == 2) {
+						
+					}
+				}
 			}
 		}
 

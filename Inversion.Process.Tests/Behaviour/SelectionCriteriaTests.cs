@@ -183,7 +183,14 @@ namespace Inversion.Process.Tests.Behaviour {
 					}
 				);
 
+				// positive
 				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
+				context.Params["p2"] = "v4";
+				context.Params["p3"] = "v3";
+				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
+				// negative
+				context.Params.Remove("p3");
+				Assert.IsFalse(behaviour.ContextMatchesAnyParamValues(context));
 			}
 		}
 

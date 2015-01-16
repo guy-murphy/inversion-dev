@@ -52,7 +52,7 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Gives access to the web request for this context.
 		/// </summary>
-		public WebRequest Request {
+		public IWebRequest Request {
 			get { return _request; }
 		}
 

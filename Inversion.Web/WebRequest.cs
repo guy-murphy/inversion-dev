@@ -11,7 +11,7 @@ namespace Inversion.Web {
 	/// This wrapping is mindful of providing a common interface that can port to other platforms.
 	/// Along with providing a point of extensibility and control.
 	/// </remarks>
-	public class WebRequest {
+	public class WebRequest : IWebRequest {
 
 		private readonly HttpRequest _underlyingRequest;
 		private readonly UrlInfo _urlInfo;
@@ -78,7 +78,7 @@ namespace Inversion.Web {
 		/// First params are read from the querystring and then those posted which
 		/// will override any from the querystring.
 		/// </remarks>
-		public IImmutableDictionary<string, string> Params {
+		public IDictionary<string, string> Params {
 			get { return _params; }
 		}
 
@@ -103,7 +103,7 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Gives access to the headers of the reuqest.
 		/// </summary>
-		public IImmutableDictionary<string, string> Headers {
+		public IDictionary<string, string> Headers {
 			get { return _headers; }
 		}
 
