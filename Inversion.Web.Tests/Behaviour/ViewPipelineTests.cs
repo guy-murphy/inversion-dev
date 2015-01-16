@@ -37,7 +37,8 @@ namespace Inversion.Web.Tests.Behaviour {
 							}
 						),
 						new ParameterisedSequenceBehaviour("work", new Configuration.Builder {
-								{"context", "match", "action", "test1"},
+								{"context", "match-any", "action", "test1"},
+								{"context", "match-any", "action", "test2"},
 								{"fire", "work-message-one", "trace", "true"}, 
 								{"fire", "work-message-two", "trace", "true"}
 							}
@@ -72,11 +73,17 @@ namespace Inversion.Web.Tests.Behaviour {
 		}
 
 		[TestMethod]
-		public void BasicXmlViewTest() {
+		public void BasicXmlView() {
 			IProcessContext context = this.GetContext();
 			context.Params["action"] = "test1";
 			context.Params["views"] = "xml";
 			context.Fire("test");
+
+			Assert.IsTrue(context.ViewSteps.HasSteps);
+			Assert.IsTrue(context.ViewSteps.Count == 2);
+			Assert.IsTrue(context.ViewSteps.Last.HasContent);
+			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/xml");
+
 			XDocument result = context.ViewSteps.Last.Content.AsXDocument();
 			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='params']/records/item[@name='action' and @value='test1']").Count() == 1);
 			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='params']/records/item[@name='views' and @value='xml']").Count() == 1);
@@ -86,18 +93,23 @@ namespace Inversion.Web.Tests.Behaviour {
 		}
 
 		[TestMethod]
-		public void BasicJsonViewTest() {
+		public void BasicJsonView() {
 			IProcessContext context = this.GetContext();
 			context.Params["action"] = "test1";
 			context.Params["views"] = "json";
 			context.Fire("test");
+
+			Assert.IsTrue(context.ViewSteps.HasSteps);
+			Assert.IsTrue(context.ViewSteps.Count == 2);
+			Assert.IsTrue(context.ViewSteps.Last.HasContent);
+			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/json");
+
 			JObject result = JObject.Parse(context.ViewSteps.Last.Content);
 			Assert.IsTrue(result.SelectToken("$.params.action").Value<string>() == "test1");
 			Assert.IsTrue(result.SelectToken("$.params.views").Value<string>() == "json");		
 			Assert.IsTrue(result["eventTrace"].Values<JObject>().Count() == 2);
 			Assert.IsTrue(result.SelectTokens("$.eventTrace[?(@.message=='work-message-one')]").Count() == 1);
 			Assert.IsTrue(result.SelectTokens("$.eventTrace[?(@.message=='work-message-two')]").Count() == 1);
-			Assert.IsTrue(result.SelectTokens("$.eventTrace[?(@.message=='work-message-three')]").Count() == 0);
 		}
 	}
 }

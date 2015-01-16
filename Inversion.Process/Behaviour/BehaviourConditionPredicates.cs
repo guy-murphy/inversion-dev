@@ -62,6 +62,20 @@ namespace Inversion.Process.Behaviour {
 		}
 
 		/// <summary>
+		/// Determines whether or not any of the key-value pairs
+		/// provided exist in the contexts parameters.
+		/// </summary>
+		/// <param name="self">The behaviour to act upon.</param>
+		/// <param name="ctx">The context to consult.</param>
+		/// <returns>
+		/// Returns true if any of the key-value pairs specified exists in the contexts
+		/// parameters; otherwise returns false.
+		/// </returns>
+		public static bool ContextMatchesAnyParamValues(this IConfiguredBehaviour self, IProcessContext ctx) {
+			return ctx.HasAnyParamValues(self.Configuration.GetMap("context", "match-any"));
+		}
+
+		/// <summary>
 		/// Determines whether or not all the key-value pairs
 		/// provided are NOT in the contexts parameters.
 		/// </summary>

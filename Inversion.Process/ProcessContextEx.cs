@@ -72,6 +72,20 @@ namespace Inversion.Process {
 		}
 
 		/// <summary>
+		/// Determines whether or not any of the key-value pairs
+		/// provided exist in the contexts parameters.
+		/// </summary>
+		/// <param name="match">The key-value pairs to check for.</param>
+		/// <param name="self">The context being acted upon.</param>
+		/// <returns>
+		/// Returns true if any of the key-value pairs specified exists in the contexts
+		/// parameters; otherwise returns false.
+		/// </returns>
+		public static bool HasAnyParamValues(this IProcessContext self, IEnumerable<KeyValuePair<string, string>> match) {
+			return match != null && match.Any(entry => self.Params.Contains(entry));
+		}
+
+		/// <summary>
 		/// Determines whether or not all any of the values for their associated parameter name
 		/// exist in the contexts parameters.
 		/// </summary>

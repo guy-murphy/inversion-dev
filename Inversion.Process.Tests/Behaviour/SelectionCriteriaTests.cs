@@ -171,6 +171,23 @@ namespace Inversion.Process.Tests.Behaviour {
 		}
 
 		[TestMethod]
+		public void ContextMatchesAnyParamValues() {
+			foreach (IProcessContext context in _getContexts()) {
+				context.Params.Add("p2", "v2");
+
+				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+					new Configuration.Builder {
+						{"context", "match-any", "p1", "v1"},
+						{"context", "match-any", "p2", "v2"},
+						{"context", "match-any", "p3", "v3"}
+					}
+				);
+
+				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
+			}
+		}
+
+		[TestMethod]
 		public void ContextExcludes() {
 			foreach (IProcessContext context in _getContexts()) {
 
