@@ -13,7 +13,7 @@ namespace Inversion.Data {
 	/// Extensions for stream intended to work with `IResourceAdapter`.
 	/// </summary>
 	public static class StreamEx {
-
+		
 		/// <summary>
 		/// Opens an xml reader on the stream.
 		/// </summary>

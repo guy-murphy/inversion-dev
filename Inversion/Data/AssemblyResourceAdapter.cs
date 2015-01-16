@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Inversion.Data {
 
@@ -11,6 +10,32 @@ namespace Inversion.Data {
 	/// 
 	/// </summary>
 	public class AssemblyResourceAdapter: IResourceAdapter {
+
+
+		private readonly Assembly _assembly;
+		private readonly string _base;
+
+		protected Assembly Assembly {
+			get { return _assembly; }
+		}
+
+		/// <summary>
+		/// The base path from which all specified paths are relative.
+		/// </summary>
+		protected string Base {
+			get { return _base; }
+		}
+
+		public AssemblyResourceAdapter(Assembly assembly) {
+			_assembly = assembly;
+			_base = this.Assembly.GetName().Name;
+		}
+
+		protected string ResolvePath(string path) {
+			string resolvedPath = String.Concat(this.Base, ".", String.Join(".", path.Split(new string[]{"\\", "/"}, StringSplitOptions.RemoveEmptyEntries)));
+			return resolvedPath;
+		}
+
 		/// <summary>
 		/// Determines whether or not the relative path
 		/// specified exists.
@@ -20,7 +45,8 @@ namespace Inversion.Data {
 		/// Returns true if the resource exists; otherwise, returns false.
 		/// </returns>
 		public bool Exists(string path) {
-			throw new NotImplementedException();
+			string[] names = this.Assembly.GetManifestResourceNames();
+			return names.Contains(this.ResolvePath(path));
 		}
 
 		/// <summary>
@@ -30,7 +56,7 @@ namespace Inversion.Data {
 		/// <param name="path">The relative path to the resource.</param>
 		/// <returns>Returns a stream to the specified resource.</returns>
 		public Stream Open(string path) {
-			throw new NotImplementedException();
+			return this.Assembly.GetManifestResourceStream(this.ResolvePath(path));
 		}
 
 		/// <summary>
@@ -40,7 +66,11 @@ namespace Inversion.Data {
 		/// <param name="path">The relative path to the resource.</param>
 		/// <returns>Returns a byte array of the resources contents.</returns>
 		public byte[] ReadAllBytes(string path) {
-			throw new NotImplementedException();
+			using (Stream stream = this.Open(path)) {
+				byte[] content = new byte[stream.Length];
+				stream.Read(content, 0, (int)stream.Length);
+				return content;
+			}
 		}
 
 		/// <summary>
@@ -49,7 +79,12 @@ namespace Inversion.Data {
 		/// <param name="path">The relative path to the resource.</param>
 		/// <returns>Returns an enumerable of the resources lines.</returns>
 		public IEnumerable<string> ReadLines(string path) {
-			throw new NotImplementedException();
+			using (StreamReader reader = new StreamReader(this.Open(path))) {
+				string line;
+				while ((line = reader.ReadLine()) != null) {
+					yield return line;
+				}
+			}
 		}
 
 		/// <summary>
@@ -59,7 +94,7 @@ namespace Inversion.Data {
 		/// <param name="path">The relative path to the resource.</param>
 		/// <returns>Returns a string array with all the lines of the resource.</returns>
 		public string[] ReadAllLines(string path) {
-			throw new NotImplementedException();
+			return this.ReadLines(path).ToArray();
 		}
 
 		/// <summary>
@@ -69,7 +104,9 @@ namespace Inversion.Data {
 		/// <param name="path">The relative path to the resource.</param>
 		/// <returns>Returns the contents of the resource as text.</returns>
 		public string ReadAllText(string path) {
-			throw new NotImplementedException();
+			using (StreamReader reader = new StreamReader(this.Open(path))) {
+				return reader.ReadToEnd();
+			}
 		}
 	}
 }

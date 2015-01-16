@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
 using Inversion.Data;
@@ -61,18 +62,12 @@ namespace Inversion.Web.Tests.Behaviour {
 		[TestMethod]
 		public void TestMethod1() {
 
-			ProcessContext context = new ProcessContext(ServiceContainer.Instance, FileSystemResourceAdapter.Instance);
+			IProcessContext context = new ProcessContext(ServiceContainer.Instance, new AssemblyResourceAdapter(Assembly.GetExecutingAssembly()));
 
-			string path = "Inversion.Web.Tests.Behaviour.Resources.Views.Xslt.t1.xslt";
-
-			System.Reflection.Assembly thisAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-			string[] resourceNames = thisAssembly.GetManifestResourceNames();
-			using (Stream stream = thisAssembly.GetManifestResourceStream(path)) {
-				XmlDocument doc = new XmlDocument();
-				doc.Load(new XmlTextReader(stream));
-				string xml = doc.OuterXml;
-				Debug.Write(xml);
-			}
+			XmlDocument doc = context.Resources.Open("Behaviour/Resources/Views/Xslt/t1.xslt").AsXmlDocument();
+			string xml = doc.OuterXml;
+			Debug.Write(xml);
+			
 
 			//string path = Path.Combine("Inversion.Web.Tests.Behaviour", "Resources", "Views", "Xslt", "t1.xslt");
 			//XmlDocument doc = new XmlDocument();

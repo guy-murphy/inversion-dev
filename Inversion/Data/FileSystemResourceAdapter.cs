@@ -13,7 +13,7 @@ namespace Inversion.Data {
 		/// <summary>
 		/// A default instance.
 		/// </summary>
-		public static readonly FileSystemResourceAdapter Instance = new FileSystemResourceAdapter(AppDomain.CurrentDomain.BaseDirectory);
+		public static readonly FileSystemResourceAdapter Instance = new FileSystemResourceAdapter();
 
 		private readonly string _base;
 
@@ -23,6 +23,12 @@ namespace Inversion.Data {
 		protected string Base {
 			get { return _base; }
 		}
+
+		/// <summary>
+		/// Insrantiates a new resource adapter with the base set to the
+		/// current app domain base directory.
+		/// </summary>
+		public FileSystemResourceAdapter() : this(AppDomain.CurrentDomain.BaseDirectory) { }
 
 		/// <summary>
 		/// Instantiates a new resource adapter with the base specified.
