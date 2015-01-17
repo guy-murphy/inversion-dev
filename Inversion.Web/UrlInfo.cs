@@ -219,10 +219,10 @@ namespace Inversion.Web {
 					string[] pair = term.Split(new string[] {"="}, StringSplitOptions.RemoveEmptyEntries);
 					switch (pair.Length) {
 						case 2:
-							this.Query[pair[0]] = pair[1];
+							qs[pair[0]] = pair[1];
 							break;
 						case 1:
-							this.Query[pair[0]] = pair[0];
+							qs[pair[0]] = pair[0];
 							break;
 					}
 				}

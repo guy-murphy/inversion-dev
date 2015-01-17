@@ -114,7 +114,7 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(context.ViewSteps.Last.HasContent);
 			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/json");
 
-			JObject result = JObject.Parse(context.ViewSteps.Last.Content);
+			JObject result = context.ViewSteps.Last.Content.AsJObject();
 			Assert.IsTrue(result.SelectToken("$.params.action").Value<string>() == "test1");
 			Assert.IsTrue(result.SelectToken("$.params.views").Value<string>() == "json");		
 			Assert.IsTrue(result["eventTrace"].Values<JObject>().Count() == 2);
