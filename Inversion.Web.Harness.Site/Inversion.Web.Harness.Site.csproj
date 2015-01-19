@@ -74,6 +74,8 @@
     <Content Include="behaviours.config" />
     <Content Include="Resources\Views\Liquid\default.liquid" />
     <Content Include="Resources\Views\ST\default.st" />
+    <Content Include="Resources\Views\ST\test1.st" />
+    <Content Include="Resources\Views\ST\test2.st" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -85,6 +87,8 @@
     <None Include="config.config" />
     <Content Include="Global.asax" />
     <Content Include="Resources\Views\Xslt\default.xslt" />
+    <Content Include="Resources\Views\Xslt\test1.xslt" />
+    <Content Include="Resources\Views\Xslt\test2.xslt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

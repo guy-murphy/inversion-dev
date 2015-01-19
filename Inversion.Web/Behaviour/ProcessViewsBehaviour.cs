@@ -44,13 +44,15 @@ namespace Inversion.Web.Behaviour {
 			if (context.ViewSteps.HasSteps) {
 				// then determine how many views there are to process
 				// in this convention we take the view as specified by the "tail" of the request url
-				IEnumerable<string> views;
-				if (context.HasParams("views")) {
+				string[] views;
+				if (context.HasParams("views") && !String.IsNullOrEmpty(context.Params["views"])) {
 					views = context.Params["views"].Split(new string[] {";"}, StringSplitOptions.RemoveEmptyEntries);
 				} else if (this.Configuration.Has("config", "default-view")) {
-					views = this.Configuration.GetNames("config", "default-view");
+					views = this.Configuration.GetNames("config", "default-view").ToArray();
+					context.Params["views"] = String.Join(";", views);
 				} else {
-					views = new String[] {"st"};
+					views = new string[] {"st"};
+					context.Params["views"] = "st";
 				}
 				foreach (string view in views) {
 					if (!String.IsNullOrEmpty(view)) {

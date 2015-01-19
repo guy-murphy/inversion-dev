@@ -21,7 +21,9 @@
 	</xsl:template>
 
 	<xsl:template match="records/item[@name='eventTrace']/list">
-		<events><xsl:apply-templates /></events>
+		<events>
+			<xsl:apply-templates />
+		</events>
 	</xsl:template>
 
 	<xsl:template match="list/event">
@@ -39,7 +41,7 @@
 		<xsl:attribute name="{@name}">
 			<xsl:value-of select="@value" />
 		</xsl:attribute>
-		
+
 	</xsl:template>
 
 </xsl:stylesheet>

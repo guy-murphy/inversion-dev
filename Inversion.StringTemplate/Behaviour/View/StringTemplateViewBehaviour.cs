@@ -44,6 +44,7 @@ namespace Inversion.StringTemplate.Behaviour.View {
 						template.Add("model", context.ViewSteps.Last.Model);
 						string result = template.Render();
 						context.ViewSteps.CreateStep(templateName, this.ContentType, result);
+						break; // we've found and processed our template, no need to keep looking
 					}
 				}
 			}

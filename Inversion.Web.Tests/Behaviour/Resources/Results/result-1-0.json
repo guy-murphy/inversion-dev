@@ -4,7 +4,10 @@
   "flags": [],
   "timers": {},
   "params": {
+    "area": "default",
     "action": "test1",
+    "concern": "default",
+    "appPath": "/web.harness",
     "views": "json"
   },
   "eventTrace": [

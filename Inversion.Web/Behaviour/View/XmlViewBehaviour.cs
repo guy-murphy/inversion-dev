@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Xml;
+using System.Xml.Linq;
 using Inversion.Process;
 using Inversion.Process.Behaviour;
 
@@ -45,7 +47,18 @@ namespace Inversion.Web.Behaviour.View {
 					// the next step in the pipeline may in turn transform this
 					// all previous steps remain accessible via context.ViewSteps
 				} else {
-					throw new WebException("Was expecting a model to serialise but found content.");
+					// try and parse the content of the last step as xml
+					if (context.ViewSteps.Last.HasContent) {
+						try {
+							XmlDocument content = new XmlDocument();
+							content.LoadXml(context.ViewSteps.Last.Content);
+							context.ViewSteps.CreateStep("xml", _contentType, content.OuterXml);
+						} catch (XmlException err) {
+							throw new WebException("Unable to process content that is not XML.");
+						}
+					} else {
+						throw new WebException("Was expecting a model or content to output.");
+					}
 				}
 			} else {
 				throw new WebException("There is no initial view state to serialise into XML.");

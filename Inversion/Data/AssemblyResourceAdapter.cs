@@ -40,9 +40,11 @@ namespace Inversion.Data {
 		/// Instantiates a new resource adapter for the assembly specified.
 		/// </summary>
 		/// <param name="assembly"></param>
-		public AssemblyResourceAdapter(Assembly assembly) {
+		/// <param name="appendToBase">Indicates what if anything should be appended to the base assembly name.</param>
+		public AssemblyResourceAdapter(Assembly assembly, string appendToBase = null) {
 			_assembly = assembly;
-			_base = this.Assembly.GetName().Name;
+			string assemblyName = this.Assembly.GetName().Name;
+			_base = String.IsNullOrEmpty(appendToBase) ? assemblyName : String.Concat(assemblyName, ".", appendToBase);
 		}
 
 		/// <summary>

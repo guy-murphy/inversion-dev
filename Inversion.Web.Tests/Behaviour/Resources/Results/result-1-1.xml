@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<result>
+	<head>
+		<title>Test 1</title>
+	</head>
+	<body>
+		<events>
+			<event message="work-message-one">
+				<params trace="true" />
+			</event>
+			<event message="work-message-two">
+				<params trace="true" />
+			</event>
+		</events>
+	</body>
+</result>

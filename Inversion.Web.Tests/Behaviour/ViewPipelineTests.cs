@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
@@ -47,10 +46,10 @@ namespace Inversion.Web.Tests.Behaviour {
 							}
 						),
 						new BootstrapBehaviour("bootstrap", new Configuration.Builder {
-								{"context", "copy", "area", "default"},
-								{"context", "copy", "concern", "default"},
-								{"context", "copy", "action", "default"},
-								{"context", "copy", "appPath", "/web.harness"}
+								{"context", "set", "area", "default"},
+								{"context", "set", "concern", "default"},
+								{"context", "set", "action", "default"},
+								{"context", "set", "appPath", "/web.harness"}
 							}
 						),
 						new ViewStateBehaviour("view-state"),
@@ -70,7 +69,7 @@ namespace Inversion.Web.Tests.Behaviour {
 		}
 
 		protected IWebContext GetContext() {
-			IWebContext context = new MockWebContext(ServiceContainer.Instance, new AssemblyResourceAdapter(Assembly.GetExecutingAssembly()));
+			IWebContext context = new MockWebContext(ServiceContainer.Instance, new AssemblyResourceAdapter(Assembly.GetExecutingAssembly(), "Behaviour"));
 			IList<IProcessBehaviour> behaviours = context.Services.GetService<List<IProcessBehaviour>>("test-behaviours");
 			context.Register(behaviours);
 			return context;
@@ -95,10 +94,11 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event[@message='work-message-one']").Count() == 1);
 			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event[@message='work-message-two']").Count() == 1);
 
+			Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
 			string render = ((MockWebResponse)context.Response).Result;
 			Assert.AreEqual(context.ViewSteps.Last.Content, render);
 
-			XElement result1 = context.Resources.Open("Behaviour/Resources/Results/result1.xml").AsXElement();
+			XElement result1 = context.Resources.Open("Resources/Results/result-1-0.xml").AsXElement();
 			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
 		}
 
@@ -121,11 +121,92 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(result.SelectTokens("$.eventTrace[?(@.message=='work-message-one')]").Count() == 1);
 			Assert.IsTrue(result.SelectTokens("$.eventTrace[?(@.message=='work-message-two')]").Count() == 1);
 
+			Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
 			string render = ((MockWebResponse)context.Response).Result;
 			Assert.AreEqual(context.ViewSteps.Last.Content, render);
 
-			JObject result1 = context.Resources.Open("Behaviour/Resources/Results/result1.json").AsJObject();
+			JObject result1 = context.Resources.Open("Resources/Results/result-1-0.json").AsJObject();
 			Assert.IsTrue(JToken.DeepEquals(result1, render.AsJObject()));
+		}
+
+		[TestMethod]
+		public void BasicXsltView() {
+			IWebContext context = this.GetContext();
+			context.Params["action"] = "test1";
+			context.Params["views"] = "xslt";
+			context.Fire("test");
+
+			Assert.IsTrue(context.ViewSteps.HasSteps);
+			Assert.IsTrue(context.ViewSteps.Count == 2);
+			Assert.IsTrue(context.ViewSteps.Last.HasContent);
+			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/xml");
+
+			Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
+			string render = ((MockWebResponse)context.Response).Result;
+			Assert.AreEqual(context.ViewSteps.Last.Content, render);
+
+			XElement result1 = context.Resources.Open("Resources/Results/result-1-1.xml").AsXElement();		
+			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
+		}
+
+		[TestMethod]
+		public void BasicStringTemplateView() {
+			IWebContext context = this.GetContext();
+			context.Params["action"] = "test1";
+			context.Params["views"] = "st";
+			context.Fire("test");
+
+			Assert.IsTrue(context.ViewSteps.HasSteps);
+			Assert.IsTrue(context.ViewSteps.Count == 2);
+			Assert.IsTrue(context.ViewSteps.Last.HasContent);
+			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/html");
+
+			Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
+			string render = ((MockWebResponse)context.Response).Result;
+			Assert.AreEqual(context.ViewSteps.Last.Content, render);
+
+			XElement result1 = context.Resources.Open("Resources/Results/result-1-1.xml").AsXElement();
+			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
+		}
+
+		[TestMethod]
+		public void BasicViewChain() {
+			IWebContext context = this.GetContext();
+			context.Params["action"] = "test1";
+			context.Params["views"] = "st;xml";
+			context.Fire("test");
+
+			Assert.IsTrue(context.ViewSteps.HasSteps);
+			Assert.IsTrue(context.ViewSteps.Count == 3);
+			Assert.IsTrue(context.ViewSteps.Last.HasContent);
+			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/xml");
+
+			Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
+			string render = ((MockWebResponse)context.Response).Result;
+			Assert.AreEqual(context.ViewSteps.Last.Content, render);
+
+			XElement result1 = context.Resources.Open("Resources/Results/result-1-1.xml").AsXElement();
+			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
+		}
+
+		[TestMethod]
+		public void ChainedViewTransform() {
+			IWebContext context = this.GetContext();
+			context.Params["action"] = "test2";
+			context.Params["views"] = "st;xslt";
+			context.Fire("test");
+
+			Assert.IsTrue(context.ViewSteps.HasSteps);
+			Assert.IsTrue(context.ViewSteps.Count == 3);
+			Assert.IsTrue(context.ViewSteps.Last.HasContent);
+			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/xml");
+
+			Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
+			string render = ((MockWebResponse)context.Response).Result;
+			Assert.AreEqual(context.ViewSteps.Last.Content, render);
+
+			XElement result2 = context.Resources.Open("Resources/Results/result-2.xml").AsXElement();
+			Assert.IsTrue(XNode.DeepEquals(result2, render.AsXElement()));	
 		}
 	}
 }

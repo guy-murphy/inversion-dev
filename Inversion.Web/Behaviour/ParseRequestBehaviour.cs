@@ -73,9 +73,7 @@ namespace Inversion.Web.Behaviour {
 			// note method and tail
 			context.Params["method"] = context.Request.Method;
 			context.Params["tail"] = context.Request.UrlInfo.Tail;
-			if (!String.IsNullOrEmpty(context.Request.UrlInfo.Tail)) {
-				context.Params["views"] = String.Join(";", context.Request.UrlInfo.Tail.Split(new string[] {"/"}, StringSplitOptions.RemoveEmptyEntries));
-			}
+			context.Params["views"] = String.Join(";", context.Request.UrlInfo.Tail.Split(new string[] {"/"}, StringSplitOptions.RemoveEmptyEntries));
 		}
 	}
 }

@@ -62,9 +62,6 @@ namespace Inversion.Web {
 		/// </summary>
 		public Match Match {
 			get {
-				if (_match == null) {
-					this.ProcessUrl();
-				}
 				return _match;
 			}
 		}

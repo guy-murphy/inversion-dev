@@ -14,7 +14,10 @@
 	</item>
 	<item name="params">
 		<records>
+			<item name="area" value="default" />
 			<item name="action" value="test1" />
+			<item name="concern" value="default" />
+			<item name="appPath" value="/web.harness" />
 			<item name="views" value="xml" />
 		</records>
 	</item>

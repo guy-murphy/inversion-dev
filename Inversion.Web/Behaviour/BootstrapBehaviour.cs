@@ -41,8 +41,7 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="ev">The event that gave rise to this action.</param>
 		/// <param name="context">The context within which this action is being performed.</param>
-		public override void Action(IEvent ev, IProcessContext context) {
-			context.Params.Import(this.Configuration.GetMap("context", "set"));
+		public override void Action(IEvent ev, IProcessContext context) {		
 			IDictionary<string, string> mappings = this.Configuration.GetMap("context", "set");
 			foreach (KeyValuePair<string, string> entry in mappings) {
 				if (!context.HasParams(entry.Key)) {
