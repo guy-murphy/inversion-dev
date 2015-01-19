@@ -17,6 +17,15 @@ using Inversion.Web.Behaviour.View;
 using Inversion.Naiad;
 
 namespace Inversion.Web.Tests.Behaviour {
+
+	/// <summary>
+	/// Some simple tests to ensure the inversion view pipeline
+	/// is conforming to basic expectations. The meat and potatoes of
+	/// these tests is `ChainedViewTransform` which tests transforms piped between
+	/// string template and xslt, where the shape of the data is transformed. The
+	/// tests preceding `ChainedViewTransform` are both testing more basic expectations
+	/// and serving as an illustration of testing behaviour interactions.
+	/// </summary>
 	[TestClass]
 	public class ViewPipelineTests {
 
@@ -68,6 +77,12 @@ namespace Inversion.Web.Tests.Behaviour {
 			);
 		}
 
+		/// <summary>
+		/// We simply obtain a fully configured context ready to use for a test case.
+		/// </summary>
+		/// <returns>
+		/// Returns a web context.
+		/// </returns>
 		protected IWebContext GetContext() {
 			IWebContext context = new MockWebContext(ServiceContainer.Instance, new AssemblyResourceAdapter(Assembly.GetExecutingAssembly(), "Behaviour"));
 			IList<IProcessBehaviour> behaviours = context.Services.GetService<List<IProcessBehaviour>>("test-behaviours");
@@ -75,6 +90,11 @@ namespace Inversion.Web.Tests.Behaviour {
 			return context;
 		}
 
+		/// <summary>
+		/// In this test we simply test firing some test messages,
+		/// get an xml view of the resulting view state, and test
+		/// that view for expected articles.
+		/// </summary>
 		[TestMethod]
 		public void BasicXmlView() {
 			IWebContext context = this.GetContext();
@@ -102,6 +122,11 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
 		}
 
+		/// <summary>
+		/// In this test we simply test firing some test messages,
+		/// get a json view of the resulting view state, and test
+		/// that view for expected articles.
+		/// </summary>
 		[TestMethod]
 		public void BasicJsonView() {
 			IWebContext context = this.GetContext();
@@ -129,6 +154,11 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(JToken.DeepEquals(result1, render.AsJObject()));
 		}
 
+		/// <summary>
+		/// In this test we set the current action to "test1" and views to "xslt", then check
+		/// that the resulting templated transform has produced what we expect. This test
+		/// involves locating the correct view behaviour it resolving the correct template to use.
+		/// </summary>
 		[TestMethod]
 		public void BasicXsltView() {
 			IWebContext context = this.GetContext();
@@ -149,6 +179,11 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
 		}
 
+		/// <summary>
+		/// In this test we set the current action to "test1" and views to "st" indicating StringTemplate, then check
+		/// that the resulting templated transform has produced what we expect. This test
+		/// involves locating the correct view behaviour it resolving the correct template to use.
+		/// </summary>
 		[TestMethod]
 		public void BasicStringTemplateView() {
 			IWebContext context = this.GetContext();
@@ -169,6 +204,13 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
 		}
 
+		/// <summary>
+		/// In this test we specify the chained views of "st;xml" meaning the resulting
+		/// view state will be processed first by the string template view behaviour the
+		/// result of which is used as input for the xml view behaviour, which in this
+		/// case simply ensures the result is xml and outputs it. We confirm that the xml
+		/// remained unchanged through the process.
+		/// </summary>
 		[TestMethod]
 		public void BasicViewChain() {
 			IWebContext context = this.GetContext();
@@ -189,6 +231,13 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
 		}
 
+		/// <summary>
+		/// In this test we specify the chained views "st;xslt" meaning the resulting
+		/// view state will be processed first by a located string template the result
+		/// of which will be used as the input for a located xslt template. In this test
+		/// we are actually transforming the shape of the data and we test that the
+		/// end result of the transforms conforms to expectation.
+		/// </summary>
 		[TestMethod]
 		public void ChainedViewTransform() {
 			IWebContext context = this.GetContext();
