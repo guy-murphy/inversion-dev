@@ -190,7 +190,7 @@ namespace Inversion.Web {
 		/// <param name="regex">The regex to use in deconstructing the uri.</param>
 		public UrlInfo(string url, Regex regex) {
 			_url = url;
-			_regex = regex;
+			_regex = regex ?? DefaultRegex;
 			this.ProcessUrl();
 		}
 

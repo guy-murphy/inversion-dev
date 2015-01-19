@@ -54,6 +54,7 @@ namespace Inversion.Web.Tests.Behaviour {
 								{"fire", "work-message-two", "trace", "true"}
 							}
 						),
+						new ParseRequestBehaviour("parse-request"),
 						new BootstrapBehaviour("bootstrap", new Configuration.Builder {
 								{"context", "set", "area", "default"},
 								{"context", "set", "concern", "default"},
@@ -151,6 +152,7 @@ namespace Inversion.Web.Tests.Behaviour {
 			Assert.AreEqual(context.ViewSteps.Last.Content, render);
 
 			JObject result1 = context.Resources.Open("Resources/Results/result-1-0.json").AsJObject();
+			
 			Assert.IsTrue(JToken.DeepEquals(result1, render.AsJObject()));
 		}
 
@@ -232,23 +234,28 @@ namespace Inversion.Web.Tests.Behaviour {
 		}
 
 		/// <summary>
-		/// In this test we specify the chained views "st;xslt" meaning the resulting
+		/// <para>
+		/// In this test we specify the chained views "st;xsl;xml" meaning the resulting
 		/// view state will be processed first by a located string template the result
-		/// of which will be used as the input for a located xslt template. In this test
-		/// we are actually transforming the shape of the data and we test that the
+		/// of which will be used as the input for a located xslt template, which in turn
+		/// will be passed to the xml view behaviour. 
+		/// </para>
+		/// <para>
+		/// In this test we are actually transforming the shape of the data and we test that the
 		/// end result of the transforms conforms to expectation.
+		/// </para>
 		/// </summary>
 		[TestMethod]
 		public void ChainedViewTransform() {
 			IWebContext context = this.GetContext();
-			context.Params["action"] = "test2";
-			context.Params["views"] = "st;xslt";
+			((MockWebRequest)context.Request).UrlInfo = new UrlInfo("http://something.com/web.test/test2.aspx/st/xsl/xml");
 			context.Fire("test");
 
 			Assert.IsTrue(context.ViewSteps.HasSteps);
-			Assert.IsTrue(context.ViewSteps.Count == 3);
+			Assert.IsTrue(context.ViewSteps.Count == 4);
 			Assert.IsTrue(context.ViewSteps.Last.HasContent);
 			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/xml");
+			Assert.IsTrue(context.ViewSteps.ElementAt(1).ContentType == "text/html");
 
 			Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
 			string render = ((MockWebResponse)context.Response).Result;

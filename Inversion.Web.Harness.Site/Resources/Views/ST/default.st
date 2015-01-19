@@ -12,6 +12,7 @@
         </ul>
 
         <h3>event trace</h3>
+        
         <ul>
             `model.eventTrace:{ev|
             <li>

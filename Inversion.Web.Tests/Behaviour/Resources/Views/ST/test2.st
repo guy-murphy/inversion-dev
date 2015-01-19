@@ -7,8 +7,8 @@
             `model.eventTrace:{ev|
             <event message="`ev.message`">
                 <params `ev.params.keys:{k|
-                        `k`="`ev.params.(k)`"
-                        }` />
+                    `k`="`ev.params.(k)`"
+                }` />
             </event>
             }`
         </events>

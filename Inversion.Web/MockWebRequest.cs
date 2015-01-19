@@ -14,6 +14,8 @@ namespace Inversion.Web {
 		private readonly HashSet<string> _flags = new HashSet<string>();
 		private readonly Dictionary<string, string> _headers = new Dictionary<string, string>();
 
+		private string _method = "GET";
+
 		/// <summary>
 		/// Gives access to any files uploaded by the user agent
 		/// as part of this request.
@@ -31,7 +33,10 @@ namespace Inversion.Web {
 		/// <summary>
 		/// The http method of the request.
 		/// </summary>
-		public string Method { get; set; }
+		public string Method {
+			get { return _method; }
+			set { _method = value; }
+		}
 
 		/// <summary>
 		/// Returns true if the http method of this request is GET; otherwise returns false.
