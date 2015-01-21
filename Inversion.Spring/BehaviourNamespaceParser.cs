@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Spring.Objects.Factory.Xml;
+﻿using Spring.Objects.Factory.Xml;
 
 namespace Inversion.Spring {
 	/// <summary>

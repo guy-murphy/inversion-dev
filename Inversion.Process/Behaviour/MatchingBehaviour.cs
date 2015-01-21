@@ -40,13 +40,14 @@ namespace Inversion.Process.Behaviour {
 		/// The intent is to override for bespoke conditions.
 		/// </remarks>
 		public override bool Condition(IEvent ev, IProcessContext context) {
-			return base.Condition(ev, context) && 
-				this.EventHasAllParams(ev) &&
-				this.EventMatchesAllParamValues(ev) &&
-				this.ContextHasAllParams(context) &&		    
-			    this.ContextHasAllControlStates(context) &&
-			    this.ContextHasAllFlags(context) &&
-			    this.ContextMacthesAllParamValues(context);
+			return base.Condition(ev, context) &&
+			       this.EventHasAllParams(ev) &&
+			       this.EventMatchesAllParamValues(ev) &&
+			       this.ContextHasAllParams(context) &&
+			       this.ContextHasAllControlStates(context) &&
+			       this.ContextHasAllFlags(context) &&
+			       this.ContextMacthesAllParamValues(context) &&
+			       this.ContextMatchesAnyParamValues(context);
 		}
 	}
 }

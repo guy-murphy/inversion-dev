@@ -82,7 +82,8 @@ namespace Inversion.Process {
 		/// parameters; otherwise returns false.
 		/// </returns>
 		public static bool HasAnyParamValues(this IProcessContext self, IEnumerable<KeyValuePair<string, string>> match) {
-			return match != null && match.Any(entry => self.Params.Contains(entry));
+			bool hit = match == null || match.Count() == 0 || match.Any(entry => self.Params.Contains(entry));
+			return hit;
 		}
 
 		/// <summary>
