@@ -247,7 +247,7 @@ namespace Inversion.Web.Tests.Behaviour {
 		/// </summary>
 		[TestMethod]
 		public void ChainedViewTransform() {
-			IWebContext context = this.GetContext();
+			IWebContext context = this.GetContext();		
 			((MockWebRequest)context.Request).UrlInfo = new UrlInfo("http://something.com/web.test/test2.aspx/st/xsl/xml");
 			context.Fire("test");
 

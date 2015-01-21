@@ -1,38 +1,40 @@
 ﻿<?xml version="1.0" ?>
 <records>
-	<item name="messages">
-		<list />
-	</item>
-	<item name="errors">
-		<list />
-	</item>
-	<item name="flags">
-		<list />
-	</item>
-	<item name="timers">
-		<records />
-	</item>
-	<item name="params">
-		<records>
-			<item name="area" value="default" />
-			<item name="action" value="test1" />
-			<item name="concern" value="default" />
-			<item name="appPath" value="/web.harness" />
-			<item name="views" value="xml" />
-		</records>
-	</item>
-	<item name="eventTrace">
-		<list>
-			<event message="work-message-one">
-				<params>
-					<item name="trace" value="true" />
-				</params>
-			</event>
-			<event message="work-message-two">
-				<params>
-					<item name="trace" value="true" />
-				</params>
-			</event>
-		</list>
-	</item>
+  <item name="messages">
+    <list />
+  </item>
+  <item name="errors">
+    <list />
+  </item>
+  <item name="flags">
+    <list />
+  </item>
+  <item name="timers">
+    <records />
+  </item>
+  <item name="params">
+    <records>
+      <item name="method" value="GET" />
+      <item name="area" value="default" />
+      <item name="action" value="test1" />
+      <item name="concern" value="default" />
+      <item name="appPath" value="/web.harness" />
+      <item name="tail" value="" />
+      <item name="views" value="xml" />
+    </records>
+  </item>
+  <item name="eventTrace">
+    <list>
+      <event message="work-message-one">
+        <params>
+          <item name="trace" value="true" />
+        </params>
+      </event>
+      <event message="work-message-two">
+        <params>
+          <item name="trace" value="true" />
+        </params>
+      </event>
+    </list>
+  </item>
 </records>
