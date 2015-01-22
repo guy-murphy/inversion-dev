@@ -43,6 +43,21 @@ namespace Inversion.Process {
 		}
 
 		/// <summary>
+		/// Determines if the context has any of the parameters specified.
+		/// </summary>
+		/// <param name="self">The context being acted upon.</param>
+		/// <param name="parms">The parameters to check for.</param>
+		/// <returns>Returns true if any of the parameters exist; otherwise, returns false.</returns>
+		public static bool HasAnyParams(this IProcessContext self, IEnumerable<string> parms) {
+			int i = 0;
+			foreach (string parm in parms) {
+				i++;
+				if (self.Params.ContainsKey(parm)) return true;
+			}
+			return i == 0; // there were no parameters specified
+		}
+
+		/// <summary>
 		/// Determines whether or not the parameter name and
 		/// value specified exists in the current context.
 		/// </summary>
@@ -82,8 +97,12 @@ namespace Inversion.Process {
 		/// parameters; otherwise returns false.
 		/// </returns>
 		public static bool HasAnyParamValues(this IProcessContext self, IEnumerable<KeyValuePair<string, string>> match) {
-			bool hit = match == null || match.Count() == 0 || match.Any(entry => self.Params.Contains(entry));
-			return hit;
+			int i = 0;
+			foreach (KeyValuePair<string, string> kv in match) {
+				i++;
+				if (self.Params.Contains(kv)) return true;
+			}
+			return i == 0; // there was no match specified
 		}
 
 		/// <summary>

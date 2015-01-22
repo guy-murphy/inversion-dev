@@ -53,6 +53,7 @@
     <Compile Include="Behaviour\TestBehaviour.cs" />
     <Compile Include="Behaviour\SelectionCriteriaTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BehaviourConfigurationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Inversion.Naiad\Inversion.Naiad.csproj">

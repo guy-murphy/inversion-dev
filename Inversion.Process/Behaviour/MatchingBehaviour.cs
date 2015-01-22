@@ -40,14 +40,25 @@ namespace Inversion.Process.Behaviour {
 		/// The intent is to override for bespoke conditions.
 		/// </remarks>
 		public override bool Condition(IEvent ev, IProcessContext context) {
-			return base.Condition(ev, context) &&
-			       this.EventHasAllParams(ev) &&
-			       this.EventMatchesAllParamValues(ev) &&
-			       this.ContextHasAllParams(context) &&
-			       this.ContextHasAllControlStates(context) &&
-			       this.ContextHasAllFlags(context) &&
-			       this.ContextMacthesAllParamValues(context) &&
-			       this.ContextMatchesAnyParamValues(context);
+			// this is laid out longhand to assist with any debugging
+			// without having to step into each predicate to find out
+			// which one has a problem
+			bool previous = base.Condition(ev, context);
+			bool hasAllParams = this.EventHasAllParams(ev);
+			bool eventMatchesAllParamValues = this.EventMatchesAllParamValues(ev);
+			bool contextHasAllParams = this.ContextHasAllParams(context);
+			bool contextHasAllControlStates = this.ContextHasAllControlStates(context);
+			bool contextHasAllFlags =this.ContextHasAllFlags(context);
+			bool contextMacthesAllParamValues = this.ContextMacthesAllParamValues(context);
+			bool contextMatchesAnyParamValues = this.ContextMatchesAnyParamValues(context);
+			return previous && 
+				hasAllParams && 
+				eventMatchesAllParamValues && 
+				contextHasAllParams && 
+				contextHasAllControlStates &&
+			    contextHasAllFlags && 
+				contextMacthesAllParamValues && 
+				contextMatchesAnyParamValues;
 		}
 	}
 }

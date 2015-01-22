@@ -173,8 +173,6 @@ namespace Inversion.Process.Tests.Behaviour {
 		[TestMethod]
 		public void ContextMatchesAnyParamValues() {
 			foreach (IProcessContext context in _getContexts()) {
-				context.Params.Add("p2", "v2");
-
 				IConfiguredBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"context", "match-any", "p1", "v1"},
@@ -184,13 +182,27 @@ namespace Inversion.Process.Tests.Behaviour {
 				);
 
 				// positive
+				context.Params.Add("p1", "v1");
 				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
-				context.Params["p2"] = "v4";
-				context.Params["p3"] = "v3";
+				context.Params.Remove("p1");
+
+				context.Params.Add("p2", "v2");
 				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
-				// negative
+				context.Params.Remove("p2");
+
+				context.Params.Add("p3", "v3");
+				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
 				context.Params.Remove("p3");
+
+				// negative
+
+				context.Params.Add("p1", "v2");
 				Assert.IsFalse(behaviour.ContextMatchesAnyParamValues(context));
+				context.Params.Remove("p1");
+
+				context.Params.Add("p4", "v4");
+				Assert.IsFalse(behaviour.ContextMatchesAnyParamValues(context));
+				context.Params.Remove("p4");
 			}
 		}
 

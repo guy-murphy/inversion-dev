@@ -40,7 +40,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="frame">The frame to get the elements for.</param>
 		/// <returns>Returns an enumerable of the matching elements.</returns>
-		public IEnumerable<Element> GetElements(string frame) {
+		public IEnumerable<Element> GetElements(string frame) {		
 			return this.Elements.Where(element => element.Frame == frame).OrderBy(e => e.Ordinal);
 		}
 
