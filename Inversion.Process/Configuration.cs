@@ -9,14 +9,14 @@ namespace Inversion.Process {
 	/// Provides an immutable, ordered collection of
 	/// configuration elements.
 	/// </summary>
-	public class Configuration {
+	public class Configuration : IConfiguration {
 
-		private readonly ImmutableHashSet<Element> _elements;
+		private readonly ImmutableHashSet<IConfigurationElement> _elements;
 
 		/// <summary>
 		/// The elements comprising the configuration.
 		/// </summary>
-		public IEnumerable<Element> Elements {
+		public IEnumerable<IConfigurationElement> Elements {
 			get { return _elements; }
 		}
 
@@ -24,14 +24,14 @@ namespace Inversion.Process {
 		/// Instantiates a new, empty configuration.
 		/// </summary>
 		public Configuration() {
-			_elements = ImmutableHashSet<Element>.Empty;
+			_elements = ImmutableHashSet<IConfigurationElement>.Empty;
 		}
 
 		/// <summary>
 		/// Instantiates a new configuration from the elements provided.
 		/// </summary>
 		/// <param name="elements">The elements to populate the configuration with.</param>
-		public Configuration(IEnumerable<Element> elements) {
+		public Configuration(IEnumerable<IConfigurationElement> elements) {
 			_elements = elements.ToImmutableHashSet();
 		}
 
@@ -40,7 +40,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="frame">The frame to get the elements for.</param>
 		/// <returns>Returns an enumerable of the matching elements.</returns>
-		public IEnumerable<Element> GetElements(string frame) {		
+		public IEnumerable<IConfigurationElement> GetElements(string frame) {		
 			return this.Elements.Where(element => element.Frame == frame).OrderBy(e => e.Ordinal);
 		}
 
@@ -50,7 +50,7 @@ namespace Inversion.Process {
 		/// <param name="frame">The frame to get the elements for.</param>
 		/// <param name="slot">The slot within a frame to get the elements for.</param>
 		/// <returns>Returns an enumerable of the matching elements.</returns>
-		public IEnumerable<Element> GetElements(string frame, string slot) {
+		public IEnumerable<IConfigurationElement> GetElements(string frame, string slot) {
 			return this.Elements.Where(element => element.Frame == frame && element.Slot == slot).OrderBy(e => e.Ordinal);
 		}
 
@@ -61,7 +61,7 @@ namespace Inversion.Process {
 		/// <param name="slot">The slot within a frame to get the elements for.</param>
 		/// <param name="name">The name within the slot to get the elements for.</param>
 		/// <returns>Returns an enumerable of the matching elements.</returns>
-		public IEnumerable<Element> GetElements(string frame, string slot, string name) {
+		public IEnumerable<IConfigurationElement> GetElements(string frame, string slot, string name) {
 			return this.Elements.Where(element => element.Frame == frame && element.Slot == slot && element.Name == name).OrderBy(e => e.Ordinal);
 		}
 
@@ -95,7 +95,7 @@ namespace Inversion.Process {
 		/// <returns>Returns a map matching the frame and slot specified.</returns>
 		public IDictionary<string, string> GetMap(string frame, string slot) {
 			Dictionary<string, string> map = new Dictionary<string, string>();
-			foreach (Element element in this.GetElements(frame, slot)) {
+			foreach (IConfigurationElement element in this.GetElements(frame, slot)) {
 				if (element.Name != String.Empty) {
 					map[element.Name] = element.Value;
 				}
@@ -211,7 +211,7 @@ namespace Inversion.Process {
 		/// <summary>
 		/// Models an element of a behaviour configuration.
 		/// </summary>
-		public class Element : Tuple<int, string, string, string, string> {
+		public class Element : Tuple<int, string, string, string, string>, IConfigurationElement {
 
 			/// <summary>
 			/// The order or position which this element occupies
@@ -272,7 +272,7 @@ namespace Inversion.Process {
 		/// may be attractive over Spring.
 		/// </para>
 		/// </remarks>
-		public class Builder: HashSet<Element> {
+		public class Builder : HashSet<IConfigurationElement> {
 			
 			/// <summary>
 			/// Produces a configuration from the builder.

@@ -35,11 +35,11 @@ namespace Inversion.Spring {
 		/// <param name="xml">The obejct representation in XML.</param>
 		/// <param name="builder">The builder used to build the object defination in Spring.</param>
 		protected override void DoParse(XmlElement xml, ObjectDefinitionBuilder builder) {
-			// all behaviours with config being parse have a respondsTo arg in the constructor
+			// all behaviours with config being parsed have @respondsTo
 			string respondsTo = xml.GetAttribute("responds-to");
 			builder.AddConstructorArg(respondsTo);
 
-			// all behaviours with config being parse have a respondsTo arg in the constructor
+			// all view behaviours have @content-type
 			string contentType = xml.GetAttribute("content-type");
 			builder.AddConstructorArg(contentType);
 		}

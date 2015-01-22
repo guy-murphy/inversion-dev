@@ -7,6 +7,6 @@
 		/// <summary>
 		/// Provices access to component configuration stuiable for querying.
 		/// </summary>
-		Configuration Configuration { get; }
+		IConfiguration Configuration { get; }
 	}
 }

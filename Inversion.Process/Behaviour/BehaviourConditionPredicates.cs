@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 
 namespace Inversion.Process.Behaviour {
 
@@ -73,9 +72,13 @@ namespace Inversion.Process.Behaviour {
 		/// parameters; otherwise returns false.
 		/// </returns>
 		public static bool ContextMatchesAnyParamValues(this IConfiguredBehaviour self, IProcessContext ctx) {
-			IEnumerable<Configuration.Element> elements = self.Configuration.GetElements("context", "match-any");
-			bool hit = elements.Count() == 0 || elements.Any(element => ctx.HasParamValue(element.Name, element.Value));
-			return hit;
+			IEnumerable<IConfigurationElement> elements = self.Configuration.GetElements("context", "match-any");
+			int i = 0;
+			foreach (IConfigurationElement element in elements) {
+				i++;
+				if (ctx.HasParamValue(element.Name, element.Value)) return true;
+			}
+			return i == 0; // there was no match specified
 		}
 
 		/// <summary>

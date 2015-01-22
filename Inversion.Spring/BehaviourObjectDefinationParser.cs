@@ -43,13 +43,13 @@ namespace Inversion.Spring {
 			if (xml == null) throw new ArgumentNullException("xml", "The object description provided is null.");
 			if (xml.OwnerDocument == null)  throw new ArgumentException("The xml provided to parse must have an owning document to obtain namespace information from.");
 
-			// all behaviours with config being parse have a respondsTo arg in the constructor
+			// all behaviours with config being parsed have @respondsTo
 			string respondsTo = xml.GetAttribute("responds-to");
 			builder.AddConstructorArg(respondsTo);
 
 			// now we're going to read any config defined within our behaviour identified
 			// by its namespace "Inversion.Process.Behaviour"
-			HashSet<Configuration.Element> elements = new HashSet<Configuration.Element>();
+			HashSet<IConfigurationElement> elements = new HashSet<IConfigurationElement>();
 			XmlNamespaceManager ns = new XmlNamespaceManager(xml.OwnerDocument.NameTable);
 			ns.AddNamespace("inv", "Inversion.Process.Behaviour");
 			XmlNodeList frames = xml.SelectNodes("inv:*", ns);
@@ -67,7 +67,7 @@ namespace Inversion.Spring {
 					foreach (XmlAttribute pair in frameElement.Attributes) {
 						string slot = pair.Name;
 						string name = pair.Value;
-						Configuration.Element element = new Configuration.Element(ordinal, frame, slot, name, String.Empty);
+						IConfigurationElement element = new Configuration.Element(ordinal, frame, slot, name, String.Empty);
 						elements.Add(element);
 						ordinal++;
 					}
@@ -80,7 +80,7 @@ namespace Inversion.Spring {
 						foreach (XmlElement pair in slotElement.ChildNodes) {
 							string name = pair.Name;
 							string value = pair.InnerText;
-							Configuration.Element element = new Configuration.Element(ordinal, frame, slot, name, value);
+							IConfigurationElement element = new Configuration.Element(ordinal, frame, slot, name, value);
 							elements.Add(element);
 							ordinal++;
 						}
@@ -88,13 +88,13 @@ namespace Inversion.Spring {
 						foreach (XmlAttribute pair in slotElement.Attributes) {
 							string name = pair.Name;
 							string value = pair.Value;
-							Configuration.Element element = new Configuration.Element(ordinal, frame, slot, name, value);
+							IConfigurationElement element = new Configuration.Element(ordinal, frame, slot, name, value);
 							elements.Add(element);
 							ordinal++;
 						}
 
 						if (elements.Count == start) { // the slot had no name/value pairs
-							Configuration.Element element = new Configuration.Element(ordinal, frame, slot, String.Empty, String.Empty);
+							IConfigurationElement element = new Configuration.Element(ordinal, frame, slot, String.Empty, String.Empty);
 							elements.Add(element);
 							ordinal++;
 						}

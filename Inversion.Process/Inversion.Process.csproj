@@ -71,6 +71,8 @@
     <Compile Include="DataCollectionEx.cs" />
     <Compile Include="ErrorMessage.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="IConfiguration.cs" />
+    <Compile Include="IConfigurationElement.cs" />
     <Compile Include="IConfigured.cs" />
     <Compile Include="IEvent.cs" />
     <Compile Include="Behaviour\IProcessBehaviour.cs" />

@@ -6,12 +6,12 @@ namespace Inversion.Process.Behaviour {
 	/// </summary>
 	public abstract class ConfiguredBehaviour: ProcessBehaviour, IConfiguredBehaviour {
 
-		private readonly Configuration _config;
+		private readonly IConfiguration _config;
 
 		/// <summary>
 		/// Exposes the configuration of the behaviour for querying.
 		/// </summary>
-		public Configuration Configuration {
+		public IConfiguration Configuration {
 			get { return _config; }
 		}
 
@@ -26,7 +26,7 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		protected ConfiguredBehaviour(string respondsTo, Configuration config) : base(respondsTo) {
+		protected ConfiguredBehaviour(string respondsTo, IConfiguration config) : base(respondsTo) {
 			_config = config;
 		}
 
@@ -35,7 +35,7 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		protected ConfiguredBehaviour(string respondsTo, IEnumerable<Configuration.Element> config) : base(respondsTo) {
+		protected ConfiguredBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config) : base(respondsTo) {
 			_config = new Configuration(config);
 		}
 

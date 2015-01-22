@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Inversion.Process.Behaviour;
 
 namespace Inversion.Process.Tests.Behaviour {
@@ -10,13 +9,13 @@ namespace Inversion.Process.Tests.Behaviour {
 
 		public TestBehaviour(string respondsTo) : base(respondsTo) {}
 
-		public TestBehaviour(string respondsTo, IEnumerable<Configuration.Element> config) : this(respondsTo, config, null) { }
+		public TestBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config) : this(respondsTo, config, null) { }
 
 		public TestBehaviour(string respondsTo, Action<IEvent, IProcessContext> action) : base(respondsTo) {
 			_action = action;
 		}
 
-		public TestBehaviour(string respondsTo, IEnumerable<Configuration.Element> config, Action<IEvent, IProcessContext> perform) 
+		public TestBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config, Action<IEvent, IProcessContext> perform) 
 			: base(respondsTo, config) {
 				_action = perform;
 		}
