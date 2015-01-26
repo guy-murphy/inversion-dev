@@ -57,9 +57,9 @@
     <Compile Include="Behaviour\BootstrapBehaviour.cs" />
     <Compile Include="Behaviour\ConfiguredWebBehaviour.cs" />
     <Compile Include="Behaviour\IWebBehaviour.cs" />
-    <Compile Include="Behaviour\MatchingWebBehaviour.cs" />
     <Compile Include="Behaviour\ParseRequestBehaviour.cs" />
     <Compile Include="Behaviour\ProcessViewsBehaviour.cs" />
+    <Compile Include="Behaviour\PrototypeWebBehaviour.cs" />
     <Compile Include="Behaviour\RenderBehaviour.cs" />
     <Compile Include="Behaviour\ViewStateBehaviour.cs" />
     <Compile Include="Behaviour\View\JsonViewBehaviour.cs" />

@@ -44,7 +44,7 @@ namespace Inversion.Process.Behaviour {
 		protected PrototypeBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config): base(respondsTo) {
 			_prototype = new Prototype(config);
 		}
-
+		
 		/// <summary>
 		/// Determines if the event specifies the behaviour by name.
 		/// </summary>

@@ -71,7 +71,6 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Behaviour\ConfiguredBehaviour.cs" />
     <Compile Include="Behaviour\IConfiguredBehaviour.cs" />
-    <Compile Include="Behaviour\MatchingBehaviour.cs" />
     <Compile Include="Behaviour\BehaviourConditionPredicates.cs" />
     <Compile Include="Behaviour\MessageTraceBehaviour.cs" />
     <Compile Include="Behaviour\ParameterisedSequenceBehaviour.cs" />
@@ -93,7 +92,6 @@
     <Compile Include="ProcessTimerDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Behaviour\RuntimeBehaviour.cs" />
-    <Compile Include="Behaviour\SimpleSequenceBehaviour.cs" />
     <Compile Include="SynchronizedProcessContext.cs" />
     <Compile Include="ViewStep.cs" />
     <Compile Include="ViewSteps.cs" />

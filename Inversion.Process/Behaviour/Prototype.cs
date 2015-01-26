@@ -67,27 +67,34 @@ namespace Inversion.Process.Behaviour {
 		/// Instantiates a prototype object.
 		/// </summary>
 		public Prototype() : this(new IConfigurationElement[] {}) {}
+
+		/// <summary>
+		/// Instantiates a prototype behaviour from the configuration elements and
+		/// cases for selection criteria provided.
+		/// </summary>
+		/// <param name="config">The configuration elements to use for configuration.</param>
+		public Prototype(IEnumerable<IConfigurationElement> config) : this(config, NamedCases.Values) {}
+
 		/// <summary>
 		/// Instantiates a prototype object from the configuration elements
 		/// provided. Copies down the selection criteria that have a matching case.
 		/// </summary>
-		/// <param name="config">
-		/// The configuration elements to use for configuration.
-		/// </param>
-		public Prototype(IEnumerable<IConfigurationElement> config) : base(config) {
+		/// <param name="config">The configuration elements to use for configuration.</param>
+		/// <param name="cases">The cases that should be used for determining selection criteria.</param>
+		public Prototype(IEnumerable<IConfigurationElement> config, IEnumerable<IPrototypeCase> cases) : base(config) {
 			var builder = ImmutableHashSet.CreateBuilder<SelectionCriteria>();
-			foreach (IPrototypeCase @case in this.Cases) {
+			foreach (IPrototypeCase @case in cases) {
 				if (@case.Match(this)) builder.Add(@case.Criteria);
 			}
 			_criteria = builder.ToImmutable();
 		}
 
-		/// <summary>
-		/// The cases to use in picking selection criteria for a behaviour.
-		/// </summary>
-		public IEnumerable<IPrototypeCase> Cases {
-			get { return NamedCases.Values; }
-		}
+		///// <summary>
+		///// The cases to use in picking selection criteria for a behaviour.
+		///// </summary>
+		//public IEnumerable<IPrototypeCase> Cases {
+		//	get { return NamedCases.Values; }
+		//}
 		/// <summary>
 		/// The selection criteria that may be applicable to behaviours.
 		/// </summary>
