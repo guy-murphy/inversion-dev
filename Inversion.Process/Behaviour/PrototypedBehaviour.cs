@@ -6,7 +6,7 @@ namespace Inversion.Process.Behaviour {
 	/// A behaviour that can be configured with a prototype specification
 	/// of selection criteria used to drive the behaviours condition.
 	/// </summary>
-	public abstract class PrototypeBehaviour: ProcessBehaviour, IPrototypedBehaviour {
+	public abstract class PrototypedBehaviour: ProcessBehaviour, IPrototypedBehaviour {
 
 		private readonly IPrototype _prototype;
 
@@ -27,13 +27,13 @@ namespace Inversion.Process.Behaviour {
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The name of the behaviour.</param>
-		protected PrototypeBehaviour(string respondsTo) : this(respondsTo, new Prototype()) {}
+		protected PrototypedBehaviour(string respondsTo) : this(respondsTo, new Prototype()) {}
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The name of the behaviour.</param>
 		/// <param name="prototype">The prototype to use in configuring this behaviour.</param>
-		protected PrototypeBehaviour(string respondsTo, IPrototype prototype): base(respondsTo) {
+		protected PrototypedBehaviour(string respondsTo, IPrototype prototype): base(respondsTo) {
 			_prototype = prototype;
 		}
 		/// <summary>
@@ -41,7 +41,7 @@ namespace Inversion.Process.Behaviour {
 		/// </summary>
 		/// <param name="respondsTo">The name of the behaviour.</param>
 		/// <param name="config">The configuration elements to use in configuring this behaviour.</param>
-		protected PrototypeBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config): base(respondsTo) {
+		protected PrototypedBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config): base(respondsTo) {
 			_prototype = new Prototype(config);
 		}
 		

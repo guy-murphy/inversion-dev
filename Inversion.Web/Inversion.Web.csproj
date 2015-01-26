@@ -59,7 +59,7 @@
     <Compile Include="Behaviour\IWebBehaviour.cs" />
     <Compile Include="Behaviour\ParseRequestBehaviour.cs" />
     <Compile Include="Behaviour\ProcessViewsBehaviour.cs" />
-    <Compile Include="Behaviour\PrototypeWebBehaviour.cs" />
+    <Compile Include="Behaviour\PrototypedWebBehaviour.cs" />
     <Compile Include="Behaviour\RenderBehaviour.cs" />
     <Compile Include="Behaviour\ViewStateBehaviour.cs" />
     <Compile Include="Behaviour\View\JsonViewBehaviour.cs" />

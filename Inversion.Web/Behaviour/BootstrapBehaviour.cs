@@ -12,7 +12,7 @@ namespace Inversion.Web.Behaviour {
 	/// with default prameters. It should be see as a point of extensibility for
 	/// setting up the default state of a context prior to processing a request.
 	/// </summary>
-	public class BootstrapBehaviour : PrototypeBehaviour {
+	public class BootstrapBehaviour : PrototypedBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour with no configuration.
 		/// </summary>

@@ -7,7 +7,7 @@ namespace Inversion.Process.Behaviour {
 	/// <summary>
 	/// A simple behaviour to wire up to test the simplest possible output.
 	/// </summary>
-	public class MessageTraceBehaviour : PrototypeBehaviour {
+	public class MessageTraceBehaviour : PrototypedBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour with no configuration.
 		/// </summary>

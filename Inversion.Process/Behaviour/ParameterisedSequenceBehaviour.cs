@@ -5,7 +5,7 @@ namespace Inversion.Process.Behaviour {
 	/// A behaviour concerned with driving the processing of a
 	/// sequence of messages.
 	/// </summary>
-	public class ParameterisedSequenceBehaviour : PrototypeBehaviour {
+	public class ParameterisedSequenceBehaviour : PrototypedBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
