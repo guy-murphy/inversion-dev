@@ -12,6 +12,7 @@ namespace Inversion.Spring {
 	/// </summary>
 	public class ServiceContainer : IServiceContainer {
 
+		private bool _isDisposed;
 		private static readonly IServiceContainer _instance = new ServiceContainer();
 
 		/// <summary>
@@ -49,10 +50,36 @@ namespace Inversion.Spring {
 		}
 
 		/// <summary>
-		/// Releases all reasources currently being used by this container.
+		/// Releases all resources maintained by the current context instance.
 		/// </summary>
 		public void Dispose() {
-			//
+			this.Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		/// Disposal that allows for partitioning of 
+		/// clean-up of managed and unmanaged resources.
+		/// </summary>
+		/// <param name="disposing"></param>
+		/// <remarks>
+		/// This is looking conceited and should probably be removed.
+		/// I'm not even sure I can explain a use case for it in terms
+		/// of an Inversion context.
+		/// </remarks>
+		protected virtual void Dispose(bool disposing) {
+			if (!_isDisposed) {
+				if (disposing) {
+					// managed resource clean-up
+					_container.Dispose();
+				}
+				// unmanaged resource clean-up
+				// ... nothing to do
+				// call dispose on base class, and clear data
+				// base.Dispose(disposing);
+				// mark disposing as done
+				_isDisposed = true;
+			}
 		}
 
 		/// <summary>

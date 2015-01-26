@@ -61,6 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviour\IPrototype.cs" />
+    <Compile Include="Behaviour\IPrototypeCase.cs" />
+    <Compile Include="Behaviour\IPrototyped.cs" />
+    <Compile Include="Behaviour\IPrototypedBehaviour.cs" />
+    <Compile Include="Behaviour\Prototype.cs" />
+    <Compile Include="Behaviour\PrototypeBehaviour.cs" />
+    <Compile Include="Behaviour\SelectionCriteria.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Behaviour\ConfiguredBehaviour.cs" />
     <Compile Include="Behaviour\IConfiguredBehaviour.cs" />

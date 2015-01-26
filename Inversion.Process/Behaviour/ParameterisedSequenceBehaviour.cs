@@ -5,13 +5,13 @@ namespace Inversion.Process.Behaviour {
 	/// A behaviour concerned with driving the processing of a
 	/// sequence of messages.
 	/// </summary>
-	public class ParameterisedSequenceBehaviour : MatchingBehaviour {
+	public class ParameterisedSequenceBehaviour : PrototypeBehaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour will respond to.</param>
 		/// <param name="config">Configuration for the behaviour.</param>
-		public ParameterisedSequenceBehaviour(string respondsTo, IConfiguration config) : base(respondsTo, config) {}
+		public ParameterisedSequenceBehaviour(string respondsTo, IConfiguration config) : base(respondsTo, config.Elements) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.

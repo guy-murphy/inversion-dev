@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,7 +17,9 @@ namespace Inversion.Collections {
 	/// </summary>
 	/// <typeparam name="T">The type of the elements in the collection.</typeparam>
 
-	public class ConcurrentDataCollection<T> : IDataCollection<T> {
+	public class ConcurrentDataCollection<T> : IDataCollection<T>, IDisposable {
+
+		private bool _isDisposed;
 
 		private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
 		private readonly string _label;
@@ -79,6 +80,38 @@ namespace Inversion.Collections {
 			_inner = (collection == null) ? new Collection<T>() : new Collection<T>(collection.ToList()); // maybe just assign the list?
 		}
 
+		/// <summary>
+		/// Releases all resources maintained by the current context instance.
+		/// </summary>
+		public void Dispose() {
+			this.Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		/// Disposal that allows for partitioning of 
+		/// clean-up of managed and unmanaged resources.
+		/// </summary>
+		/// <param name="disposing"></param>
+		/// <remarks>
+		/// This is looking conceited and should probably be removed.
+		/// I'm not even sure I can explain a use case for it in terms
+		/// of an Inversion context.
+		/// </remarks>
+		protected virtual void Dispose(bool disposing) {
+			if (!_isDisposed) {
+				if (disposing) {
+					// managed resource clean-up
+					_lock.Dispose();
+				}
+				// unmanaged resource clean-up
+				// ... nothing to do
+				// call dispose on base class, and clear data
+				// base.Dispose(disposing);
+				// mark disposing as done
+				_isDisposed = true;
+			}
+		}
 
 		object ICloneable.Clone() {
 			_lock.EnterReadLock();
@@ -294,5 +327,6 @@ namespace Inversion.Collections {
 		/// true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only; otherwise, false.
 		/// </returns>
 		public bool IsReadOnly { get { return false; } }
+
 	}
 }

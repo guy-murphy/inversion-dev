@@ -45,11 +45,14 @@ namespace Inversion.Naiad {
 		public T GetService<T>(string name) where T : class {
 			_lock.EnterReadLock();
 			try {
+				T obj = null;
 				if (_objs.ContainsKey(name)) {
 					return _objs[name] as T;
 				} else {
 					Func<IServiceContainer, T> ctor = _ctors[name] as Func<IServiceContainer, T>;
-					T obj = ctor(this);
+					if (ctor != null) {
+						obj = ctor(this);
+					}
 					_objs[name] = obj;
 					return obj;
 				}

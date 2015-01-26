@@ -196,6 +196,7 @@ namespace Inversion.Process {
 				if (disposing) {
 					// managed resource clean-up
 					if (_bus != null) _bus.Dispose();
+					if (_steps != null) _steps.Dispose();
 				}
 				// unmanaged resource clean-up
 				// ... nothing to do

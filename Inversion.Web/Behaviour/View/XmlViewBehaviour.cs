@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Xml;
-using System.Xml.Linq;
+
 using Inversion.Process;
 using Inversion.Process.Behaviour;
 
@@ -53,7 +53,7 @@ namespace Inversion.Web.Behaviour.View {
 							XmlDocument content = new XmlDocument();
 							content.LoadXml(context.ViewSteps.Last.Content);
 							context.ViewSteps.CreateStep("xml", _contentType, content.OuterXml);
-						} catch (XmlException err) {
+						} catch (XmlException) {
 							throw new WebException("Unable to process content that is not XML.");
 						}
 					} else {

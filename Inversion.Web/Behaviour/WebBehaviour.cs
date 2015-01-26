@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Inversion.Process;
+﻿using Inversion.Process;
 using Inversion.Process.Behaviour;
 
 namespace Inversion.Web.Behaviour {

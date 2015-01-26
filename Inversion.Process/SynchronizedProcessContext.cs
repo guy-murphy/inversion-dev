@@ -195,7 +195,10 @@ namespace Inversion.Process {
 			if (!_isDisposed) {
 				if (disposing) {
 					// managed resource clean-up
-					
+					if (_messages != null) _messages.Dispose();
+					if (_flags != null) _flags.Dispose();
+					if (_errors != null) _errors.Dispose();
+					if (_steps != null) _steps.Dispose();
 				}
 				// unmanaged resource clean-up
 				// ... nothing to do

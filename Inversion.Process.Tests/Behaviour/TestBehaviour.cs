@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Inversion.Process.Behaviour;
 
 namespace Inversion.Process.Tests.Behaviour {
-	public class TestBehaviour: ConfiguredBehaviour {
+	public class TestBehaviour: PrototypeBehaviour {
 
 		private readonly Action<IEvent, IProcessContext> _action;
 

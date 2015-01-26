@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 
 using Inversion.Process;
 using Inversion.Process.Behaviour;
@@ -17,7 +13,7 @@ namespace Inversion.Web.Harness.Site {
 
 		protected void Application_Start(object sender, EventArgs e) {
 
-			Naiad.ServiceContainer.Instance.RegisterService("request-behaviours",
+			ServiceContainer.Instance.RegisterService("request-behaviours",
 				container => {
 					return new List<IProcessBehaviour> {
 						new MessageTraceBehaviour("*", 

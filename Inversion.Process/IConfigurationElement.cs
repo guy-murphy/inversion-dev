@@ -1,4 +1,7 @@
 ﻿namespace Inversion.Process {
+	/// <summary>
+	/// Describes an element of a behaviour configuration.
+	/// </summary>
 	public interface IConfigurationElement {
 		/// <summary>
 		/// The order or position which this element occupies
@@ -26,8 +29,5 @@
 		/// </summary>
 		string Value { get; }
 
-		bool Equals(object obj);
-		int GetHashCode();
-		string ToString();
 	}
 }

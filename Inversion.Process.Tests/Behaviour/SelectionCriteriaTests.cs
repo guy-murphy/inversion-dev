@@ -71,8 +71,9 @@ namespace Inversion.Process.Tests.Behaviour {
 
 		[TestMethod]
 		public void EventHasAllParams() {
+			// event has
 			foreach (IProcessContext context in _getContexts()) {
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"event", "has", "p1"},
 						{"event", "has", "p2"},
@@ -87,18 +88,18 @@ namespace Inversion.Process.Tests.Behaviour {
 				};
 
 				// positive
-				Assert.IsTrue(behaviour.EventHasAllParams(ev));
+				Assert.IsTrue(behaviour.Condition(ev));
 				// negative
 				ev.Params.Remove("p2");
-				Assert.IsFalse(behaviour.EventHasAllParams(ev));
+				Assert.IsFalse(behaviour.Condition(ev));
 			}
 		}
 
 		[TestMethod]
 		public void EventMatchesAllParamValues() {
+			// event match
 			foreach (IProcessContext context in _getContexts()) {
-
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"event", "match", "p1", "v1"},
 						{"event", "match", "p2", "v2"},
@@ -113,23 +114,24 @@ namespace Inversion.Process.Tests.Behaviour {
 				};
 
 				// positive
-				Assert.IsTrue(behaviour.EventMatchesAllParamValues(ev));
+				Assert.IsTrue(behaviour.Condition(ev));
 				// negative
 				ev.Params.Remove("p2");
-				Assert.IsFalse(behaviour.EventMatchesAllParamValues(ev));
+				Assert.IsFalse(behaviour.Condition(ev));
 				ev.Params.Add("p2", "v0");
-				Assert.IsFalse(behaviour.EventMatchesAllParamValues(ev));
+				Assert.IsFalse(behaviour.Condition(ev));
 			}
 		}
 
 		[TestMethod]
 		public void ContextHasAllParams() {
+			// context has
 			foreach (IProcessContext context in _getContexts()) {
 				context.Params.Add("p1", "v1");
 				context.Params.Add("p2", "v2");
 				context.Params.Add("p3", "v3");
 
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"context", "has", "p1"},
 						{"context", "has", "p2"},
@@ -137,11 +139,13 @@ namespace Inversion.Process.Tests.Behaviour {
 					}
 				);
 
+				Event ev = new Event(context, "test");
+
 				// positive
-				Assert.IsTrue(behaviour.ContextHasAllParams(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				// negative
 				context.Params.Remove("p2");
-				Assert.IsFalse(behaviour.ContextHasAllParams(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 			}
 		}
 
@@ -152,7 +156,7 @@ namespace Inversion.Process.Tests.Behaviour {
 				context.Params.Add("p2", "v2");
 				context.Params.Add("p3", "v3");
 
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"context", "match", "p1", "v1"},
 						{"context", "match", "p2", "v2"},
@@ -160,20 +164,22 @@ namespace Inversion.Process.Tests.Behaviour {
 					}
 				);
 
+				Event ev = new Event(context, "test");
+
 				// positive
-				Assert.IsTrue(behaviour.ContextMacthesAllParamValues(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				// negative
 				context.Params.Remove("p2");
-				Assert.IsFalse(behaviour.ContextMacthesAllParamValues(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 				context.Params.Add("p2", "v0");
-				Assert.IsFalse(behaviour.ContextMacthesAllParamValues(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 			}
 		}
 
 		[TestMethod]
 		public void ContextMatchesAnyParamValues() {
 			foreach (IProcessContext context in _getContexts()) {
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"context", "match-any", "p1", "v1"},
 						{"context", "match-any", "p2", "v2"},
@@ -181,27 +187,29 @@ namespace Inversion.Process.Tests.Behaviour {
 					}
 				);
 
+				Event ev = new Event(context, "test");
+
 				// positive
 				context.Params.Add("p1", "v1");
-				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				context.Params.Remove("p1");
 
 				context.Params.Add("p2", "v2");
-				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				context.Params.Remove("p2");
 
 				context.Params.Add("p3", "v3");
-				Assert.IsTrue(behaviour.ContextMatchesAnyParamValues(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				context.Params.Remove("p3");
 
 				// negative
 
 				context.Params.Add("p1", "v2");
-				Assert.IsFalse(behaviour.ContextMatchesAnyParamValues(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 				context.Params.Remove("p1");
 
 				context.Params.Add("p4", "v4");
-				Assert.IsFalse(behaviour.ContextMatchesAnyParamValues(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 				context.Params.Remove("p4");
 			}
 		}
@@ -210,7 +218,7 @@ namespace Inversion.Process.Tests.Behaviour {
 		public void ContextExcludes() {
 			foreach (IProcessContext context in _getContexts()) {
 
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"context", "excludes", "p1", "v1"},
 						{"context", "excludes", "p2", "v2"},
@@ -218,11 +226,13 @@ namespace Inversion.Process.Tests.Behaviour {
 					}
 				);
 
+				Event ev = new Event(context, "test");
+
 				// positive
-				Assert.IsTrue(behaviour.ContextExcludes(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				// negative
 				context.Params.Add("p2", "v2");
-				Assert.IsFalse(behaviour.ContextExcludes(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 			}
 		}
 
@@ -232,18 +242,20 @@ namespace Inversion.Process.Tests.Behaviour {
 				context.ControlState["p1"] = "v1";
 				context.ControlState["p2"] = "v2";
 
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"control-state", "has", "p1"},
 						{"control-state", "has", "p2"}
 					}
 				);
 
+				Event ev = new Event(context, "test");
+
 				// positive 
-				Assert.IsTrue(behaviour.ContextHasAllControlStates(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				// negative
 				context.ControlState.Remove("p2");
-				Assert.IsFalse(behaviour.ContextHasAllControlStates(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 			}
 		}
 
@@ -251,21 +263,23 @@ namespace Inversion.Process.Tests.Behaviour {
 		public void ContextExcludesControlState() {
 			foreach (IProcessContext context in _getContexts()) {
 
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"control-state", "excludes", "p1"},
 						{"control-state", "excludes", "p2"}
 					}
 				);
 
+				Event ev = new Event(context, "test");
+
 				// positive 
-				Assert.IsTrue(behaviour.ContextExcludesControlState(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				// negative
 				context.ControlState["p1"] = "v1";
-				Assert.IsFalse(behaviour.ContextExcludesControlState(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 				context.ControlState.Remove("p1");
 				context.ControlState["p2"] = "v2";
-				Assert.IsFalse(behaviour.ContextExcludesControlState(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 			}
 		}
 
@@ -275,7 +289,7 @@ namespace Inversion.Process.Tests.Behaviour {
 				context.Flags.Add("f1");
 				context.Flags.Add("f2");
 
-				IConfiguredBehaviour behaviour = new TestBehaviour("test",
+				IPrototypedBehaviour behaviour = new TestBehaviour("test",
 					new Configuration.Builder {
 						{"context", "flagged", "f1", "true"},
 						{"context", "flagged", "f2", "true"},
@@ -283,15 +297,17 @@ namespace Inversion.Process.Tests.Behaviour {
 					}
 				);
 
+				Event ev = new Event(context, "test");
+
 				// positive
-				Assert.IsTrue(behaviour.ContextHasAllFlags(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				// negative
 				context.Flags.Add("f3");
-				Assert.IsFalse(behaviour.ContextHasAllFlags(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 				context.Flags.Remove("f3");
-				Assert.IsTrue(behaviour.ContextHasAllFlags(context));
+				Assert.IsTrue(behaviour.Condition(ev));
 				context.Flags.Remove("f1");
-				Assert.IsFalse(behaviour.ContextHasAllFlags(context));
+				Assert.IsFalse(behaviour.Condition(ev));
 			}
 		}
 
