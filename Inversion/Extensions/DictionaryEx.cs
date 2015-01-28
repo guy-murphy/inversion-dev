@@ -17,9 +17,10 @@ namespace Inversion.Extensions {
 		/// <param name="self">The dictionary being acted on.</param>
 		/// <param name="other">The dictionary being copied from.</param>
 
-		public static void Import<TKey, TValue>(IDictionary<TKey, TValue> self, IDictionary<TKey, TValue> other) {
+		public static void Import<TKey, TValue>(this IDictionary<TKey, TValue> self, IDictionary<TKey, TValue> other) {
 			foreach (TKey key in other.Keys) {
 				self.Add(key, other[key]);
+				//self[key] = other[key];
 			}
 		}
 
@@ -32,7 +33,7 @@ namespace Inversion.Extensions {
 		/// is written to.
 		/// </param>
 
-		public static void ContentToXml(IDictionary<string, IData> self, XmlWriter writer) {
+		public static void ContentToXml(this IDictionary<string, IData> self, XmlWriter writer) {
 			foreach (KeyValuePair<string, IData> item in self) {
 				if (item.Value != null) {
 					writer.WriteStartElement("item");

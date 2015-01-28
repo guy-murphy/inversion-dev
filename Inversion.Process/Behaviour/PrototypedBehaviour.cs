@@ -46,7 +46,7 @@ namespace Inversion.Process.Behaviour {
 		}
 		
 		/// <summary>
-		/// Determines if the event specifies the behaviour by name.
+		/// Determines if each of the behaviours selection criteria match.
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context to consult.</param>

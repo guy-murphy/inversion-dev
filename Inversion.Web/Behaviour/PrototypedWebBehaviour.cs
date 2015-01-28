@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 using Inversion.Process;
 using Inversion.Process.Behaviour;
 
@@ -13,7 +13,7 @@ namespace Inversion.Web.Behaviour {
 		/// Creates a new instance of the behaviour.
 		/// </summary>
 		/// <param name="respondsTo">The name of the behaviour.</param>
-		protected PrototypedWebBehaviour(string respondsTo) : base(respondsTo) {}
+		protected PrototypedWebBehaviour(string respondsTo) : this(respondsTo, new WebPrototype()) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
@@ -27,7 +27,9 @@ namespace Inversion.Web.Behaviour {
 		/// </summary>
 		/// <param name="respondsTo">The name of the behaviour.</param>
 		/// <param name="config">The configuration elements to use in configuring this behaviour.</param>
-		protected PrototypedWebBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config) : base(respondsTo, config) { }
+		protected PrototypedWebBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config): base(respondsTo, new WebPrototype(config)) {
+			
+		}
 
 		/// <summary>
 		/// Determines if this behaviours action should be executed in
@@ -40,22 +42,32 @@ namespace Inversion.Web.Behaviour {
 		}
 
 		/// <summary>
-		/// The considtion that determines whether of not the behaviours action
-		/// is valid to run.
+		/// Determines if each of the behaviours selection criteria match.
 		/// </summary>
-		/// <param name="ev">The event to consider with the condition.</param>
-		/// <param name="context">The context to use.</param>
+		/// <param name="ev">The event to consult.</param>
+		/// <param name="context">The context to consult.</param>
 		/// <returns>
-		/// `true` if the condition is met; otherwise,  returns  `false`.
-		/// </returns>
-		public abstract bool Condition(IEvent ev, IWebContext context);
+		/// Returns true if the selection criteria for this behaviour each return true.
+		///  </returns>
+		public bool Condition(IEvent ev, IWebContext context) {
+			return base.Condition(ev, context);
+		}
 
 		/// <summary>
 		/// The action to perform if this behaviours condition is met.
 		/// </summary>
 		/// <param name="ev">The event to consult.</param>
 		public override void Action(IEvent ev) {
-			this.Action(ev, (IWebContext)ev.Context);
+			this.Action(ev, ev.Context);
+		}
+
+		/// <summary>
+		/// The action to perform when the `Condition(IEvent)` is met.
+		/// </summary>
+		/// <param name="ev">The event to consult.</param>
+		/// <param name="context">The context upon which to perform any action.</param>
+		public override void Action(IEvent ev, IProcessContext context) {
+			this.Action(ev, (IWebContext)context);
 		}
 
 		/// <summary>

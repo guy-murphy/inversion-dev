@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-
-using Inversion.Collections;
 
 namespace Inversion.Process.Behaviour {
 	/// <summary>
@@ -17,7 +16,7 @@ namespace Inversion.Process.Behaviour {
 		/// <summary>
 		/// The default cases to be used for all prototypes of this class.
 		/// </summary>
-		public static readonly ConcurrentDataDictionary<IPrototypeCase> NamedCases = new ConcurrentDataDictionary<IPrototypeCase>();
+		public static readonly ConcurrentDictionary<string, IPrototypeCase> NamedCases = new ConcurrentDictionary<string, IPrototypeCase>();
 
 		private readonly ImmutableHashSet<SelectionCriteria> _criteria;
 
@@ -89,16 +88,10 @@ namespace Inversion.Process.Behaviour {
 			_criteria = builder.ToImmutable();
 		}
 
-		///// <summary>
-		///// The cases to use in picking selection criteria for a behaviour.
-		///// </summary>
-		//public IEnumerable<IPrototypeCase> Cases {
-		//	get { return NamedCases.Values; }
-		//}
 		/// <summary>
 		/// The selection criteria that may be applicable to behaviours.
 		/// </summary>
-		public IEnumerable<SelectionCriteria> Criteria {
+		public virtual IEnumerable<SelectionCriteria> Criteria {
 			get { return _criteria; }
 		}
 
