@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Inversion.Data {
 	/// <summary>
-	/// Describes basic functionality for reading resources
+	/// Provides basic functionality for reading resources
 	/// external to the application stored on the filesystem.
 	/// </summary>
 	/// <remarks>
@@ -16,7 +16,7 @@ namespace Inversion.Data {
 		/// <summary>
 		/// A default instance.
 		/// </summary>
-		public new static readonly FileSystemResourceAdapter Instance = new CachingFileSystemResourceAdapter();
+		public new static readonly CachingFileSystemResourceAdapter Instance = new CachingFileSystemResourceAdapter();
 
 		private readonly ConcurrentDictionary<string, bool> _exists = new ConcurrentDictionary<string, bool>();
 		private readonly ConcurrentDictionary<string, string> _text = new ConcurrentDictionary<string, string>();

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Inversion.Data {
 	/// <summary>
-	/// Describes basic functionality for reading resources
+	/// Provides basic functionality for reading resources
 	/// external to the application stored on the filesystem.
 	/// </summary>
 	public class FileSystemResourceAdapter : IResourceAdapter {

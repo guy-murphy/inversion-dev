@@ -43,5 +43,8 @@
     <Report>
       <Path>Report150129.vspx</Path>
     </Report>
+    <Report>
+      <Path>Report150129(1).vspx</Path>
+    </Report>
   </Reports>
 </VSPerformanceSession>
