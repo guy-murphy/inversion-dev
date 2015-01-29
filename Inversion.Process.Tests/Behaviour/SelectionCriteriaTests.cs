@@ -12,6 +12,7 @@ namespace Inversion.Process.Tests.Behaviour {
 
 		private IEnumerable<IProcessContext> _getContexts() {
 			yield return new ProcessContext(ServiceContainer.Instance, FileSystemResourceAdapter.Instance);
+			yield return new SimpleProcessContext(ServiceContainer.Instance, FileSystemResourceAdapter.Instance);
 			yield return new SynchronizedProcessContext(ServiceContainer.Instance, FileSystemResourceAdapter.Instance);
 		}
 

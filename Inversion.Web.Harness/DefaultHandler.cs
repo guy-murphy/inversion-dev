@@ -51,7 +51,7 @@ namespace Inversion.Web.Harness {
 		/// from the service container. We register each of the behaviours with the
 		/// `WebContext`, and then we fire the first event `process-request`.
 		/// </remarks>
-		public virtual void ProcessRequest(WebContext context) {
+		public virtual void ProcessRequest(IWebContext context) {
 			IList<IProcessBehaviour> behaviours = context.Services.GetService<List<IProcessBehaviour>>("request-behaviours");
 			context.Register(behaviours);
 

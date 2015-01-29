@@ -76,6 +76,7 @@
     <Compile Include="MockWebRequest.cs" />
     <Compile Include="MockWebResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleWebContext.cs" />
     <Compile Include="UrlInfo.cs" />
     <Compile Include="WebApplication.cs" />
     <Compile Include="WebContext.cs" />

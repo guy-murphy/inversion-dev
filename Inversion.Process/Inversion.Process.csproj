@@ -92,6 +92,7 @@
     <Compile Include="ProcessTimerDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Behaviour\RuntimeBehaviour.cs" />
+    <Compile Include="SimpleProcessContext.cs" />
     <Compile Include="SynchronizedProcessContext.cs" />
     <Compile Include="ViewStep.cs" />
     <Compile Include="ViewSteps.cs" />

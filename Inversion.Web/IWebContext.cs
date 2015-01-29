@@ -1,4 +1,5 @@
-﻿using System.Security.Principal;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 
 using Inversion.Process;
 
@@ -32,16 +33,15 @@ namespace Inversion.Web {
 		/// </summary>
 		IWebRequest Request { get; }
 
-		///// <summary>
-		///// Gives access to the cache being used for this context.
-		///// </summary>
-		//Cache Cache { // This needs to be changed for an interface that we own
-		//	get; }
-
 		/// <summary>
 		/// Gives access to the `IPrinciple` user object that represents
 		/// the current user for this context.
 		/// </summary>
 		IPrincipal User { get; set; }
+
+		/// <summary>
+		/// Indicates completion of processing for this context.
+		/// </summary>
+		void Completed();
 	}
 }
