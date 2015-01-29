@@ -56,7 +56,7 @@ namespace Inversion.Data {
 		/// <returns>
 		/// Returns true if the resource exists; otherwise, returns false.
 		/// </returns>
-		public bool Exists(string path) {
+		public virtual bool Exists(string path) {
 			return File.Exists(this.ResolvePath(path));
 		}
 
@@ -106,7 +106,7 @@ namespace Inversion.Data {
 		/// </summary>
 		/// <param name="path">The relative path to the resource.</param>
 		/// <returns>Returns the contents of the resource as text.</returns>
-		public string ReadAllText(string path) {
+		public virtual string ReadAllText(string path) {
 			return File.ReadAllText(this.ResolvePath(path));
 		}
 

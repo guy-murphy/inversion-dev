@@ -24,39 +24,39 @@ namespace Inversion.Process.Behaviour {
 		/// Instantiates named cases.
 		/// </summary>
 		static Prototype() {
-			NamedCases["ev-has-all"] = new Case(
+			NamedCases["event-has"] = new Case(
 				match: (config)	=> config.Has("event", "has"),
 				criteria: (config, ev) => ev.HasParams(config.GetNames("event", "has"))
 			);
-			NamedCases["ev-match-all"] = new Case(
+			NamedCases["event-match"] = new Case(
 				match: (config) => config.Has("event", "match"),
 				criteria: (config, ev) => ev.HasParamValues(config.GetMap("event", "match"))
 			);
-			NamedCases["ctx-has-all"] = new Case(
+			NamedCases["context-has"] = new Case(
 				match: (config) => config.Has("context", "has"),
 				criteria: (config, ev) => ev.Context.HasParams(config.GetNames("context", "has"))
 			);
-			NamedCases["ctx-match-all"] = new Case(
+			NamedCases["context-match"] = new Case(
 				match: (config) => config.Has("context", "match"),
 				criteria: (config, ev) => ev.Context.HasParamValues(config.GetMap("context", "match"))
 			);
-			NamedCases["ctx-match-any"] = new Case(
+			NamedCases["context-match-any"] = new Case(
 				match: (config) => config.Has("context", "match-any"),
 				criteria: (config, ev) => config.GetElements("context", "match-any").Any(element => ev.Context.HasParamValue(element.Name, element.Value))
 			);
-			NamedCases["ctx-flagged-all"] = new Case(
+			NamedCases["context-flagged"] = new Case(
 				match: (config) => config.Has("context", "flagged"),
 				criteria: (config, ev) => config.GetMap("context", "flagged").All(kv => kv.Value == "true" && ev.Context.IsFlagged(kv.Key) || kv.Value != "true" && !ev.Context.IsFlagged(kv.Key))
 			);
-			NamedCases["ctx-excludes-all"] = new Case(
+			NamedCases["context-excludes"] = new Case(
 				match: (config) => config.Has("context", "excludes"),
 				criteria: (config, ev) => config.GetMap("context", "excludes").All(kv => !ev.Context.Params.Contains(kv))
 			);
-			NamedCases["control-has-all"] = new Case(
+			NamedCases["control-state-has"] = new Case(
 				match: (config) => config.Has("control-state", "has"),
 				criteria: (config, ev) => ev.Context.HasControlState(config.GetNames("control-state", "has"))
 			);
-			NamedCases["control-excludes-all"] = new Case(
+			NamedCases["control-state-excludes"] = new Case(
 				match: (config) => config.Has("control-state", "excludes"),
 				criteria: (config, ev) => config.GetNames("control-state", "excludes").All(key => !ev.Context.ControlState.ContainsKey(key))
 			);

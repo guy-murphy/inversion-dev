@@ -33,7 +33,11 @@ namespace Inversion.Web.Harness {
 		/// be thought of as the where the work begins.
 		/// </remarks>
 		public void ProcessRequest(HttpContext context) {
-			this.ProcessRequest(new WebContext(context, ServiceContainer.Instance, FileSystemResourceAdapter.Instance));
+			#if DEBUG
+				this.ProcessRequest(new WebContext(context, ServiceContainer.Instance, FileSystemResourceAdapter.Instance));
+			#else
+				this.ProcessRequest(new WebContext(context, ServiceContainer.Instance, CachingFileSystemResourceAdapter.Instance));
+			#endif
 		}
 
 		/// <summary>

@@ -25,7 +25,7 @@ namespace Inversion.Web.Behaviour {
 			// import from parent
 			NamedWebCases.Import(NamedCases);
 			// then add/override them
-			NamedWebCases["ctx-match-user-role"] = new Case(
+			NamedWebCases["match-user-role"] = new Case(
 				match: (config) => config.Has("match", "user", "role"),
 				criteria: (config, ev) => config.GetValues("match", "user", "role").Any(role => ((IWebContext)ev.Context).User.IsInRole(role))
 			);

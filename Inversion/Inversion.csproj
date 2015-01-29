@@ -55,6 +55,7 @@
     <Compile Include="DataEx.cs" />
     <Compile Include="DataView.cs" />
     <Compile Include="Data\AssemblyResourceAdapter.cs" />
+    <Compile Include="Data\CachingFileSystemResourceAdapter.cs" />
     <Compile Include="Data\FileSystemResourceAdapter.cs" />
     <Compile Include="Data\IResourceAdapter.cs" />
     <Compile Include="Data\StreamEx.cs" />
