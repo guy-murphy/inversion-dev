@@ -1,18 +1,12 @@
-﻿using System.Web;
-using System.IO;
+﻿using System.IO;
+using System.Web;
 
-namespace Inversion.Web {
-	/// <summary>
-	/// Provides a wrapper of the underlying http response for application
-	/// developers to use.
-	/// </summary>
-	/// <remarks>
-	/// This wrapping is mindful of providing a common interface that can port to other platforms.
-	/// Along with providing a point of extensibility and control.
-	/// </remarks>
-	public class WebResponse : IWebResponse {
+namespace Inversion.Web.AspNet {
+	public class AspNetResponse: IWebResponse {
 
 		private readonly HttpResponse _underlyingResponse;
+
+		private IResponseCookieCollection _cookies;
 
 		/// <summary>
 		/// The underlying http response being wrapped.
@@ -80,22 +74,20 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Access to the response cookies.
 		/// </summary>
-		public HttpCookieCollection Cookies {
-			get { return this.UnderlyingResponse.Cookies; }
+		public IResponseCookieCollection Cookies {
+			get {
+				if (_cookies == null) {
+					_cookies = new AspNetResponseCookieCollection(_underlyingResponse.Cookies);
+				}
+				return _cookies;
+			}
 		}
-
-		/// <summary>
-		/// Instantiates a new web response by wrapping the http response
-		/// of the http context provided.
-		/// </summary>
-		/// <param name="context">The http context from which to obtain the http response to wrap.</param>
-		public WebResponse(HttpContext context) : this(context.Response) { }
 
 		/// <summary>
 		/// Instantiates a new web response wrapping the http response provided.
 		/// </summary>
 		/// <param name="underlyingResponse">The underlying http response to wrap.</param>
-		public WebResponse(HttpResponse underlyingResponse) {
+		public AspNetResponse(HttpResponse underlyingResponse) {
 			_underlyingResponse = underlyingResponse;
 		}
 

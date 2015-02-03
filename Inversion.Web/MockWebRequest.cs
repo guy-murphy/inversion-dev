@@ -12,7 +12,7 @@ namespace Inversion.Web {
 	
 		private readonly Dictionary<string, string> _params = new Dictionary<string, string>();
 		private readonly HashSet<string> _flags = new HashSet<string>();
-		private readonly Dictionary<string, string> _headers = new Dictionary<string, string>();
+		private readonly Dictionary<string, string> _headers = new Dictionary<string, string>();	
 
 		private string _method = "GET";
 
@@ -20,7 +20,7 @@ namespace Inversion.Web {
 		/// Gives access to any files uploaded by the user agent
 		/// as part of this request.
 		/// </summary>
-		public HttpFileCollection Files {
+		public IRequestFilesCollection Files {
 			get { throw new NotImplementedException("The HttpFilesCollection has not been mocked."); }
 		}
 
@@ -82,7 +82,7 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Gives access to the request cookies.
 		/// </summary>
-		public HttpCookieCollection Cookies {
+		public IRequestCookieCollection Cookies {
 			get { throw new NotImplementedException("The HttpCookieCollection has not been mocked."); }
 		}
 

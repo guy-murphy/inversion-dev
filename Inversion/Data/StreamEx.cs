@@ -101,5 +101,16 @@ namespace Inversion.Data {
 			}
 		}
 
+		/// <summary>
+		/// Copies the stream to a memory stream.
+		/// </summary>
+		/// <param name="self">The stream to copy.</param>
+		/// <returns>Returns a memory stream with the stream copied into it.</returns>
+		public static MemoryStream AsMemoryStream(this Stream self) {
+			MemoryStream memory = new MemoryStream();
+			self.CopyTo(memory);
+			return memory;
+		}
+
 	}
 }

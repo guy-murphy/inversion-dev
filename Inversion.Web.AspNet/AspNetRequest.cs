@@ -3,28 +3,24 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Web;
 
-namespace Inversion.Web {
-	/// <summary>
-	/// Provides a wrapper for the underlying web request for application developers to use.
-	/// </summary>
-	/// <remarks>
-	/// This wrapping is mindful of providing a common interface that can port to other platforms.
-	/// Along with providing a point of extensibility and control.
-	/// </remarks>
-	public class WebRequest : IWebRequest {
-
+namespace Inversion.Web.AspNet {
+	public class AspNetRequest: IWebRequest {
+		
 		private readonly HttpRequest _underlyingRequest;
+		private readonly IRequestCookieCollection _cookies;
 		private readonly UrlInfo _urlInfo;
 		private readonly ImmutableDictionary<string, string> _params;
 		private readonly IEnumerable<string> _flags;
 		private readonly string _payload;
 		private readonly ImmutableDictionary<string, string> _headers;
 
+		private IRequestFilesCollection _files;
+
 		/// <summary>
 		/// The underlying http request being wrapped.
 		/// </summary>
 		protected HttpRequest UnderlyingRequest {
-			get {
+			get { 
 				return _underlyingRequest;
 			}
 		}
@@ -33,9 +29,9 @@ namespace Inversion.Web {
 		/// Gives access to any files uploaded by the user agent
 		/// as part of this request.
 		/// </summary>
-		public HttpFileCollection Files {
+		public IRequestFilesCollection Files {
 			get {
-				return _underlyingRequest.Files;
+				return _files ?? (_files = new AspNetRequestFilesCollection(_underlyingRequest.Files));
 			}
 		}
 
@@ -110,24 +106,18 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Gives access to the request cookies.
 		/// </summary>
-		public HttpCookieCollection Cookies {
-			get { return this.UnderlyingRequest.Cookies; }
+		public IRequestCookieCollection Cookies {
+			get { return _cookies; }
 		}
-
-		/// <summary>
-		/// Instantiates a new web request by wrapping the http request
-		/// of the http context provided.
-		/// </summary>
-		/// <param name="context">The http context from which to obtain the http request to wrap.</param>
-		public WebRequest(HttpContext context) : this(context.Request) { }
 
 		/// <summary>
 		/// Instantiates a new web request wrapping the http request provided.
 		/// </summary>
 		/// <param name="request">The underlying http request to wrap.</param>
-		public WebRequest(HttpRequest request) {
+		public AspNetRequest(HttpRequest request) {
 			_underlyingRequest = request;
 			_urlInfo = new UrlInfo(request.Url);
+			_cookies = new AspNetRequestCookieCollection(request.Cookies);
 			// setup the request params
 			ImmutableDictionary<string, string>.Builder parms = ImmutableDictionary.CreateBuilder<string, string>();
 			ImmutableList<string>.Builder flags = ImmutableList.CreateBuilder<string>();
@@ -136,10 +126,12 @@ namespace Inversion.Web {
 				string key = _underlyingRequest.QueryString.GetKey(i);
 				string[] values = _underlyingRequest.QueryString.GetValues(i);
 				// check for valueless parameters and use as flags
-				if (key == null && values != null) {
-					flags.InsertRange(0, values);
-				} else {
-					if (values != null) parms.Add(key, values[0]);
+				if (values != null) {
+					if (key == null) {
+						flags.InsertRange(0, values);
+					} else {
+						parms.Add(key, values[0]);
+					}
 				}
 			}
 

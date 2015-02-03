@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
+using Inversion.Data;
 using RazorEngine;
 using RazorEngine.Templating;
 
@@ -115,9 +115,9 @@ namespace Inversion.Web.Behaviour.View {
 
 					bool compiled = false;
 					if (compiledTemplate == null) { // we'll need to look for the template
-						string templatePath = Path.Combine(context.Application.BaseDirectory, "Resources", "Views", "Razor", templateName);
-						if (File.Exists(templatePath)) {
-							string template = File.ReadAllText(templatePath);
+						string templatePath = Path.Combine("Resources", "Views", "Razor", templateName);
+						if (context.Resources.Exists(templatePath)) {
+							string template = context.Resources.Open(templatePath).AsText();
 							Razor.Compile(template, viewState.GetType(), templateName);
 							compiled = true;
 						} else {

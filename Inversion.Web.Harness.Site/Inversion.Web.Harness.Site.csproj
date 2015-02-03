@@ -98,10 +98,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Inversion.DotLiquid\Inversion.DotLiquid.csproj">
-      <Project>{2d9fc8ce-05af-465a-9ca9-51b76932f653}</Project>
-      <Name>Inversion.DotLiquid</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Inversion.Naiad\Inversion.Naiad.csproj">
       <Project>{975446b0-dbc2-498f-94d4-2a6a20f9c5d0}</Project>
       <Name>Inversion.Naiad</Name>
@@ -117,6 +113,10 @@
     <ProjectReference Include="..\Inversion.StringTemplate\Inversion.StringTemplate.csproj">
       <Project>{dc33edc0-055f-4369-a703-fa4f20169c56}</Project>
       <Name>Inversion.StringTemplate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Inversion.Web.AspNet\Inversion.Web.AspNet.csproj">
+      <Project>{FAAD5EAA-3432-4B69-B334-DE4864EFA213}</Project>
+      <Name>Inversion.Web.AspNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\Inversion.Web.Harness\Inversion.Web.Harness.csproj">
       <Project>{b2183bfd-9c0e-48aa-b426-4912ce1dadc7}</Project>

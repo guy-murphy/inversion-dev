@@ -62,6 +62,10 @@
       <Project>{e50603e3-e170-4f0b-9e25-0df068a77096}</Project>
       <Name>Inversion.Spring</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Inversion.Web.AspNet\Inversion.Web.AspNet.csproj">
+      <Project>{FAAD5EAA-3432-4B69-B334-DE4864EFA213}</Project>
+      <Name>Inversion.Web.AspNet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inversion.Web\Inversion.Web.csproj">
       <Project>{6951ba6b-4388-4fc8-8298-60da7563fee4}</Project>
       <Name>Inversion.Web</Name>

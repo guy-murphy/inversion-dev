@@ -25,13 +25,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Web.Harness", "In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Naiad", "Inversion.Naiad\Inversion.Naiad.csproj", "{975446B0-DBC2-498F-94D4-2A6A20F9C5D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.DotLiquid", "Inversion.DotLiquid\Inversion.DotLiquid.csproj", "{2D9FC8CE-05AF-465A-9CA9-51B76932F653}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.StringTemplate", "Inversion.StringTemplate\Inversion.StringTemplate.csproj", "{DC33EDC0-055F-4369-A703-FA4F20169C56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Process.Tests", "Inversion.Process.Tests\Inversion.Process.Tests.csproj", "{E98E256B-0F9C-4305-BC62-8C1D311B2833}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Web.Tests", "Inversion.Web.Tests\Inversion.Web.Tests.csproj", "{0FFBE678-1F81-47EA-A4BF-D6C8190DA764}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Web.AspNet", "Inversion.Web.AspNet\Inversion.Web.AspNet.csproj", "{FAAD5EAA-3432-4B69-B334-DE4864EFA213}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inversion.Web.Owin", "Inversion.Web.Owin\Inversion.Web.Owin.csproj", "{98265346-6764-47CA-9E09-864848DA183E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +73,6 @@ Global
 		{975446B0-DBC2-498F-94D4-2A6A20F9C5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975446B0-DBC2-498F-94D4-2A6A20F9C5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975446B0-DBC2-498F-94D4-2A6A20F9C5D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D9FC8CE-05AF-465A-9CA9-51B76932F653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D9FC8CE-05AF-465A-9CA9-51B76932F653}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D9FC8CE-05AF-465A-9CA9-51B76932F653}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D9FC8CE-05AF-465A-9CA9-51B76932F653}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC33EDC0-055F-4369-A703-FA4F20169C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC33EDC0-055F-4369-A703-FA4F20169C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC33EDC0-055F-4369-A703-FA4F20169C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +85,14 @@ Global
 		{0FFBE678-1F81-47EA-A4BF-D6C8190DA764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FFBE678-1F81-47EA-A4BF-D6C8190DA764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FFBE678-1F81-47EA-A4BF-D6C8190DA764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAAD5EAA-3432-4B69-B334-DE4864EFA213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAAD5EAA-3432-4B69-B334-DE4864EFA213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAAD5EAA-3432-4B69-B334-DE4864EFA213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAAD5EAA-3432-4B69-B334-DE4864EFA213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98265346-6764-47CA-9E09-864848DA183E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98265346-6764-47CA-9E09-864848DA183E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98265346-6764-47CA-9E09-864848DA183E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98265346-6764-47CA-9E09-864848DA183E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

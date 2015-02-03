@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Web;
 
 namespace Inversion.Web {
 	/// <summary>
@@ -34,7 +33,7 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Access to the response cookies.
 		/// </summary>
-		HttpCookieCollection Cookies { get; }
+		IResponseCookieCollection Cookies { get; }
 
 		/// <summary>
 		/// Flushes the response steam and ends the response.

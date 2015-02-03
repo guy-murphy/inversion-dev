@@ -27,7 +27,7 @@ namespace Inversion.Web {
 		/// Provides access to the running web application
 		/// to which this context belongs.
 		/// </summary>
-		public WebApplication Application {
+		public IWebApplication Application {
 			get { throw new NotImplementedException("The web application has not been mocked."); }
 		}
 

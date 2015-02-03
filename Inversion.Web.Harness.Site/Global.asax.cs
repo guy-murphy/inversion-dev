@@ -5,11 +5,12 @@ using Inversion.Process;
 using Inversion.Process.Behaviour;
 using Inversion.Naiad;
 using Inversion.StringTemplate.Behaviour.View;
+using Inversion.Web.AspNet;
 using Inversion.Web.Behaviour;
 using Inversion.Web.Behaviour.View;
 
 namespace Inversion.Web.Harness.Site {
-	public class Global : WebApplication {
+	public class Global : AspNetApplication {
 
 		protected void Application_Start(object sender, EventArgs e) {
 

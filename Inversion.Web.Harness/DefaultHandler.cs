@@ -4,6 +4,7 @@ using Inversion.Data;
 using Inversion.Process.Behaviour;
 using Inversion.Spring;
 //using Inversion.Naiad;
+using Inversion.Web.AspNet;
 
 namespace Inversion.Web.Harness {
 	public class DefaultHandler : IHttpHandler {
@@ -34,9 +35,9 @@ namespace Inversion.Web.Harness {
 		/// </remarks>
 		public void ProcessRequest(HttpContext context) {
 			#if DEBUG
-				this.ProcessRequest(new WebContext(context, ServiceContainer.Instance, FileSystemResourceAdapter.Instance));
+			this.ProcessRequest(new AspNetContext(context, ServiceContainer.Instance, FileSystemResourceAdapter.Instance));
 			#else
-				this.ProcessRequest(new WebContext(context, ServiceContainer.Instance, CachingFileSystemResourceAdapter.Instance));
+				this.ProcessRequest(new AspNetContext(context, ServiceContainer.Instance, CachingFileSystemResourceAdapter.Instance));
 			#endif
 		}
 

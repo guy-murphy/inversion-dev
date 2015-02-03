@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 
-using System.Web;
-
 namespace Inversion.Web {
 	/// <summary>
 	/// Describes a request to be processed by a web application.
@@ -11,7 +9,7 @@ namespace Inversion.Web {
 		/// Gives access to any files uploaded by the user agent
 		/// as part of this request.
 		/// </summary>
-		HttpFileCollection Files { get; }
+		IRequestFilesCollection Files { get; }
 
 		/// <summary>
 		/// Gives access to a url-info object that provides
@@ -66,6 +64,6 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Gives access to the request cookies.
 		/// </summary>
-		HttpCookieCollection Cookies { get; }
+		IRequestCookieCollection Cookies { get; }
 	}
 }

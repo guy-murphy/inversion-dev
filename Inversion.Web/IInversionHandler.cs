@@ -13,6 +13,6 @@ namespace Inversion.Web {
 		/// <param name="context">
 		/// The `WebContext` being used for the current request.
 		/// </param>
-		void ProcessRequest(WebContext context);
+		void ProcessRequest(IWebContext context);
 	}
 }

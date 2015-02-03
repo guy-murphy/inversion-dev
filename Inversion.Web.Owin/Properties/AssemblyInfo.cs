@@ -1,16 +1,16 @@
 ﻿using System.Reflection;
-
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Inversion.DotLiquid")]
+[assembly: AssemblyTitle("Inversion.Web.Owin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Inversion.DotLiquid")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyProduct("Inversion.Web.Owin")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("11adb733-0abd-44dc-8f3f-ceafdef6c3e5")]
+[assembly: Guid("5868c28f-a29d-4c40-be35-41a90e4c037b")]
 
 // Version information for an assembly consists of the following four values:
 //

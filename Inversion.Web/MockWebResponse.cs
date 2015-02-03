@@ -52,7 +52,7 @@ namespace Inversion.Web {
 		/// <summary>
 		/// Access to the response cookies.
 		/// </summary>
-		public HttpCookieCollection Cookies {
+		public IResponseCookieCollection Cookies {
 			get { throw new NotImplementedException("The HttpCookieCollection has not been mocked."); }
 		}
 

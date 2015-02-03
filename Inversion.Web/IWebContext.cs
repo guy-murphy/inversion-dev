@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 
 using Inversion.Process;
 
@@ -21,7 +20,7 @@ namespace Inversion.Web {
 		/// Provides access to the running web application
 		/// to which this context belongs.
 		/// </summary>
-		WebApplication Application { get; }
+		IWebApplication Application { get; }
 
 		/// <summary>
 		/// Gives access to the web response of this context.
