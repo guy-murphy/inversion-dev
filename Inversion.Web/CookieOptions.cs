@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Inversion.Web {
 	public class CookieOptions {
-
-		private readonly string _path;
-
 		public string Path { get; set; }
 		public string Domain { get; set; }
 

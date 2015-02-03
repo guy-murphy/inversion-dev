@@ -41,7 +41,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
@@ -69,7 +68,6 @@
     <Compile Include="Behaviour\WebBehaviour.cs" />
     <Compile Include="Behaviour\WebPrototype.cs" />
     <Compile Include="CookieOptions.cs" />
-    <Compile Include="IInversionHandler.cs" />
     <Compile Include="IRequestFile.cs" />
     <Compile Include="IRequestCookieCollection.cs" />
     <Compile Include="IRequestFilesCollection.cs" />
