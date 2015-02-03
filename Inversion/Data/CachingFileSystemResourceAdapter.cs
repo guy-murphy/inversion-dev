@@ -21,6 +21,9 @@ namespace Inversion.Data {
 		private readonly ConcurrentDictionary<string, bool> _exists = new ConcurrentDictionary<string, bool>();
 		private readonly ConcurrentDictionary<string, string> _text = new ConcurrentDictionary<string, string>();
 
+		public CachingFileSystemResourceAdapter() : base() { }
+		public CachingFileSystemResourceAdapter(string @base) : base(@base) {}
+
 		/// <summary>
 		/// Determines whether or not the relative path
 		/// specified exists.

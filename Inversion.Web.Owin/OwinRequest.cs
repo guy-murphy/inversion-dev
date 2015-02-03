@@ -134,8 +134,10 @@ namespace Inversion.Web.Owin {
 			}
 			// import the post values
 			IFormCollection form = request.Get<IFormCollection>("Microsoft.Owin.Form#collection");
-			foreach (KeyValuePair<string, string[]> entry in form) {
-				parms.Add(entry.Key, entry.Value[0]);
+			if (form != null) {
+				foreach (KeyValuePair<string, string[]> entry in form) {
+					parms.Add(entry.Key, entry.Value[0]);
+				}
 			}
 			// import the payload
 			_payload = request.Body.AsMemoryStream().AsText();
