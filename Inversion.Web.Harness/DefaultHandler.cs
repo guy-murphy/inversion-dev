@@ -35,7 +35,7 @@ namespace Inversion.Web.Harness {
 		/// </remarks>
 		public void ProcessRequest(HttpContext context) {
 			#if DEBUG
-			this.ProcessRequest(new AspNetContext(context, ServiceContainer.Instance, FileSystemResourceAdapter.Instance));
+				this.ProcessRequest(new AspNetContext(context, ServiceContainer.Instance, FileSystemResourceAdapter.Instance));
 			#else
 				this.ProcessRequest(new AspNetContext(context, ServiceContainer.Instance, CachingFileSystemResourceAdapter.Instance));
 			#endif

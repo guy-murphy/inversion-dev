@@ -36,6 +36,11 @@ namespace Inversion.Web {
 		IResponseCookieCollection Cookies { get; }
 
 		/// <summary>
+		/// Access to the response headers.
+		/// </summary>
+		IResponseHeaderCollection Headers { get; }
+
+		/// <summary>
 		/// Flushes the response steam and ends the response.
 		/// </summary>
 		void End();

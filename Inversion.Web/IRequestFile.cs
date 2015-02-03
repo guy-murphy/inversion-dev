@@ -1,6 +1,9 @@
 ﻿using System.IO;
 
 namespace Inversion.Web {
+	/// <summary>
+	/// Describes a file that is part of a request.
+	/// </summary>
 	public interface IRequestFile {
 		/// <summary>
 		/// The name of the file.

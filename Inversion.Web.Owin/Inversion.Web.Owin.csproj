@@ -57,8 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OwinRequestCookieCollection.cs" />
+    <Compile Include="OwinResponse.cs" />
     <Compile Include="OwinResponseCookieCollection.cs" />
-    <Compile Include="OwinWebRequest.cs" />
+    <Compile Include="OwinRequest.cs" />
+    <Compile Include="OwinResponseHeadersCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

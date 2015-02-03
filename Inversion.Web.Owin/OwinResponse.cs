@@ -1,22 +1,24 @@
 ﻿using System.IO;
-using System.Web;
 
-namespace Inversion.Web.AspNet {
+using Microsoft.Owin;
+
+namespace Inversion.Web.Owin {
 
 	/// <summary>
-	/// Implements a web response for ASP.NET
+	/// Implements a web response for OWIN
 	/// </summary>
-	public class AspNetResponse: IWebResponse {
+	public class OwinResponse: IWebResponse {
 
-		private readonly HttpResponse _underlyingResponse;
+		private readonly IOwinResponse _underlyingResponse;
 
 		private IResponseCookieCollection _cookies;
 		private IResponseHeaderCollection _headers;
+		private TextWriter _writer;
 
 		/// <summary>
 		/// The underlying http response being wrapped.
 		/// </summary>
-		protected HttpResponse UnderlyingResponse {
+		protected IOwinResponse UnderlyingResponse {
 			get {
 				return _underlyingResponse;
 			}
@@ -26,54 +28,38 @@ namespace Inversion.Web.AspNet {
 		/// The text writer used for writing to the response stream.
 		/// </summary>
 		public TextWriter Output {
-			get {
-				return _underlyingResponse.Output;
-			}
+			get { return _writer ?? (_writer = new StreamWriter(this.OutputStream)); }
 		}
 
 		/// <summary>
 		/// The response stream.
 		/// </summary>
 		public Stream OutputStream {
-			get {
-				return _underlyingResponse.OutputStream;
-			}
+			get { return this.UnderlyingResponse.Body; }
 		}
 
 		/// <summary>
 		/// The status code of the response.
 		/// </summary>
 		public int StatusCode {
-			get {
-				return _underlyingResponse.StatusCode;
-			}
-			set {
-				_underlyingResponse.StatusCode = value;
-			}
+			get { return this.UnderlyingResponse.StatusCode; }
+			set { this.UnderlyingResponse.StatusCode = value; }
 		}
 
 		/// <summary>
 		/// The status description of the response stream.
 		/// </summary>
 		public string StatusDescription {
-			get {
-				return _underlyingResponse.StatusDescription;
-			}
-			set {
-				_underlyingResponse.StatusDescription = value;
-			}
+			get { return this.UnderlyingResponse.ReasonPhrase; }
+			set { this.UnderlyingResponse.ReasonPhrase = value; }
 		}
 
 		/// <summary>
 		/// The content type of the response stream.
 		/// </summary>
 		public string ContentType {
-			get {
-				return _underlyingResponse.ContentType;
-			}
-			set {
-				_underlyingResponse.ContentType = value;
-			}
+			get { return this.UnderlyingResponse.ContentType; }
+			set { this.UnderlyingResponse.ContentType = value; }
 		}
 
 		/// <summary>
@@ -82,7 +68,7 @@ namespace Inversion.Web.AspNet {
 		public IResponseCookieCollection Cookies {
 			get {
 				if (_cookies == null) {
-					_cookies = new AspNetResponseCookieCollection(_underlyingResponse.Cookies);
+					_cookies = new OwinResponseCookieCollection(this.UnderlyingResponse.Cookies);
 				}
 				return _cookies;
 			}
@@ -94,17 +80,13 @@ namespace Inversion.Web.AspNet {
 		public IResponseHeaderCollection Headers {
 			get {
 				if (_headers == null) {
-					_headers = new AspNetResponseHeadersCollection(this.UnderlyingResponse);
+					_headers = new OwinResponseHeadersCollection(this.UnderlyingResponse);
 				}
 				return _headers;
 			}
 		}
 
-		/// <summary>
-		/// Instantiates a new web response wrapping the http response provided.
-		/// </summary>
-		/// <param name="underlyingResponse">The underlying http response to wrap.</param>
-		public AspNetResponse(HttpResponse underlyingResponse) {
+		public OwinResponse(IOwinResponse underlyingResponse) {
 			_underlyingResponse = underlyingResponse;
 		}
 
@@ -112,7 +94,7 @@ namespace Inversion.Web.AspNet {
 		/// Flushes the response steam and ends the response.
 		/// </summary>
 		public void End() {
-			_underlyingResponse.End();
+			// nothing to do on an OWIN implementation that is apparent to me at this point.
 		}
 
 		/// <summary>
@@ -120,7 +102,7 @@ namespace Inversion.Web.AspNet {
 		/// </summary>
 		/// <param name="text">The text to write to the response stream.</param>
 		public void Write(string text) {
-			_underlyingResponse.Write(text);
+			this.UnderlyingResponse.Write(text);
 		}
 
 		/// <summary>
@@ -137,7 +119,7 @@ namespace Inversion.Web.AspNet {
 		/// </summary>
 		/// <param name="url">The url to redirect to.</param>
 		public void Redirect(string url) {
-			_underlyingResponse.Redirect(url);
+			this.UnderlyingResponse.Redirect(url);
 		}
 
 		/// <summary>
@@ -148,8 +130,7 @@ namespace Inversion.Web.AspNet {
 		public void PermanentRedirect(string url) {
 			this.StatusCode = 301;
 			this.StatusDescription = "301 Moved Permanently";
-			_underlyingResponse.AddHeader("Location", url);
+			this.UnderlyingResponse.Headers.Append("Location", url);
 		}
-
 	}
 }

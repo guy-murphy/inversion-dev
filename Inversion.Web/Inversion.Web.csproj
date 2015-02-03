@@ -72,6 +72,7 @@
     <Compile Include="IRequestCookieCollection.cs" />
     <Compile Include="IRequestFilesCollection.cs" />
     <Compile Include="IResponseCookieCollection.cs" />
+    <Compile Include="IResponseHeaderCollection.cs" />
     <Compile Include="IWebApplication.cs" />
     <Compile Include="IWebContext.cs" />
     <Compile Include="IWebRequest.cs" />
@@ -82,10 +83,7 @@
     <Compile Include="PostedFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlInfo.cs" />
-    <Compile Include="_WebContext.cs" />
     <Compile Include="WebException.cs" />
-    <Compile Include="_WebRequest.cs" />
-    <Compile Include="_WebResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Inversion.Process\Inversion.Process.csproj">

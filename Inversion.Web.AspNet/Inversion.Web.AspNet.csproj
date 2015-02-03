@@ -53,6 +53,7 @@
     <Compile Include="AspNetResponse.cs" />
     <Compile Include="AspNetResponseCookieCollection.cs" />
     <Compile Include="AspNetRequest.cs" />
+    <Compile Include="AspNetResponseHeadersCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
