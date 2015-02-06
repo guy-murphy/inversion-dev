@@ -72,7 +72,7 @@ namespace Inversion.Process.Behaviour {
 		/// cases for selection criteria provided.
 		/// </summary>
 		/// <param name="config">The configuration elements to use for configuration.</param>
-		public Prototype(IEnumerable<IConfigurationElement> config) : this(config, NamedCases.Values) {}
+		public Prototype(IEnumerable<IConfigurationElement> config) : this(config, Prototype.NamedCases.Values) {}
 
 		/// <summary>
 		/// Instantiates a prototype object from the configuration elements

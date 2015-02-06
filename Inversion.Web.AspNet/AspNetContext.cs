@@ -61,5 +61,6 @@ namespace Inversion.Web.AspNet {
 			_response = new AspNetResponse(this.UnderlyingContext.Response);
 			_request = new AspNetRequest(this.UnderlyingContext.Request);
 		}
+
 	}
 }
