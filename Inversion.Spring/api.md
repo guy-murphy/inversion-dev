@@ -1,6 +1,6 @@
 
-## `T:Inversion.Spring.BehaviourObjectDefinationParser`
-Implements a parser that is able to parse behaviour definations in a Spring XML object config.
+## `T:Inversion.Spring.BehaviourObjectDefinitionParser`
+Implements a parser that is able to parse behaviour definitions in a Spring XML object config.
 
 
 ### `.GetObjectTypeName(System.Xml.XmlElement)`
@@ -16,7 +16,7 @@ Returns the fully qualified type name for the object being described.
 Parse the supplied XmlElement and populate the supplied ObjectDefinitionBuilder as required.
 
 * `xml`: The obejct representation in XML.
-* `builder`: The builder used to build the object defination in Spring.
+* `builder`: The builder used to build the object definition in Spring.
 ### `.ShouldGenerateIdAsFallback`
 Gets a value indicating whether an ID should be generated instead  if the passed in XmlElement does not specify an "id" attribute explicitly. 
 

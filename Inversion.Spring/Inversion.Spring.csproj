@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BehaviourObjectDefinationParser.cs" />
+    <Compile Include="BehaviourObjectDefinitionParser.cs" />
     <Compile Include="BehaviourNamespaceParser.cs" />
     <Compile Include="ServiceContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewBehaviourObjectDefinationParser.cs" />
+    <Compile Include="ViewBehaviourObjectDefinitionParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Inversion.Process\Inversion.Process.csproj">

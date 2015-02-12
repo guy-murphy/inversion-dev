@@ -5,14 +5,13 @@ using Inversion.Process;
 using Spring.Objects.Factory.Support;
 using Spring.Objects.Factory.Xml;
 
-
 namespace Inversion.Spring {
 
 	/// <summary>
-	/// Implements a parser that is able to parse behaviour definations
+	/// Implements a parser that is able to parse behaviour definitions
 	/// in a Spring XML object config.
 	/// </summary>
-	public class BehaviourObjectDefinationParser : AbstractSimpleObjectDefinitionParser {
+	public class BehaviourObjectDefinitionParser : AbstractSimpleObjectDefinitionParser {
 
 		/// <summary>
 		/// Gets a value indicating whether an ID should be generated instead 
@@ -37,8 +36,8 @@ namespace Inversion.Spring {
 		/// <summary>
 		/// Parse the supplied XmlElement and populate the supplied ObjectDefinitionBuilder as required.
 		/// </summary>
-		/// <param name="xml">The obejct representation in XML.</param>
-		/// <param name="builder">The builder used to build the object defination in Spring.</param>
+		/// <param name="xml">The object representation in XML.</param>
+		/// <param name="builder">The builder used to build the object definition in Spring.</param>
 		protected override void DoParse(XmlElement xml, ObjectDefinitionBuilder builder) {
 			if (xml == null) throw new ArgumentNullException("xml", "The object description provided is null.");
 			if (xml.OwnerDocument == null)  throw new ArgumentException("The xml provided to parse must have an owning document to obtain namespace information from.");

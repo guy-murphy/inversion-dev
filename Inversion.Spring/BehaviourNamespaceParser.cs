@@ -16,11 +16,11 @@ namespace Inversion.Spring {
 		///             elements have been parsed.
 		/// </summary>
 		public override void Init() {
-			this.RegisterObjectDefinitionParser("behaviour", new BehaviourObjectDefinationParser());
-			this.RegisterObjectDefinitionParser("message-trace", new BehaviourObjectDefinationParser());
-			this.RegisterObjectDefinitionParser("message-sequence", new BehaviourObjectDefinationParser());
+			this.RegisterObjectDefinitionParser("behaviour", new BehaviourObjectDefinitionParser());
+			this.RegisterObjectDefinitionParser("message-trace", new BehaviourObjectDefinitionParser());
+			this.RegisterObjectDefinitionParser("message-sequence", new BehaviourObjectDefinitionParser());
 
-			this.RegisterObjectDefinitionParser("view", new ViewBehaviourObjectDefinationParser());
+			this.RegisterObjectDefinitionParser("view", new ViewBehaviourObjectDefinitionParser());
 
 		}
 	}

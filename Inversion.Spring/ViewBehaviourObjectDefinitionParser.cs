@@ -4,10 +4,10 @@ using Spring.Objects.Factory.Xml;
 
 namespace Inversion.Spring {
 	/// <summary>
-	/// Implements a parser that is able to parse view behaviour definations
+	/// Implements a parser that is able to parse view behaviour definitions
 	/// in a Spring XML object config.
 	/// </summary>
-	public class ViewBehaviourObjectDefinationParser : AbstractSimpleObjectDefinitionParser {
+	public class ViewBehaviourObjectDefinitionParser : AbstractSimpleObjectDefinitionParser {
 
 		/// <summary>
 		/// Gets a value indicating whether an ID should be generated instead 
@@ -33,7 +33,7 @@ namespace Inversion.Spring {
 		/// Parse the supplied XmlElement and populate the supplied ObjectDefinitionBuilder as required.
 		/// </summary>
 		/// <param name="xml">The obejct representation in XML.</param>
-		/// <param name="builder">The builder used to build the object defination in Spring.</param>
+		/// <param name="builder">The builder used to build the object definition in Spring.</param>
 		protected override void DoParse(XmlElement xml, ObjectDefinitionBuilder builder) {
 			// all behaviours with config being parsed have @respondsTo
 			string respondsTo = xml.GetAttribute("responds-to");
