@@ -125,6 +125,17 @@ namespace Inversion.Process {
 		bool Has(string frame, string slot);
 
 		/// <summary>
+		/// Determines whether or not the configuration has any elements with the
+		/// frame and slot specified.
+		/// </summary>
+		/// <param name="frame">The frame of the element.</param>
+		/// <returns>
+		/// Returns true if the configuration containes the specified element;
+		/// otherwise, returns false.
+		/// </returns>
+		bool Has(string frame);
+
+		/// <summary>
 		/// Determines whether or not the configuration has all elements with the
 		/// frame, slot, name and values specified.
 		/// </summary>

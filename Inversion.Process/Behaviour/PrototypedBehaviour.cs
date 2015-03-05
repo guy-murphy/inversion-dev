@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 
 namespace Inversion.Process.Behaviour {
 	/// <summary>
@@ -57,5 +59,16 @@ namespace Inversion.Process.Behaviour {
 			return base.Condition(ev, context) && this.Prototype.Criteria.All(criteria => criteria(this.Configuration, ev));
 		}
 
+		/// <summary>
+		/// Provide recovery from failures.
+		/// </summary>
+		/// <param name="ev">The event to process.</param>
+		/// <param name="err">The exception raised by the behaviours actions.</param>
+		public override void Rescue(IEvent ev, Exception err) {
+			base.Rescue(ev, err);
+			string msg = String.Concat("error::", ev.Message);
+			Event errEv = new Event(ev.Context, msg, ev.Object, ev.Params);
+			errEv.Fire();
+		}
 	}
 }

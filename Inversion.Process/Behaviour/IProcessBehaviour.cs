@@ -1,4 +1,6 @@
-﻿namespace Inversion.Process.Behaviour {
+﻿using System;
+
+namespace Inversion.Process.Behaviour {
 
 	/// <summary>
 	/// The base type for behaviours in Conclave. Behaviours are intended
@@ -62,6 +64,13 @@
 		/// <param name="ev">The event to process.</param>
 		/// <param name="context">The context to use.</param>
 		void Action(IEvent ev, IProcessContext context);
+
+		/// <summary>
+		/// Provide recovery from failures.
+		/// </summary>
+		/// <param name="ev">The event to process.</param>
+		/// <param name="err">The exception raised by the behaviours actions.</param>
+		void Rescue(IEvent ev, Exception err);
 
 		/// <summary>
 		/// The considtion that determines whether of not the behaviours action

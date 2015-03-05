@@ -105,5 +105,14 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="context">The context upon which to perform any action.</param>
 		public abstract void Action(IEvent ev, IProcessContext context);
 
+		/// <summary>
+		/// Provide recovery from failures.
+		/// </summary>
+		/// <param name="ev">The event to process.</param>
+		/// <param name="err">The exception raised by the behaviours actions.</param>
+		public virtual void Rescue(IEvent ev, Exception err) {
+			ev.Context.Errors.Add(new ErrorMessage(err.Message, err));
+		}
+
 	}
 }

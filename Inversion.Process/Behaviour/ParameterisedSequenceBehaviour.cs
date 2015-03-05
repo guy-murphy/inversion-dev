@@ -26,11 +26,7 @@ namespace Inversion.Process.Behaviour {
 		/// <param name="ev">The event to consult.</param>
 		/// <param name="context">The context upon which to perform any action.</param>
 		public override void Action(IEvent ev, IProcessContext context) {
-			// this needs to be changed to perform a single pass over the config
-			// at the moment this will perform multiple passes
-			foreach (string slot in this.Configuration.GetSlots("fire")) {
-				context.Fire(slot, this.Configuration.GetMap("fire", slot));
-			}
+			this.FireSequenceFromConfig(context, "fire");
 		}
 	}
 }

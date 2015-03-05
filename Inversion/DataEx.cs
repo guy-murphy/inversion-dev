@@ -82,6 +82,16 @@ namespace Inversion {
 			return JObject.Parse(self.ToJson());
 		}
 
+		/// <summary>
+		/// Provides a data view snapshot of the data object.
+		/// </summary>
+		/// <param name="self">The `IData` object to act upon.</param>
+		/// <returns>
+		/// Returns a `DataView` snapshot of the data object.
+		/// </returns>
+		public static DataView ToDataView(this IData self) {
+			return new DataView(self);
+		}
 
 	}
 }

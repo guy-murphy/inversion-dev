@@ -213,7 +213,15 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="behaviour">The behaviour to register with this context.</param>
 		public void Register(IProcessBehaviour behaviour) {
-			this.Bus.Where(behaviour.Condition).Subscribe((IEvent ev) => behaviour.Action(ev));
+			this.Bus.Where(behaviour.Condition).Subscribe(
+				(IEvent ev) => {
+					try {
+						behaviour.Action(ev);
+					} catch (Exception err) {
+						behaviour.Rescue(ev, err);
+					}
+				}
+			);
 		}
 
 		/// <summary>

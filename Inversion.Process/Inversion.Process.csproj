@@ -65,6 +65,7 @@
     <Compile Include="Behaviour\IPrototypeCase.cs" />
     <Compile Include="Behaviour\IPrototyped.cs" />
     <Compile Include="Behaviour\IPrototypedBehaviour.cs" />
+    <Compile Include="Behaviour\ProcessBehaviourEx.cs" />
     <Compile Include="Behaviour\Prototype.cs" />
     <Compile Include="Behaviour\PrototypedBehaviour.cs" />
     <Compile Include="Behaviour\SelectionCriteria.cs" />
