@@ -67,7 +67,7 @@
     <Compile Include="Extensions\StringBuilderEx.cs" />
     <Compile Include="Extensions\StringEx.cs" />
     <Compile Include="IConsumeData.cs" />
-    <Compile Include="IDate.cs" />
+    <Compile Include="IData.cs" />
     <Compile Include="IMutate.cs" />
     <Compile Include="JDataObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
