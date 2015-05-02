@@ -16,6 +16,7 @@ namespace Inversion.Naiad {
 
 		private readonly ConcurrentDictionary<string, object> _ctors = new ConcurrentDictionary<string, object>();
 		private readonly ConcurrentDictionary<string, object> _objs = new ConcurrentDictionary<string, object>();
+        private readonly ConcurrentDictionary<string, bool> _isSingleton = new ConcurrentDictionary<string, bool>();
 
 		~ServiceContainer() {
 			Dispose(false);
@@ -37,23 +38,44 @@ namespace Inversion.Naiad {
 			_lock.EnterWriteLock();
 			try {
 				_ctors[name] = ctor;
+			    _isSingleton[name] = true;
 			} finally {
 				_lock.ExitWriteLock();
 			}
 		}
 
+	    public void RegisterServiceNonSingleton<T>(string name, Func<IServiceContainer, T> ctor) {
+	        _lock.EnterWriteLock();
+	        try {
+	            _ctors[name] = ctor;
+	            _isSingleton[name] = false;
+	        } finally {
+	            _lock.ExitWriteLock();
+	        }
+	    }
+
 		public T GetService<T>(string name) where T : class {
 			_lock.EnterReadLock();
 			try {
 				T obj = null;
-				if (_objs.ContainsKey(name)) {
+			    bool singleton = _isSingleton.ContainsKey(name) && _isSingleton[name];
+				if (singleton && _objs.ContainsKey(name)) {
 					return _objs[name] as T;
 				} else {
-					Func<IServiceContainer, T> ctor = _ctors[name] as Func<IServiceContainer, T>;
+				    var item = _ctors[name];
+				    if (item == null) {
+				        return null;
+				    }
+                    Func<IServiceContainer, T> ctor = null;
+                    if(item is Func<IServiceContainer, T>) {
+                        ctor = (Func<IServiceContainer, T>) _ctors[name];
+				    }
 					if (ctor != null) {
 						obj = ctor(this);
 					}
-					_objs[name] = obj;
+				    if (singleton) {
+				        _objs[name] = obj;
+				    }
 					return obj;
 				}
 			} finally {
