@@ -44,13 +44,17 @@ namespace Inversion.Process.Behaviour {
 				match: (config) => config.Has("context", "match-any"),
 				criteria: (config, ev) => config.GetElements("context", "match-any").Any(element => ev.Context.HasParamValue(element.Name, element.Value))
 			);
+            NamedCases["context-match-none"] = new Case(
+                match: (config) => config.Has("context", "match-none"),
+                criteria: (config, ev) => !config.GetElements("context", "match-none").Any(element => ev.Context.HasParamValue(element.Name, element.Value))
+            );
 			NamedCases["context-flagged"] = new Case(
 				match: (config) => config.Has("context", "flagged"),
 				criteria: (config, ev) => config.GetMap("context", "flagged").All(kv => kv.Value == "true" && ev.Context.IsFlagged(kv.Key) || kv.Value != "true" && !ev.Context.IsFlagged(kv.Key))
 			);
 			NamedCases["context-excludes"] = new Case(
 				match: (config) => config.Has("context", "excludes"),
-				criteria: (config, ev) => config.GetMap("context", "excludes").All(kv => !ev.Context.Params.Contains(kv))
+				criteria: (config, ev) => config.GetMap("context", "excludes").All(kv => !ev.Context.Params.ContainsKey(kv.Key))
 			);
 			NamedCases["control-state-has"] = new Case(
 				match: (config) => config.Has("control-state", "has"),
