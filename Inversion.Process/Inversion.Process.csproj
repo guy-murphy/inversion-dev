@@ -87,6 +87,7 @@
     <Compile Include="IProcessContext.cs" />
     <Compile Include="IServiceContainer.cs" />
     <Compile Include="Behaviour\ProcessBehaviour.cs" />
+    <Compile Include="IServiceContainerRegistrar.cs" />
     <Compile Include="ProcessContext.cs" />
     <Compile Include="ProcessContextEx.cs" />
     <Compile Include="ProcessException.cs" />

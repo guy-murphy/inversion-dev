@@ -4,7 +4,7 @@ using System.Threading;
 using Inversion.Process;
 
 namespace Inversion.Naiad {
-	public class ServiceContainer : IServiceContainer {
+	public class ServiceContainer : IServiceContainer, IServiceContainerRegistrar {
 
 		private static readonly ServiceContainer _instance = new ServiceContainer();
 
