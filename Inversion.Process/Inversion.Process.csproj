@@ -70,6 +70,7 @@
     <Compile Include="Behaviour\Prototype.cs" />
     <Compile Include="Behaviour\PrototypedBehaviour.cs" />
     <Compile Include="Behaviour\SelectionCriteria.cs" />
+    <Compile Include="Behaviour\SetFlagBehaviour.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Behaviour\ConfiguredBehaviour.cs" />
     <Compile Include="Behaviour\IConfiguredBehaviour.cs" />
