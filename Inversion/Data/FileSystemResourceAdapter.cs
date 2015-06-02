@@ -25,13 +25,13 @@ namespace Inversion.Data {
 		}
 
 		/// <summary>
-		/// Insrantiates a new resource adapter with the base set to the
+		/// Instantiates a new resource adapter backed by a file-system with the base set to the
 		/// current app domain base directory.
 		/// </summary>
 		public FileSystemResourceAdapter() : this(AppDomain.CurrentDomain.BaseDirectory) { }
 
 		/// <summary>
-		/// Instantiates a new resource adapter with the base specified.
+		/// Instantiates a new resource adapter backed by a file-system with the base specified.
 		/// </summary>
 		/// <param name="base">The base directory to use for this adapter.</param>
 		public FileSystemResourceAdapter(string @base) {

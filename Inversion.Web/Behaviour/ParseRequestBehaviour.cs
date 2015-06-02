@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using Inversion.Process;
 
@@ -12,7 +13,7 @@ namespace Inversion.Web.Behaviour {
 
 		// TODO: redo this implimentation as it's overly brittle
 		// my thinking about both appDirectory and
-		// the discovery heuristic is fuzzy
+		// the discovery heuristic is fuzzy... change this to use behaviour configuration
 
 		// the app directory is that portion of the path that is not siginificant to the
 		// request but instead represents the root directory of the application
@@ -64,9 +65,9 @@ namespace Inversion.Web.Behaviour {
 			}
 
 			// import query string and form values
-			context.Params.Import(context.Request.Params);
+			context.Params.Import(context.Request.Params.Where(kv => !kv.Key.StartsWith("_")));
 			// establish flags
-			foreach (string flag in context.Request.Flags) {
+			foreach (string flag in context.Request.Flags.Where(f => !f.StartsWith("_"))) {
 				context.Flags.Add(flag);
 			}
 			context.Params.Import(context.Request.Headers);
