@@ -36,8 +36,9 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable">
-      <HintPath>..\packages\System.Collections.Immutable.1.1.32-beta\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    <Reference Include="System.Collections.Immutable, Version=1.0.34.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Reactive.Core">
@@ -69,6 +70,7 @@
     <Compile Include="Behaviour\Prototype.cs" />
     <Compile Include="Behaviour\PrototypedBehaviour.cs" />
     <Compile Include="Behaviour\SelectionCriteria.cs" />
+    <Compile Include="Behaviour\SetFlagBehaviour.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Behaviour\ConfiguredBehaviour.cs" />
     <Compile Include="Behaviour\IConfiguredBehaviour.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="IProcessContext.cs" />
     <Compile Include="IServiceContainer.cs" />
     <Compile Include="Behaviour\ProcessBehaviour.cs" />
+    <Compile Include="IServiceContainerRegistrar.cs" />
     <Compile Include="ProcessContext.cs" />
     <Compile Include="ProcessContextEx.cs" />
     <Compile Include="ProcessException.cs" />

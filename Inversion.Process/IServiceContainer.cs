@@ -4,10 +4,10 @@ namespace Inversion.Process {
 
 	/// <summary>
 	/// Represent the contract of a simple service
-	/// container from which services may be ontained by name.
-	/// This interface focused on consuming services from a container
-	/// and does not speak to the configuration or management
-	/// of a container.
+	/// container from which services may be obtained by name.
+	/// This interface is focused on consuming services from a
+	/// container and does not speak to the configuration or
+	/// management of a container.
 	/// </summary>
 	public interface IServiceContainer : IDisposable {
 		/// <summary>

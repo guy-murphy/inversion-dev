@@ -178,7 +178,7 @@ namespace Inversion.Process {
 		/// it into a new instance.
 		/// </summary>
 		/// <returns>The newly cloned event.</returns>
-		public Event Clone() {
+		public virtual Event Clone() {
 			return new Event(this);
 		}
 
@@ -291,7 +291,7 @@ namespace Inversion.Process {
 		/// Produces an xml representation of the model.
 		/// </summary>
 		/// <param name="xml">The writer to used to write the xml to. </param>
-		public void ToXml(XmlWriter xml) {
+		public virtual void ToXml(XmlWriter xml) {
 			xml.WriteStartElement("event");
 			xml.WriteAttributeString("message", this.Message);
 			xml.WriteStartElement("params");
@@ -309,7 +309,7 @@ namespace Inversion.Process {
 		/// Produces a json respresentation of the model.
 		/// </summary>
 		/// <param name="json">The writer to use for producing json.</param>
-		public void ToJson(JsonWriter json) {
+		public virtual void ToJson(JsonWriter json) {
 			json.WriteStartObject();
 			json.WritePropertyName("_type");
 			json.WriteValue("event");
