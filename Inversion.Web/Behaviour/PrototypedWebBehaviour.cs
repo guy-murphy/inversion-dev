@@ -12,20 +12,20 @@ namespace Inversion.Web.Behaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		protected PrototypedWebBehaviour(string respondsTo) : this(respondsTo, new WebPrototype()) {}
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		/// <param name="prototype">The prototype to use in configuring this behaviour.</param>
 		protected PrototypedWebBehaviour(string respondsTo, IPrototype prototype) : base(respondsTo, prototype) { }
 
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		/// <param name="config">The configuration elements to use in configuring this behaviour.</param>
 		protected PrototypedWebBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config): base(respondsTo, new WebPrototype(config)) {
 			

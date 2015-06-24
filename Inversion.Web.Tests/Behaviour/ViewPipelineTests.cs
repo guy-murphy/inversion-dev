@@ -34,7 +34,7 @@ namespace Inversion.Web.Tests.Behaviour {
 			Naiad.ServiceContainer.Instance.RegisterService("test-behaviours",
 				container => {
 					return new List<IProcessBehaviour> {
-						new MessageTraceBehaviour("*", new Prototype.Builder {
+						new MessageTraceBehaviour("*", new Configuration.Builder {
 								{"event", "match", "trace", "true"}
 							}
 						),

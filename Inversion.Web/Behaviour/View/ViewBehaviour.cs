@@ -80,7 +80,7 @@ namespace Inversion.Web.Behaviour.View {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
 		protected ViewBehaviour(string respondsTo, string contentType) : base(respondsTo) {
 			_contentType = contentType;

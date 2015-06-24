@@ -22,7 +22,7 @@ namespace Inversion.Process.Behaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		protected ProcessBehaviour(string respondsTo) {
 			_respondsTo = respondsTo;
 		}

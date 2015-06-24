@@ -17,12 +17,12 @@ namespace Inversion.StringTemplate.Behaviour.View {
 		/// Creates a new instance of the behaviour, with the default
 		/// content type of "text/html".
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		public StringTemplateViewBehaviour(string respondsTo) : this(respondsTo, "text/html") { }
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
 		public StringTemplateViewBehaviour(string respondsTo, string contentType)
 			: base(respondsTo, contentType) {}

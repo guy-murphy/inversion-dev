@@ -10,7 +10,7 @@ namespace Inversion.Web.Owin {
 	public class OwinRequest : IWebRequest {
 
 		private readonly IOwinRequest _request;
-		private readonly IRequestFilesCollection _files ;
+		//private readonly IRequestFilesCollection _files ;
 		private readonly IRequestCookieCollection _cookies;
 		private readonly UrlInfo _urlInfo;
 		private readonly ImmutableDictionary<string, string> _params;
@@ -34,7 +34,7 @@ namespace Inversion.Web.Owin {
 		/// as part of this request.
 		/// </summary>
 		public IRequestFilesCollection Files {
-			get { return _files; }
+			get { return null; /*_files; */}
 		}
 
 		/// <summary>

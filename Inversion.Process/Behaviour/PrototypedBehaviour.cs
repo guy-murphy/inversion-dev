@@ -26,12 +26,12 @@ namespace Inversion.Process.Behaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		protected PrototypedBehaviour(string respondsTo) : this(respondsTo, new Prototype()) {}
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		/// <param name="prototype">The prototype to use in configuring this behaviour.</param>
 		protected PrototypedBehaviour(string respondsTo, IPrototype prototype): base(respondsTo) {
 			_prototype = prototype;
@@ -39,7 +39,7 @@ namespace Inversion.Process.Behaviour {
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
-		/// <param name="respondsTo">The name of the behaviour.</param>
+		/// <param name="respondsTo">The message the behaviour responds to.</param>
 		/// <param name="config">The configuration elements to use in configuring this behaviour.</param>
 		protected PrototypedBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config): base(respondsTo) {
 			_prototype = new Prototype(config);
