@@ -49,7 +49,7 @@ namespace Inversion.Web.Behaviour {
 		/// <returns>
 		/// Returns true if the selection criteria for this behaviour each return true.
 		///  </returns>
-		public bool Condition(IEvent ev, IWebContext context) {
+		public virtual bool Condition(IEvent ev, IWebContext context) {
 			return base.Condition(ev, context);
 		}
 
