@@ -16,8 +16,13 @@ namespace Inversion.Web.AspNet {
 			get {
 				if (_memo == null) {
 					_memo = new Dictionary<string, IRequestFile>();
-					foreach (HttpPostedFile file in _files) {
-						_memo[file.FileName] = new AspNetPostedFile(file);
+					foreach (string key in _files.AllKeys)
+					{
+					    HttpPostedFile file = _files[key];
+					    if (file != null)
+					    {
+					        _memo[file.FileName] = new AspNetPostedFile(file);
+					    }
 					}
 				}
 				return _memo;
