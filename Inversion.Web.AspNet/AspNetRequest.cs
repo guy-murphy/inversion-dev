@@ -137,7 +137,11 @@ namespace Inversion.Web.AspNet {
 
 			// import the post values
 			foreach (string key in _underlyingRequest.Form.Keys) {
-				parms.Add(key, _underlyingRequest.Form.Get(key));
+                // check for null in form keys (can happen in some POST scenarios)
+			    if (key != null)
+			    {
+			        parms.Add(key, _underlyingRequest.Form.Get(key));
+			    }
 			}
 
 			if (_underlyingRequest.ContentLength > 0 && _underlyingRequest.Files.Count == 0) {

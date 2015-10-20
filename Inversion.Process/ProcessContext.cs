@@ -212,7 +212,7 @@ namespace Inversion.Process {
 		/// it is consulted for each event fired on this context.
 		/// </summary>
 		/// <param name="behaviour">The behaviour to register with this context.</param>
-		public void Register(IProcessBehaviour behaviour) {
+		public virtual void Register(IProcessBehaviour behaviour) {
 			this.Bus.Where(behaviour.Condition).Subscribe(
 				(IEvent ev) => {
 					try {
@@ -229,7 +229,7 @@ namespace Inversion.Process {
 		/// each one is consulted when an event is fired on this context.
 		/// </summary>
 		/// <param name="behaviours">The behaviours to register with this context.</param>
-		public void Register(IEnumerable<IProcessBehaviour> behaviours) {
+		public virtual void Register(IEnumerable<IProcessBehaviour> behaviours) {
 			foreach (IProcessBehaviour behaviour in behaviours) {
 				this.Register(behaviour);
 			}
@@ -243,7 +243,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="condition">The predicate to use as the behaviours condition.</param>
 		/// <param name="action">The action to use as the behaviours action.</param>
-		public void Register(Predicate<IEvent> condition, Action<IEvent, IProcessContext> action) {
+		public virtual void Register(Predicate<IEvent> condition, Action<IEvent, IProcessContext> action) {
 			this.Register(new RuntimeBehaviour(String.Empty, condition, action));
 		}
 
@@ -254,7 +254,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="ev">The event to fire on this context.</param>
 		/// <returns></returns>
-		public IEvent Fire(IEvent ev) {
+		public virtual IEvent Fire(IEvent ev) {
 			if (ev.Context != this) throw new ProcessException("The event has a different context that the one on which it has been fired.");
 			try {
 				this.Bus.OnNext(ev);
@@ -272,7 +272,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="message">The message to assign to the event.</param>
 		/// <returns>Returns the event that was constructed and fired on this context.</returns>
-		public IEvent Fire(string message) {
+		public virtual IEvent Fire(string message) {
 			IEvent ev = new Event(this, message);
 			this.Fire(ev);
 			return ev;
@@ -286,7 +286,7 @@ namespace Inversion.Process {
 		/// <param name="message">The message to assign to the event.</param>
 		/// <param name="parms">The parameters to populate the event with.</param>
 		/// <returns>Returns the event that was constructed and fired on this context.</returns>
-		public IEvent Fire(string message, IDictionary<string, string> parms) {
+		public virtual IEvent Fire(string message, IDictionary<string, string> parms) {
 			IEvent ev = new Event(this, message, parms);
 			this.Fire(ev);
 			return ev;
@@ -300,7 +300,7 @@ namespace Inversion.Process {
 		/// <param name="message">The message to assign to the event.</param>
 		/// <param name="parms">The parameters to copy from the context.</param>
 		/// <returns>Returns the event that was constructed and fired on this context.</returns>
-		public IEvent FireWith(string message, params string[] parms) {
+		public virtual IEvent FireWith(string message, params string[] parms) {
 			IEvent ev = new Event(this, message, parms);
 			this.Fire(ev);
 			return ev;
@@ -310,7 +310,7 @@ namespace Inversion.Process {
 		/// Instructs the context that operations have finished, and that while it
 		/// may still be consulted no further events will be fired.
 		/// </summary>
-		public void Completed() {
+		public virtual void Completed() {
 			this.Bus.OnCompleted();
 		}
 

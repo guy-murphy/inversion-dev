@@ -27,5 +27,15 @@ namespace Inversion.Web.Owin {
 		public void Delete(string key) {
 			_cookies.Delete(key);
 		}
-	}
+
+        public void Append(string key, string[] values, CookieOptions options)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Append(string key, string[] values)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }
