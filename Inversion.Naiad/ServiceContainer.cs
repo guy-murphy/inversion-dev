@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Inversion.Process;
 
 namespace Inversion.Naiad {
-	public class ServiceContainer : IServiceContainer, IServiceContainerRegistrar {
-
+	public class ServiceContainer : IServiceContainerRegistrar, IServiceContainerQuery
+    {
 		private static readonly ServiceContainer _instance = new ServiceContainer();
 
 		private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
@@ -34,10 +36,10 @@ namespace Inversion.Naiad {
 			}
 		}
 
-		public void RegisterService<T>(string name, Func<IServiceContainer, T> ctor) {
+		public void RegisterService<T>(string name, Func<IServiceContainer, T> service) {
 			_lock.EnterWriteLock();
 			try {
-				_ctors[name] = ctor;
+				_ctors[name] = service;
 			    _isSingleton[name] = true;
 			} finally {
 				_lock.ExitWriteLock();
@@ -92,5 +94,33 @@ namespace Inversion.Naiad {
 			}
 		}
 
-	}
+	    public IEnumerable<string> GetServiceNamesOfType<T>(bool singletons = true) where T : class
+	    {
+            // ensure enumerables are materialised with ToList before exiting the read lock
+
+            try
+            {
+                _lock.EnterReadLock();
+
+                if (singletons)
+                {
+                    return
+                        _objs
+                            .Where(o => _isSingleton[o.Key] && o.Value is Func<IServiceContainer, T>)
+                            .Select(o => o.Key)
+                            .ToList();
+                }
+
+                return
+                    _ctors
+                        .Where(c => !_isSingleton[c.Key] && c.Value is Func<IServiceContainer, T>)
+                        .Select(c => c.Key)
+                        .ToList();
+            }
+            finally
+	        {
+	            _lock.ExitReadLock();
+	        }
+	    }
+    }
 }
