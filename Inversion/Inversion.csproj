@@ -11,6 +11,7 @@
     <AssemblyName>Inversion</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Collections\ConcurrentDataCollection.cs" />
     <Compile Include="Collections\ConcurrentDataDictionary.cs" />
+    <Compile Include="Collections\DataList.cs" />
     <Compile Include="Collections\DataCollection.cs" />
     <Compile Include="Collections\DataDictionary.cs" />
     <Compile Include="Collections\DataModel.cs" />

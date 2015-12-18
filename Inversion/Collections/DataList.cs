@@ -8,11 +8,11 @@ using Newtonsoft.Json.Linq;
 namespace Inversion.Collections {
 
 	/// <summary>
-	/// An implementation of <see cref="IDataCollection{T}"/> as a simple <see cref="HashSet{T}"/>. 
+	/// An implementation of <see cref="IDataCollection{T}"/> as a simple <see cref="List{T}"/>. 
 	/// </summary>
 	/// <typeparam name="T">The type of elements in the list.</typeparam>
 
-	public class DataCollection<T> : HashSet<T>, IDataCollection<T> {
+	public class DataList<T> : List<T>, IDataCollection<T> {
 
 		private readonly string _label;
 
@@ -39,14 +39,14 @@ namespace Inversion.Collections {
 		/// Instantiates a new empty collection with the lable provided.
 		/// </summary>
 		/// <param name="label">The label of the collection.</param>
-		public DataCollection(string label) {
+		public DataList(string label) {
 			_label = label;
 		}
 
 		/// <summary>
 		/// Instantiates a new, empty data collection.
 		/// </summary>
-		public DataCollection() : this("list") { }
+		public DataList() : this("list") { }
 
 		/// <summary>
 		/// Instantiates a new data collection with elements
@@ -57,20 +57,20 @@ namespace Inversion.Collections {
 		/// new data collection.
 		/// </param>
 
-		public DataCollection(IEnumerable<T> collection) : base(collection) { }
+		public DataList(IEnumerable<T> collection) : base(collection) { }
 
 		/// <summary>
 		/// Instantiates a collection populating it with the elements
 		/// of the provided collection.
 		/// </summary>
 		/// <param name="other">The other collection to populate the new collection with.</param>
-		public DataCollection(IDataCollection<T> other)
+		public DataList(IDataCollection<T> other)
 			: base(other) {
 			_label = other.Label;
 		}
 
 		object ICloneable.Clone() {
-			return new DataCollection<T>(this);
+			return new DataList<T>(this);
 		}
 
 		/// <summary>
@@ -78,8 +78,8 @@ namespace Inversion.Collections {
 		/// a new collection populated with the elements of this one.
 		/// </summary>
 		/// <returns>Returns a new collection populated by this one.</returns>
-		public DataCollection<T> Clone() {
-			return new DataCollection<T>(this);
+		public DataList<T> Clone() {
+			return new DataList<T>(this);
 		}
 
 		/// <summary>
