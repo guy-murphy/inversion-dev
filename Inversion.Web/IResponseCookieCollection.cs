@@ -27,7 +27,18 @@
         /// <param name="key">The key of the cookie to remove.</param>
         void Delete(string key);
 
+        /// <summary>
+        /// Appends a list of cookie values with the specified key and options to the response.
+        /// </summary>
+        /// <param name="key">The key of the cookie.</param>
+        /// <param name="values">The values of the cookie.</param>
+        /// <param name="options">The cookie options.</param>
         void Append(string key, string[] values, CookieOptions options);
+        /// <summary>
+        /// Appends a list of cookie values with the specified key to the response.
+        /// </summary>
+        /// <param name="key">The key of the cookie.</param>
+        /// <param name="values">The values of the cookie.</param>
         void Append(string key, string[] values);
     }
 }
