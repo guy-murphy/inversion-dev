@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-
+using System.IO;
 using Microsoft.Owin;
 
 using Inversion.Data;
@@ -135,10 +135,15 @@ namespace Inversion.Web.Owin {
 				}
 			}
 			// import the payload
-			_payload = request.Body.AsMemoryStream().AsText();
+			//_payload = request.Body.AsMemoryStream().AsText();
 
-			// import the headers
-			ImmutableDictionary<string, string>.Builder headers = ImmutableDictionary.CreateBuilder<string, string>();
+            using (TextReader reader = new StreamReader(request.Body))
+            {
+                _payload = reader.ReadToEnd();
+            }
+
+            // import the headers
+            ImmutableDictionary<string, string>.Builder headers = ImmutableDictionary.CreateBuilder<string, string>();
 			foreach (KeyValuePair<string, string[]> entry in request.Headers) {
 				headers.Add(entry.Key, entry.Value[0]);
 			}

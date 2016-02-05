@@ -331,7 +331,7 @@ namespace Inversion.Process {
 		/// <param name="context">The context to which the new event will be bound.</param>
 		/// <param name="xml">The xml representation of an event.</param>
 		/// <returns>Returns a new event.</returns>
-		public static Event FromXml(ProcessContext context, string xml) {
+		public static Event FromXml(IProcessContext context, string xml) {
 			try {
 				XElement ev = XElement.Parse(xml);
 				if (ev.Name == "event") {
@@ -354,7 +354,7 @@ namespace Inversion.Process {
 		/// <param name="context">The context to which the new event will be bound.</param>
 		/// <param name="json">The json representation of an event.</param>
 		/// <returns>Returns a new event.</returns>
-		public static Event FromJson(ProcessContext context, string json) {
+		public static Event FromJson(IProcessContext context, string json) {
 			try {
 				JObject job = JObject.Parse(json);
 				if (job.Value<string>("_type") == "event") {
