@@ -32,6 +32,10 @@ namespace Inversion.Process.Behaviour {
 				match: (config) => config.Has("event", "match"),
 				criteria: (config, ev) => ev.HasParamValues(config.GetMap("event", "match"))
 			);
+		    NamedCases["event-excludes"] = new Case(
+                match: (config) => config.Has("event", "excludes"),
+                criteria: (config, ev) => config.GetNames("event", "excludes").All(key => !ev.Params.ContainsKey(key))
+            );
 			NamedCases["context-has"] = new Case(
 				match: (config) => config.Has("context", "has"),
 				criteria: (config, ev) => ev.Context.HasParams(config.GetNames("context", "has"))
