@@ -59,7 +59,10 @@ namespace Inversion.Web.Behaviour {
 					if (entry.Value is IData) {
 						model[entry.Key] = entry.Value as IData;
 					} else {
-						model[entry.Key] = new TextData(entry.Value.ToString());
+					    if (entry.Value != null)
+					    {
+					        model[entry.Key] = new TextData(entry.Value.ToString());
+					    }
 					}
 				}
 			}
