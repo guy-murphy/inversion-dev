@@ -46,7 +46,7 @@ namespace Inversion.Web.Behaviour.View {
 
 		private readonly string _contentType;
 		private readonly bool _enableCache;
-
+	    private readonly bool _disableDirective;
 
 		/// <summary>
 		/// Instantiates a new xslt view behaviour used to provide xslt templating
@@ -85,14 +85,29 @@ namespace Inversion.Web.Behaviour.View {
 			_enableCache = enableCache;
 		}
 
-		/// <summary>
+        /// <summary>
 		/// Instantiates a new xslt view behaviour used to provide xslt templating
 		/// primarily for web applications.
 		/// </summary>
 		/// <param name="respondsTo">The message the behaviour has set as responding to.</param>
+		/// <param name="contentType">The content type of the view step produced from this behaviour.</param>
 		/// <param name="enableCache">Specifies whether or not the xslt compilation should be cached.</param>
-		/// <remarks>Defaults to a content type of "text/xml".</remarks>
-		public XsltViewBehaviour(string respondsTo, bool enableCache)
+		/// <param name="disableDirective">Specifies whether or not to disable the xml directive.</param>
+		public XsltViewBehaviour(string respondsTo, string contentType, bool enableCache, bool disableDirective)
+            : this(respondsTo, contentType)
+        {
+            _enableCache = enableCache;
+            _disableDirective = disableDirective;
+        }
+
+        /// <summary>
+        /// Instantiates a new xslt view behaviour used to provide xslt templating
+        /// primarily for web applications.
+        /// </summary>
+        /// <param name="respondsTo">The message the behaviour has set as responding to.</param>
+        /// <param name="enableCache">Specifies whether or not the xslt compilation should be cached.</param>
+        /// <remarks>Defaults to a content type of "text/xml".</remarks>
+        public XsltViewBehaviour(string respondsTo, bool enableCache)
 			: this(respondsTo) {
 			_enableCache = enableCache;
 		}
@@ -168,7 +183,28 @@ namespace Inversion.Web.Behaviour.View {
 						
 						string inputText = context.ViewSteps.Last.Content ?? context.ViewSteps.Last.Model.ToXml();
 						input.LoadXml(inputText);
-						xsl.Transform(input, args, new StringWriterWithEncoding(result, Encoding.UTF8));
+
+
+					    if (_disableDirective)
+					    {
+					        XmlWriterSettings writerSettings = new XmlWriterSettings
+					        {
+					            OmitXmlDeclaration = true,
+                                ConformanceLevel = ConformanceLevel.Auto
+					        };
+					        using (XmlWriter writer = XmlWriter.Create(result, writerSettings))
+					        {
+					            xsl.Transform(input, args, writer);
+					        }
+					    }
+					    else
+					    {
+					        using (StringWriterWithEncoding writer = new StringWriterWithEncoding(result, Encoding.UTF8))
+					        {
+                                xsl.Transform(input, args, writer);
+                            }
+                        }
+
 						context.ViewSteps.CreateStep(templateName, _contentType, result.ToString());
 						break; // we've found and processed our template, no need to keep looking
 					}
