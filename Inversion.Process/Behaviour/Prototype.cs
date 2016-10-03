@@ -54,7 +54,8 @@ namespace Inversion.Process.Behaviour {
             );
 			NamedCases["context-flagged"] = new Case(
 				match: (config) => config.Has("context", "flagged"),
-				criteria: (config, ev) => config.GetMap("context", "flagged").All(kv => kv.Value == "true" && ev.Context.IsFlagged(kv.Key) || kv.Value != "true" && !ev.Context.IsFlagged(kv.Key))
+				criteria: (config, ev) => config.GetMap("context", "flagged").All(kv =>
+                    ((String.IsNullOrEmpty(kv.Value) || kv.Value == "true") && ev.Context.IsFlagged(kv.Key)) || (kv.Value != "true" && !ev.Context.IsFlagged(kv.Key)))
 			);
 			NamedCases["context-excludes"] = new Case(
 				match: (config) => config.Has("context", "excludes"),
