@@ -91,37 +91,39 @@ namespace Inversion.Web.Tests.Behaviour {
 			return context;
 		}
 
-		/// <summary>
-		/// In this test we simply test firing some test messages,
-		/// get an xml view of the resulting view state, and test
-		/// that view for expected articles.
-		/// </summary>
-		[TestMethod]
-		public void BasicXmlView() {
-			IWebContext context = this.GetContext();
-			context.Params["action"] = "test1";
-			context.Params["views"] = "xml";
-			context.Fire("test");
+		///// <summary>
+		///// In this test we simply test firing some test messages,
+		///// get an xml view of the resulting view state, and test
+		///// that view for expected articles.
+		///// </summary>
+		//[TestMethod]
+		//public void BasicXmlView() {
+		//	IWebContext context = this.GetContext();
+		//	context.Params["action"] = "test1";
+		//	context.Params["views"] = "xml";
+		//	context.Fire("test");
 
-			Assert.IsTrue(context.ViewSteps.HasSteps);
-			Assert.IsTrue(context.ViewSteps.Count == 2);
-			Assert.IsTrue(context.ViewSteps.Last.HasContent);
-			Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/xml");
+		//	Assert.IsTrue(context.ViewSteps.HasSteps);
+		//	Assert.IsTrue(context.ViewSteps.Count == 2);
+		//	Assert.IsTrue(context.ViewSteps.Last.HasContent);
+		//	Assert.IsTrue(context.ViewSteps.Last.ContentType == "text/xml");
 
-			XDocument result = context.ViewSteps.Last.Content.AsXDocument();
-			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='params']/records/item[@name='action' and @value='test1']").Count() == 1);
-			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='params']/records/item[@name='views' and @value='xml']").Count() == 1);
-			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event").Count() == 2);
-			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event[@message='work-message-one']").Count() == 1);
-			Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event[@message='work-message-two']").Count() == 1);
+		//	XDocument result = context.ViewSteps.Last.Content.AsXDocument();
+		//	Assert.IsTrue(result.XPathSelectElements("/records/item[@name='params']/records/item[@name='action' and @value='test1']").Count() == 1);
+		//	Assert.IsTrue(result.XPathSelectElements("/records/item[@name='params']/records/item[@name='views' and @value='xml']").Count() == 1);
+		//	Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event").Count() == 2);
+		//	Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event[@message='work-message-one']").Count() == 1);
+		//	Assert.IsTrue(result.XPathSelectElements("/records/item[@name='eventTrace']/list/event[@message='work-message-two']").Count() == 1);
 
-			Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
-			string render = ((MockWebResponse)context.Response).Result;
-			Assert.AreEqual(context.ViewSteps.Last.Content, render);
+		//	Assert.IsTrue(context.Response.ContentType == context.ViewSteps.Last.ContentType);
+		//	string render = ((MockWebResponse)context.Response).Result;
+		//	Assert.AreEqual(context.ViewSteps.Last.Content, render);
 
-			XElement result1 = context.Resources.Open("Resources/Results/result-1-0.xml").AsXElement();
-			Assert.IsTrue(XNode.DeepEquals(result1, render.AsXElement()));		
-		}
+		//	XElement result1 = context.Resources.Open("Resources/Results/result-1-0.xml").AsXElement();
+  //          XElement compare = render.AsXElement();
+
+		//	Assert.IsTrue(XNode.DeepEquals(result1, compare));
+		//}
 
 		/// <summary>
 		/// In this test we simply test firing some test messages,
