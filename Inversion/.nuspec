@@ -1,0 +1,43 @@
+﻿    <?xml version="1.0"?>
+    <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+      <metadata>
+        <!-- The identifier that must be unique within the hosting gallery -->
+        <id>Inversion</id>
+
+        <!-- The package version number that is used when resolving dependencies -->
+        <version>1.0</version>
+
+        <!-- Authors contain text that appears directly on the gallery -->
+        <authors>Guy Murphy</authors>
+
+        <!-- Owners are typically nuget.org identities that allow gallery
+             users to earily find other packages by the same owners.  -->
+        <owners>fractos</owners>
+
+        <!-- License and project URLs provide links for the gallery -->
+        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+        <projectUrl>http://github.com/guy-murphy/inversion-dev</projectUrl>
+
+        <!-- The icon is used in Visual Studio's package manager UI -->
+        <iconUrl>http://github.com/contoso/UsefulStuff/nuget_icon.png</iconUrl>
+
+        <!-- If true, this value prompts the user to accept the license when
+             installing the package. -->
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+        <!-- Any details about this particular release -->
+        <releaseNotes></releaseNotes>
+
+        <!-- The description can be used in package manager UI. Note that the
+             nuget.org gallery uses information you add in the portal. -->
+        <description>Inversion core library</description>
+
+        <!-- Tags appear in the gallery and can be used for tag searches -->
+        <tags>web reactive behavioural framework mvc webapi</tags>
+
+        <!-- Dependencies are automatically installed when the package is installed -->
+        <dependencies>
+          <dependency id="Newtonsoft.Json" version="6.0" />
+        </dependencies>
+      </metadata>
+    </package>
