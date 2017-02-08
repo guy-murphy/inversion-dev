@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Guy Murphy</authors>
+    <owners>fractos</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>http://github.com/guy-murphy/inversion-dev</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Inversion core library</description>
+    <releaseNotes>No changes.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>web reactive behavioural framework mvc webapi</tags>
+  </metadata>
+</package>

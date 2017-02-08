@@ -76,8 +76,8 @@
     <Compile Include="TextData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".nuspec" />
     <None Include="api.md" />
+    <None Include="Inversion.nuspec" />
     <None Include="packages.config" />
     <None Include="project.md" />
     <None Include="readme.md" />
