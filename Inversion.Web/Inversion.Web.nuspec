@@ -9,12 +9,16 @@
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>http://github.com/guy-murphy/inversion-dev</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Inversion core library</description>
+    <description>Inversion.Web library</description>
     <releaseNotes>No changes.</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>web reactive behavioural framework mvc webapi</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="6.0.8" />
+      <dependency id="Inversion" version="1.0.0" />
+      <dependency id="Inversion.Process" version="1.0.0" />
+      <dependency id="Microsoft.AspNet.Razor" version="3.0.0" />
+      <dependency id="Microsoft.Bcl.Immutable" version="1.0.34" />
+      <dependency id="RazorEngine" version="3.4.1" />
     </dependencies>
   </metadata>
 </package>

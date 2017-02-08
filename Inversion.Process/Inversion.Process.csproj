@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="api.md" />
+    <None Include="Inversion.Process.nuspec" />
     <None Include="packages.config" />
     <None Include="project.md" />
     <None Include="readme.md" />
