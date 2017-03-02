@@ -62,6 +62,7 @@
     <Compile Include="Behaviour\PrototypedWebBehaviour.cs" />
     <Compile Include="Behaviour\RenderBehaviour.cs" />
     <Compile Include="Behaviour\ViewStateBehaviour.cs" />
+    <Compile Include="Behaviour\View\TextViewBehaviour.cs" />
     <Compile Include="Behaviour\View\JsonViewBehaviour.cs" />
     <Compile Include="Behaviour\View\RazorViewBehaviour.cs" />
     <Compile Include="Behaviour\View\ViewBehaviour.cs" />
