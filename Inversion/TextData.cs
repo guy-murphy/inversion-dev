@@ -92,7 +92,7 @@ namespace Inversion {
 		/// A copy as a `TextData` object.
 		/// </returns>
 
-		public TextData Clone() {
+		public virtual TextData Clone() {
 			return new TextData(this);
 		}
 
@@ -100,7 +100,7 @@ namespace Inversion {
 		/// Produces an xml representation of the text data.
 		/// </summary>
 		/// <param name="writer">The xml writer the representation should be written to.</param>
-		public void ToXml(XmlWriter writer) {
+		public virtual void ToXml(XmlWriter writer) {
 			writer.WriteStartElement("text-data");
 			writer.WriteCData(this.Value);
 			writer.WriteEndElement();
@@ -110,7 +110,7 @@ namespace Inversion {
 		/// Produces a json representation of the text data.
 		/// </summary>
 		/// <param name="writer">The json writer the representation should be written to.</param>
-		public void ToJson(JsonWriter writer) {
+		public virtual void ToJson(JsonWriter writer) {
 			writer.WriteStartObject();
 			writer.WritePropertyName("text-data");
 			writer.WriteValue(this.Value);
