@@ -1,0 +1,6 @@
+language: csharp
+dotnet: 2.0.0
+mono: none
+solution: dlcs-prototype.sln
+dist: trusty
+
