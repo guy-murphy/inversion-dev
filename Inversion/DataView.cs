@@ -42,7 +42,7 @@ namespace Inversion {
 			_xml = other.ToXml();
 			_json = other.ToJson();
 			_data = other.ToJsonObject();
-			_data.PropertyChanging += (sender, args) => {
+			_data.PropertyChanged += (sender, args) => {
 				throw new InvalidOperationException("You may not change the data representation participating in a data view.");
 			};
 		}
