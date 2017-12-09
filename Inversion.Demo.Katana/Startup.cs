@@ -160,7 +160,7 @@ namespace Inversion.Demo.Katana
             this.context = context;
         }
 
-        public TextWriter Output => new StreamWriter(this.OutputStream);
+        public TextWriter Output => throw new NotImplementedException();
 
         public Stream OutputStream => this.context.Response.Body;
 
@@ -186,7 +186,7 @@ namespace Inversion.Demo.Katana
 		/// Flushes the response steam and ends the response.
 		/// </summary>
 		public void End() {
-			// nothing to do on an OWIN implementation that is apparent to me at this point.
+            // nothing to do on an OWIN implementation that is apparent to me at this point.
 		}
 
 		/// <summary>
@@ -194,7 +194,7 @@ namespace Inversion.Demo.Katana
 		/// </summary>
 		/// <param name="text">The text to write to the response stream.</param>
 		public void Write(string text) {
-			this.Output.Write(text);
+            this.context.Response.WriteAsync(text).Wait();
 		}
 
 		/// <summary>
@@ -203,7 +203,7 @@ namespace Inversion.Demo.Katana
 		/// <param name="text">The text to write to the response stream.</param>
 		/// <param name="args">The arguments to interpolate into the text.</param>
 		public void WriteFormat(string text, params object[] args) {
-			this.Output.Write(string.Format(text, args));
+			this.context.Response.WriteAsync(string.Format(text, args)).Wait();
 		}
 
 		/// <summary>
