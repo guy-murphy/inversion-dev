@@ -132,7 +132,7 @@ namespace Inversion.Demo.Katana
         public IRequestFilesCollection Files => throw new NotImplementedException();
 
         // TODO: convert this less weird. The port is missing.
-        public UrlInfo UrlInfo => new UrlInfo(new Uri($"{this.context.Request.Protocol}://{this.context.Request.Host}/{this.context.Request.Path.Value}?{this.context.Request.QueryString}"));
+        public UrlInfo UrlInfo => new UrlInfo(new Uri($"{this.context.Request.Scheme}://{this.context.Request.Host}/{this.context.Request.Path.Value}?{this.context.Request.QueryString}"));
 
         public string Method => this.context.Request.Method;
 
@@ -140,7 +140,7 @@ namespace Inversion.Demo.Katana
 
         public bool IsPost => this.Method.ToLower() == "post";
 
-        public IDictionary<string, string> Params => throw new NotImplementedException();
+        public IDictionary<string, string> Params => new Dictionary<string, string>(this.context.Request.Query.Select(q => new KeyValuePair<string, string>(q.Key, string.Join(",", q.Value))));
 
         public string Payload => this.context.Request.Body.AsText();
 
