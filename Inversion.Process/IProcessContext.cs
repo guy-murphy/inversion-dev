@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.Caching;
 
 using Inversion.Collections;
 using Inversion.Data;
 using Inversion.Process.Behaviour;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Inversion.Process {
 	/// <summary>
@@ -35,7 +35,7 @@ namespace Inversion.Process {
 		/// This really needs replaced with our own interface
 		/// that we control. This isn't portable.
 		/// </remarks>
-		ObjectCache ObjectCache { get; }
+		IMemoryCache ObjectCache { get; }
 
 		/// <summary>
 		/// Messages intended for user feedback.

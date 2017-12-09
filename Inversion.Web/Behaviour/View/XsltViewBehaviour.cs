@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Caching;
 using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
@@ -154,7 +153,14 @@ namespace Inversion.Web.Behaviour.View {
 
 					// check if we have the template cached
 					string cacheKey = String.Concat("xsl::", templateName);
-					XslCompiledTransform xsl = (!_enableCache || context.IsFlagged("nocache")) ? null : context.ObjectCache.Get(cacheKey) as XslCompiledTransform;
+					XslCompiledTransform xsl = null;
+
+					if ( _enableCache && !context.IsFlagged("nocache") ) {
+						object cacheEntry = null;
+						context.ObjectCache.TryGetValue(cacheKey, out cacheEntry);
+						xsl = cacheEntry as XslCompiledTransform;
+					}
+
 					if (xsl == null) {
 						// we dont have it cached
 						// does the file exist?					
@@ -162,10 +168,8 @@ namespace Inversion.Web.Behaviour.View {
 						if (context.Resources.Exists(templatePath)){
 							xsl = context.Resources.Open(templatePath).AsXslDocument();
 							if (_enableCache) {
-								CacheItemPolicy policy = new CacheItemPolicy {
-									AbsoluteExpiration = ObjectCache.InfiniteAbsoluteExpiration
-								};
-								context.ObjectCache.Add(cacheKey, xsl, policy);
+								var cacheEntry = context.ObjectCache.CreateEntry(cacheKey);
+								cacheEntry.Value = xsl;
 							}
 						}
 					}
