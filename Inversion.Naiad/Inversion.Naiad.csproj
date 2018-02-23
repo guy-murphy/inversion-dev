@@ -1,11 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\Inversion.Process\Inversion.Process.csproj" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Inversion.Naiad</PackageId>
+    <Version>1.0.3</Version>
+    <Authors>Guy Murphy</Authors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Inversion.Process" Version="1.0.2" />
+  </ItemGroup>
 
 </Project>

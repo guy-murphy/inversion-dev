@@ -1,12 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Inversion.Process\Inversion.Process.csproj" />
+    <PackageReference Include="Inversion.Process" Version="1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.0" />
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Inversion.Web</PackageId>
+    <Version>1.0.3</Version>
+    <Authors>Guy Murphy</Authors>
   </PropertyGroup>
 
 </Project>
