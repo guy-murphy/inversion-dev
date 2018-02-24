@@ -11,13 +11,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="System.Runtime.Caching" Version="4.5.0-preview1-25914-04" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Inversion.Web\Inversion.Web.csproj" />
-    <ProjectReference Include="..\Inversion.Process\Inversion.Process.csproj" />
-    <ProjectReference Include="..\Inversion\Inversion.csproj" />
-    <ProjectReference Include="..\Inversion.Naiad\Inversion.Naiad.csproj" />
+    <PackageReference Include="Inversion" Version="1.0.0" />
+    <PackageReference Include="Inversion.Process" Version="1.0.0" />
+    <PackageReference Include="Inversion.Web" Version="1.0.0" />
+    <PackageReference Include="Inversion.Naiad" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

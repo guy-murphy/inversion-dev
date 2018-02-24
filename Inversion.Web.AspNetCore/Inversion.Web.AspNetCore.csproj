@@ -3,17 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackageId>Inversion.Web.AspNetCore</PackageId>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Authors>Adam Christie</Authors>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="System.Runtime.Caching" Version="4.5.0-preview1-25914-04" />
-    <PackageReference Include="Inversion" Version="1.0.2" />
-    <PackageReference Include="Inversion.Process" Version="1.0.2" />
-    <PackageReference Include="Inversion.Naiad" Version="1.0.2" />
-    <PackageReference Include="Inversion.Web" Version="1.0.2" />
+    <PackageReference Include="Inversion" Version="1.0.0" />
+    <PackageReference Include="Inversion.Process" Version="1.0.0" />
+    <PackageReference Include="Inversion.Naiad" Version="1.0.0" />
+    <PackageReference Include="Inversion.Web" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
