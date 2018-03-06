@@ -80,6 +80,8 @@ namespace Inversion.Naiad {
 				    }
 					return obj;
 				}
+			} catch(Exception ex) {
+				throw new Exception(String.Format("Problem during GetService(\"{0}\")", name), ex);
 			} finally {
 				_lock.ExitReadLock();
 			}
