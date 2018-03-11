@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Reactive.Subjects;
 using System.Reactive.Linq;
-using System.Runtime.Caching;
 using System.Text;
 using System.Threading;
 
 using Inversion.Collections;
 using Inversion.Data;
 using Inversion.Process.Behaviour;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Inversion.Process {
 
@@ -70,7 +70,7 @@ namespace Inversion.Process {
 		/// This really needs replaced with our own interface
 		/// that we control. This isn't portable.
 		/// </remarks>
-		public ObjectCache ObjectCache {
+		public IMemoryCache ObjectCache {
 			get { return _cache; }
 		}
 
@@ -152,7 +152,9 @@ namespace Inversion.Process {
 		public SynchronizedProcessContext(IServiceContainer services, IResourceAdapter resources) {
 			_serviceContainer = services;
 			_resources = resources;
-			_cache = MemoryCache.Default;
+			_cache = new MemoryCache(new MemoryCacheOptions {
+
+			});
 			_bus = Subject.Synchronize(new Subject<IEvent>());
 			_messages = new ConcurrentDataCollection<string>();
 			_errors = new ConcurrentDataCollection<ErrorMessage>();

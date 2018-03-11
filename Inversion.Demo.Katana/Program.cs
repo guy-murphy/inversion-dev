@@ -1,18 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-using Microsoft.Owin.Hosting;
+namespace Inversion.Demo.Katana
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
 
-namespace Inversion.Demo.Katana {
-	public class Program {
-		static void Main(string[] args) {
-			string url = "http://localhost:9000";
-			string factoryName = "Microsoft.Owin.Host.HttpListener";
-			using (Microsoft.Owin.Hosting.WebApp.Start<InversionStartup>(new StartOptions(url){ServerFactory = factoryName})) {
-				Console.WriteLine("Now serving from: {0}", url);
-				Console.WriteLine("Press [enter] to quit...");
-				Console.ReadLine();
-
-			}
-		}
-	}
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .Build();
+    }
 }

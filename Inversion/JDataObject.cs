@@ -53,5 +53,10 @@ namespace Inversion {
 		public void ToJson(JsonWriter writer) {
 			writer.WriteRaw(this.ToString());
 		}
-	}
+
+        public object Clone()
+        {
+			return base.DeepClone();
+        }
+    }
 }

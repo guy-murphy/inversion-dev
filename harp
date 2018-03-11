@@ -1,0 +1,19 @@
+[1mdiff --git a/.travis.yml b/.travis.yml[m
+[1mindex ee3c0a2..0ce169b 100644[m
+[1m--- a/.travis.yml[m
+[1m+++ b/.travis.yml[m
+[36m@@ -1,9 +1,9 @@[m
+ language: csharp[m
+[31m-dotnet: 2.0.0[m
+ mono: none[m
+[31m-solution: dlcs-prototype.sln[m
+[31m-dist: trusty[m
+[31m-script:[m
+[32m+[m[32mdotnet: 2.0.0[m
+[32m+[m
+[32m+[m[32minstall:[m
+  - dotnet restore[m
+[31m- - dotnet build[m
+ [m
+[32m+[m[32mscript:[m
+[32m+[m[32m - dotnet build[m

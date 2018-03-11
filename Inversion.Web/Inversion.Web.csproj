@@ -1,119 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6951BA6B-4388-4FC8-8298-60DA7563FEE4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Inversion.Web</RootNamespace>
-    <AssemblyName>Inversion.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Inversion.Web</PackageId>
+    <Version>1.0.5</Version>
+    <Authors>Guy Murphy</Authors>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Inversion.Web.XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RazorEngine">
-      <HintPath>$(SolutionDir)packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.0.34.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(SolutionDir)packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(SolutionDir)packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Inversion.Process" Version="1.0.*" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Behaviour\BootstrapBehaviour.cs" />
-    <Compile Include="Behaviour\ConfiguredWebBehaviour.cs" />
-    <Compile Include="Behaviour\IWebBehaviour.cs" />
-    <Compile Include="Behaviour\ParseRequestBehaviour.cs" />
-    <Compile Include="Behaviour\ProcessViewsBehaviour.cs" />
-    <Compile Include="Behaviour\PrototypedWebBehaviour.cs" />
-    <Compile Include="Behaviour\RenderBehaviour.cs" />
-    <Compile Include="Behaviour\ViewStateBehaviour.cs" />
-    <Compile Include="Behaviour\View\TextViewBehaviour.cs" />
-    <Compile Include="Behaviour\View\JsonViewBehaviour.cs" />
-    <Compile Include="Behaviour\View\RazorViewBehaviour.cs" />
-    <Compile Include="Behaviour\View\ViewBehaviour.cs" />
-    <Compile Include="Behaviour\View\XmlViewBehaviour.cs" />
-    <Compile Include="Behaviour\View\XsltViewBehaviour.cs" />
-    <Compile Include="Behaviour\WebBehaviour.cs" />
-    <Compile Include="Behaviour\WebPrototype.cs" />
-    <Compile Include="CookieOptions.cs" />
-    <Compile Include="IRequestFile.cs" />
-    <Compile Include="IRequestCookieCollection.cs" />
-    <Compile Include="IRequestFilesCollection.cs" />
-    <Compile Include="IResponseCookieCollection.cs" />
-    <Compile Include="IResponseHeaderCollection.cs" />
-    <Compile Include="IWebApplication.cs" />
-    <Compile Include="IWebContext.cs" />
-    <Compile Include="IWebRequest.cs" />
-    <Compile Include="IWebResponse.cs" />
-    <Compile Include="MockWebContext.cs" />
-    <Compile Include="MockWebRequest.cs" />
-    <Compile Include="MockWebResponse.cs" />
-    <Compile Include="PostedFile.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UrlInfo.cs" />
-    <Compile Include="WebException.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Inversion.Process\Inversion.Process.csproj">
-      <Project>{37f59768-76ea-4d09-8976-bbc3540db5ae}</Project>
-      <Name>Inversion.Process</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Inversion\Inversion.csproj">
-      <Project>{a2dbf0b8-b672-4237-8a0b-864bb0474054}</Project>
-      <Name>Inversion</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="api.md" />
-    <None Include="packages.config" />
-    <None Include="project.md" />
-    <None Include="readme.md" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

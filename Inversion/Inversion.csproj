@@ -1,92 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A2DBF0B8-B672-4237-8A0B-864BB0474054}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Inversion</RootNamespace>
-    <AssemblyName>Inversion</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Inversion.XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Inversion</PackageId>
+    <Version>1.0.3</Version>
+    <Authors>Guy Murphy</Authors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(SolutionDir)packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Collections\ConcurrentDataCollection.cs" />
-    <Compile Include="Collections\ConcurrentDataDictionary.cs" />
-    <Compile Include="Collections\DataList.cs" />
-    <Compile Include="Collections\DataCollection.cs" />
-    <Compile Include="Collections\DataDictionary.cs" />
-    <Compile Include="Collections\DataModel.cs" />
-    <Compile Include="Collections\IDataCollection.cs" />
-    <Compile Include="Collections\IDataDictionary.cs" />
-    <Compile Include="DataEx.cs" />
-    <Compile Include="DataView.cs" />
-    <Compile Include="Data\AssemblyResourceAdapter.cs" />
-    <Compile Include="Data\CachingFileSystemResourceAdapter.cs" />
-    <Compile Include="Data\FileSystemResourceAdapter.cs" />
-    <Compile Include="Data\IResourceAdapter.cs" />
-    <Compile Include="Data\StreamEx.cs" />
-    <Compile Include="Extensions\ArrayEx.cs" />
-    <Compile Include="Extensions\DictionaryEx.cs" />
-    <Compile Include="Extensions\EnumerableEx.cs" />
-    <Compile Include="Extensions\JsonWriterEx.cs" />
-    <Compile Include="Extensions\ListEx.cs" />
-    <Compile Include="Extensions\StringBuilderEx.cs" />
-    <Compile Include="Extensions\StringEx.cs" />
-    <Compile Include="IConsumeData.cs" />
-    <Compile Include="IData.cs" />
-    <Compile Include="IMutate.cs" />
-    <Compile Include="JDataObject.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextData.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="api.md" />
-    <None Include="packages.config" />
-    <None Include="project.md" />
-    <None Include="readme.md" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
