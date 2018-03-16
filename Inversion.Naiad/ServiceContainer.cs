@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,34 +58,52 @@ namespace Inversion.Naiad {
 
 		public T GetService<T>(string name) where T : class {
 			_lock.EnterReadLock();
-			try {
-				T obj = null;
-			    bool singleton = _isSingleton.ContainsKey(name) && _isSingleton[name];
-				if (singleton && _objs.ContainsKey(name)) {
-					return _objs[name] as T;
-				} else {
-				    var item = _ctors[name];
-				    if (item == null) {
-				        return null;
-				    }
-                    Func<IServiceContainer, T> ctor = null;
-                    if(item is Func<IServiceContainer, T>) {
-                        ctor = (Func<IServiceContainer, T>) _ctors[name];
-				    }
-					if (ctor != null) {
-						obj = ctor(this);
-					}
-				    if (singleton) {
-				        _objs[name] = obj;
-				    }
-					return obj;
-				}
-			} finally {
-				_lock.ExitReadLock();
-			}
-		}
+		    try
+		    {
+		        T obj = null;
+		        bool singleton = _isSingleton.ContainsKey(name) && _isSingleton[name];
+		        if (singleton && _objs.ContainsKey(name))
+		        {
+		            return _objs[name] as T;
+		        }
+		        else
+		        {
+		            var item = _ctors[name];
+		            if (item == null)
+		            {
+		                return null;
+		            }
 
-		public bool ContainsService(string name) {
+		            Func < IServiceContainer, T > ctor = null;
+		            if (item is Func<IServiceContainer, T>)
+		            {
+		                ctor = (Func<IServiceContainer, T>)_ctors[name];
+                    }
+
+                    if (ctor != null)
+		            {
+		                obj = ctor(this);
+		            }
+
+		            if (singleton)
+		            {
+		                _objs[name] = obj;
+		            }
+
+                    return obj;
+		        }
+       		}
+		    catch (Exception ex)
+		    {
+		        throw new Exception(String.Format("problem during GetService(\"{0}\")", name), ex);
+		    }
+		    finally
+		    {
+		        _lock.ExitReadLock();
+		    }
+        }
+
+        public bool ContainsService(string name) {
 			_lock.EnterReadLock();
 			try {
 				return _ctors.ContainsKey(name);
