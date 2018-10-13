@@ -41,7 +41,19 @@ namespace Inversion.Web.AspNetCore
 
         public IResponseCookieCollection Cookies => throw new NotImplementedException();
 
-        public IResponseHeaderCollection Headers => throw new NotImplementedException();
+        private IResponseHeaderCollection _headers;
+
+        public IResponseHeaderCollection Headers
+        {
+            get
+            {
+                if (_headers == null)
+                {
+                    _headers = new AspNetCoreWebResponseHeaderCollection(context.Response);
+                }
+                return _headers;
+            }
+        }
 
 		/// <summary>
 		/// Flushes the response steam and ends the response.

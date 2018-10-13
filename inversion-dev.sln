@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inversion.Demo.Katana", "Inversion.Demo.Katana\Inversion.Demo.Katana.csproj", "{02A7C04D-3A85-4839-BD60-13AB63367A04}"
 EndProject
@@ -11,6 +11,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inversion.Web", "Inversion.Web\Inversion.Web.csproj", "{F8AF201C-38BB-4B54-BFAD-7AA0846FE9DF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inversion.Naiad", "Inversion.Naiad\Inversion.Naiad.csproj", "{7F0FAE53-557D-4567-8289-CD1B17BDC4D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inversion.Web.AspNetCore", "Inversion.Web.AspNetCore\Inversion.Web.AspNetCore.csproj", "{8D674E2B-7172-43C5-8940-B6610B39F08A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +84,18 @@ Global
 		{7F0FAE53-557D-4567-8289-CD1B17BDC4D8}.Release|x64.Build.0 = Release|Any CPU
 		{7F0FAE53-557D-4567-8289-CD1B17BDC4D8}.Release|x86.ActiveCfg = Release|Any CPU
 		{7F0FAE53-557D-4567-8289-CD1B17BDC4D8}.Release|x86.Build.0 = Release|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Debug|x64.Build.0 = Debug|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Debug|x86.Build.0 = Debug|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Release|x64.ActiveCfg = Release|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Release|x64.Build.0 = Release|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Release|x86.ActiveCfg = Release|Any CPU
+		{8D674E2B-7172-43C5-8940-B6610B39F08A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
