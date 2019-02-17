@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackageId>Inversion.Web.AspNetCore</PackageId>
-    <Version>1.0.6</Version>
+    <Version>1.0.8</Version>
     <Authors>Adam Christie</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
