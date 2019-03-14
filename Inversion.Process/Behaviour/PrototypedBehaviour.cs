@@ -17,7 +17,7 @@ namespace Inversion.Process.Behaviour {
 			get { return _prototype; }
 		}
 		/// <summary>
-		/// Provices access to component configuration stuiable for querying.
+		/// Provides access to component configuration suitable for querying.
 		/// </summary>
 		public IConfiguration Configuration {
 			get { return _prototype; }
@@ -44,7 +44,7 @@ namespace Inversion.Process.Behaviour {
 		protected PrototypedBehaviour(string respondsTo, IEnumerable<IConfigurationElement> config): base(respondsTo) {
 			_prototype = new Prototype(config);
 		}
-		
+
 		/// <summary>
 		/// Determines if each of the behaviours selection criteria match.
 		/// </summary>

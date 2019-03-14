@@ -12,6 +12,18 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Inversion.Process {
 
+    public class ActionEventArgs : EventArgs
+    {
+        private readonly IEvent _ev;
+
+        public ActionEventArgs(IEvent ev)
+        {
+            _ev = ev;
+        }
+
+        public IEvent Event => _ev;
+    }
+
 	/// <summary>
 	/// Provides a processing context as a self-contained and sufficient
 	/// channel of application execution. The context manages a set of
@@ -39,6 +51,8 @@ namespace Inversion.Process {
 		private readonly IServiceContainer _serviceContainer;
 		private readonly IResourceAdapter _resources;
 
+        public static event EventHandler PreAction;
+	    public static event EventHandler PostAction;
 
 		/// <summary>
 		/// Exposes the processes service container.
@@ -152,9 +166,7 @@ namespace Inversion.Process {
 		public ProcessContext(IServiceContainer services, IResourceAdapter resources) {
 			_serviceContainer = services;
 			_resources = resources;
-			_cache = new MemoryCache(new MemoryCacheOptions {
-			
-			});
+			_cache = new MemoryCache(new MemoryCacheOptions {});
 			_bus = new Subject<IEvent>();
 			_messages = new DataCollection<string>();
 			_errors = new DataCollection<ErrorMessage>();
@@ -184,7 +196,7 @@ namespace Inversion.Process {
 		}
 
 		/// <summary>
-		/// Disposal that allows for partitioning of 
+		/// Disposal that allows for partitioning of
 		/// clean-up of managed and unmanaged resources.
 		/// </summary>
 		/// <param name="disposing"></param>
@@ -218,8 +230,10 @@ namespace Inversion.Process {
 			this.Bus.Where(behaviour.Condition).Subscribe(
 				(IEvent ev) => {
 					try {
-						behaviour.Action(ev);
-					} catch (Exception err) {
+                        PreAction?.Invoke(this, new ActionEventArgs(ev: ev));
+                        behaviour.Action(ev);
+                        PostAction?.Invoke(this, new ActionEventArgs(ev: ev));
+                    } catch (Exception err) {
 						behaviour.Rescue(ev, err);
 					}
 				}
@@ -238,7 +252,7 @@ namespace Inversion.Process {
 		}
 
 		/// <summary>
-		/// Creates and registers a runtime behaviour with this context constructed 
+		/// Creates and registers a runtime behaviour with this context constructed
 		/// from a predicate representing the behaviours condition, and an action
 		/// representing the behaviours action. This behaviour will be consulted for
 		/// any event fired on this context.

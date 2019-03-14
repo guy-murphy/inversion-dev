@@ -18,7 +18,7 @@ namespace Inversion.Process.Behaviour {
 				return _respondsTo;
 			}
 		}
-		
+
 		/// <summary>
 		/// Creates a new instance of the behaviour.
 		/// </summary>
@@ -97,7 +97,7 @@ namespace Inversion.Process.Behaviour {
 		public virtual void Action(IEvent ev) {
 			this.Action(ev, ev.Context);
 		}
-		
+
 		/// <summary>
 		/// The action to perform when the `Condition(IEvent)` is met.
 		/// </summary>
