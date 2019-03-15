@@ -14,12 +14,16 @@ namespace Inversion.Process {
 
     public class ActionEventArgs : EventArgs
     {
+        private readonly IProcessContext _context;
         private readonly IEvent _ev;
 
-        public ActionEventArgs(IEvent ev)
+        public ActionEventArgs(IProcessContext context, IEvent ev)
         {
+            _context = context;
             _ev = ev;
         }
+
+        public IProcessContext Context => _context;
 
         public IEvent Event => _ev;
     }
@@ -51,8 +55,8 @@ namespace Inversion.Process {
 		private readonly IServiceContainer _serviceContainer;
 		private readonly IResourceAdapter _resources;
 
-        public static event EventHandler PreAction;
-	    public static event EventHandler PostAction;
+        public static event EventHandler<ActionEventArgs> PreAction;
+	    public static event EventHandler<ActionEventArgs> PostAction;
 
 		/// <summary>
 		/// Exposes the processes service container.
@@ -230,9 +234,9 @@ namespace Inversion.Process {
 			this.Bus.Where(behaviour.Condition).Subscribe(
 				(IEvent ev) => {
 					try {
-                        PreAction?.Invoke(this, new ActionEventArgs(ev: ev));
+                        PreAction?.Invoke(behaviour, new ActionEventArgs(context: this, ev: ev));
                         behaviour.Action(ev);
-                        PostAction?.Invoke(this, new ActionEventArgs(ev: ev));
+                        PostAction?.Invoke(behaviour, new ActionEventArgs(context: this, ev: ev));
                     } catch (Exception err) {
 						behaviour.Rescue(ev, err);
 					}
