@@ -55,8 +55,9 @@ namespace Inversion.Process {
 		private readonly IServiceContainer _serviceContainer;
 		private readonly IResourceAdapter _resources;
 
-        public static event EventHandler<ActionEventArgs> PreAction;
-	    public static event EventHandler<ActionEventArgs> PostAction;
+	    public delegate void ActionEventHandler(object sender, ActionEventArgs args);
+        public static ActionEventHandler PreAction;
+	    public static ActionEventHandler PostAction;
 
 		/// <summary>
 		/// Exposes the processes service container.
@@ -236,7 +237,7 @@ namespace Inversion.Process {
 					try {
                         PreAction?.Invoke(behaviour, new ActionEventArgs(context: this, ev: ev));
                         behaviour.Action(ev);
-                        PostAction?.Invoke(behaviour, new ActionEventArgs(context: this, ev: ev));
+					    PostAction?.Invoke(behaviour, new ActionEventArgs(context: this, ev: ev));
                     } catch (Exception err) {
 						behaviour.Rescue(ev, err);
 					}
