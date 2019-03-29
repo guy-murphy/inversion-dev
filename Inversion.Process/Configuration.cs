@@ -9,7 +9,9 @@ namespace Inversion.Process {
 	/// Provides an immutable, ordered collection of
 	/// configuration elements.
 	/// </summary>
-	public class Configuration : IConfiguration {
+	public class Configuration : IConfiguration
+	{
+	    public static Builder Empty = new Builder {};
 
 		private readonly ImmutableHashSet<IConfigurationElement> _elements;
 
@@ -40,7 +42,7 @@ namespace Inversion.Process {
 		/// </summary>
 		/// <param name="frame">The frame to get the elements for.</param>
 		/// <returns>Returns an enumerable of the matching elements.</returns>
-		public IEnumerable<IConfigurationElement> GetElements(string frame) {		
+		public IEnumerable<IConfigurationElement> GetElements(string frame) {
 			return this.Elements.Where(element => element.Frame == frame).OrderBy(e => e.Ordinal);
 		}
 
@@ -75,7 +77,7 @@ namespace Inversion.Process {
 		public string GetValue(string frame, string slot, string name) {
 			return this.GetValues(frame, slot, name).FirstOrDefault();
 		}
-		
+
 		/// <summary>
 		/// Gets the specified values from the configuration.
 		/// </summary>
@@ -269,7 +271,7 @@ namespace Inversion.Process {
 		/// rather than say from Spring config the likes of...
 		/// </para>
 		/// <code>
-		///     new ParameterisedSequenceBehaviour("process-request", 
+		///     new ParameterisedSequenceBehaviour("process-request",
 		///		new Configuration.Builder {
 		///			{"fire", "bootstrap"},
 		///			{"fire", "parse-request"},
@@ -286,7 +288,6 @@ namespace Inversion.Process {
 		/// </para>
 		/// </remarks>
 		public class Builder : HashSet<IConfigurationElement> {
-			
 			/// <summary>
 			/// Produces a configuration from the builder.
 			/// </summary>
