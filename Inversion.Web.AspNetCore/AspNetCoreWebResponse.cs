@@ -39,7 +39,9 @@ namespace Inversion.Web.AspNetCore
 
         public string ContentType { get => this.context.Response.ContentType; set => this.context.Response.ContentType = value; }
 
-        public IResponseCookieCollection Cookies => throw new NotImplementedException();
+        private readonly AspNetCoreWebCookieCollection _cookies = new AspNetCoreWebCookieCollection();
+
+        public IResponseCookieCollection Cookies => _cookies;
 
         private IResponseHeaderCollection _headers;
 

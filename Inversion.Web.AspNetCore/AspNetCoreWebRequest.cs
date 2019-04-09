@@ -72,6 +72,6 @@ namespace Inversion.Web.AspNetCore
 
         public IDictionary<string, string> Headers => this.context.Request.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value));
 
-        public Web.IRequestCookieCollection Cookies => throw new NotImplementedException();
+        public Web.IRequestCookieCollection Cookies => new AspNetCoreWebCookieCollection(this.context.Request.Cookies);
     }
 }
