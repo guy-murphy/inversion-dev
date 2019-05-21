@@ -1,14 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
-using System.Security.Principal;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Http;
-
-using Inversion.Process;
-using Inversion.Web;
 
 namespace Inversion.Web.AspNetCore
 {
@@ -39,9 +33,20 @@ namespace Inversion.Web.AspNetCore
 
         public string ContentType { get => this.context.Response.ContentType; set => this.context.Response.ContentType = value; }
 
-        private readonly AspNetCoreWebCookieCollection _cookies = new AspNetCoreWebCookieCollection();
+        private AspNetCoreWebResponseCookieCollection _cookies;
 
-        public IResponseCookieCollection Cookies => _cookies;
+        public IResponseCookieCollection Cookies
+        {
+            get
+            {
+                if (_cookies == null)
+                {
+                    _cookies = new AspNetCoreWebResponseCookieCollection(context.Response.Cookies);
+                }
+
+                return _cookies;
+            }
+        }
 
         private IResponseHeaderCollection _headers;
 

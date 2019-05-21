@@ -4,16 +4,15 @@ using System.Text;
 
 namespace Inversion.Web.AspNetCore
 {
-    public class AspNetCoreWebCookieCollection : IRequestCookieCollection, IResponseCookieCollection
+    public class AspNetCoreWebRequestCookieCollection : IRequestCookieCollection
     {
         private readonly Dictionary<string, AspNetCoreCookie> _collection = new Dictionary<string, AspNetCoreCookie>();
-        public AspNetCoreWebCookieCollection() { }
 
-        public AspNetCoreWebCookieCollection(IEnumerable<KeyValuePair<string, string>> source)
+        public AspNetCoreWebRequestCookieCollection(IEnumerable<KeyValuePair<string, string>> source)
         {
             foreach (KeyValuePair<string, string> kvp in source)
             {
-                this.Append(kvp.Key, kvp.Value);
+                _collection.Add(kvp.Key, new AspNetCoreCookie(kvp.Value));
             }
         }
 
@@ -53,31 +52,31 @@ namespace Inversion.Web.AspNetCore
 
         public string this[string key] => this.Get(key);
 
-        public void Append(string key, string value, CookieOptions options)
-        {
-            // ignore options for now
-            _collection.Add(key, new AspNetCoreCookie(value));
-        }
+        //public void Append(string key, string value, CookieOptions options)
+        //{
+        //    // ignore options for now
+        //    _collection.Add(key, new AspNetCoreCookie(value));
+        //}
 
-        public void Append(string key, string value)
-        {
-            _collection.Add(key, new AspNetCoreCookie(value));
-        }
+        //public void Append(string key, string value)
+        //{
+        //    _collection.Add(key, new AspNetCoreCookie(value));
+        //}
 
-        public void Delete(string key)
-        {
-            _collection.Remove(key);
-        }
+        //public void Delete(string key)
+        //{
+        //    _collection.Remove(key);
+        //}
 
-        public void Append(string key, string[] values, CookieOptions options)
-        {
-            _collection.Add(key, new AspNetCoreCookie(values, options));
-        }
+        //public void Append(string key, string[] values, CookieOptions options)
+        //{
+        //    _collection.Add(key, new AspNetCoreCookie(values, options));
+        //}
 
-        public void Append(string key, string[] values)
-        {
-            _collection.Add(key, new AspNetCoreCookie(values));
-        }
+        //public void Append(string key, string[] values)
+        //{
+        //    _collection.Add(key, new AspNetCoreCookie(values));
+        //}
 
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
