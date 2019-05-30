@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Inversion.Web</PackageId>
-    <Version>1.0.5</Version>
+    <Version>1.0.8</Version>
     <Authors>Guy Murphy</Authors>
   </PropertyGroup>
 

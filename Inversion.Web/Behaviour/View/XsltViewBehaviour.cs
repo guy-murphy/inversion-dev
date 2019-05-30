@@ -186,6 +186,9 @@ namespace Inversion.Web.Behaviour.View {
 						    {
 						        _log.DebugFormat("Path {0} exists", templatePath);
 						    }
+
+						    xsl = new XslCompiledTransform(enableDebug: false);
+						    xsl.Load(templatePath);
                             xsl = context.Resources.Open(templatePath).AsXslDocument();
 							if (_enableCache) {
 								var cacheEntry = context.ObjectCache.CreateEntry(cacheKey);
@@ -206,47 +209,56 @@ namespace Inversion.Web.Behaviour.View {
 							args.AddParam(parm.Key, "", parm.Value);
 						}
 
-						StringBuilder result = new StringBuilder();
-						XmlDocument input = new XmlDocument();
-
-						string inputText = context.ViewSteps.Last.Content ?? context.ViewSteps.Last.Model.ToXml();
-						input.LoadXml(inputText);
-
-
-					    if (_disableDirective)
+					    try
 					    {
-					        XmlWriterSettings writerSettings = new XmlWriterSettings
+					        StringBuilder result = new StringBuilder();
+					        XmlDocument input = new XmlDocument();
+
+					        string inputText = context.ViewSteps.Last.Content ?? context.ViewSteps.Last.Model.ToXml();
+					        input.LoadXml(inputText);
+
+
+					        if (_disableDirective)
 					        {
-					            OmitXmlDeclaration = true,
-                                ConformanceLevel = ConformanceLevel.Auto
-					        };
-					        using (XmlWriter writer = XmlWriter.Create(result, writerSettings))
-					        {
-					            xsl.Transform(input, args, writer);
-					            if (_diagnostics)
+					            XmlWriterSettings writerSettings = new XmlWriterSettings
 					            {
-					                _log.DebugFormat("Transformed");
-					            }
-                            }
-					    }
-					    else
-					    {
-					        using (StringWriterWithEncoding writer = new StringWriterWithEncoding(result, Encoding.UTF8))
-					        {
-                                xsl.Transform(input, args, writer);
-					            if (_diagnostics)
+					                OmitXmlDeclaration = true,
+					                ConformanceLevel = ConformanceLevel.Auto
+					            };
+					            using (XmlWriter writer = XmlWriter.Create(result, writerSettings))
 					            {
-					                _log.DebugFormat("Transformed");
+					                xsl.Transform(input, args, writer);
+					                if (_diagnostics)
+					                {
+					                    _log.DebugFormat("Transformed");
+					                }
 					            }
-                            }
-                        }
+					        }
+					        else
+					        {
+					            using (StringWriterWithEncoding writer = new StringWriterWithEncoding(result, Encoding.UTF8))
+					            {
+					                xsl.Transform(input, args, writer);
+					                if (_diagnostics)
+					                {
+					                    _log.DebugFormat("Transformed");
+					                }
+					            }
+					        }
 
-						context.ViewSteps.CreateStep(templateName, _contentType, result.ToString());
-					    if (_diagnostics)
-					    {
-					        _log.DebugFormat("ViewStep created");
+					        context.ViewSteps.CreateStep(templateName, _contentType, result.ToString());
+					        if (_diagnostics)
+					        {
+					            _log.DebugFormat("ViewStep created");
+					        }
+
+					        break; // we've found and processed our template, no need to keep looking
 					    }
-                        break; // we've found and processed our template, no need to keep looking
+					    catch (Exception ex)
+					    {
+					        _log.ErrorFormat("Problem during Transform: {0}", ex.ToString());
+					        throw;
+					    }
 					}
 				}
 
