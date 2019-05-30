@@ -189,7 +189,7 @@ namespace Inversion.Web.Behaviour.View {
 
 						    xsl = new XslCompiledTransform(enableDebug: false);
 						    xsl.Load(templatePath);
-                            xsl = context.Resources.Open(templatePath).AsXslDocument();
+                            //xsl = context.Resources.Open(templatePath).AsXslDocument();
 							if (_enableCache) {
 								var cacheEntry = context.ObjectCache.CreateEntry(cacheKey);
 								cacheEntry.Value = xsl;
