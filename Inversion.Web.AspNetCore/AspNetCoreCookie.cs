@@ -6,19 +6,42 @@ namespace Inversion.Web.AspNetCore
 {
     public class AspNetCoreCookie
     {
-        private string[] _values = new String[] { };
+        private readonly string[] _values;
         public CookieOptions Options;
 
         public AspNetCoreCookie(string value, CookieOptions options = null)
         {
-            _values = new string[] { value };
             this.Options = options;
+
+            if (value.Contains(','))
+            {
+                _values = value.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            }
+            else
+            {
+                _values = new string[] { value };
+            }
         }
 
         public AspNetCoreCookie(string[] values, CookieOptions options = null)
         {
-            _values = values;
             this.Options = options;
+
+            List<string> candidate = new List<string>();
+
+            foreach (string value in values)
+            {
+                if (value.Contains(','))
+                {
+                    candidate.AddRange(value.Split(',', StringSplitOptions.RemoveEmptyEntries));
+                }
+                else
+                {
+                    candidate.Add(value);
+                }
+            }
+
+            _values = candidate.ToArray();
         }
 
         public string GetValue()

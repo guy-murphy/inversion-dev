@@ -33,7 +33,27 @@ namespace Inversion.Web.AspNetCore
 
         public bool IsPost => this.Method.ToLower() == "post";
 
-        public IDictionary<string, string> Params => new Dictionary<string, string>(this.context.Request.Query.Select(q => new KeyValuePair<string, string>(q.Key, string.Join(",", q.Value))));
+        public IDictionary<string, string> Params
+        {
+            get
+            {
+                Dictionary<string, string> requestParams = new Dictionary<string, string>();
+                foreach(KeyValuePair<string, string> kvp in this.context.Request.Query.Select(q => new KeyValuePair<string, string>(q.Key, string.Join(",", q.Value))))
+                {
+                    requestParams.Add(kvp.Key, kvp.Value);
+                }
+
+                if (context.Request.HasFormContentType && context.Request.Form != null && context.Request.Form.Count > 0)
+                {
+                    foreach (KeyValuePair<string, string> kvp in this.context.Request.Form.Select(q => new KeyValuePair<string, string>(q.Key, q.Value)))
+                    {
+                        requestParams.Add(kvp.Key, kvp.Value);
+                    }
+                }
+
+                return requestParams;
+            }
+        }
 
         private string _cachedPayload { get; set; }
 
