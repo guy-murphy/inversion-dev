@@ -22,7 +22,7 @@ namespace Inversion.Web.AspNetCore
             this.context = context;
         }
 
-        public IRequestFilesCollection Files => throw new NotImplementedException();
+        public IRequestFilesCollection Files => new AspNetCoreWebRequestFiles(this.context.Request.Form.Files);
 
         // TODO: convert this less weird. The port is missing.
         public UrlInfo UrlInfo => new UrlInfo(new Uri($"{this.context.Request.Scheme}://{this.context.Request.Host}/{this.context.Request.Path.Value}?{this.context.Request.QueryString}"));
