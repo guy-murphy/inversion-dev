@@ -19,6 +19,13 @@ namespace Inversion.Web.AspNetCore
             if (options.HttpOnly) cookieOptions.HttpOnly = true;
             if (options.Expires != null) cookieOptions.Expires = options.Expires.Value;
 
+            switch (options.SameSite)
+            {
+                case CookieOptions.CookieOptionSameSite.None: cookieOptions.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None; break;
+                case CookieOptions.CookieOptionSameSite.Lax: cookieOptions.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax; break;
+                case CookieOptions.CookieOptionSameSite.Strict: cookieOptions.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict; break;
+            }
+
             _cookies.Append(key, value, cookieOptions);
         }
 
@@ -39,6 +46,13 @@ namespace Inversion.Web.AspNetCore
             if (options.Secure) cookieOptions.Secure = true;
             if (options.HttpOnly) cookieOptions.HttpOnly = true;
             if (options.Expires != null) cookieOptions.Expires = options.Expires.Value;
+
+            switch (options.SameSite)
+            {
+                case CookieOptions.CookieOptionSameSite.None: cookieOptions.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None; break;
+                case CookieOptions.CookieOptionSameSite.Lax: cookieOptions.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax; break;
+                case CookieOptions.CookieOptionSameSite.Strict: cookieOptions.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict; break;
+            }
 
             _cookies.Append(key, String.Join(',', values), cookieOptions);
         }
