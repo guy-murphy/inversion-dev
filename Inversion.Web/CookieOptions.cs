@@ -25,6 +25,15 @@ namespace Inversion.Web {
 		/// </summary>
 		public bool Secure { get; set; }
 
+	    public enum CookieOptionSameSite
+	    {
+            None,
+            Lax,
+            Strict
+	    }
+
+        public CookieOptionSameSite SameSite { get; set; }
+
 		/// <summary>
 		/// When the cookie should expire.
 		/// </summary>
